@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, Table, DateTime, Float
+from sqlalchemy import Column, Integer, String, Table, DateTime, Float, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
@@ -105,14 +106,14 @@ class AHU(Base):
 
 	__tablename__ = "Air_Handling_Unit"
 
-	_AHUNumber = Column('AHUNumber', Integer(10), primary_key = True, autoincrement = True)
+	_AHUNumber = Column('AHUNumber', Integer, primary_key = True, autoincrement = True)
 
 	#Relationship between AHU and Filter
-	_filters = relationship('Filter', back_populates = '_filterNumber')
+	_filters = relationship('Filter', back_populates = '_ahu')
 
 	#Constructor
 
-	def __init__(self, AHUNumber, filters = None):
+	def __init__(self, AHUNumber, filters = []):
 		self._AHUNumber = AHUNumber
 		self._filters = filters
 
@@ -134,22 +135,26 @@ class AHU(Base):
 	def filters(self, value):
 		self._filters = value
 
+	def __str__(self):
+		return "<AHU(AHUNumber = '%d', filters = '%s')>" \
+		% (self._AHUNumber, str(self._filters))
+
 class Filter(Base):
 	"""Class to map to the Filter table in the HVAC DB"""
 
 	__tablename__ = "Filter"
 
-	_filterNumber = Column('FilterNumber', String(255), primary_key = True, autoincrement = True)
-	_AHUNumber = Column('AHUNumber', Integer(10), ForeingKey("Air_Handling_Unit.AHUNumber"))
+	_filterNumber = Column('FilterNumber', Integer, primary_key = True, autoincrement = True)
+	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"))
 	
 	#Relatiionship between Filter and AHU
-	_ahu = relationship("Air_Handling_Unit", back_populates="_AHUNumber")
+	_ahu = relationship("AHU", back_populates = "_filters")
 	#Relationship between Filter and Filter_Reading
-	_filterReadings = relationship("Filter_Reading", back_populates="_filterNumber")
+	_filterReadings = relationship("FilterReading", back_populates = "_filter")
 
 	#Constructor
 
-	def __init__(self, filterNumber, AHUNumber, ahu = None, filterReading = None):
+	def __init__(self, filterNumber, AHUNumber, ahu = None, filterReadings = []):
 		self._filterNumber = filterNumber
 		self._AHUNumber = AHUNumber
 		self._ahu = ahu
@@ -186,8 +191,12 @@ class Filter(Base):
 		return self._filterReadings
 
 	@filterReadings.setter
-	def filterReading(self, value):
+	def filterReadings(self, value):
 		self._filterReadings = value
+
+	def __str__(self):
+		return "<Filter(filterNumber = '%d', AHUNumber = '%d', ahu = '%s', filterReadings = '%s')>" \
+		% (self._filterNumber, self._AHUNumber, self._ahu, str(self._filterReadings))
 
 
 class FilterReading(Base):
@@ -196,12 +205,12 @@ class FilterReading(Base):
 	__tablename__ = "Filter_Reading"
 
 	_timestamp = Column('Time_Stamp', DateTime, primary_key = True)
-	_filterNumber = Column('FilterNumber', Integer(10), primary_key = True, ForeingKey("Filter._filterNumber"))
+	_filterNumber = Column('FilterNumber', Integer, ForeignKey("Filter.FilterNumber"), primary_key = True)
 	_filterType = Column('FilterType', String(255))
-	_differencePressure = Column('DifferencePressure', Float(10))
+	_differencePressure = Column('DifferencePressure', Float)
 	
 	#Relationship between Filter and Filter_Reading
-	_filter = relationship("Filter", back_populates="_filterNumber")
+	_filter = relationship("Filter", back_populates = "_filterReadings")
 
 	#Constructor
 
@@ -254,3 +263,6 @@ class FilterReading(Base):
 	def filter(self, value):
 		self._filter = value
 
+	def __str__(self):
+		return "<Filter(timestamp = '%s', filterNumber = '%s', filterType = '%s', differencePressure = '%s', filter = '%s')>" \
+		% (str(self._timestamp), self._filterNumber, self._filterType, self._differencePressure, str(self._filter))

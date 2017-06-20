@@ -5,6 +5,7 @@ import sqlalchemy
 import hvacDBMapping
 from sqlalchemy.orm import sessionmaker
 import traceback
+import datetime
 
 def connect_db():
 	"""Function used to connect to the database through MySQLdb"""
@@ -79,15 +80,75 @@ def main():
 		print(traceback.format.exc())
 		print("writing error")
 		return False
-	finally:
-		session.close()
 
 	#query example
 	for instance in session.query(hvacDBMapping.DataPoint).order_by(hvacDBMapping.DataPoint._path):
 		print(instance.path, instance.point)
 
+	now = datetime.datetime.now()
+	filterReading11 = hvacDBMapping.FilterReading(now, 1, "Type 1", 0.85, None)
+	filterReading21 = hvacDBMapping.FilterReading(now, 2, "Type 1", 0.85, None)
+	filterReading31 = hvacDBMapping.FilterReading(now, 3, "Type 1", 0.85, None)
+	filterReading41 = hvacDBMapping.FilterReading(now, 4, "Type 1", 0.85, None)
+
+	now = datetime.datetime.now() + datetime.timedelta(minutes = 1)
+	filterReading12 = hvacDBMapping.FilterReading(now, 1, "Type 2", 0.95, None)
+	filterReading22 = hvacDBMapping.FilterReading(now, 2, "Type 2", 0.95, None)
+	filterReading32 = hvacDBMapping.FilterReading(now, 3, "Type 2", 0.95, None)
+	filterReading42 = hvacDBMapping.FilterReading(now, 4, "Type 2", 0.95, None)
+
+
+	filter1 = hvacDBMapping.Filter(1, 1, None, [])
+	filter2 = hvacDBMapping.Filter(2, 1, None, [])
+	filter3 = hvacDBMapping.Filter(3, 1, None, [])
+	filter4 = hvacDBMapping.Filter(4, 1, None, [])
+
 	#inserting with references example
-	ahu1 = hvacDBMapping.AHU()
+	ahu1 = hvacDBMapping.AHU(1, filters = [])
+
+	#configure relationships
+	filterReading11.filter = filter1
+	filterReading21.filter = filter2
+	filterReading31.filter = filter3
+	filterReading41.filter = filter4
+	filterReading12.filter = filter1
+	filterReading22.filter = filter2
+	filterReading32.filter = filter3
+	filterReading42.filter = filter4
+
+	#print(filterReading41)
+	#print(filterReading42)
+
+	filter1.filterReadings = [filterReading11, filterReading12]
+	filter2.filterReadings = [filterReading21, filterReading22]
+	filter3.filterReadings = [filterReading31, filterReading32]
+	filter4.filterReadings = [filterReading41, filterReading42]
+
+
+	filter1.ahu = ahu1
+	filter2.ahu = ahu1
+	filter3.ahu = ahu1
+	filter4.ahu = ahu1
+
+	#print(filter1)
+	#print(filter2)
+	#print(filter3)
+	#print(filter4)
+
+	ahu1.filters = [filter1, filter2, filter3, filter4]
+
+	print(ahu1)
+
+	try:
+		session.add(ahu1)
+		session.commit()
+		print("writing of object: success")
+	except Exception as e:
+		print(traceback.format.exc())
+		print("writing of object: error")
+		return False
+	finally:
+		session.close()
 
 
 #invoke main
