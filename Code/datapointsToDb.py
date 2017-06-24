@@ -13,7 +13,7 @@ def connect_db():
 	db = None
 
 	try:
-		db = MySQLdb.connect(host="localhost", user="dlaredorazo", passwd="@Dexsys13", db="HVAC2")
+		db = MySQLdb.connect(host="localhost", user="dlaredorazo", passwd="@Dexsys13", db="HVAC")
 		cursor = db.cursor()
 		cursor.execute("SELECT VERSION()")
 		results = cursor.fetchone()
@@ -62,7 +62,7 @@ def main():
 	
 	#Attempt connection to the database
 	try:
-		sqlengine = sqlalchemy.create_engine("mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2")
+		sqlengine = sqlalchemy.create_engine("mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC")
 		Session = sessionmaker(bind=sqlengine)
 		session = Session()
 

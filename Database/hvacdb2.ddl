@@ -1,3 +1,5 @@
+use HVAC;
+
 CREATE TABLE Thermafuser_Reading (
   Time_stamp                int(10) NOT NULL, 
   ThermafuserNumber         int(10) NOT NULL, 
