@@ -1,0 +1,1201 @@
+server,location,branch,sub_branch,control_program,point,path
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1A,Air Flow Feedback,#1c1a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1A,clg setpt,#1c1a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1A,htg setpt,#1c1a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1A,Room Occupied,#1c1a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1A,Supply Air,#1c1a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1A,Zone Temp,#1c1a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1B,Air Flow Feedback,#1c1b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1B,clg setpt,#1c1b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1B,htg setpt,#1c1b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1B,Room Occupied,#1c1b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1B,Supply Air,#1c1b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1B,Zone Temp,#1c1b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1C,Air Flow Feedback,#1c1c_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1C,clg setpt,#1c1c_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1C,htg setpt,#1c1c_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1C,Room Occupied,#1c1c_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1C,Supply Air,#1c1c_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C1C,Zone Temp,#1c1c_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6A,Air Flow Feedback,#1c6a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6A,clg setpt,#1c6a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6A,htg setpt,#1c6a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6A,Room Occupied,#1c6a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6A,Supply Air,#1c6a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6A,Zone Temp,#1c6a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6B,Air Flow Feedback,#1c6b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6B,clg setpt,#1c6b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6B,htg setpt,#1c6b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6B,Room Occupied,#1c6b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6B,Supply Air,#1c6b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6B,Zone Temp,#1c6b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6C,Air Flow Feedback,#1c6c_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6C,clg setpt,#1c6c_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6C,htg setpt,#1c6c_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6C,Room Occupied,#1c6c_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6C,Supply Air,#1c6c_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6C,Zone Temp,#1c6c_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6D,Air Flow Feedback,#1c6d_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6D,clg setpt,#1c6d_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6D,htg setpt,#1c6d_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6D,Room Occupied,#1c6d_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6D,Supply Air,#1c6d_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,1C6D,Zone Temp,#1c6d_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C1A,Air Flow Feedback,#2c1a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C1A,clg setpt,#2c1a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C1A,htg setpt,#2c1a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C1A,Room Occupied,#2c1a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C1A,Supply Air,#2c1a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C1A,Zone Temp,#2c1a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C1B,Air Flow Feedback,#2c1b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C1B,clg setpt,#2c1b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C1B,htg setpt,#2c1b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C1B,Room Occupied,#2c1b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C1B,Supply Air,#2c1b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C1B,Zone Temp,#2c1b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C3-1,Air Flow Feedback,#2c3a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C3-1,clg setpt,#2c3a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C3-1,htg setpt,#2c3a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C3-1,Room Occupied,#2c3a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C3-1,Supply Air,#2c3a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C3-1,Zone Temp,#2c3a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C3-2,Air Flow Feedback,#2c3b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C3-2,clg setpt,#2c3b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C3-2,htg setpt,#2c3b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C3-2,Room Occupied,#2c3b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C3-2,Supply Air,#2c3b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C3-2,Zone Temp,#2c3b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C4,Air Flow Feedback,#2c4_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C4,clg setpt,#2c4_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C4,htg setpt,#2c4_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C4,Room Occupied,#2c4_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C4,Supply Air,#2c4_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C4,Zone Temp,#2c4_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C5,Air Flow Feedback,#2c5_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C5,clg setpt,#2c5_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C5,htg setpt,#2c5_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C5,Room Occupied,#2c5_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C5,Supply Air,#2c5_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C5,Zone Temp,#2c5_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6A,Air Flow Feedback,#2c6a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6A,clg setpt,#2c6a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6A,htg setpt,#2c6a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6A,Room Occupied,#2c6a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6A,Supply Air,#2c6a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6A,Zone Temp,#2c6a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6B,Air Flow Feedback,#2c6b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6B,clg setpt,#2c6b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6B,htg setpt,#2c6b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6B,Room Occupied,#2c6b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6B,Supply Air,#2c6b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6B,Zone Temp,#2c6b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6C,Air Flow Feedback,#2c6c_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6C,clg setpt,#2c6c_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6C,htg setpt,#2c6c_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6C,Room Occupied,#2c6c_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6C,Supply Air,#2c6c_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6C,Zone Temp,#2c6c_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6D,Air Flow Feedback,#2c6d_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6D,clg setpt,#2c6d_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6D,htg setpt,#2c6d_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6D,Room Occupied,#2c6d_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6D,Supply Air,#2c6d_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6D,Zone Temp,#2c6d_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6E,Air Flow Feedback,#2c6e_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6E,clg setpt,#2c6e_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6E,htg setpt,#2c6e_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6E,Room Occupied,#2c6e_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6E,Supply Air,#2c6e_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,2C6E,Zone Temp,#2c6e_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C1-A,Air Flow Feedback,#3c1a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C1-A,clg setpt,#3c1a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C1-A,htg setpt,#3c1a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C1-A,Room Occupied,#3c1a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C1-A,Supply Air,#3c1a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C1-A,Zone Temp,#3c1a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C1-B,Air Flow Feedback,#3c1b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C1-B,clg setpt,#3c1b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C1-B,htg setpt,#3c1b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C1-B,Room Occupied,#3c1b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C1-B,Supply Air,#3c1b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C1-B,Zone Temp,#3c1b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C2,Air Flow Feedback,#3c2_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C2,clg setpt,#3c2_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C2,htg setpt,#3c2_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C2,Room Occupied,#3c2_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C2,Supply Air,#3c2_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C2,Zone Temp,#3c2_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C4,Air Flow Feedback,#3c4_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C4,clg setpt,#3c4_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C4,htg setpt,#3c4_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C4,Room Occupied,#3c4_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C4,Supply Air,#3c4_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C4,Zone Temp,#3c4_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-A,Air Flow Feedback,#3c6a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-A,clg setpt,#3c6a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-A,htg setpt,#3c6a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-A,Room Occupied,#3c6a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-A,Supply Air,#3c6a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-A,Zone Temp,#3c6a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-B,Air Flow Feedback,#3c6b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-B,clg setpt,#3c6b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-B,htg setpt,#3c6b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-B,Room Occupied,#3c6b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-B,Supply Air,#3c6b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-B,Zone Temp,#3c6b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-C,Air Flow Feedback,#3c6c_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-C,clg setpt,#3c6c_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-C,htg setpt,#3c6c_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-C,Room Occupied,#3c6c_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-C,Supply Air,#3c6c_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-C,Zone Temp,#3c6c_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-D,Air Flow Feedback,#3c6d_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-D,clg setpt,#3c6d_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-D,htg setpt,#3c6d_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-D,Room Occupied,#3c6d_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-D,Supply Air,#3c6d_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,3C6-D,Zone Temp,#3c6d_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,CHW Valve,#ahu-4_0206/chw_valve
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Cl Req,#ahu-4_0206/m045
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Cool Stpt,#ahu-4_0206/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,CW Coil Return,#ahu-4_0206/cwcr
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,CW Coil Supply,#ahu-4_0206/cwcs
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,EA DAMPER,#ahu-4_0206/ea_dmpr
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Econ Stpt,#ahu-4_0206/econ_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Final Filter Diff. Press.,#ahu-4_0206/ffilter_dp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Heat Stpt,#ahu-4_0206/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Ht Req,#ahu-4_0206/m044
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,HW Coil Return,#ahu-4_0206/hwcr
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,HW Coil Supply,#ahu-4_0206/hwcs
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,HW Valve,#ahu-4_0206/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Mixed Air Temp,#ahu-4_0206/ma_temp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,OA DAMPER,#ahu-4_0206/oa_dmpr
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,OA Temp,#ahu-4_0206/oa_temperature
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Occ Mode,#ahu-4_0206/m041
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,OSA  CO2,#ahu-4_0206/osa_co2
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,OSA CFM,#ahu-4_0206/osacfm
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Pre-Filter Diff. Press.,#ahu-4_0206/pfilter_dp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,RA CO2 Stpt,#ahu-4_0206/co2_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,RA DAMPER,#ahu-4_0206/ra_dmpr
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Ret Fan 4B Velocity Pressure,#ahu-4_0206/rf2_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Ret Fan 4C Velocity Pressure,#ahu-4_0206/rf3_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Ret Fan 4D Velocity Pressure,#ahu-4_0206/rf4_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Return Air CO2,#ahu-4_0206/ra_co2
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Return Air Temp,#ahu-4_0206/ra_temp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Return Fan  CFM,#ahu-4_0206/rf_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Return Fan 1 CFM,#ahu-4_0206/rf1_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Return Fan 2 CFM,#ahu-4_0206/rf2_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Return Fan 3 CFM,#ahu-4_0206/rf3_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Return Fan 4 CFM,#ahu-4_0206/rf4_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,RF Fan 4A Velocity Pressure,#ahu-4_0206/rf1_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Static Pres - Smoothed,#ahu-4_0206/m798
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Static SP,#ahu-4_0206/m403
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Sup Fan 4A Velocity Pressure,#ahu-4_0206/sf1_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Sup Fan 4B Velocity Pressure,#ahu-4_0206/sf2_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Sup Fan 4C Velocity Pressure,#ahu-4_0206/sf3_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Sup Fan 4D Velocity Pressure,#ahu-4_0206/sf4_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Supply Fan 1 CFM,#ahu-4_0206/sf_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Supply Fan 1 CFM,#ahu-4_0206/sf1_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Supply Fan 2 CFM,#ahu-4_0206/sf2_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Supply Fan 3 CFM,#ahu-4_0206/sf3_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Supply Fan 4 CFM,#ahu-4_0206/sf4_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-4,Supply Temp,#ahu-4_0206/sa_temp
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4A Return,1610_power_kw,#ahu_4a_return/power_kw_1610_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4A Return,1617_speed_rpm,#ahu_4a_return/speed_rpm_1617_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4A Supply,1610_power_kw,#ahu_4a_supply/power_kw_1610_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4A Supply,1617_speed_rpm,#ahu_4a_supply/speed_rpm_1617_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4B Return,1610_power_kw,#ahu_4b_return/power_kw_1610_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4B Return,1617_speed_rpm,#ahu_4b_return/speed_rpm_1617_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4B Supply,1610_power_kw,#ahu_4b_supply/power_kw_1610_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4B Supply,1617_speed_rpm,#ahu_4b_supply/speed_rpm_1617_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4C Return,1610_power_kw,#ahu_4c_return/power_kw_1610_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4C Return,1617_speed_rpm,#ahu_4c_return/speed_rpm_1617_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4C Supply,1610_power_kw,#ahu_4c_supply/power_kw_1610_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4C Supply,1617_speed_rpm,#ahu_4c_supply/speed_rpm_1617_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4D Return,1610_power_kw,#ahu_4d_return/power_kw_1610_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4D Return,1617_speed_rpm,#ahu_4d_return/speed_rpm_1617_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4D Supply,1610_power_kw,#ahu_4d_supply/power_kw_1610_tn
+10.20.0.47,Science & Engineering 2: 0206,VFD,,AHU-4D Supply,1617_speed_rpm,#ahu_4d_supply/speed_rpm_1617_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Breakout 120J VAV-1-23,Cool Stpt,#vav-1-23/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Breakout 120J VAV-1-23,CW Valve,#vav-1-23/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Breakout 120J VAV-1-23,Discharge Temp,#vav-1-23/da_temp
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Breakout 120J VAV-1-23,Dmpr Pos,#vav-1-23/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Breakout 120J VAV-1-23,Duct SP,#vav-1-23/st_press
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Breakout 120J VAV-1-23,Flow Control / Flow Input,#vav-1-23/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Breakout 120J VAV-1-23,Heat Stpt,#vav-1-23/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Breakout 120J VAV-1-23,HW Valve,#vav-1-23/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Breakout 120J VAV-1-23,Static SP1,#vav-1-23/m211
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Breakout 120J VAV-1-23,Zone Temps,#vav-1-23/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Bridge 2C7-1,Air Flow Feedback,#bridge2c71_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Bridge 2C7-1,clg setpt,#bridge2c71_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Bridge 2C7-1,htg setpt,#bridge2c71_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Bridge 2C7-1,Room Occupied,#bridge2c71_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Bridge 2C7-1,Supply Air,#bridge2c71_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Bridge 2C7-1,Zone Temp,#bridge2c71_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Bridge 2C7-2,Air Flow Feedback,#bridge2c72_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Bridge 2C7-2,clg setpt,#bridge2c72_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Bridge 2C7-2,htg setpt,#bridge2c72_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Bridge 2C7-2,Room Occupied,#bridge2c72_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Bridge 2C7-2,Supply Air,#bridge2c72_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Bridge 2C7-2,Zone Temp,#bridge2c72_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Computation 120A&B VAV-1-25,Cool Stpt,#vav-1-25/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Computation 120A&B VAV-1-25,CW Valve,#vav-1-25/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Computation 120A&B VAV-1-25,Discharge Temp,#vav-1-25/da_temp
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Computation 120A&B VAV-1-25,Dmpr Pos,#vav-1-25/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Computation 120A&B VAV-1-25,Duct SP,#vav-1-25/st_press
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Computation 120A&B VAV-1-25,Flow Control / Flow Input,#vav-1-25/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Computation 120A&B VAV-1-25,Heat Stpt,#vav-1-25/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Computation 120A&B VAV-1-25,HW Valve,#vav-1-25/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Computation 120A&B VAV-1-25,Static SP1,#vav-1-25/m211
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Computation 120A&B VAV-1-25,Zone Temps,#vav-1-25/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Conference 224 VAV-2-26,Clg Stpt,#vav-2-26/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Conference 224 VAV-2-26,CW Valve,#vav-2-26/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Conference 224 VAV-2-26,Discharge Temp,#vav-2-26/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Conference 224 VAV-2-26,Dmpr Pos,#vav-2-26/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Conference 224 VAV-2-26,Duct SP,#vav-2-26/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Conference 224 VAV-2-26,Flow Control / Flow Input,#vav-2-26/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Conference 224 VAV-2-26,Htg Stpt,#vav-2-26/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Conference 224 VAV-2-26,HW Valve,#vav-2-26/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Conference 224 VAV-2-26,Static SP1,#vav-2-26/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Conference 224 VAV-2-26,Zone Temps,#vav-2-26/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 301 VAV-3-22,Cool Stpt,#vav-3-22/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 301 VAV-3-22,CW Valve,#vav-3-22/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 301 VAV-3-22,Discharge Temp,#vav-3-22/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 301 VAV-3-22,Dmpr Pos,#vav-3-22/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 301 VAV-3-22,Duct SP,#vav-3-22/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 301 VAV-3-22,Flow Control / Flow Input,#vav-3-22/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 301 VAV-3-22,Heat Stpt,#vav-3-22/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 301 VAV-3-22,HW Valve,#vav-3-22/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 301 VAV-3-22,Static SP1,#vav-3-22/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 301 VAV-3-22,Zone Temps,#vav-3-22/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 324 VAV-3-26,Clg Stpt,#vav-3-26/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 324 VAV-3-26,CW Valve,#vav-3-26/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 324 VAV-3-26,Discharge Temp,#vav-3-26/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 324 VAV-3-26,Dmpr Pos,#vav-3-26/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 324 VAV-3-26,Duct SP,#vav-3-26/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 324 VAV-3-26,Flow Control / Flow Input,#vav-3-26/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 324 VAV-3-26,Htg Stpt,#vav-3-26/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 324 VAV-3-26,HW Valve,#vav-3-26/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 324 VAV-3-26,Static SP1,#vav-3-26/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Conference 324 VAV-3-26,Zone Temps,#vav-3-26/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Break Out 213A VAV-2-34,Cool Stpt,#vav-2-34/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Break Out 213A VAV-2-34,CW Valve,#vav-2-34/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Break Out 213A VAV-2-34,Discharge Temp,#vav-2-34/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Break Out 213A VAV-2-34,Dmpr Pos,#vav-2-34/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Break Out 213A VAV-2-34,Duct SP,#vav-2-34/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Break Out 213A VAV-2-34,Flow Control / Flow Input,#vav-2-34/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Break Out 213A VAV-2-34,Heat Stpt,#vav-2-34/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Break Out 213A VAV-2-34,HW Valve,#vav-2-34/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Break Out 213A VAV-2-34,Static SP1,#vav-2-34/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Break Out 213A VAV-2-34,Zone Temps,#vav-2-34/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Lab 206 VAV-2-38,Cool Stpt,#vav-2-38/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Lab 206 VAV-2-38,CW Valve,#vav-2-38/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Lab 206 VAV-2-38,Discharge Temp,#vav-2-38/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Lab 206 VAV-2-38,Dmpr Pos,#vav-2-38/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Lab 206 VAV-2-38,Duct SP,#vav-2-38/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Lab 206 VAV-2-38,Flow Control / Flow Input,#vav-2-38/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Lab 206 VAV-2-38,Heat Stpt,#vav-2-38/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Lab 206 VAV-2-38,HW Valve,#vav-2-38/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Lab 206 VAV-2-38,Static SP1,#vav-2-38/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Lab 206 VAV-2-38,Zone Temps,#vav-2-38/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Storage & Soldering 218 & 219 VAV-2-31,Cool Stpt,#vav-2-31/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Storage & Soldering 218 & 219 VAV-2-31,CW Valve,#vav-2-31/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Storage & Soldering 218 & 219 VAV-2-31,Discharge Temp,#vav-2-31/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Storage & Soldering 218 & 219 VAV-2-31,Dmpr Pos,#vav-2-31/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Storage & Soldering 218 & 219 VAV-2-31,Duct SP,#vav-2-31/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Storage & Soldering 218 & 219 VAV-2-31,Flow Control / Flow Input,#vav-2-31/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Storage & Soldering 218 & 219 VAV-2-31,Heat Stpt,#vav-2-31/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Storage & Soldering 218 & 219 VAV-2-31,HW Valve,#vav-2-31/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Storage & Soldering 218 & 219 VAV-2-31,Static SP1,#vav-2-31/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,CSE Storage & Soldering 218 & 219 VAV-2-31,Zone Temps,#vav-2-31/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Engineering 315, Reception 315A VAV-3-35",Cool Stpt,#vav-3-35/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Engineering 315, Reception 315A VAV-3-35",CW Valve,#vav-3-35/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Engineering 315, Reception 315A VAV-3-35",Discharge Temp,#vav-3-35/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Engineering 315, Reception 315A VAV-3-35",Dmpr Pos,#vav-3-35/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Engineering 315, Reception 315A VAV-3-35",Duct SP,#vav-3-35/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Engineering 315, Reception 315A VAV-3-35",Flow Control / Flow Input,#vav-3-35/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Engineering 315, Reception 315A VAV-3-35",Heat Stpt,#vav-3-35/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Engineering 315, Reception 315A VAV-3-35",HW Valve,#vav-3-35/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Engineering 315, Reception 315A VAV-3-35",Static SP1,#vav-3-35/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Engineering 315, Reception 315A VAV-3-35",Zone Temps,#vav-3-35/m311
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Hallway 0C6 VAV-B-36,Cool Stpt,#vav-b-36/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Hallway 0C6 VAV-B-36,CW Valve,#vav-b-36/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Hallway 0C6 VAV-B-36,Discharge Temp,#vav-b-36/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Hallway 0C6 VAV-B-36,Dmpr Pos,#vav-b-36/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Hallway 0C6 VAV-B-36,Duct SP,#vav-b-36/st_press
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Hallway 0C6 VAV-B-36,Flow Control / Flow Input,#vav-b-36/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Hallway 0C6 VAV-B-36,Heat Stpt,#vav-b-36/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Hallway 0C6 VAV-B-36,HW Valve,#vav-b-36/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Hallway 0C6 VAV-B-36,Static SP1,#vav-b-36/m211
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Hallway 0C6 VAV-B-36,Zone Temps,#vav-b-36/m311
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C1 VAV-1-20,Cool Stpt,#vav-1-20/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C1 VAV-1-20,CW Valve,#vav-1-20/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C1 VAV-1-20,Discharge Temp,#vav-1-20/da_temp
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C1 VAV-1-20,Dmpr Pos,#vav-1-20/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C1 VAV-1-20,Duct SP,#vav-1-20/st_press
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C1 VAV-1-20,Flow Control / Flow Input,#vav-1-20/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C1 VAV-1-20,Heat Stpt,#vav-1-20/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C1 VAV-1-20,HW Valve,#vav-1-20/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C1 VAV-1-20,Static SP1,#vav-1-20/m211
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C1 VAV-1-20,Zone Temps,#vav-1-20/m311
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C6 VAV-1-19,Cool Stpt,#vav-1-19/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C6 VAV-1-19,CW Valve,#vav-1-19/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C6 VAV-1-19,Discharge Temp,#vav-1-19/da_temp
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C6 VAV-1-19,Dmpr Pos,#vav-1-19/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C6 VAV-1-19,Duct SP,#vav-1-19/st_press
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C6 VAV-1-19,Flow Control / Flow Input,#vav-1-19/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C6 VAV-1-19,Heat Stpt,#vav-1-19/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C6 VAV-1-19,HW Valve,#vav-1-19/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C6 VAV-1-19,Static SP1,#vav-1-19/m211
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Hallway 1C6 VAV-1-19,Zone Temps,#vav-1-19/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 213 VAV-2-36,Cool Stpt,#vav-2-36/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 213 VAV-2-36,CW Valve,#vav-2-36/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 213 VAV-2-36,Discharge Temp,#vav-2-36/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 213 VAV-2-36,Dmpr Pos,#vav-2-36/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 213 VAV-2-36,Duct SP,#vav-2-36/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 213 VAV-2-36,Flow Control / Flow Input,#vav-2-36/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 213 VAV-2-36,Heat Stpt,#vav-2-36/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 213 VAV-2-36,HW Valve,#vav-2-36/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 213 VAV-2-36,Static SP1,#vav-2-36/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 213 VAV-2-36,Zone Temps,#vav-2-36/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C1,6,7 VAV-2-25",Cool Stpt,#vav-2-25/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C1,6,7 VAV-2-25",CW Valve,#vav-2-25/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C1,6,7 VAV-2-25",Discharge Temp,#vav-2-25/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C1,6,7 VAV-2-25",Dmpr Pos,#vav-2-25/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C1,6,7 VAV-2-25",Duct SP,#vav-2-25/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C1,6,7 VAV-2-25",Flow Control / Flow Input,#vav-2-25/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C1,6,7 VAV-2-25",Heat Stpt,#vav-2-25/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C1,6,7 VAV-2-25",HW Valve,#vav-2-25/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C1,6,7 VAV-2-25",Static SP1,#vav-2-25/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C1,6,7 VAV-2-25",Zone Temps,#vav-2-25/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C2 & 3 VAV-2-35,Cool Stpt,#vav-2-35/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C2 & 3 VAV-2-35,CW Valve,#vav-2-35/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C2 & 3 VAV-2-35,Discharge Temp,#vav-2-35/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C2 & 3 VAV-2-35,Dmpr Pos,#vav-2-35/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C2 & 3 VAV-2-35,Duct SP,#vav-2-35/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C2 & 3 VAV-2-35,Flow Control / Flow Input,#vav-2-35/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C2 & 3 VAV-2-35,Heat Stpt,#vav-2-35/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C2 & 3 VAV-2-35,HW Valve,#vav-2-35/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C2 & 3 VAV-2-35,Static SP1,#vav-2-35/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C2 & 3 VAV-2-35,Zone Temps,#vav-2-35/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C4, Office 221 VAV-2-28",Cool Stpt,#vav-2-28/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C4, Office 221 VAV-2-28",CW Valve,#vav-2-28/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C4, Office 221 VAV-2-28",Discharge Temp,#vav-2-28/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C4, Office 221 VAV-2-28",Dmpr Pos,#vav-2-28/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C4, Office 221 VAV-2-28",Duct SP,#vav-2-28/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C4, Office 221 VAV-2-28",Flow Control / Flow Input,#vav-2-28/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C4, Office 221 VAV-2-28",Heat Stpt,#vav-2-28/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C4, Office 221 VAV-2-28",HW Valve,#vav-2-28/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C4, Office 221 VAV-2-28",Static SP1,#vav-2-28/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,"Hallway 2C4, Office 221 VAV-2-28",Zone Temps,#vav-2-28/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C5 VAV-2-24,Cool Stpt,#vav-2-24/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C5 VAV-2-24,CW Valve,#vav-2-24/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C5 VAV-2-24,Discharge Temp,#vav-2-24/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C5 VAV-2-24,Dmpr Pos,#vav-2-24/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C5 VAV-2-24,Duct SP,#vav-2-24/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C5 VAV-2-24,Flow Control / Flow Input,#vav-2-24/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C5 VAV-2-24,Heat Stpt,#vav-2-24/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C5 VAV-2-24,HW Valve,#vav-2-24/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C5 VAV-2-24,Static SP1,#vav-2-24/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Hallway 2C5 VAV-2-24,Zone Temps,#vav-2-24/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C1,5,6,7 VAV-3-23",Cool Stpt,#vav-3-23/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C1,5,6,7 VAV-3-23",CW Valve,#vav-3-23/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C1,5,6,7 VAV-3-23",Discharge Temp,#vav-3-23/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C1,5,6,7 VAV-3-23",Dmpr Pos,#vav-3-23/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C1,5,6,7 VAV-3-23",Duct SP,#vav-3-23/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C1,5,6,7 VAV-3-23",Flow Control / Flow Input,#vav-3-23/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C1,5,6,7 VAV-3-23",Heat Stpt,#vav-3-23/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C1,5,6,7 VAV-3-23",HW Valve,#vav-3-23/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C1,5,6,7 VAV-3-23",Static SP1,#vav-3-23/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C1,5,6,7 VAV-3-23",Zone Temps,#vav-3-23/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C4, Conference Support 325  VAV-3-25",Cool Stpt,#vav-3-25/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C4, Conference Support 325  VAV-3-25",CW Valve,#vav-3-25/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C4, Conference Support 325  VAV-3-25",Discharge Temp,#vav-3-25/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C4, Conference Support 325  VAV-3-25",Dmpr Pos,#vav-3-25/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C4, Conference Support 325  VAV-3-25",Duct SP,#vav-3-25/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C4, Conference Support 325  VAV-3-25",Flow Control / Flow Input,#vav-3-25/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C4, Conference Support 325  VAV-3-25",Heat Stpt,#vav-3-25/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C4, Conference Support 325  VAV-3-25",HW Valve,#vav-3-25/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C4, Conference Support 325  VAV-3-25",Static SP1,#vav-3-25/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Hallway 3C4, Conference Support 325  VAV-3-25",Zone Temps,#vav-3-25/m311
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Office 120E-H VAV-1-24,Cool Stpt,#vav-1-24/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Office 120E-H VAV-1-24,CW Valve,#vav-1-24/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Office 120E-H VAV-1-24,Discharge Temp,#vav-1-24/da_temp
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Office 120E-H VAV-1-24,Dmpr Pos,#vav-1-24/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Office 120E-H VAV-1-24,Duct SP,#vav-1-24/st_press
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Office 120E-H VAV-1-24,Flow Control / Flow Input,#vav-1-24/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Office 120E-H VAV-1-24,Heat Stpt,#vav-1-24/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Office 120E-H VAV-1-24,HW Valve,#vav-1-24/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Office 120E-H VAV-1-24,Static SP1,#vav-1-24/m211
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Office 120E-H VAV-1-24,Zone Temps,#vav-1-24/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 205 VAV-2-39,Cool Stpt,#vav-2-39/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 205 VAV-2-39,CW Valve,#vav-2-39/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 205 VAV-2-39,Discharge Temp,#vav-2-39/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 205 VAV-2-39,Dmpr Pos,#vav-2-39/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 205 VAV-2-39,Duct SP,#vav-2-39/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 205 VAV-2-39,Flow Control / Flow Input,#vav-2-39/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 205 VAV-2-39,Heat Stpt,#vav-2-39/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 205 VAV-2-39,HW Valve,#vav-2-39/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 205 VAV-2-39,Static SP1,#vav-2-39/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 205 VAV-2-39,Zone Temps,#vav-2-39/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 207-217 VAV-2-30,Cool Stpt,#vav-2-30/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 207-217 VAV-2-30,CW Valve,#vav-2-30/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 207-217 VAV-2-30,Discharge Temp,#vav-2-30/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 207-217 VAV-2-30,Dmpr Pos,#vav-2-30/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 207-217 VAV-2-30,Duct SP,#vav-2-30/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 207-217 VAV-2-30,Flow Control / Flow Input,#vav-2-30/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 207-217 VAV-2-30,Heat Stpt,#vav-2-30/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 207-217 VAV-2-30,HW Valve,#vav-2-30/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 207-217 VAV-2-30,Static SP1,#vav-2-30/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 207-217 VAV-2-30,Zone Temps,#vav-2-30/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 222 & 223 VAV-2-27,Cool Stpt,#vav-2-27/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 222 & 223 VAV-2-27,CW Valve,#vav-2-27/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 222 & 223 VAV-2-27,Discharge Temp,#vav-2-27/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 222 & 223 VAV-2-27,Dmpr Pos,#vav-2-27/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 222 & 223 VAV-2-27,Duct SP,#vav-2-27/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 222 & 223 VAV-2-27,Flow Control / Flow Input,#vav-2-27/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 222 & 223 VAV-2-27,Heat Stpt,#vav-2-27/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 222 & 223 VAV-2-27,HW Valve,#vav-2-27/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 222 & 223 VAV-2-27,Static SP1,#vav-2-27/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Office 222 & 223 VAV-2-27,Zone Temps,#vav-2-27/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 305 VAV-3-30,Cool Stpt,#vav-3-30/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 305 VAV-3-30,CW Valve,#vav-3-30/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 305 VAV-3-30,Discharge Temp,#vav-3-30/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 305 VAV-3-30,Dmpr Pos,#vav-3-30/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 305 VAV-3-30,Duct SP,#vav-3-30/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 305 VAV-3-30,Elevator Control Room Zone Temp,#vav-3-30/zone_co2
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 305 VAV-3-30,Flow Control / Flow Input,#vav-3-30/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 305 VAV-3-30,Heat Stpt,#vav-3-30/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 305 VAV-3-30,HW Valve,#vav-3-30/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 305 VAV-3-30,Static SP1,#vav-3-30/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 305 VAV-3-30,Zone Temps,#vav-3-30/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 305A, 310A-C, 315E-G VAV-3-36",Cool Stpt,#vav-3-36/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 305A, 310A-C, 315E-G VAV-3-36",CW Valve,#vav-3-36/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 305A, 310A-C, 315E-G VAV-3-36",Discharge Temp,#vav-3-36/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 305A, 310A-C, 315E-G VAV-3-36",Dmpr Pos,#vav-3-36/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 305A, 310A-C, 315E-G VAV-3-36",Duct SP,#vav-3-36/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 305A, 310A-C, 315E-G VAV-3-36",Flow Control / Flow Input,#vav-3-36/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 305A, 310A-C, 315E-G VAV-3-36",Heat Stpt,#vav-3-36/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 305A, 310A-C, 315E-G VAV-3-36",HW Valve,#vav-3-36/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 305A, 310A-C, 315E-G VAV-3-36",Static SP1,#vav-3-36/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 305A, 310A-C, 315E-G VAV-3-36",Zone Temps,#vav-3-36/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 310 D,E Lactaion 312 VAV-3-31",Cool Stpt,#vav-3-31/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 310 D,E Lactaion 312 VAV-3-31",CW Valve,#vav-3-31/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 310 D,E Lactaion 312 VAV-3-31",Discharge Temp,#vav-3-31/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 310 D,E Lactaion 312 VAV-3-31",Dmpr Pos,#vav-3-31/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 310 D,E Lactaion 312 VAV-3-31",Duct SP,#vav-3-31/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 310 D,E Lactaion 312 VAV-3-31",Flow Control / Flow Input,#vav-3-31/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 310 D,E Lactaion 312 VAV-3-31",Heat Stpt,#vav-3-31/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 310 D,E Lactaion 312 VAV-3-31",HW Valve,#vav-3-31/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 310 D,E Lactaion 312 VAV-3-31",Static SP1,#vav-3-31/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 310 D,E Lactaion 312 VAV-3-31",Zone Temps,#vav-3-31/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 315H VAV-3-37,Cool Stpt,#vav-3-37/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 315H VAV-3-37,CW Valve,#vav-3-37/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 315H VAV-3-37,Discharge Temp,#vav-3-37/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 315H VAV-3-37,Dmpr Pos,#vav-3-37/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 315H VAV-3-37,Duct SP,#vav-3-37/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 315H VAV-3-37,Flow Control / Flow Input,#vav-3-37/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 315H VAV-3-37,Heat Stpt,#vav-3-37/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 315H VAV-3-37,HW Valve,#vav-3-37/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 315H VAV-3-37,Static SP1,#vav-3-37/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office 315H VAV-3-37,Zone Temps,#vav-3-37/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 321, 322, 323 VAV-3-33",Cool Stpt,#vav-3-33/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 321, 322, 323 VAV-3-33",CW Valve,#vav-3-33/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 321, 322, 323 VAV-3-33",Discharge Temp,#vav-3-33/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 321, 322, 323 VAV-3-33",Dmpr Pos,#vav-3-33/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 321, 322, 323 VAV-3-33",Duct SP,#vav-3-33/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 321, 322, 323 VAV-3-33",Flow Control / Flow Input,#vav-3-33/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 321, 322, 323 VAV-3-33",Heat Stpt,#vav-3-33/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 321, 322, 323 VAV-3-33",HW Valve,#vav-3-33/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 321, 322, 323 VAV-3-33",Static SP1,#vav-3-33/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,"Office 321, 322, 323 VAV-3-33",Zone Temps,#vav-3-33/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office Support 315B & C VAV-3-32,Cool Stpt,#vav-3-32/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office Support 315B & C VAV-3-32,CW Valve,#vav-3-32/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office Support 315B & C VAV-3-32,Discharge Temp,#vav-3-32/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office Support 315B & C VAV-3-32,Dmpr Pos,#vav-3-32/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office Support 315B & C VAV-3-32,Duct SP,#vav-3-32/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office Support 315B & C VAV-3-32,Flow Control / Flow Input,#vav-3-32/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office Support 315B & C VAV-3-32,Heat Stpt,#vav-3-32/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office Support 315B & C VAV-3-32,HW Valve,#vav-3-32/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office Support 315B & C VAV-3-32,Static SP1,#vav-3-32/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Office Support 315B & C VAV-3-32,Zone Temps,#vav-3-32/m311
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Printers 120C VAV-1-21,Cool Stpt,#vav-1-21/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Printers 120C VAV-1-21,CW Valve,#vav-1-21/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Printers 120C VAV-1-21,Discharge Temp,#vav-1-21/da_temp
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Printers 120C VAV-1-21,Dmpr Pos,#vav-1-21/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Printers 120C VAV-1-21,Duct SP,#vav-1-21/st_press
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Printers 120C VAV-1-21,Flow Control / Flow Input,#vav-1-21/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Printers 120C VAV-1-21,Heat Stpt,#vav-1-21/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Printers 120C VAV-1-21,HW Valve,#vav-1-21/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Printers 120C VAV-1-21,Static SP1,#vav-1-21/m211
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Printers 120C VAV-1-21,Zone Temps,#vav-1-21/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Cooridor,Air Flow Feedback,#rc_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Cooridor,Air Flow Feedback,#rc3_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Cooridor,clg setpt,#rc_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Cooridor,clg setpt,#rc3_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Cooridor,htg setpt,#rc_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Cooridor,htg setpt,#rc3_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Cooridor,Room Occupied,#rc_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Cooridor,Room Occupied,#rc3_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Cooridor,Supply Air,#rc_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Cooridor,Supply Air,#rc3_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Cooridor,Zone Temp,#rc_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Cooridor,Zone Temp,#rc3_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Research Equip. 001 VAV-B-34,Cool Stpt,#vav-b-34/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Research Equip. 001 VAV-B-34,CW Valve,#vav-b-34/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Research Equip. 001 VAV-B-34,Discharge Temp,#vav-b-34/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Research Equip. 001 VAV-B-34,Dmpr Pos,#vav-b-34/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Research Equip. 001 VAV-B-34,Duct SP,#vav-b-34/st_press
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Research Equip. 001 VAV-B-34,Flow Control / Flow Input,#vav-b-34/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Research Equip. 001 VAV-B-34,Heat Stpt,#vav-b-34/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Research Equip. 001 VAV-B-34,HW Valve,#vav-b-34/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Research Equip. 001 VAV-B-34,Static SP1,#vav-b-34/m211
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Research Equip. 001 VAV-B-34,Zone Temps,#vav-b-34/m311
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Research Equip. 120D VAV-1-22,Cool Stpt,#vav-1-22/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Research Equip. 120D VAV-1-22,CW Valve,#vav-1-22/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Research Equip. 120D VAV-1-22,Discharge Temp,#vav-1-22/da_temp
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Research Equip. 120D VAV-1-22,Dmpr Pos,#vav-1-22/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Research Equip. 120D VAV-1-22,Duct SP,#vav-1-22/st_press
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Research Equip. 120D VAV-1-22,Flow Control / Flow Input,#vav-1-22/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Research Equip. 120D VAV-1-22,Heat Stpt,#vav-1-22/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Research Equip. 120D VAV-1-22,HW Valve,#vav-1-22/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Research Equip. 120D VAV-1-22,Static SP1,#vav-1-22/m211
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Research Equip. 120D VAV-1-22,Zone Temps,#vav-1-22/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 1-3 213C-E VAV-2-33,Cool Stpt,#vav-2-33/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 1-3 213C-E VAV-2-33,CW Valve,#vav-2-33/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 1-3 213C-E VAV-2-33,Discharge Temp,#vav-2-33/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 1-3 213C-E VAV-2-33,Dmpr Pos,#vav-2-33/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 1-3 213C-E VAV-2-33,Duct SP,#vav-2-33/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 1-3 213C-E VAV-2-33,Flow Control / Flow Input,#vav-2-33/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 1-3 213C-E VAV-2-33,Heat Stpt,#vav-2-33/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 1-3 213C-E VAV-2-33,HW Valve,#vav-2-33/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 1-3 213C-E VAV-2-33,Static SP1,#vav-2-33/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 1-3 213C-E VAV-2-33,Zone Temps,#vav-2-33/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 4 213B VAV-2-37,Cool Stpt,#vav-2-37/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 4 213B VAV-2-37,CW Valve,#vav-2-37/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 4 213B VAV-2-37,Discharge Temp,#vav-2-37/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 4 213B VAV-2-37,Dmpr Pos,#vav-2-37/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 4 213B VAV-2-37,Duct SP,#vav-2-37/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 4 213B VAV-2-37,Flow Control / Flow Input,#vav-2-37/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 4 213B VAV-2-37,Heat Stpt,#vav-2-37/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 4 213B VAV-2-37,HW Valve,#vav-2-37/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 4 213B VAV-2-37,Static SP1,#vav-2-37/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 4 213B VAV-2-37,Zone Temps,#vav-2-37/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 5 213F VAV-2-32,Cool Stpt,#vav-2-32/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 5 213F VAV-2-32,CW Valve,#vav-2-32/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 5 213F VAV-2-32,Discharge Temp,#vav-2-32/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 5 213F VAV-2-32,Dmpr Pos,#vav-2-32/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 5 213F VAV-2-32,Duct SP,#vav-2-32/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 5 213F VAV-2-32,Flow Control / Flow Input,#vav-2-32/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 5 213F VAV-2-32,Heat Stpt,#vav-2-32/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 5 213F VAV-2-32,HW Valve,#vav-2-32/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 5 213F VAV-2-32,Static SP1,#vav-2-32/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Research Group 5 213F VAV-2-32,Zone Temps,#vav-2-32/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 6 311 VAV-3-29,Cool Stpt,#vav-3-29/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 6 311 VAV-3-29,CW Valve,#vav-3-29/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 6 311 VAV-3-29,Discharge Temp,#vav-3-29/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 6 311 VAV-3-29,Dmpr Pos,#vav-3-29/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 6 311 VAV-3-29,Duct SP,#vav-3-29/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 6 311 VAV-3-29,Flow Control / Flow Input,#vav-3-29/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 6 311 VAV-3-29,Heat Stpt,#vav-3-29/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 6 311 VAV-3-29,HW Valve,#vav-3-29/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 6 311 VAV-3-29,Static SP1,#vav-3-29/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 6 311 VAV-3-29,Zone Temps,#vav-3-29/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 7 313 VAV-3-28,Cool Stpt,#vav-3-28/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 7 313 VAV-3-28,CW Valve,#vav-3-28/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 7 313 VAV-3-28,Discharge Temp,#vav-3-28/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 7 313 VAV-3-28,Dmpr Pos,#vav-3-28/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 7 313 VAV-3-28,Duct SP,#vav-3-28/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 7 313 VAV-3-28,Flow Control / Flow Input,#vav-3-28/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 7 313 VAV-3-28,Heat Stpt,#vav-3-28/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 7 313 VAV-3-28,HW Valve,#vav-3-28/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 7 313 VAV-3-28,Static SP1,#vav-3-28/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 7 313 VAV-3-28,Zone Temps,#vav-3-28/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 8 314 VAV-3-27,Cool Stpt,#vav-3-27/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 8 314 VAV-3-27,CW Valve,#vav-3-27/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 8 314 VAV-3-27,Discharge Temp,#vav-3-27/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 8 314 VAV-3-27,Dmpr Pos,#vav-3-27/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 8 314 VAV-3-27,Duct SP,#vav-3-27/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 8 314 VAV-3-27,Flow Control / Flow Input,#vav-3-27/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 8 314 VAV-3-27,Heat Stpt,#vav-3-27/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 8 314 VAV-3-27,HW Valve,#vav-3-27/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 8 314 VAV-3-27,Static SP1,#vav-3-27/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Research Group 8 314 VAV-3-27,Zone Temps,#vav-3-27/m311
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-1,Air Flow Feedback,#1c6e_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-1,clg setpt,#1c6e_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-1,htg setpt,#1c6e_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-1,Room Occupied,#1c6e_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-1,Supply Air,#1c6e_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-1,Zone Temp,#1c6e_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-2,Air Flow Feedback,#1c6f_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-2,clg setpt,#1c6f_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-2,htg setpt,#1c6f_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-2,Room Occupied,#1c6f_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-2,Supply Air,#1c6f_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-2,Zone Temp,#1c6f_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-3,Air Flow Feedback,#1c6g_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-3,clg setpt,#1c6g_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-3,htg setpt,#1c6g_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-3,Room Occupied,#1c6g_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-3,Supply Air,#1c6g_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-3,Zone Temp,#1c6g_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-4,Air Flow Feedback,#1c6h_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-4,clg setpt,#1c6h_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-4,htg setpt,#1c6h_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-4,Room Occupied,#1c6h_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-4,Supply Air,#1c6h_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-4,Zone Temp,#1c6h_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-5,Air Flow Feedback,#1c6i_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-5,clg setpt,#1c6i_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-5,htg setpt,#1c6i_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-5,Room Occupied,#1c6i_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-5,Supply Air,#1c6i_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room 102A-5,Zone Temp,#1c6i_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-001,Air Flow Feedback,#001_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-001,clg setpt,#001_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-001,htg setpt,#001_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-001,Room Occupied,#001_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-001,Supply Air,#001_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-001,Zone Temp,#001_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-002,Air Flow Feedback,#002_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-002,clg setpt,#002_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-002,htg setpt,#002_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-002,Room Occupied,#002_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-002,Supply Air,#002_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-002,Zone Temp,#002_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C1,Air Flow Feedback,#00c1_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C1,clg setpt,#00c1_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C1,htg setpt,#00c1_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C1,Room Occupied,#00c1_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C1,Supply Air,#00c1_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C1,Zone Temp,#00c1_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C6A,Air Flow Feedback,#0c6a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C6A,clg setpt,#0c6a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C6A,htg setpt,#0c6a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C6A,Room Occupied,#0c6a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C6A,Supply Air,#0c6a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C6A,Zone Temp,#0c6a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C6B,Air Flow Feedback,#0c6b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C6B,clg setpt,#0c6b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C6B,htg setpt,#0c6b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C6B,Room Occupied,#0c6b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C6B,Supply Air,#0c6b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Room-0C6B,Zone Temp,#0c6b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-1,Air Flow Feedback,#120a1_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-1,clg setpt,#120a1_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-1,htg setpt,#120a1_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-1,Room Occupied,#120a1_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-1,Supply Air,#120a1_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-1,Zone Temp,#120a1_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-2,Air Flow Feedback,#120a2_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-2,clg setpt,#120a2_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-2,htg setpt,#120a2_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-2,Room Occupied,#120a2_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-2,Supply Air,#120a2_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-2,Zone Temp,#120a2_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-3,Air Flow Feedback,#120a3_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-3,clg setpt,#120a3_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-3,htg setpt,#120a3_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-3,Room Occupied,#120a3_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-3,Supply Air,#120a3_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120A-3,Zone Temp,#120a3_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-1,Air Flow Feedback,#120b1_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-1,clg setpt,#120b1_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-1,htg setpt,#120b1_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-1,Room Occupied,#120b1_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-1,Supply Air,#120b1_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-1,Zone Temp,#120b1_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-2,Air Flow Feedback,#120b2_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-2,clg setpt,#120b2_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-2,htg setpt,#120b2_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-2,Room Occupied,#120b2_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-2,Supply Air,#120b2_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-2,Zone Temp,#120b2_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-3,Air Flow Feedback,#120b3_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-3,clg setpt,#120b3_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-3,htg setpt,#120b3_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-3,Room Occupied,#120b3_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-3,Supply Air,#120b3_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120B-3,Zone Temp,#120b3_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120C,Air Flow Feedback,#120c_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120C,clg setpt,#120c_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120C,htg setpt,#120c_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120C,Room Occupied,#120c_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120C,Supply Air,#120c_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120C,Zone Temp,#120c_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120D,Air Flow Feedback,#120d_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120D,clg setpt,#120d_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120D,htg setpt,#120d_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120D,Room Occupied,#120d_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120D,Supply Air,#120d_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120D,Zone Temp,#120d_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120E,Air Flow Feedback,#120e_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120E,clg setpt,#120e_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120E,htg setpt,#120e_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120E,Room Occupied,#120e_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120E,Supply Air,#120e_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120E,Zone Temp,#120e_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120F,Air Flow Feedback,#120f_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120F,clg setpt,#120f_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120F,htg setpt,#120f_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120F,Room Occupied,#120f_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120F,Supply Air,#120f_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120F,Zone Temp,#120f_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120G,Air Flow Feedback,#120g_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120G,clg setpt,#120g_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120G,htg setpt,#120g_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120G,Room Occupied,#120g_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120G,Supply Air,#120g_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120G,Zone Temp,#120g_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120H-1,Air Flow Feedback,#120h1_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120H-1,clg setpt,#120h1_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120H-1,htg setpt,#120h1_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120H-1,Room Occupied,#120h1_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120H-1,Supply Air,#120h1_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120H-1,Zone Temp,#120h1_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120H-2,Air Flow Feedback,#120h2_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120H-2,clg setpt,#120h2_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120H-2,htg setpt,#120h2_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120H-2,Room Occupied,#120h2_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120H-2,Supply Air,#120h2_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120H-2,Zone Temp,#120h2_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120J-1,Air Flow Feedback,#120j1_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120J-1,clg setpt,#120j1_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120J-1,htg setpt,#120j1_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120J-1,Room Occupied,#120j1_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120J-1,Supply Air,#120j1_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120J-1,Zone Temp,#120j1_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120J-2,Air Flow Feedback,#120j2_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120J-2,clg setpt,#120j2_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120J-2,htg setpt,#120j2_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120J-2,Room Occupied,#120j2_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120J-2,Supply Air,#120j2_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Room-120J-2,Zone Temp,#120j2_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-205,Air Flow Feedback,#205_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-205,clg setpt,#205_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-205,htg setpt,#205_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-205,Room Occupied,#205_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-205,Supply Air,#205_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-205,Zone Temp,#205_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-206-1,Air Flow Feedback,#206b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-206-1,clg setpt,#206b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-206-1,htg setpt,#206b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-206-1,Room Occupied,#206b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-206-1,Supply Air,#206b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-206-1,Zone Temp,#206b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-206-2,Air Flow Feedback,#206a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-206-2,clg setpt,#206a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-206-2,htg setpt,#206a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-206-2,Room Occupied,#206a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-206-2,Supply Air,#206a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-206-2,Zone Temp,#206a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-207,Air Flow Feedback,#207_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-207,clg setpt,#207_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-207,htg setpt,#207_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-207,Room Occupied,#207_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-207,Supply Air,#207_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-207,Zone Temp,#207_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-208,Air Flow Feedback,#208_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-208,clg setpt,#208_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-208,htg setpt,#208_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-208,Room Occupied,#208_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-208,Supply Air,#208_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-208,Zone Temp,#208_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-209,Air Flow Feedback,#209_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-209,clg setpt,#209_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-209,htg setpt,#209_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-209,Room Occupied,#209_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-209,Supply Air,#209_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-209,Zone Temp,#209_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-210,Air Flow Feedback,#210_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-210,clg setpt,#210_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-210,htg setpt,#210_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-210,Room Occupied,#210_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-210,Supply Air,#210_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-210,Zone Temp,#210_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-211,Air Flow Feedback,#211_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-211,clg setpt,#211_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-211,htg setpt,#211_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-211,Room Occupied,#211_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-211,Supply Air,#211_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-211,Zone Temp,#211_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-212,Air Flow Feedback,#212_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-212,clg setpt,#212_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-212,htg setpt,#212_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-212,Room Occupied,#212_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-212,Supply Air,#212_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-212,Zone Temp,#212_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213A,Air Flow Feedback,#213a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213A,clg setpt,#213a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213A,htg setpt,#213a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213A,Room Occupied,#213a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213A,Supply Air,#213a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213A,Zone Temp,#213a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213B-1,Air Flow Feedback,#1213b1_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213B-1,clg setpt,#1213b1_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213B-1,htg setpt,#1213b1_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213B-1,Room Occupied,#1213b1_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213B-1,Supply Air,#1213b1_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213B-1,Zone Temp,#1213b1_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213B-2,Air Flow Feedback,#213b2_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213B-2,clg setpt,#213b2_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213B-2,htg setpt,#213b2_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213B-2,Room Occupied,#213b2_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213B-2,Supply Air,#213b2_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213B-2,Zone Temp,#213b2_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213C-1,Air Flow Feedback,#213c1_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213C-1,clg setpt,#213c1_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213C-1,htg setpt,#213c1_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213C-1,Room Occupied,#213c1_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213C-1,Supply Air,#213c1_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213C-1,Zone Temp,#213c1_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213C-2,Air Flow Feedback,#213c2_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213C-2,clg setpt,#213c2_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213C-2,htg setpt,#213c2_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213C-2,Room Occupied,#213c2_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213C-2,Supply Air,#213c2_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213C-2,Zone Temp,#213c2_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213D-1,Air Flow Feedback,#213d1_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213D-1,clg setpt,#213d1_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213D-1,htg setpt,#213d1_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213D-1,Room Occupied,#213d1_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213D-1,Supply Air,#213d1_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213D-1,Zone Temp,#213d1_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213D-2,Air Flow Feedback,#213d2_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213D-2,clg setpt,#213d2_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213D-2,htg setpt,#213d2_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213D-2,Room Occupied,#213d2_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213D-2,Supply Air,#213d2_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213D-2,Zone Temp,#213d2_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213E-1,Air Flow Feedback,#213e1_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213E-1,clg setpt,#213e1_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213E-1,htg setpt,#213e1_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213E-1,Room Occupied,#213e1_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213E-1,Supply Air,#213e1_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213E-1,Zone Temp,#213e1_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213E-2,Air Flow Feedback,#213e-2_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213E-2,clg setpt,#213e-2_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213E-2,htg setpt,#213e-2_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213E-2,Room Occupied,#213e-2_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213E-2,Supply Air,#213e-2_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213E-2,Zone Temp,#213e-2_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213F-1,Air Flow Feedback,#213f2_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213F-1,clg setpt,#213f2_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213F-1,htg setpt,#213f2_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213F-1,Room Occupied,#213f2_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213F-1,Supply Air,#213f2_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213F-1,Zone Temp,#213f2_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213F-2,Air Flow Feedback,#213f3_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213F-2,clg setpt,#213f3_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213F-2,htg setpt,#213f3_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213F-2,Room Occupied,#213f3_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213F-2,Supply Air,#213f3_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-213F-2,Zone Temp,#213f3_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-214,Air Flow Feedback,#214_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-214,clg setpt,#214_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-214,htg setpt,#214_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-214,Room Occupied,#214_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-214,Supply Air,#214_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-214,Zone Temp,#214_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-215,Air Flow Feedback,#215_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-215,clg setpt,#215_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-215,htg setpt,#215_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-215,Room Occupied,#215_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-215,Supply Air,#215_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-215,Zone Temp,#215_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-216,Air Flow Feedback,#216_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-216,clg setpt,#216_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-216,htg setpt,#216_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-216,Room Occupied,#216_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-216,Supply Air,#216_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-216,Zone Temp,#216_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-217,Air Flow Feedback,#217_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-217,clg setpt,#217_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-217,htg setpt,#217_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-217,Room Occupied,#217_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-217,Supply Air,#217_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-217,Zone Temp,#217_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-218,Air Flow Feedback,#218_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-218,clg setpt,#218_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-218,htg setpt,#218_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-218,Room Occupied,#218_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-218,Supply Air,#218_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-218,Zone Temp,#218_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-221,Air Flow Feedback,#221_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-221,clg setpt,#221_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-221,htg setpt,#221_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-221,Room Occupied,#221_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-221,Supply Air,#221_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-221,Zone Temp,#221_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-222,Air Flow Feedback,#222_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-222,clg setpt,#222_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-222,htg setpt,#222_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-222,Room Occupied,#222_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-222,Supply Air,#222_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-222,Zone Temp,#222_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-223,Air Flow Feedback,#223_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-223,clg setpt,#223_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-223,htg setpt,#223_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-223,Room Occupied,#223_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-223,Supply Air,#223_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Room-223,Zone Temp,#223_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-301-A,Air Flow Feedback,#301a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-301-A,clg setpt,#301a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-301-A,htg setpt,#301a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-301-A,Room Occupied,#301a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-301-A,Supply Air,#301a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-301-A,Zone Temp,#301a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-301-B,Air Flow Feedback,#301b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-301-B,clg setpt,#301b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-301-B,htg setpt,#301b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-301-B,Room Occupied,#301b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-301-B,Supply Air,#301b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-301-B,Zone Temp,#301b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-302A,Air Flow Feedback,#302a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-302A,clg setpt,#302a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-302A,htg setpt,#302a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-302A,Room Occupied,#302a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-302A,Supply Air,#302a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-302A,Zone Temp,#302a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-302B,Air Flow Feedback,#302b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-302B,clg setpt,#302b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-302B,htg setpt,#302b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-302B,Room Occupied,#302b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-302B,Supply Air,#302b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-302B,Zone Temp,#302b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-A,Air Flow Feedback,#305a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-A,clg setpt,#305a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-A,htg setpt,#305a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-A,Room Occupied,#305a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-A,Supply Air,#305a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-A,Zone Temp,#305a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-B,Air Flow Feedback,#305b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-B,clg setpt,#305b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-B,htg setpt,#305b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-B,Room Occupied,#305b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-B,Supply Air,#305b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-B,Zone Temp,#305b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-C,Air Flow Feedback,#305c_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-C,clg setpt,#305c_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-C,htg setpt,#305c_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-C,Room Occupied,#305c_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-C,Supply Air,#305c_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305-C,Zone Temp,#305c_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305a,Air Flow Feedback,#315_a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305a,clg setpt,#315_a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305a,htg setpt,#315_a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305a,Room Occupied,#315_a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305a,Supply Air,#315_a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-305a,Zone Temp,#315_a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310,Air Flow Feedback,#310_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310,clg setpt,#310_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310,htg setpt,#310_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310,Room Occupied,#310_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310,Supply Air,#310_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310,Zone Temp,#310_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310A,Air Flow Feedback,#310a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310A,clg setpt,#310a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310A,htg setpt,#310a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310A,Room Occupied,#310a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310A,Supply Air,#310a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310A,Zone Temp,#310a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310B,Air Flow Feedback,#310b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310B,clg setpt,#310b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310B,htg setpt,#310b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310B,Room Occupied,#310b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310B,Supply Air,#310b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310B,Zone Temp,#310b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310C,Air Flow Feedback,#310c_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310C,clg setpt,#310c_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310C,htg setpt,#310c_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310C,Room Occupied,#310c_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310C,Supply Air,#310c_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310C,Zone Temp,#310c_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310D,Air Flow Feedback,#310d_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310D,clg setpt,#310d_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310D,htg setpt,#310d_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310D,Room Occupied,#310d_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310D,Supply Air,#310d_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310D,Zone Temp,#310d_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310E,Air Flow Feedback,#310e_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310E,clg setpt,#310e_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310E,htg setpt,#310e_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310E,Room Occupied,#310e_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310E,Supply Air,#310e_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-310E,Zone Temp,#310e_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-311-A,Air Flow Feedback,#311a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-311-A,clg setpt,#311a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-311-A,htg setpt,#311a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-311-A,Room Occupied,#311a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-311-A,Supply Air,#311a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-311-A,Zone Temp,#311a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-311-B,Air Flow Feedback,#311b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-311-B,clg setpt,#311b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-311-B,htg setpt,#311b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-311-B,Room Occupied,#311b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-311-B,Supply Air,#311b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-311-B,Zone Temp,#311b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-312,Air Flow Feedback,#312_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-312,clg setpt,#312_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-312,htg setpt,#312_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-312,Room Occupied,#312_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-312,Supply Air,#312_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-312,Zone Temp,#312_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-313A,Air Flow Feedback,#311_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-313A,clg setpt,#311_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-313A,htg setpt,#311_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-313A,Room Occupied,#311_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-313A,Supply Air,#311_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-313A,Zone Temp,#311_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-313B,Air Flow Feedback,#313b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-313B,clg setpt,#313b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-313B,htg setpt,#313b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-313B,Room Occupied,#313b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-313B,Supply Air,#313b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-313B,Zone Temp,#313b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-314A,Air Flow Feedback,#314a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-314A,clg setpt,#314a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-314A,htg setpt,#314a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-314A,Room Occupied,#314a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-314A,Supply Air,#314a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-314A,Zone Temp,#314a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-314B,Air Flow Feedback,#314_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-314B,clg setpt,#314_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-314B,htg setpt,#314_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-314B,Room Occupied,#314_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-314B,Supply Air,#314_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-314B,Zone Temp,#314_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315,Air Flow Feedback,#315_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315,clg setpt,#315_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315,htg setpt,#315_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315,Room Occupied,#315_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315,Supply Air,#315_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315,Zone Temp,#315_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315A,Air Flow Feedback,#315a_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315A,clg setpt,#315a_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315A,htg setpt,#315a_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315A,Room Occupied,#315a_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315A,Supply Air,#315a_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315A,Zone Temp,#315a_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315B,Air Flow Feedback,#c315b_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315B,clg setpt,#c315b_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315B,htg setpt,#c315b_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315B,Room Occupied,#c315b_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315B,Supply Air,#c315b_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315B,Zone Temp,#c315b_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315C,Air Flow Feedback,#315c_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315C,clg setpt,#315c_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315C,htg setpt,#315c_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315C,Room Occupied,#315c_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315C,Supply Air,#315c_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315C,Zone Temp,#315c_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315D,Air Flow Feedback,#315d_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315D,clg setpt,#315d_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315D,htg setpt,#315d_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315D,Room Occupied,#315d_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315D,Supply Air,#315d_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315D,Zone Temp,#315d_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315E,Air Flow Feedback,#315e_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315E,clg setpt,#315e_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315E,htg setpt,#315e_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315E,Room Occupied,#315e_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315E,Supply Air,#315e_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315E,Zone Temp,#315e_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315F,Air Flow Feedback,#315f_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315F,clg setpt,#315f_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315F,htg setpt,#315f_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315F,Room Occupied,#315f_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315F,Supply Air,#315f_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315F,Zone Temp,#315f_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315G,Air Flow Feedback,#315g_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315G,clg setpt,#315g_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315G,htg setpt,#315g_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315G,Room Occupied,#315g_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315G,Supply Air,#315g_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315G,Zone Temp,#315g_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315H-A,Air Flow Feedback,#315ha_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315H-A,clg setpt,#315ha_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315H-A,htg setpt,#315ha_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315H-A,Room Occupied,#315ha_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315H-A,Supply Air,#315ha_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315H-A,Zone Temp,#315ha_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315H-B,Air Flow Feedback,#315hb_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315H-B,clg setpt,#315hb_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315H-B,htg setpt,#315hb_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315H-B,Room Occupied,#315hb_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315H-B,Supply Air,#315hb_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-315H-B,Zone Temp,#315hb_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-321,Air Flow Feedback,#321_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-321,clg setpt,#321_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-321,htg setpt,#321_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-321,Room Occupied,#321_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-321,Supply Air,#321_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-321,Zone Temp,#321_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-322,Air Flow Feedback,#322_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-322,clg setpt,#322_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-322,htg setpt,#322_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-322,Room Occupied,#322_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-322,Supply Air,#322_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-322,Zone Temp,#322_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-323,Air Flow Feedback,#323_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-323,clg setpt,#323_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-323,htg setpt,#323_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-323,Room Occupied,#323_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-323,Supply Air,#323_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-323,Zone Temp,#323_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-325,Air Flow Feedback,#325_thermafuser/m073
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-325,clg setpt,#325_thermafuser/m135
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-325,htg setpt,#325_thermafuser/m134
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-325,Room Occupied,#325_thermafuser/m078
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-325,Supply Air,#325_thermafuser/m190
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Room-325,Zone Temp,#325_thermafuser/m186
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Scholarly Activity 102 VAV-1-18,Cool Stpt,#vav-1-18/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Scholarly Activity 102 VAV-1-18,CW Valve,#vav-1-18/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Scholarly Activity 102 VAV-1-18,Discharge Temp,#vav-1-18/da_temp
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Scholarly Activity 102 VAV-1-18,Dmpr Pos,#vav-1-18/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Scholarly Activity 102 VAV-1-18,Duct SP,#vav-1-18/st_press
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Scholarly Activity 102 VAV-1-18,Flow Control / Flow Input,#vav-1-18/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Scholarly Activity 102 VAV-1-18,Heat Stpt,#vav-1-18/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Scholarly Activity 102 VAV-1-18,HW Valve,#vav-1-18/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Scholarly Activity 102 VAV-1-18,Static SP1,#vav-1-18/m211
+10.20.0.47,Science & Engineering 2: 0206,First Floor,Short bar,Scholarly Activity 102 VAV-1-18,Zone Temps,#vav-1-18/m311
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Scholarly Activity 220 VAV-2-29,Clg Stpt,#vav-2-29/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Scholarly Activity 220 VAV-2-29,CW Valve,#vav-2-29/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Scholarly Activity 220 VAV-2-29,Discharge Temp,#vav-2-29/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Scholarly Activity 220 VAV-2-29,Dmpr Pos,#vav-2-29/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Scholarly Activity 220 VAV-2-29,Duct SP,#vav-2-29/st_press
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Scholarly Activity 220 VAV-2-29,Flow Control / Flow Input,#vav-2-29/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Scholarly Activity 220 VAV-2-29,Htg Stpt,#vav-2-29/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Scholarly Activity 220 VAV-2-29,HW Valve,#vav-2-29/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Scholarly Activity 220 VAV-2-29,Static SP1,#vav-2-29/m211
+10.20.0.47,Science & Engineering 2: 0206,Second Floor,Short bar,Scholarly Activity 220 VAV-2-29,Zone Temps,#vav-2-29/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Scholarly Activity 320  VAV-3-34,Clg Stpt,#vav-3-34/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Scholarly Activity 320  VAV-3-34,CW Valve,#vav-3-34/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Scholarly Activity 320  VAV-3-34,Discharge Temp,#vav-3-34/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Scholarly Activity 320  VAV-3-34,Dmpr Pos,#vav-3-34/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Scholarly Activity 320  VAV-3-34,Duct SP,#vav-3-34/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Scholarly Activity 320  VAV-3-34,Flow Control / Flow Input,#vav-3-34/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Scholarly Activity 320  VAV-3-34,Htg Stpt,#vav-3-34/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Scholarly Activity 320  VAV-3-34,HW Valve,#vav-3-34/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Scholarly Activity 320  VAV-3-34,Static SP1,#vav-3-34/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Scholarly Activity 320  VAV-3-34,Zone Temps,#vav-3-34/m311
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Vending 002 VAV-B-35,Cool Stpt,#vav-b-35/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Vending 002 VAV-B-35,CW Valve,#vav-b-35/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Vending 002 VAV-B-35,Discharge Temp,#vav-b-35/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Vending 002 VAV-B-35,Dmpr Pos,#vav-b-35/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Vending 002 VAV-B-35,Duct SP,#vav-b-35/st_press
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Vending 002 VAV-B-35,Flow Control / Flow Input,#vav-b-35/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Vending 002 VAV-B-35,Heat Stpt,#vav-b-35/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Vending 002 VAV-B-35,HW Valve,#vav-b-35/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Vending 002 VAV-B-35,Static SP1,#vav-b-35/m211
+10.20.0.47,Science & Engineering 2: 0206,Basement,,Vending 002 VAV-B-35,Zone Temps,#vav-b-35/m311
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Video Conference 302 VAV-3-24,Cool Stpt,#vav-3-24/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Video Conference 302 VAV-3-24,CW Valve,#vav-3-24/cw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Video Conference 302 VAV-3-24,Discharge Temp,#vav-3-24/da_temp
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Video Conference 302 VAV-3-24,Dmpr Pos,#vav-3-24/dmpr_pos_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Video Conference 302 VAV-3-24,Duct SP,#vav-3-24/st_press
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Video Conference 302 VAV-3-24,Flow Control / Flow Input,#vav-3-24/air_flow/flow_input
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Video Conference 302 VAV-3-24,Heat Stpt,#vav-3-24/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Video Conference 302 VAV-3-24,HW Valve,#vav-3-24/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Video Conference 302 VAV-3-24,Static SP1,#vav-3-24/m211
+10.20.0.47,Science & Engineering 2: 0206,Third Floor,Short Bar,Video Conference 302 VAV-3-24,Zone Temps,#vav-3-24/m311
