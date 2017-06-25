@@ -36,10 +36,10 @@ def getAHUByAHUNumber(AHUNumber, ahus):
 
 	return None
 
-def determineComponentNumber(numberRegex, dataPoint):
+def determineComponentNumber(numberRegex, dataString):
 
 	componentNumber = 0
-	matchComponentNumber = numberRegex.search(dataPoint.controlProgram) #Look for the number of the component and create a new component for each new component number found
+	matchComponentNumber = numberRegex.search(dataString) #Look for the number of the component and create a new component for each new component number found
 
 	if matchComponentNumber:
 		componentNumber = int(matchComponentNumber.group())
@@ -76,7 +76,7 @@ def StoreAHUDataPoints(session):
 		matchDamper = damperRegex.search(dataPoint.point) #Determine if this point belongs to a damper
 		matchFan = fanRegex.search(dataPoint.point) #Determine if this point belongs to a damper
 
-		AHUNumber = determineComponentNumber(numberRegex, dataPoint)
+		ahuNumber = determineComponentNumber(numberRegex, dataPoint.path)
 
 		if ahuNumber != 0 and ahuNumber not in ahu_numbers:
 			ahu_numbers.add(ahuNumber)
@@ -101,7 +101,7 @@ def StoreAHUDataPoints(session):
 			if ahu != None:
 
 
-				#Determine fan number
+				componentNumber = determineComponentNumber(numberRegex, dataPoint.path.)
 
 				fan = Fan(fanNumber + 1, ahuNumber, ahu = ahu)
 				fanNumber += 1
