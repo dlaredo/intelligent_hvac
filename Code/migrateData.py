@@ -53,7 +53,9 @@ def StoreAHUDataPoints(session):
 	ahu_involved = session.query(DataPoint).filter(DataPoint._path.like('%ahu%')).all()
 	ahus = list()
 	dampers = list()
+
 	ahu_numbers = set()
+	fan_ids = set()
 
 	fanDatapoints = set()
 	damperDatapoints = set()
@@ -61,8 +63,8 @@ def StoreAHUDataPoints(session):
 	hecDatapoints = set()
 	ahuDataPoints = set()
 
-	damperNumber = session.query(Damper).count()
-	fanNumber = session.query(Fan).count()
+	damperId = session.query(Damper).count()
+	fanId = session.query(Fan).count()
 
 	#Separate AHU, HEC, Fan and Damper information 
 
@@ -86,10 +88,14 @@ def StoreAHUDataPoints(session):
 		if matchDamper:
 			ahu = getAHUByAHUNumber(ahuNumber, ahus)
 
+			splitPath = dataPoint.path.split("/")
+			print(splitPath, len(splitPath))
+			componentNumber = determineComponentNumber(numberRegex, dataPoint.path.split("/")[1])
+
 			if ahu != None:
-				damper = Damper(damperNumber + 1, ahuNumber, ahu = ahu)
+				damper = Damper(damperId + 1, ahuNumber, ahu = ahu)
 				damperNumber += 1
-				print("damper -> ", str(damper.damperNumber), str(damper.AHUNumber), dataPoint.path)
+				print("damper -> ", str(damper.damperId), str(damper.AHUNumber), dataPoint.path)
 				damperDatapoints.add(dataPoint)
 			else:
 				print("AHU not found")
@@ -100,18 +106,23 @@ def StoreAHUDataPoints(session):
 
 			if ahu != None:
 
+				componentNumber = determineComponentNumber(numberRegex, dataPoint.path.split("/")[1])
 
-				componentNumber = determineComponentNumber(numberRegex, dataPoint.path.)
+				if componentNumber not in fan_numbers:
+					print(dataPoint.path, "fan Number = ", componentNumber)
+					fan_numbers.add()
 
-				fan = Fan(fanNumber + 1, ahuNumber, ahu = ahu)
-				fanNumber += 1
-				print("fan -> ", str(fan.fanNumber), str(fan.AHUNumber), dataPoint.path)
-				fanDatapoints.add(dataPoint)
+
+					fan = Fan(fanNumber + 1, ahuNumber, ahu = ahu)
+					fanNumber += 1
+					#print("fan -> ", str(fan.fanNumber), str(fan.AHUNumber), dataPoint.path)
+					fanDatapoints.add(dataPoint)
 			else:
 				print("AHU not found")
 				
 	for ahu in ahus:
-		print(ahu)
+		pass
+		#print(ahu)
 
 	session.close()
 
