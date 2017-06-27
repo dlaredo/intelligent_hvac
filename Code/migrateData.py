@@ -145,7 +145,7 @@ def main():
 		return False
 
 	#Attempt to write csv to the database
-	#zonecsvToDb(zone4FilepATH, session, "4")
+	zonecsvToDb(zone4FilepATH, session, "4")
 	print("writting sucessfull")
 
 	StoreAHUDataPoints(session)
