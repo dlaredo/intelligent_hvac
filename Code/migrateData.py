@@ -21,7 +21,7 @@ def zonecsvToDb(filepath, dbsession, zone):
 			else:
 
 				#add the datapoints to the DB session
-				dataPoint = hvacDBMapping.DataPoint(path = row[6], server = row[0], location = row[1], branch = row[2], subBranch = row[3], controlProgram = row[4], point = row[5], zone = zone)
+				dataPoint = DataPoint(path = row[6], server = row[0], location = row[1], branch = row[2], subBranch = row[3], controlProgram = row[4], point = row[5], zone = zone)
 				dbsession.add(dataPoint)
 				#print(dataPoint)
 
@@ -37,6 +37,7 @@ def getAHUByAHUNumber(AHUNumber, ahus):
 	return None
 
 def determineComponentNumber(numberRegex, dataString):
+	"""Determine the component number based on the path string"""
 
 	componentNumber = 0
 	matchComponentNumber = numberRegex.search(dataString) #Look for the number of the component and create a new component for each new component number found
@@ -46,16 +47,56 @@ def determineComponentNumber(numberRegex, dataString):
 
 	return componentNumber
 
+def getStoredAHUComponentsId(stored_ahus):
+	"""Return a dictionary containing the component numbers for each of the stored AHUs"""
+
+	ahu_numbers = set()
+
+	fan_numbers = set()
+	damper_numbers = set()
+	hec_numbers = set()
+	filter_numbers = set()
+
+	ahu_fan_numbers = {}
+	ahu_damper_numbers = {}
+	ahu_hec_numbers = {}
+	ahu_filter_numbers = {}
+
+	for ahu in stored_ahus:
+		ahu_numbers.add(ahu.AHUNumber)
+
+		for ahu_fan in ahu.fans:
+			fan_numbers.add(ahu_fan.fanNumber)
+
+		for ahu_damper in ahu.dampers:
+			damper_numbers.add(ahu_damper.damperNumber)
+
+		for ahu_filter in ahu.filters:
+			filter_numbers.add(ahu_filter.filterNumber)
+
+		for ahu_hec in ahu.hecs:
+			hec_numbers.add(ahu_hec.hecNumber)
+
+		ahu_fan_numbers[ahu.AHUNumber] = fan_numbers
+		ahu_damper_numbers[ahu.AHUNumber] = damper_numbers
+		ahu_hec_numbers[ahu.AHUNumber] = filter_numbers
+		ahu_filter_numbers[ahu.AHUNumber] = hec_numbers
+
+	return ahu_numbers, ahu_fan_numbers, ahu_damper_numbers, ahu_hec_numbers, ahu_filter_numbers
 
 def StoreAHUDataPoints(session):
+	"""Store all the data points corresponding to AHUs"""
 
 	#Find AHU-involved data points
 	ahu_involved = session.query(DataPoint).filter(DataPoint._path.like('%ahu%')).all()
-	ahus = list()
+
+	#Find the already stored AHUs
+	ahus = session.query(AHU).all()
+
+	new_ahus = list()
 	dampers = list()
 
-	ahu_numbers = set()
-	fan_ids = set()
+	ahu_numbers, ahu_fan_numbers, ahu_damper_numbers, ahu_hec_numbers, ahu_filter_numbers = getStoredAHUComponentsId(ahus)
 
 	fanDatapoints = set()
 	damperDatapoints = set()
@@ -76,7 +117,7 @@ def StoreAHUDataPoints(session):
 	for dataPoint in ahu_involved:
 		
 		matchDamper = damperRegex.search(dataPoint.point) #Determine if this point belongs to a damper
-		matchFan = fanRegex.search(dataPoint.point) #Determine if this point belongs to a damper
+		matchFan = fanRegex.search(dataPoint.point) #Determine if this point belongs to a fan
 
 		ahuNumber = determineComponentNumber(numberRegex, dataPoint.path)
 
@@ -84,41 +125,40 @@ def StoreAHUDataPoints(session):
 			ahu_numbers.add(ahuNumber)
 			ahus.append(AHU(ahuNumber))
 
-		#If the point belongs to a damper
-		if matchDamper:
-			ahu = getAHUByAHUNumber(ahuNumber, ahus)
+			ahu_fan_numbers[ahuNumber] = set()
+			ahu_damper_numbers[ahuNumber] = set()
+			ahu_hec_numbers[ahuNumber] = set()
+			ahu_filter_numbers[ahuNumber] = set()
 
-			splitPath = dataPoint.path.split("/")
-			print(splitPath, len(splitPath))
-			componentNumber = determineComponentNumber(numberRegex, dataPoint.path.split("/")[1])
+		ahu = getAHUByAHUNumber(ahuNumber, ahus)
 
-			if ahu != None:
-				damper = Damper(damperId + 1, ahuNumber, ahu = ahu)
-				damperNumber += 1
-				print("damper -> ", str(damper.damperId), str(damper.AHUNumber), dataPoint.path)
-				damperDatapoints.add(dataPoint)
-			else:
-				print("AHU not found")
+		if ahu != None:
 
-		#If the point belongs to a fan
-		if matchFan:
-			ahu = getAHUByAHUNumber(ahuNumber, ahus)
+			splittedPath = dataPoint.path.split("/")
+			componentNumber = determineComponentNumber(numberRegex, splittedPath[len(splittedPath) - 1])
 
-			if ahu != None:
+			#If the point belongs to a damper
+			if matchDamper:
+				if componentNumber not in ahu_damper_numbers[ahu.AHUNumber]:
 
-				componentNumber = determineComponentNumber(numberRegex, dataPoint.path.split("/")[1])
+					damper = Damper(damperId + 1, ahuNumber, componentNumber, ahu = ahu)
+					damperId += 1
+					print("damper -> ", str(damper.damperId), str(damper.AHUNumber), str(damper.damperNumber), dataPoint.path)
+					ahu_damper_numbers[ahu.AHUNumber].add(componentNumber)
+					damperDatapoints.add(dataPoint)
 
-				if componentNumber not in fan_numbers:
-					print(dataPoint.path, "fan Number = ", componentNumber)
-					fan_numbers.add()
-
-
-					fan = Fan(fanNumber + 1, ahuNumber, ahu = ahu)
-					fanNumber += 1
-					#print("fan -> ", str(fan.fanNumber), str(fan.AHUNumber), dataPoint.path)
+			#If the point belongs to a fan
+			if matchFan:
+				if componentNumber not in ahu_fan_numbers[ahu.AHUNumber]:
+					
+					fan = Fan(fanId + 1, ahuNumber, componentNumber, ahu = ahu)
+					fanId += 1
+					print("fan -> ", str(fan.fanId), str(fan.AHUNumber), str(fan.fanNumber), dataPoint.path)
+					ahu_fan_numbers[ahu.AHUNumber].add(componentNumber)
 					fanDatapoints.add(dataPoint)
-			else:
-				print("AHU not found")
+		
+		else:
+			print("AHU not found")
 				
 	for ahu in ahus:
 		pass
@@ -130,7 +170,7 @@ def StoreAHUDataPoints(session):
 def main():
 	"""Main function"""
 
-	zone4FilepATH = "/Users/davidlaredorazo/Desktop/Zone4.csv"
+	zone4FilepATH = "../csv_files/Zone4.csv"
 	
 	#Attempt connection to the database
 	try:
@@ -145,10 +185,10 @@ def main():
 		return False
 
 	#Attempt to write csv to the database
-	zonecsvToDb(zone4FilepATH, session, "4")
+	#zonecsvToDb(zone4FilepATH, session, "4")
 	print("writting sucessfull")
 
-	StoreAHUDataPoints(session)
+	#StoreAHUDataPoints(session)
 
 
 

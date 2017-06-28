@@ -132,6 +132,7 @@ CREATE TABLE Heat_Exchanger_Coil (
   AHUNumber int(10), 
   SAVId     int(10), 
   VAVId     int(10), 
+  HECNumber int(10) NOT NULL, 
   PRIMARY KEY (HECId)) ENGINE=InnoDB;
 CREATE TABLE Thermafuser (
   ThermafuserId     int(10) NOT NULL AUTO_INCREMENT, 
@@ -149,6 +150,13 @@ CREATE TABLE DataPoints (
   Point          varchar(255) NOT NULL, 
   Zone           int(10) NOT NULL, 
   PRIMARY KEY (Path)) ENGINE=InnoDB;
+CREATE TABLE PathMappings (
+  Id              int(10) NOT NULL AUTO_INCREMENT, 
+  Path            varchar(255) NOT NULL, 
+  ComponentType   varchar(255) NOT NULL, 
+  ComponentNumber int(10) NOT NULL, 
+  Description     varchar(255) NOT NULL, 
+  PRIMARY KEY (Id)) ENGINE=InnoDB;
 ALTER TABLE Air_Handling_Unit_Reading ADD INDEX FKAir_Handli855032 (AHUNumber), ADD CONSTRAINT FKAir_Handli855032 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE Fan ADD INDEX FKFan812080 (AHUNumber), ADD CONSTRAINT FKFan812080 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE Damper ADD INDEX FKDamper841472 (AHUNumber), ADD CONSTRAINT FKDamper841472 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);

@@ -102,6 +102,7 @@ class DataPoint(Base):
 		return "<DataPoint(path = '%s', server = '%s', location = '%s', branch = '%s', subBranch = '%s', controlProgram = '%s', point = '%s', zone = '%s')>" \
 		% (self._path, self._server, self._location, self._branch, self._subBranch, self._controlProgram, self._point, self._zone)
 
+
 class AHU(Base):
 	"""Class to map to the Air_Handling_Unit table in the HVAC DB"""
 
@@ -931,6 +932,7 @@ class HEC(Base):
 	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"), nullable = True)
 	_SAVId = Column('SAVId', Integer, ForeignKey("Staged_Air_Volume.SAVId"), nullable = True)
 	_VAVId = Column('VAVId', Integer, ForeignKey("Variable_Air_Volume.VAVId"), nullable = True)
+	_HECNumber = Column('HECNumber', Integer)
 	
 	#Relationships
 	
@@ -941,9 +943,10 @@ class HEC(Base):
 
 	#Constructor
 
-	def __init__(self, HECId, AHUNumber = None, VAVId = None, SAVId = None, ahu = None, vav = None, sav = None, hecReadings = []):
+	def __init__(self, HECId, HECNumber, AHUNumber = None, VAVId = None, SAVId = None, ahu = None, vav = None, sav = None, hecReadings = []):
 
 		self._HECId = HECId
+		self._HECNumber = HECNumber
 		self._AHUNumber = AHUNumber
 		self._VAVId = VAVId
 		self._SAVId = SAVId
@@ -961,6 +964,14 @@ class HEC(Base):
 	@HECId.setter
 	def HECId(self, value):
 		self._HECId = value
+
+	@property
+	def HECNumber(self):
+		return self._HECNumber
+
+	@HECNumber.setter
+	def HECNumber(self, value):
+		self._HECNumber = value
 
 	@property
 	def AHUNumber(self):
@@ -1019,8 +1030,8 @@ class HEC(Base):
 		self._hecReadings = value
 
 	def __str__(self):
-		return "<HEC(HECId = '%d', AHUNumber = '%d', SAVId = '%d', VAVId = '%d', ahu = '%s', sav = '%s', vav = '%s', hecReadings = '%s')>" \
-		% (self._HECId, self._AHUNumber, self._SAVId, self._VAVId, str(self._ahu), str(self._sav), str(self._vav), str(self._hecReadings))
+		return "<HEC(HECId = '%d', AHUNumber = '%d', HECNumber = '%d', SAVId = '%d', VAVId = '%d', ahu = '%s', sav = '%s', vav = '%s', hecReadings = '%s')>" \
+		% (self._HECId, self._AHUNumber, self._HECNumber, self._SAVId, self._VAVId, str(self._ahu), str(self._sav), str(self._vav), str(self._hecReadings))
 
 
 class HECReading(Base):

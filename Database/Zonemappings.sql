@@ -1,0 +1,6 @@
+insert into PathMappings (Path, ComponentType, ComponentNumber, Description) values ("m073", "Thermafuser Sensor", "0", "Airflow Feedback")
+insert into PathMappings (Path, ComponentType, ComponentNumber, Description) values ("m135", "Thermafuser Sensor", "0", "OccupiedCoolingSetpoint")
+insert into PathMappings (Path, ComponentType, ComponentNumber, Description) values ("m134", "Thermafuser Sensor", "0", "OccupiedHeatingSetpoint")
+insert into PathMappings (Path, ComponentType, ComponentNumber, Description) values ("m078", "Thermafuser Sensor", "0", "Airflow Feedback")
+insert into PathMappings (Path, ComponentType, ComponentNumber, Description) values ("m190", "Thermafuser Sensor", "0", "Airflow Feedback")
+insert into PathMappings (Path, ComponentType, ComponentNumber, Description) values ("m186", "Thermafuser Sensor", "0", "Airflow Feedback")
