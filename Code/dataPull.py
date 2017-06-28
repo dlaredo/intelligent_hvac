@@ -9,8 +9,8 @@ Evalwsdl = 'http://10.20.0.47/_common/webservices/Eval?wsdl'
 Trendwsdl = 'http://10.20.0.47/_common/webservices/TrendService?wsdl'
 
 #datetime object that uses the local PST time
-startTime = datetime(2017, 6, 21, 15, 0, 0, 0, timezone(-timedelta(hours=8)))
-endTime = datetime(2017, 6, 21, 15, 5, 0, 0, timezone(-timedelta(hours=8)))
+startTime = datetime(2017, 6, 28, 14, 50, 0, 0, timezone(-timedelta(hours=8)))
+endTime = datetime(2017, 6, 28, 14, 55, 0, 0, timezone(-timedelta(hours=8)))
 
 try:
 	session = Session()
@@ -18,7 +18,7 @@ try:
 	transport = Transport(timeout=30, session = session)
 	#client = zeep.Client(wsdl=wsdl, transport=transport)
 	client = zeep.Client(wsdl=Trendwsdl, transport=transport)
-	path = '#1c1a_thermafuser/m073'
+	path = '#ahu-4_0206/ea_dmpr'
 	#value = client.service.getValue('#1c1a_thermafuser/air_flow_fdbk')
 	print(endTime.strftime("%m/%d/20%y %I:%M:%S %p"))
 	data = client.service.getTrendData('soap',"", path, startTime.strftime("%m/%d/20%y %I:%M:%S %p"), endTime.strftime("%m/%d/20%y %I:%M:%S %p"), False, 0)
