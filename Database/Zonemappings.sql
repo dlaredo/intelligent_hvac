@@ -1,6 +1,7 @@
 
 #Thermafuser
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m073", "Thermafuser Sensor", "Airflow Feedback", "Thermafuser_Reading.AirflowFeedback")
+<<<<<<< HEAD
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m135", "Thermafuser Sensor", "OccupiedCoolingSetpoint", "Thermafuser_Reading.OccupiedCoolingSetpoint")
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m134", "Thermafuser Sensor", "OccupiedHeatingSetpoint", "Thermafuser_Reading.OccupiedHeatingSetpoint")
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m078", "Thermafuser Sensor", "RoomOccupied", "Thermafuser_Reading.RoomOccupied")
@@ -8,6 +9,13 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m186", "Thermafuser Sensor", "ZoneTemperature", "Thermafuser_Reading.ZoneTemperature")
 #Zone 3
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m076", "Thermafuser Sensor", "Terminal Load", #Does not exist on database)
+=======
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m135", "Thermafuser Sensor", "Occupied Cooling Setpoint", "Thermafuser_Reading.OccupiedCoolingSetpoint")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m134", "Thermafuser Sensor", "Occupied Heating Setpoint", "Thermafuser_Reading.OccupiedHeatingSetpoint")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m078", "Thermafuser Sensor", "Room Occupied", "Thermafuser_Reading.RoomOccupied")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m190", "Thermafuser Sensor", "Supply Air", "Thermafuser_Reading.SupplyAir")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m186", "Thermafuser Sensor", "Zone Temperature", "Thermafuser_Reading.ZoneTemperature")
+>>>>>>> f85d9bc962bfaef9d619d51a232f7a91510e7ae4
 
 #Heat Exchanger Coil
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cw_valve", "Heat Exchanger Coil", "Chilled Water Valve Opening", "Heat_Exchanger_Coil.ValveOpeningPercentage")
@@ -49,7 +57,6 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf4_vel_press", "Fan", "Return Fan 3D Velocity Pressure", "Fan_Reading.AirVelocityPressure")
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf3_vel_press", "Fan", "Return Fan 3C Velocity Pressure", "Fan_Reading.AirVelocityPressure")
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf2_vel_press", "Fan", "Return Fan 3B Velocity Pressure", "Fan_Reading.AirVelocityPressure")
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("")
 
 #AHU
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m045", "AHU", "Number of Zones Requiring Cooling", "Air_Handling_Unit_Reading.CoolingRequest")
