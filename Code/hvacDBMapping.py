@@ -103,6 +103,74 @@ class DataPoint(Base):
 		% (self._path, self._server, self._location, self._branch, self._subBranch, self._controlProgram, self._point, self._zone)
 
 
+class PathMapping(Base):
+	"""Class to map to the DataPoints table in the HVAC DB"""
+
+	__tablename__ = 'PathMappings'
+
+	_id = Column('Id', Integer, primary_key = True)
+	_path = Column('Path', String(255))
+	_componentType = Column('ComponentType', String(255))
+	_description = Column('Description', String(255))
+	_databaseMapping = Column('DatabaseMapping', String(255))
+
+	#Constructor
+
+	def __init__(self, identifier, path, componentType, description, databaseMapping):
+
+		self._id = identifier
+		self._path = path
+		self._componentType = componentType
+		self._description = description
+		self._databaseMapping = databaseMapping
+
+	#Properties
+
+	@property
+	def id(self):
+		return self._id
+
+	@id.setter
+	def id(self, value):
+		self._id = value
+
+	@property
+	def path(self):
+		return self._path
+
+	@path.setter
+	def path(self, value):
+		self._path = value
+
+	@property
+	def componentType(self):
+		return self._componentType
+
+	@componentType.setter
+	def componentType(self, value):
+		self._componentType = value
+
+	@property
+	def description(self):
+		return self._description
+
+	@description.setter
+	def description(self, value):
+		self._description = value
+
+	@property
+	def databaseMapping(self):
+		return self._databaseMapping
+
+	@databaseMapping.setter
+	def databaseMapping(self, value):
+		self._databaseMapping = value 
+
+	def __str__(self):
+		return "<DataPoint(id = '%s', path = '%s', componentType = '%s', description = '%s', databaseMapping = '%s')>" \
+		% (self._id, self._path, self._componentType, self._description, self._databaseMapping)
+
+
 class AHU(Base):
 	"""Class to map to the Air_Handling_Unit table in the HVAC DB"""
 
@@ -119,10 +187,11 @@ class AHU(Base):
 	_vavs = relationship('VAV', back_populates = '_ahu') #VAV and AHU
 	_savs = relationship('SAV', back_populates = '_ahu') #SAV and AHU
 	_hecs = relationship('HEC', back_populates = '_ahu') #HEC and AHU
+	_vfds = relationship('VFD', back_populates = '_ahu') #VFD and AHU
 
 	#Constructor
 
-	def __init__(self, AHUNumber, ahuReadings = [], filters = [], fans = [], dampers = [], vavs = [], savs = [], hecs = []):
+	def __init__(self, AHUNumber, ahuReadings = [], filters = [], fans = [], dampers = [], vavs = [], savs = [], hecs = [], vfds = []):
 
 		self._AHUNumber = AHUNumber
 		self._ahuReadings = ahuReadings
@@ -132,6 +201,7 @@ class AHU(Base):
 		self._vavs = vavs
 		self._savs = savs
 		self._hecs = hecs
+		self._vfds = vfds
 
 	#Properties
 
@@ -199,9 +269,17 @@ class AHU(Base):
 	def hecs(self, value):
 		self._hecs = value
 
+	@property
+	def vfds(self):
+		return self._vfds
+
+	@vfds.setter
+	def vfds(self, value):
+		self._vfds = value
+
 	def __str__(self):
-		return "<AHU(AHUNumber = '%d', ahuReadings = '%s', filters = '%s', fans = '%s', dampers = '%s', vavs = '%s', savs = '%s', hecs = '%s' )>" \
-		% (self._AHUNumber, str(self._ahuReadings), str(self._filters), str(self._fans), str(self._dampers), str(self._vavs), str(self._savs), str(self._hecs))
+		return "<AHU(AHUNumber = '%d', ahuReadings = '%s', filters = '%s', fans = '%s', dampers = '%s', vavs = '%s', savs = '%s', hecs = '%s', vfds = '%s' )>" \
+		% (self._AHUNumber, str(self._ahuReadings), str(self._filters), str(self._fans), str(self._dampers), str(self._vavs), str(self._savs), str(self._hecs), str(self._vfds))
 
 
 class AHUReading(Base):
