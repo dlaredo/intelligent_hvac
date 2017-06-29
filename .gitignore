@@ -4,3 +4,5 @@ Database/*.vpp.bak*
 #ignore pycache and any .pyc files
 Code/__pycache__
 *.pyc
+
+*.lck
