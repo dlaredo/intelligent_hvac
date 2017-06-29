@@ -27,22 +27,31 @@ CREATE TABLE Staged_Air_Volume_Reading (
   PRIMARY KEY (Time_stamp, 
   SAVId)) ENGINE=InnoDB;
 CREATE TABLE Air_Handling_Unit_Reading (
-  AHUNumber             int(10) NOT NULL, 
-  Time_stamp            datetime NOT NULL, 
-  ZoneTemperature       real, 
-  StaticPressure        real, 
-  ReturnAirTemperature  real, 
-  SupplyAirTemperature  real, 
-  ExhaustAirTemperature real, 
-  OutsideAirTemperature real, 
-  SmokeDetector         bit(1), 
-  OutsideAirCO2         real, 
-  ReturnAirCO2          real, 
-  Spare                 real, 
-  HiStatic              bit(1), 
-  DuctStaticPressure    real, 
-  MixedAirTemperature   real, 
-  OSACFM                real, 
+  AHUNumber              int(10) NOT NULL, 
+  Time_stamp             datetime NOT NULL, 
+  ZoneTemperature        real, 
+  StaticPressure         real, 
+  ReturnAirTemperature   real, 
+  SupplyAirTemperature   real, 
+  ExhaustAirTemperature  real, 
+  OutsideAirTemperature  real, 
+  SmokeDetector          bit(1), 
+  OutsideAirCO2          real, 
+  ReturnAirCO2           real, 
+  Spare                  real, 
+  HiStatic               bit(1), 
+  DuctStaticPressure     real, 
+  MixedAirTemperature    real, 
+  OutsideAirCFM          real, 
+  CoolingRequest         real, 
+  CoolingSetpoint        real, 
+  HeatingRequest         real, 
+  HeatingSetpoint        real, 
+  EconomizerSetpoint     real, 
+  OccupiedMode           bit(1), 
+  ReturnAirCO2Setpoint   real, 
+  StaticPressureSmoothed real, 
+  StaticSP               real, 
   PRIMARY KEY (AHUNumber, 
   Time_stamp)) ENGINE=InnoDB;
 CREATE TABLE Variable_Air_Volume_Reading (
@@ -57,14 +66,16 @@ CREATE TABLE Variable_Air_Volume_Reading (
   DuctStaticPressure   real, 
   ZoneCO2              real, 
   DamperPosition       real, 
+  CoolingSetpoint      real, 
+  HeatingSetpoint      int(10), 
   PRIMARY KEY (Time_stamp, 
   VAVId)) ENGINE=InnoDB;
 CREATE TABLE Heat_Exchanger_Coil_Reading (
   Time_stamp             datetime NOT NULL, 
   HECId                  int(10) NOT NULL, 
-  isHotWaterSupply       bit(1) NOT NULL, 
-  CoilType               varchar(255) NOT NULL, 
-  WaterTemperature       real, 
+  IsHeatingCoil          bit(1) NOT NULL, 
+  SupplyWaterTemperature real, 
+  ReturnWaterTemperature real, 
   ValveOpeningPercentage real, 
   PRIMARY KEY (Time_stamp, 
   HECId)) ENGINE=InnoDB;
@@ -97,6 +108,7 @@ CREATE TABLE Fan_Reading (
   FanVFD              bit(1), 
   IsolationDampers    bit(1), 
   FanSS               bit(1), 
+  AirVelocityCFM      real, 
   PRIMARY KEY (Time_stamp, 
   FanId)) ENGINE=InnoDB;
 CREATE TABLE Air_Handling_Unit (
@@ -157,6 +169,19 @@ CREATE TABLE PathMappings (
   Description     varchar(255) NOT NULL, 
   DatabaseMapping varchar(255) NOT NULL, 
   PRIMARY KEY (Id)) ENGINE=InnoDB;
+CREATE TABLE VFD (
+  VFDId     int(10) NOT NULL AUTO_INCREMENT, 
+  AHUNumber int(10) NOT NULL, 
+  VFDNumber int(10) NOT NULL, 
+  PRIMARY KEY (VFDId)) ENGINE=InnoDB;
+CREATE TABLE VFD_Reading (
+  VFDId      int(10) NOT NULL, 
+  Time_stamp datetime NOT NULL, 
+  VFDType    varchar(255) NOT NULL, 
+  PowerKW    real, 
+  SpeedRPM   real, 
+  PRIMARY KEY (VFDId, 
+  Time_stamp)) ENGINE=InnoDB;
 ALTER TABLE Air_Handling_Unit_Reading ADD INDEX FKAir_Handli855032 (AHUNumber), ADD CONSTRAINT FKAir_Handli855032 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE Fan ADD INDEX FKFan812080 (AHUNumber), ADD CONSTRAINT FKFan812080 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE Damper ADD INDEX FKDamper841472 (AHUNumber), ADD CONSTRAINT FKDamper841472 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
@@ -175,3 +200,5 @@ ALTER TABLE Heat_Exchanger_Coil_Reading ADD INDEX FKHeat_Excha620730 (HECId), AD
 ALTER TABLE Variable_Air_Volume_Reading ADD INDEX FKVariable_A451871 (VAVId), ADD CONSTRAINT FKVariable_A451871 FOREIGN KEY (VAVId) REFERENCES Variable_Air_Volume (VAVId);
 ALTER TABLE Thermafuser ADD INDEX FKThermafuse308645 (VAVId), ADD CONSTRAINT FKThermafuse308645 FOREIGN KEY (VAVId) REFERENCES Variable_Air_Volume (VAVId);
 ALTER TABLE Thermafuser_Reading ADD INDEX FKThermafuse935491 (ThermafuserId), ADD CONSTRAINT FKThermafuse935491 FOREIGN KEY (ThermafuserId) REFERENCES Thermafuser (ThermafuserId);
+ALTER TABLE VFD ADD INDEX FKVFD797583 (AHUNumber), ADD CONSTRAINT FKVFD797583 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
+ALTER TABLE VFD_Reading ADD INDEX FKVFD_Readin673303 (VFDId), ADD CONSTRAINT FKVFD_Readin673303 FOREIGN KEY (VFDId) REFERENCES VFD (VFDId);

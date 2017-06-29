@@ -218,13 +218,22 @@ class AHUReading(Base):
 	_exhaustAirTemperature = Column('ExhaustAirTemperature', Float, nullable=True)
 	_outsideAirTemperature = Column('OutsideAirTemperature', Float, nullable=True)
 	_smokeDetector = Column('SmokeDetector', Boolean, nullable=True)
-	_outsideAirCo2 = Column('OutsideAirCo2', Float, nullable=True)
-	_returnAirCo2 = Column('ReturnAirCo2', Float, nullable=True)
+	_outsideAirCo2 = Column('OutsideAirCO2', Float, nullable=True)
+	_returnAirCo2 = Column('ReturnAirCO2', Float, nullable=True)
 	_spare = Column('Spare', Float, nullable=True)
 	_hiStatic = Column('HiStatic', Boolean, nullable=True)
-	_ductstaticPressure = Column('DuctstaticPressure', Float, nullable=True)
+	_ductStaticPressure = Column('DuctStaticPressure', Float, nullable=True)
 	_mixedAirTemperature = Column('MixedAirTemperature', Float, nullable=True)        
-	_OSACFM = Column('OSACFM', Float, nullable=True)
+	_OSACFM = Column('OutsideAirCFM', Float, nullable=True)
+	_coolingRequest = Column('CoolingRequest', Float, nullable=True)
+	_coolingSetpoint = Column('CoolingSetpoint', Float, nullable=True)
+	_heatingRequest = Column('HeatingRequest', Float, nullable=True)
+	_heatingSetpoint = Column('HeatingSetpoint', Float, nullable=True)
+	_economizerSetpoint = Column('EconomizerSetpoint', Float, nullable=True)
+	_occupiedMode = Column('OccupiedMode', Boolean, nullable=True)
+	_returnAirCo2Setpoint = Column('ReturnAirCO2Setpoint', Float, nullable=True)
+	_staticPressureSmoothed = Column('StaticPressureSmoothed', Float, nullable=True)
+	_staticSP = Column('StaticSP', Float, nullable=True)
 
 	#Relationship between AHU Reading and AHU
 	_ahu = relationship("AHU", back_populates = "_ahuReadings")
@@ -233,7 +242,8 @@ class AHUReading(Base):
 
 	def __init__(self, AHUNumber, Time_stamp, zoneTemperature = None, staticPressure = None, returnAirTemperature = None, supplyAirTemperature = None, exhaustAirTemperature = None,\
 	 outsideAirTemperature = None, smokeDetector = None, outsideAirCo2 = None, returnAirCo2 = None, spare = None, hiStatic = None, ductstaticPressure = None,\
-	  mixedAirTemperature = None, OSACFM = None, ahu = None):
+	  mixedAirTemperature = None, OSACFM = None, coolingRequest = None, coolingSetpoint = None, heatingRequest = None, heatingSetpoint = None, economizerSetpoint = None,\
+	  occupiedMode = None, returnAirCo2Setpoint = None, staticPressureSmoothed = None, staticSP = None, ahu = None):
 
 		self._AHUNumber = AHUNumber
 		self._time_stamp = Time_stamp
@@ -248,9 +258,20 @@ class AHUReading(Base):
 		self._returnAirCo2 = returnAirCo2
 		self._spare = spare
 		self._hiStatic = hiStatic
-		self._ductstaticPressure = ductstaticPressure
+		self._ductStaticPressure = ductStaticPressure
 		self._mixedAirTemperature = mixedAirTemperature                
 		self._OSACFM = OSACFM
+
+		self._coolingRequest = coolingRequest
+		self._coolingSetpoint = coolingSetpoint
+		self._heatingRequest = heatingRequest
+		self._heatingSetpoint = heatingSetpoint
+		self._economizerSetpoint = economizerSetpoint
+		self._occupiedMode = occupiedMode
+		self._returnAirCo2Setpoint = returnAirCo2Setpoint
+		self._staticPressureSmoothed = staticPressureSmoothed
+		self._staticSP = staticSP
+
 		self._ahu = ahu
 
 	#properties
@@ -359,12 +380,12 @@ class AHUReading(Base):
 		self._hiStatic = value  
 	
 	@property
-	def ductstaticPressure(self):
-		return self._ductstaticPressure
+	def ductStaticPressure(self):
+		return self._ductStaticPressure
 
-	@ductstaticPressure.setter
-	def ductstaticPressure(self, value):
-		self._ductstaticPressure = value    
+	@ductStaticPressure.setter
+	def ductStaticPressure(self, value):
+		self._ductStaticPressure = value    
 	
 	@property
 	def mixedAirTemperature(self):
@@ -383,6 +404,78 @@ class AHUReading(Base):
 		self._OSACFM = value
 
 	@property
+	def coolingRequest(self):
+		return self._coolingRequest
+
+	@coolingRequest.setter
+	def coolingRequest(self, value):
+		self._coolingRequest = value
+
+	@property
+	def coolingSetpoint(self):
+		return self._coolingSetpoint
+
+	@coolingSetpoint.setter
+	def coolingSetpoint(self, value):
+		self._coolingSetpoint = value
+	
+	@property
+	def heatingRequest(self):
+		return self._heatingRequest
+
+	@heatingRequest.setter
+	def heatingRequest(self, value):
+		self._heatingRequest = value
+
+	@property
+	def heatingSetpoint(self):
+		return self._heatingSetpoint
+
+	@heatingSetpoint.setter
+	def heatingSetpoint(self, value):
+		self._heatingSetpoint = value
+	
+	@property
+	def economizerSetpoint(self):
+		return self._economizerSetpoint
+
+	@economizerSetpoint.setter
+	def economizerSetpoint(self, value):
+		self._economizerSetpoint = value
+	
+	@property
+	def occupiedMode(self):
+		return self._occupiedMode
+
+	@occupiedMode.setter
+	def occupiedMode(self, value):
+		self._occupiedMode = value
+	
+	@property
+	def returnAirCo2Setpoint(self):
+		return self._returnAirCo2Setpoint
+
+	@returnAirCo2Setpoint.setter
+	def returnAirCo2Setpoint(self, value):
+		self._returnAirCo2Setpoint = value
+	
+	@property
+	def staticPressureSmoothed(self):
+		return self._staticPressureSmoothed
+
+	@staticPressureSmoothed.setter
+	def staticPressureSmoothed(self, value):
+		self._staticPressureSmoothed = value
+	
+	@property
+	def staticSP(self):
+		return self._staticSP
+
+	@staticSP.setter
+	def staticSP(self, value):
+		self._staticSP = value
+
+	@property
 	def ahu(self):
 		return self._ahu
 
@@ -393,10 +486,13 @@ class AHUReading(Base):
 	def __str__(self):
 		return "<AHUReading(AHUNumber = '%s', Time_stamp = '%s', zoneTemperature = '%s', staticPressure = '%s', returnAirTemperature = '%s', supplyAirTemperature = '%s', \
 		exhaustAirTemperature = '%s', outsideAirTemperature = '%s',smokeDetector = '%s',outsideAirCo2 = '%s', returnAirCo2 = '%s',spare = '%s',hiStatic = '%s', \
-		ductstaticPressure = '%s',mixedAirTemperature = '%s', OSACFM = '%s', ahu = '%s')>" \
+		ductstaticPressure = '%s',mixedAirTemperature = '%s', OSACFM = '%s', CoolingRequest = '%s', CoolingSetpoint = '%s', HeatingRequest = '%s', HeatingSetpoint = '%s',\
+		EconomizerSetpoint = '%s', OccupiedMode = '%s', ReturnAirCo2Setpoint = '%s', StaticPressureSmoothed = '%s', StaticSP = '%s', ahu = '%s')>" \
 		% (self._AHUNumber, self._Time_stamp, self._zoneTemperature, self._staticPressure, self._returnAirTemperature, self._supplyAirTemperature, \
 		 self._exhaustAirTemperature, self._outsideAirTemperature,self._smokeDetector,self._outsideAirCo2,self._returnAirCo2, self._spare, self._hiStatic, \
-		 self._ductstaticPressure, self._mixedAirTemperature, self._OSACFM, str(self._ahu))
+		 self._ductstaticPressure, self._mixedAirTemperature, self._OSACFM, self._coolingRequest, self._coolingSetpoint, self._heatingRequest, self._heatingSetpoint,\
+		 self._economizerSetpoint, self._occupiedMode, self._returnAirCo2Setpoint, self._staticPressureSmoothed, self._staticSP, str(self._ahu))
+
 
 class Filter(Base):
 	"""Class to map to the Filter table in the HVAC DB"""
@@ -787,6 +883,7 @@ class FanReading(Base):
 	_fanVFD = Column('FanVFD', Boolean, nullable=True)
 	_isolationDampers = Column('IsolationDampers', Boolean, nullable=True)
 	_fanSS = Column('FanSS', Boolean, nullable=True)
+	_airVelocityCFM = Column('AirVelocityCFM', Float, nullable=True)
 
 	#Relationship between Fan and Fan_Reading
 	_fan = relationship("Fan", back_populates = "_fanReadings")
@@ -794,7 +891,7 @@ class FanReading(Base):
 	#Constructor
 
 	def __init__(self, fanId, time_stamp, fanType = None, airVelocityPressure = None, VFDSpeed = None, fanStatus = None, VFDFault = None, HiStaticReset = None,\
-	 FAReturnFanShutdown = None, fanVFD = None, isolationDampers = None, fanSS = None, fan = None):
+	 FAReturnFanShutdown = None, fanVFD = None, isolationDampers = None, fanSS = None, airVelocityCFM = None, fan = None):
 
 		self._fanId = fanId
 		self._time_stamp = time_stamp
@@ -808,6 +905,7 @@ class FanReading(Base):
 		self._fanVFD = fanVFD
 		self._isolationDampers = isolationDampers
 		self._fanSS = fanSS
+		self._airVelocityCFM = airVelocityCFM
 		self._fan = fan
 
 	#properties
@@ -909,6 +1007,14 @@ class FanReading(Base):
 		self._fanSS = value
 
 	@property
+	def airVelocityCFM(self):
+		return self._airVelocityCFM
+
+	@airVelocityCFM.setter
+	def airVelocityCFM(self, value):
+		self._airVelocityCFM = value
+
+	@property
 	def fan(self):
 		return self._fan
 
@@ -918,9 +1024,9 @@ class FanReading(Base):
 
 	def __str__(self):
 		return "<FanReading(fanId = '%s', time_stamp = '%s', fanType = '%s', 'airVelocityPressure' = '%s' VFDSpeed = '%s', fanStatus = '%s', VFDFault = '%s',\
-		 HiStaticReset = '%s', FAReturnFanShutdown = '%s',fanVFD = '%s',isolationDampers = '%s', fanSS = '%s', fan = '%s')>" \
+		 HiStaticReset = '%s', FAReturnFanShutdown = '%s',fanVFD = '%s',isolationDampers = '%s', fanSS = '%s', airVelocityCFM = '%s', fan = '%s')>" \
 		% (self._fanId, self._time_stamp, self._fanType, self.airVelocityPressure, self._VFDSpeed, self._fanStatus, self._VFDFault, self._HiStaticReset,\
-		 self._FAReturnFanShutdown,self._fanVFD,self._isolationDampers,self._fanSS, str(self._fan))
+		 self._FAReturnFanShutdown, self._fanVFD, self._isolationDampers, self._fanSS, self._airVelocityCFM, str(self._fan))
 
 
 class HEC(Base):
@@ -1041,9 +1147,9 @@ class HECReading(Base):
 
 	_HECId = Column('HECId', Integer, ForeignKey("Heat_Exchanger_Coil.HECId"), primary_key = True)
 	_time_stamp = Column('Time_stamp', DateTime, primary_key = True)
-	_isHotWaterSupply = Column('isHotWaterSupply', Float)
-	_coilType = Column('CoilType', Float)
-	_waterTemperature = Column('WaterTemperature', Float, nullable=True)
+	_isHeatingCoil = Column('isHeatingCoil', Boolean)
+	_supplyWaterTemperature = Column('SupplyWaterTemperature', Float, nullable=True)
+	_returnWaterTemperature = Column('ReturnWaterTemperature', Float, nullable=True)
 	_valveOpeningPercentage = Column('valveOpeningPercentage', Float, nullable=True)
 
 	#Relationship between HEC Reading and HEC
@@ -1051,13 +1157,13 @@ class HECReading(Base):
   
 	#Constructor
 
-	def __init__(self, HECId, time_stamp, isHotWaterSupply, coilType, waterTemperature = None, valveOpeningPercentage = None, hec = []):
+	def __init__(self, HECId, time_stamp, isHeatingCoil, supplyWaterTemperature, returnWaterTemperature = None, valveOpeningPercentage = None, hec = []):
 
 		self._HECId = HECId
 		self._time_stamp = time_stamp
-		self._isHotWaterSupply = isHotWaterSupply
-		self._coilType = coilType
-		self._waterTemperature = waterTemperature
+		self._isHeatingCoil = isHeatingCoil
+		self._supplyWaterTemperature = supplyWaterTemperature
+		self._returnWaterTemperature = returnWaterTemperature
 		self._valveOpeningPercentage = valveOpeningPercentage
 		self._hec = hec
 
@@ -1080,28 +1186,28 @@ class HECReading(Base):
 		self._time_stamp = value
 
 	@property
-	def isHotWaterSupply(self):
-		return self._isHotWaterSupply
+	def isHeatingCoil(self):
+		return self._isHeatingCoil
 
-	@isHotWaterSupply.setter
-	def isHotWaterSupply(self, value):
-		self._isHotWaterSupply = value
-
-	@property
-	def coilType(self):
-		return self._coilType
-
-	@coilType.setter
-	def coilType(self, value):
-		self._coilType = value
+	@isHeatingCoil.setter
+	def isHeatingCoil(self, value):
+		self._isHeatingCoil = value
 
 	@property
-	def waterTemperature(self):
-		return self._waterTemperature
+	def supplyWaterTemperature(self):
+		return self._supplyWaterTemperature
 
-	@waterTemperature.setter
-	def waterTemperature(self, value):
-		self._waterTemperature = value  
+	@supplyWaterTemperature.setter
+	def supplyWaterTemperature(self, value):
+		self._supplyWaterTemperature = value
+
+	@property
+	def returnWaterTemperature(self):
+		return self._returnWaterTemperature
+
+	@returnWaterTemperature.setter
+	def returnWaterTemperature(self, value):
+		self._returnWaterTemperature = value  
 
 	@property
 	def valveOpeningPercentage(self):
@@ -1120,8 +1226,8 @@ class HECReading(Base):
 		self._hec = value   
 		
 	def __str__(self):
-		return "<HECReading(HECId = '%s', time_stamp = '%s', isHotWaterSupply = '%s', coilType = '%s', waterTemperature = '%s', valveOpeningPercentage = '%s', hec = '%s')>" \
-		% (self._HECId, self._time_stamp, self._isHotWaterSupply, self._coilType, self._waterTemperature, self._valveOpeningPercentage, str(self._hec))
+		return "<HECReading(HECId = '%s', time_stamp = '%s', isHeatingCoil = '%s', supplyWaterTemperature = '%s', returnWaterTemperature = '%s', valveOpeningPercentage = '%s', hec = '%s')>" \
+		% (self._HECId, self._time_stamp, self._isHeatingCoil, self._supplyWaterTemperature, self._returnWaterTemperature, self._valveOpeningPercentage, str(self._hec))
 
 
 class SAV(Base):
@@ -1442,6 +1548,8 @@ class VAVReading(Base):
 	_ductStaticPressure = Column('DuctStaticPressure', String(255), nullable=True)
 	_zoneCO2 = Column('ZoneCO2', Float, nullable=True)
 	_damperPosition = Column('DamperPosition', Float, nullable=True)
+	_coolingSetpoint = Column('CoolingSetpoint', Float, nullable=True)
+	_heatingSetpoint = Column('HeatingSetpoint', Float, nullable=True)
 
 	#Relationship between SAV Reading and SAV
 	_vav = relationship("VAV", back_populates = "_vavReadings")
@@ -1449,7 +1557,7 @@ class VAVReading(Base):
 	#Constructor
 
 	def __init__(self, VAVId, time_stamp, VAVName = None, flowInput = None, miscSpareInput = None, zoneTemperature = None, dischargeTemperature = None,\
-	 condensateDetector = None, ductStaticPressure = None, zoneCO2 = None, damperPosition = None, vav = None):
+	 condensateDetector = None, ductStaticPressure = None, zoneCO2 = None, damperPosition = None, coolingSetpoint = None, heatingSetpoint = None, vav = None):
 
 		self._VAVId = VAVId
 		self._time_stamp = time_stamp
@@ -1462,6 +1570,8 @@ class VAVReading(Base):
 		self._ductStaticPressure = ductStaticPressure
 		self._zoneCO2 = zoneCO2
 		self._damperPosition = damperPosition
+		self._coolingSetpoint = coolingSetpoint
+		self._heatingSetpoint = heatingSetpoint
 		self._vav = vav
 		
 	#properties
@@ -1554,6 +1664,22 @@ class VAVReading(Base):
 		self._damperPosition = value
 
 	@property
+	def coolingSetpoint(self):
+		return self._coolingSetpoint
+
+	@coolingSetpoint.setter
+	def coolingSetpoint(self, value):
+		self._coolingSetpoint = value
+
+	@property
+	def heatingSetpoint(self):
+		return self._heatingSetpoint
+
+	@heatingSetpoint.setter
+	def heatingSetpoint(self, value):
+		self._heatingSetpoint = value
+
+	@property
 	def vav(self):
 		return self._vav
 
@@ -1563,9 +1689,9 @@ class VAVReading(Base):
 
 	def __str__(self):
 		return "<VAVReading(VAVId = '%s', time_stamp = '%s', VAVName = '%s', flowInput = '%s', miscSpareInput = '%s', zoneTemperature = '%s', dischargeTemperature = '%s',\
-		 condensateDetector = '%s',ductStaticPressure = '%s',zoneCO2 = '%s', damperPosition = '%s', vav = '%s')>" \
+		 condensateDetector = '%s',ductStaticPressure = '%s',zoneCO2 = '%s', damperPosition = '%s', coolingSetpoint = '%s', heatingSetpoint = '%s', vav = '%s')>" \
 		% (self._VAVId, self._time_stamp, self._VAVName, self._flowInput, self._miscSpareInput, self._zoneTemperature, self._dischargeTemperature,\
-		 self._condensateDetector,self._ductStaticPressure,self._zoneCO2,self._damperPosition, str(self._vav))
+		 self._condensateDetector, self._ductStaticPressure, self._zoneCO2, self._damperPosition, self._coolingSetpoint, self._heatingSetpoint, str(self._vav))
 
 
 class Thermafuser(Base):
