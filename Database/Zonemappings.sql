@@ -6,6 +6,8 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m078", "Thermafuser Sensor", "RoomOccupied", "Thermafuser_Reading.RoomOccupied")
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m190", "Thermafuser Sensor", "SupplyAir", "Thermafuser_Reading.SupplyAir")
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m186", "Thermafuser Sensor", "ZoneTemperature", "Thermafuser_Reading.ZoneTemperature")
+#Zone 3
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m076", "Thermafuser Sensor", "Terminal Load", #Does not exist on database)
 
 #Heat Exchanger Coil
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cw_valve", "Heat Exchanger Coil", "Chilled Water Valve Opening", "Heat_Exchanger_Coil.ValveOpeningPercentage")
@@ -26,8 +28,28 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("pfilter_dp", "Filter", "Pre Filter Difference Pressure", "Filter.DifferencePressure")
 
 #Fan
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf\rf#_vel_press", "Fan", "Return Fan Velocity Pressure", "Fan.AirVelocityPressure")
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf\rf#_cfm_tnd", "Fan", "Return Fan CFM", "Fan.AirVelocityCFM")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf\rf#_vel_press", "Fan", "Return Fan Velocity Pressure", "Fan_Reading.AirVelocityPressure")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf\rf#_cfm_tnd", "Fan", "Return Fan CFM", "Fan_Reading.AirVelocityCFM")
+#Zone 3
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf4_cfm_tnd", "Fan", "Supply Fan 4 CFM", "Fan_Reading.AirVelocityCFM")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf_cfm_tnd", "Fan", "Supply Fan 3 Total CFM", "Fan_Reading.AirVelocityCFM")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf3_cfm_tnd", "Fan", "Supply Fan 3 CFM", "Fan_Reading.AirVelocityCFM")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf2_cfm_tnd", "Fan", "Supply Fan 2 CFM", "Fan_Reading.AirVelocityCFM")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf1_cfm_tnd", "Fan", "Supply Fan 1 CFM", "Fan_Reading.AirVelocityCFM")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf4_vel_press", "Fan", "Supply Fan 3D Velocity Pressure", "Fan_Reading.AirVelocityPressure")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf3_vel_press", "Fan", "Supply Fan 3C Velocity Pressure", "Fan_Reading.AirVelocityPressure")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf2_vel_press", "Fan", "Supply Fan 3B Velocity Pressure", "Fan_Reading.AirVelocityPressure")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf1_vel_press", "Fan", "Supply Fan 3A Velocity Pressure", "Fan_Reading.AirVelocityPressure")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf1_vel_press", "Fan" , "Return Fan 3A Velocity Pressure", "Fan_Reading.AirVelocityPressure")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf4_cfm_tnd", "Fan", "Return Fan 4 CFM", "Fan_Reading.AirVelocityCFM")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf3_cfm_tnd", "Fan", "Return Fan 3 CFM", "Fan_Reading.AirVelocityCFM")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf2_cfm_tnd", "Fan", "Return Fan 2 CFM", "Fan_Reading.AirVelocityCFM")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf1_cfm_tnd", "Fan", "Return Fan 1 CFM", "Fan_Reading.AirVelocityCFM")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf_cfm_tnd", "Fan", "Return Fan CFM", "Fan_Reading.AirVelocityCFM")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf4_vel_press", "Fan", "Return Fan 3D Velocity Pressure", "Fan_Reading.AirVelocityPressure")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf3_vel_press", "Fan", "Return Fan 3C Velocity Pressure", "Fan_Reading.AirVelocityPressure")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf2_vel_press", "Fan", "Return Fan 3B Velocity Pressure", "Fan_Reading.AirVelocityPressure")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("")
 
 #AHU
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m045", "AHU", "Number of Zones Requiring Cooling", "Air_Handling_Unit_Reading.CoolingRequest")
@@ -45,6 +67,15 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ra_temp", "AHU", "Return Air Temperature", "Air_Handling_Unit_Reading.ReturnAirTemperature")
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m798", "AHU", "Static Pressure Smoothed", "Air_Handling_Unit_Reading.StaticPressureSmoothed")
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m403", "AHU", "Static SP", "Air_Handling_Unit_Reading.StaticSP")
+# Zone 3
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sa_temp", "AHU", "Supply Temperature", "Air_Handling_Unit_Reading.SupplyAirTemperature")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("st_press1", "AHU", "Static Pressure 2 A", "Air_Handling_Unit_Reading.StaticPressure")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sa_stpt_tn", "AHU", "Supply Air Set Point", #"Can't find in database")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ra_sp", "AHU" , "Return Air Static Pressure", "Air_Handling_Unit_Reading.StaticPressure")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("osacfm", "AHU", "Outside Air CFM", "Air_Handling_Unit_Reading.OutsideAirCFM")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("oa_temperature", "AHU", "Outside Air Temperature", "Air_Handling_Unit_Reading.OutsideAirTemperature")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ht_stpt_tn", "AHU", "Heat Setpoint", "Air_Handling_Unit_Reading.HeatingSetpoint")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cl_stpt_tn", "AHU", "Cooling Setpoint", "Air_Handling_Unit_Reading.CoolingSetpoint")
 
 #VAV
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("vav/cl_stpt_tn", "VAV", "Cooling Setpoint", "Variable_Air_Volume_Reading.CoolingSetpoint")
@@ -56,4 +87,6 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m311", "VAV", "Zone Temperature", "Variable_Air_Volume_Reading.ZoneTemperature")
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m211", "VAV", "Static Setpoint 1", "Variable_Air_Volume_Reading.DuctStaticPressure")
 
-
+#VFD
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("speed_rpm_1617_tn", "VFD", "1617 Speed RPM", "VFD_Reading.SpeedRPM")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("power_kw_1610_tn", "VFD", "1610 Power Kw", "VFD_Reading.PowerKW")
