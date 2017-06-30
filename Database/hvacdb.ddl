@@ -150,6 +150,7 @@ CREATE TABLE Heat_Exchanger_Coil (
   PRIMARY KEY (HECId)) ENGINE=InnoDB;
 CREATE TABLE Thermafuser (
   ThermafuserId     int(10) NOT NULL AUTO_INCREMENT, 
+  AHUNumber         int(10) NOT NULL, 
   SAVId             int(10), 
   VAVId             int(10), 
   ThermafuserNumber int(10) NOT NULL, 
@@ -184,6 +185,11 @@ CREATE TABLE VFD_Reading (
   SpeedRPM   real, 
   PRIMARY KEY (VFDId, 
   Time_stamp)) ENGINE=InnoDB;
+CREATE TABLE ComponentRelationships (
+  ComponentName   varchar(255) NOT NULL, 
+  ParentComponent varchar(255) NOT NULL, 
+  `Group`         int(10), 
+  PRIMARY KEY (ComponentName)) ENGINE=InnoDB;
 ALTER TABLE Air_Handling_Unit_Reading ADD INDEX FKAir_Handli855032 (AHUNumber), ADD CONSTRAINT FKAir_Handli855032 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE Fan ADD INDEX FKFan812080 (AHUNumber), ADD CONSTRAINT FKFan812080 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE Damper ADD INDEX FKDamper841472 (AHUNumber), ADD CONSTRAINT FKDamper841472 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
@@ -204,3 +210,5 @@ ALTER TABLE Thermafuser ADD INDEX FKThermafuse308645 (VAVId), ADD CONSTRAINT FKT
 ALTER TABLE Thermafuser_Reading ADD INDEX FKThermafuse935491 (ThermafuserId), ADD CONSTRAINT FKThermafuse935491 FOREIGN KEY (ThermafuserId) REFERENCES Thermafuser (ThermafuserId);
 ALTER TABLE VFD ADD INDEX FKVFD797583 (AHUNumber), ADD CONSTRAINT FKVFD797583 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE VFD_Reading ADD INDEX FKVFD_Readin673303 (VFDId), ADD CONSTRAINT FKVFD_Readin673303 FOREIGN KEY (VFDId) REFERENCES VFD (VFDId);
+ALTER TABLE Thermafuser ADD INDEX FKThermafuse421350 (AHUNumber), ADD CONSTRAINT FKThermafuse421350 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
+ALTER TABLE ComponentRelationships ADD INDEX FKComponentR699506 (ParentComponent), ADD CONSTRAINT FKComponentR699506 FOREIGN KEY (ParentComponent) REFERENCES ComponentRelationships (ComponentName);

@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Table, DateTime, Float, Boolean, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 
 Base = declarative_base()
 
@@ -171,6 +171,76 @@ class PathMapping(Base):
 		% (self._id, self._path, self._componentType, self._description, self._databaseMapping)
 
 
+class ComponentRelationship(Base):
+	"""Class to map to the DataPoints table in the HVAC DB"""
+
+	__tablename__ = 'ComponentRelationships'
+
+	_componentName = Column('ComponentName', String(255), primary_key = True)
+	_parentComponent = Column('ParentComponent', String(255), ForeignKey("ComponentRelationships.ComponentName"))
+	_group = Column('Group', String(255))
+
+	#Relationships between Component parents and children
+	#_parent = relationship("ComponentRelationship", back_populates = "_children")
+	_children = relationship("ComponentRelationship", backref = backref('_parent', remote_side=[_componentName]))
+
+	#Constructor
+
+	def __init__(self, componentName, parentComponent, group, parent = None, children = []):
+
+		self._componentName = componentName
+		self._parentComponent = parentComponent
+		self._group = group
+		self._parent = parent
+		self._children = children
+
+	#Properties
+
+	@property
+	def componentName(self):
+		return self._componentName
+
+	@componentName.setter
+	def componentName(self, value):
+		self._componentName = value
+
+	@property
+	def parentComponent(self):
+		return self._parentComponent
+
+	@parentComponent.setter
+	def parentComponent(self, value):
+		self._parentComponent = value
+
+	@property
+	def group(self):
+		return self._group
+
+	@group.setter
+	def group(self, value):
+		self._group = value 
+
+	@property
+	def parent(self):
+		return self._parent
+
+	@parent.setter
+	def parent(self, value):
+		self._parent = value 
+
+	@property
+	def children(self):
+		return self._children
+
+	@children.setter
+	def children(self, value):
+		self._children = value 
+
+	def __str__(self):
+		return "<DataPoint(componentName = '%s', parentComponent = '%s', group = '%s', parent = '%s', children = '%s')>" %\
+		 (self._componentName, self._parentComponent, self._group, str(self._parent), str(self._children))
+
+
 class AHU(Base):
 	"""Class to map to the Air_Handling_Unit table in the HVAC DB"""
 
@@ -188,10 +258,11 @@ class AHU(Base):
 	_savs = relationship('SAV', back_populates = '_ahu') #SAV and AHU
 	_hecs = relationship('HEC', back_populates = '_ahu') #HEC and AHU
 	_vfds = relationship('VFD', back_populates = '_ahu') #VFD and AHU
+	_thermafusers = relationship('Thermafuser', back_populates = '_ahu') #Thermafuser and AHU
 
 	#Constructor
 
-	def __init__(self, AHUNumber, ahuReadings = [], filters = [], fans = [], dampers = [], vavs = [], savs = [], hecs = [], vfds = []):
+	def __init__(self, AHUNumber, ahuReadings = [], filters = [], fans = [], dampers = [], vavs = [], savs = [], hecs = [], vfds = [], thermafusers = []):
 
 		self._AHUNumber = AHUNumber
 		self._ahuReadings = ahuReadings
@@ -202,6 +273,7 @@ class AHU(Base):
 		self._savs = savs
 		self._hecs = hecs
 		self._vfds = vfds
+		self._thermafusers = thermafusers
 
 	#Properties
 
@@ -277,9 +349,18 @@ class AHU(Base):
 	def vfds(self, value):
 		self._vfds = value
 
+	@property
+	def thermafusers(self):
+		return self._thermafusers
+
+	@thermafusers.setter
+	def thermafusers(self, value):
+		self._thermafusers = value
+
 	def __str__(self):
-		return "<AHU(AHUNumber = '%d', ahuReadings = '%s', filters = '%s', fans = '%s', dampers = '%s', vavs = '%s', savs = '%s', hecs = '%s', vfds = '%s' )>" \
-		% (self._AHUNumber, str(self._ahuReadings), str(self._filters), str(self._fans), str(self._dampers), str(self._vavs), str(self._savs), str(self._hecs), str(self._vfds))
+		return "<AHU(AHUNumber = '%d', ahuReadings = '%s', filters = '%s', fans = '%s', dampers = '%s', vavs = '%s', savs = '%s', hecs = '%s', vfds = '%s', thermafusers = '%s' )>" \
+		% (self._AHUNumber, str(self._ahuReadings), str(self._filters), str(self._fans), str(self._dampers), str(self._vavs), str(self._savs), str(self._hecs), str(self._vfds),\
+		 str(self._thermafusers))
 
 
 class AHUReading(Base):
@@ -1928,23 +2009,27 @@ class Thermafuser(Base):
 	__tablename__ = "Thermafuser"
 
 	_thermafuserId = Column('ThermafuserId', Integer, primary_key = True, autoincrement = True)
+	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"), nullable = True)
 	_SAVId = Column('SAVId', Integer, ForeignKey("Staged_Air_Volume.SAVId"), nullable = True)
 	_VAVId = Column('VAVId', Integer, ForeignKey("Variable_Air_Volume.VAVId"), nullable = True)
 	_thermafuserNumber = Column('ThermafuserNumber', Integer)
 	
 	#Relationships
 	
+	_ahu = relationship("AHU", back_populates = "_thermafusers") #Relationship between Thermafuser and AHU
 	_vav = relationship("VAV", back_populates = "_thermafusers") #Relationship between Thermafuser and VAV
 	_sav = relationship("SAV", back_populates = "_thermafusers") #Relationship between Thermafuser and SAV
 	_thermafuserReadings = relationship("ThermafuserReading", back_populates = "_thermafuser") #Relationship between HEC and HEC_Reading
 
 	#Constructor
 
-	def __init__(self, thermafuserId, thermafuserNumber, VAVId = None, SAVId = None, vav = None, sav = None, thermafuserReadings = []):
+	def __init__(self, thermafuserId, thermafuserNumber, AHUNumber = None, VAVId = None, SAVId = None, ahu = None, vav = None, sav = None, thermafuserReadings = []):
 		self._thermafuserNumber = thermafuserNumber
+		self._AHUNumber = AHUNumber
 		self._VAVId = VAVId
 		self._SAVId = SAVId
 		self._thermafuserId = thermafuserId
+		self._ahu = ahu
 		self._vav = vav
 		self._sav = sav
 		self._thermafuserReadings = thermafuserReadings
@@ -1968,6 +2053,14 @@ class Thermafuser(Base):
 		self._thermafuserNumber = value
 
 	@property
+	def AHUNumber(self):
+		return self._AHUNumber
+
+	@AHUNumber.setter
+	def AHUNumber(self, value):
+		self._AHUNumber = value
+
+	@property
 	def VAVId(self):
 		return self._VAVId
 
@@ -1982,6 +2075,14 @@ class Thermafuser(Base):
 	@SAVId.setter
 	def SAVId(self, value):
 		self._SAVId = value
+
+	@property
+	def ahu(self):
+		return self._ahu
+
+	@ahu.setter
+	def ahu(self, value):
+		self._ahu = value
 
 	@property
 	def vav(self):
@@ -2008,8 +2109,8 @@ class Thermafuser(Base):
 		self._thermafuserReadings = value
 
 	def __str__(self):
-		return "<Thermafuser(thermafuserId = '%d', SAVId = '%d', VAVId = '%d', thermafuserNumber = '%d', sav = '%s', vav = '%s', thermafuserReadings = '%s')>" \
-		% (self._thermafuserId, self._SAVId, self._VAVId, self._thermafuserNumber, str(self._sav), str(self._vav), str(self._thermafuserReadings))
+		return "<Thermafuser(thermafuserId = '%d', AHUNumber = '%d', SAVId = '%d', VAVId = '%d', thermafuserNumber = '%d', ahu = '%s', sav = '%s', vav = '%s', thermafuserReadings = '%s')>" \
+		% (self._thermafuserId, self._AHUNumber, self._SAVId, self._VAVId, self._thermafuserNumber, str(self._ahu), str(self._sav), str(self._vav), str(self._thermafuserReadings))
 
 
 class ThermafuserReading(Base):
@@ -2173,6 +2274,10 @@ class ThermafuserReading(Base):
 		% (self._thermafuserId, self._time_stamp, self._roomOccupied, self._zoneTemperature, self._supplyAir, self._airflowFeedback, self._CO2Input,\
 		 self._maxAirflow,self._minAirflow,self._unoccupiedHeatingSetpoint,self._unoccupiedCoolingSetpoint, self._occupiedCoolingSetpoint,\
 		  self._occupiedHeatingSetpoint, str(self._thermafuser))
+
+
+
+
 
 
 
