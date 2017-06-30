@@ -122,10 +122,11 @@ def StoreAHUDataPoints(session):
 
 				for mappedDataPoint in mappedDataPoints:
 					dataPointType = determineDataPointTypeByPath(dataPoint.path)
-					print(dataPointType)
+					#print(dataPointType)
 
 					if dataPointType == mappedDataPoint.componentType:
 						#We know to what the point maps to
+						print(dataPoint.path, mappedDataPoint.databaseMapping)
 						break
 
 			else:
@@ -134,6 +135,7 @@ def StoreAHUDataPoints(session):
 			#print(mappedDataPoint.componentType)
 			if mappedDataPoint.componentType == "AHU":
 				#We know to what the point maps to
+				print(dataPoint.path, mappedDataPoint.databaseMapping)
 				pass
 				#print(dataPoint.path)
 				#print(mappedDataPoint.databaseMapping)

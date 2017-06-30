@@ -6,3 +6,5 @@ Code/__pycache__
 *.pyc
 
 *.lck
+
+Code/crap\.py

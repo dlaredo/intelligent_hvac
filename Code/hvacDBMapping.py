@@ -572,6 +572,156 @@ class AHUReading(Base):
 		 self._economizerSetpoint, self._occupiedMode, self._returnAirCo2Setpoint, self._staticPressureSmoothed, self._staticSP, str(self._ahu))
 
 
+class VFD(Base):
+	"""Class to map to the Filter table in the HVAC DB"""
+
+	__tablename__ = "VFD"
+
+	_vfdId = Column('VFDId', Integer, primary_key = True, autoincrement = True)
+	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"))
+	_vfdNumber = Column('VFDNumber', Integer)
+	
+	#Relationships
+	_ahu = relationship("AHU", back_populates = "_vfds") #Relatiionship between Filter and AHU
+	_vfdReadings = relationship("VFDReading", back_populates = "_vfd") #Relationship between Filter and Filter_Reading
+
+	#Constructor
+
+	def __init__(self, vfdId, AHUNumber, vfdNumber, ahu = None, vfdReadings = []):
+
+		self._vfdId = vfdId
+		self._vfdNumber = vfdNumber
+		self._AHUNumber = AHUNumber
+		self._ahu = ahu
+		self._vfdReadings = vfdReadings
+
+	#Properties
+
+	@property
+	def vfdId(self):
+		return self._vfdId
+
+	@vfdId.setter
+	def vfdId(self, value):
+		self._vfdId = value
+
+	@property
+	def vfdNumber(self):
+		return self._vfdNumber
+
+	@vfdNumber.setter
+	def vfdNumber(self, value):
+		self._vfdNumber = value
+
+	@property
+	def AHUNumber(self):
+		return self._AHUNumber
+
+	@AHUNumber.setter
+	def AHUNumber(self, value):
+		self._AHUNumber = value
+
+	@property
+	def ahu(self):
+		return self._ahu
+
+	@ahu.setter
+	def ahu(self, value):
+		self._ahu = value
+
+	@property
+	def vfdReadings(self):
+		return self._vfdReadings
+
+	@vfdReadings.setter
+	def vfdReadings(self, value):
+		self._vfdReadings = value
+
+	def __str__(self):
+		return "<Filter(vfdId = '%d', AHUNumber = '%d', vfdNumber = '%d', ahu = '%s', vfdReadings = '%s')>" \
+		% (self._vfdId, self._AHUNumber, self._vfdNumber, str(self._ahu), str(self._vfdReadings))
+
+
+class VFDReading(Base):
+	"""Class to map to the Filter_Reading table in the HVAC DB"""
+
+	__tablename__ = "VFD_Reading"
+
+	_timestamp = Column('Time_Stamp', DateTime, primary_key = True)
+	_vfdId = Column('VFDId', Integer, ForeignKey("VFD.VFDId"), primary_key = True)
+	_vfdType = Column('VFDType', String(255))
+	_powerKW = Column('PowerKW', Float)
+	_speedRPM = Column('SpeedRPM', Float)
+	
+	#Relationship between Filter and Filter_Reading
+	_vfd = relationship("VFD", back_populates = "_vfdReadings")
+
+	#Constructor
+
+	def __init__(self, timestamp, vfdId, vfdType = None, powerKW = None, speedRPM = None, vfdRef = None):
+
+		self._timestamp = timestamp
+		self._vfdId = vfdId
+		self._vfdType = vfdType
+		self._powerKW = powerKW
+		self._speedRPM = speedRPM
+		self._vfd = vfdRef
+
+	#Properties
+
+	@property
+	def timestamp(self):
+		return self._timestamp
+
+	@timestamp.setter
+	def timestamp(self, value):
+		self._timestamp = value
+
+	@property
+	def vfdId(self):
+		return self._vfdId
+
+	@vfdId.setter
+	def vfdId(self, value):
+		self._vfdId = value
+
+	@property
+	def vfdType(self):
+		return self._vfdType
+
+	@vfdType.setter
+	def vfdType(self, value):
+		self._vfdType = value
+
+	@property
+	def powerKW(self):
+		return self._powerKW
+
+	@powerKW.setter
+	def powerKW(self, value):
+		self._powerKW = value
+
+	@property
+	def speedRPM(self):
+		return self._speedRPM
+
+	@speedRPM.setter
+	def speedRPM(self, value):
+		self._speedRPM = value
+
+	@property
+	def vfd(self):
+		return self._vfd
+
+	@vfd.setter
+	def vfd(self, value):
+		self._vfd = value
+
+	def __str__(self):
+		return "<FilterReading(timestamp = '%s', vfdId = '%s', vfdType = '%s', powerKW = '%s', speedRPM = '%s', vfd = '%s')>" \
+		% (str(self._timestamp), self._vfdId, self._vfdType, self._powerKW, self._speedRPM, str(self._vfd))
+
+
 class Filter(Base):
 	"""Class to map to the Filter table in the HVAC DB"""
 
