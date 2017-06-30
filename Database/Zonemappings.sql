@@ -1,8 +1,7 @@
 use HVAC;
 
 #Thermafuser
-#Does not exist on database
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m076", "Thermafuser", "Terminal Load", );
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m076", "Thermafuser", "Terminal Load", "Thermafuser_Reading.TerminalLoad");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m073", "Thermafuser", "Airflow Feedback", "Thermafuser_Reading.AirflowFeedback");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m135", "Thermafuser", "Occupied Cooling Setpoint", "Thermafuser_Reading.OccupiedCoolingSetpoint");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m134", "Thermafuser", "Occupied Heating Setpoint", "Thermafuser_Reading.OccupiedHeatingSetpoint");
@@ -29,8 +28,10 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("pfilter_dp", "Filter", "Pre Filter Difference Pressure", "Filter.DifferencePressure");
 
 #Fan
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf,rf#_vel_press", "Fan", "Return Fan Velocity Pressure", "Fan.AirVelocityPressure");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf,rf#_cfm_tnd", "Fan", "Return Fan CFM", "Fan.AirVelocityCFM");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf_vel_press", "Fan", "Return Fan Velocity Pressure", "Fan.AirVelocityPressure");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf_cfm_tnd", "Fan", "Return Fan CFM", "Fan.AirVelocityCFM");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf_vel_press", "Fan", "Supply Fan Velocity Pressure", "Fan.AirVelocityPressure");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf_cfm_tnd", "Fan", "Supply Fan CFM", "Fan.AirVelocityCFM");
 
 #AHU
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m045", "AHU", "Number of Zones Requiring Cooling", "Air_Handling_Unit_Reading.CoolingRequest");
@@ -50,8 +51,7 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m403", "AHU", "Static SP", "Air_Handling_Unit_Reading.StaticSP");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sa_temp", "AHU", "Supple Air Temperature", "Air_Handling_Unit_Reading.SupplyAirTemperature");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ra_sp", "AHU" , "Return Air Static Pressure", "Air_Handling_Unit_Reading.StaticPressure");
-#"Can't find in database
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sa_stpt_tn", "AHU", "Supply Air Set Point", );
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sa_stpt_tn", "AHU", "Supply Air Set Point", "Air_Handling_Unit_Reading.SupplyAirSetpoint");
 
 #VFD
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("power_kw_1610_tn", "VFD", "Power KW", "VFD_Reading.PowerKW");
@@ -69,5 +69,5 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("zone_co2", "VAV", "Zone CO2", "Variable_Air_Volume_Reading.ZoneCO2");
 
 #VFD
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("speed_rpm_1617_tn", "VFD", "1617 Speed RPM", "VFD_Reading.SpeedRPM")
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("power_kw_1610_tn", "VFD", "1610 Power Kw", "VFD_Reading.PowerKW")
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("speed_rpm_1617_tn", "VFD", "1617 Speed RPM", "VFD_Reading.SpeedRPM");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("power_kw_1610_tn", "VFD", "1610 Power Kw", "VFD_Reading.PowerKW");

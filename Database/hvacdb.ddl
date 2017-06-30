@@ -12,6 +12,7 @@ CREATE TABLE Thermafuser_Reading (
   UnoccupiedCoolingSetpoint real, 
   OccupiedCoolingSetpoint   real, 
   OccupiedHeatingSetpoint   real, 
+  TerminalLoad              real, 
   PRIMARY KEY (Time_stamp, 
   ThermafuserId)) ENGINE=InnoDB;
 CREATE TABLE Staged_Air_Volume_Reading (
@@ -52,6 +53,7 @@ CREATE TABLE Air_Handling_Unit_Reading (
   ReturnAirCO2Setpoint   real, 
   StaticPressureSmoothed real, 
   StaticSP               real, 
+  SupplyAirSetpoint      real, 
   PRIMARY KEY (AHUNumber, 
   Time_stamp)) ENGINE=InnoDB;
 CREATE TABLE Variable_Air_Volume_Reading (

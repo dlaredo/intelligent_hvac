@@ -23,7 +23,6 @@ def zonecsvToDb(filepath, dbsession, zone):
 				#add the datapoints to the DB session
 				dataPoint = DataPoint(path = row[6], server = row[0], location = row[1], branch = row[2], subBranch = row[3], controlProgram = row[4], point = row[5], zone = zone)
 				dbsession.add(dataPoint)
-				#print(dataPoint)
 
 		#commit changes to the database
 		dbsession.commit()
@@ -98,8 +97,12 @@ def determineDataPointTypeByPath(path):
 
 	return None
 
-def StoreAHUDataPoints(session):
+def MapDataPoints(session):
 	"""Store all the data points corresponding to AHUs"""
+
+	dataPointMapped = True
+
+	numberRegex = re.compile(r'\d+', flags = re.IGNORECASE)
 
 	#get all data points
 	datapoints = session.query(DataPoint).all()
@@ -108,37 +111,47 @@ def StoreAHUDataPoints(session):
 
 		splittedPath = dataPoint.path.split("/")
 		componentPath = splittedPath[len(splittedPath) - 1]
-		#print(componentPath)
+
+		#The datapoint may be a supply/return fan point
+		if "rf" in componentPath or "sf" in componentPath:
+			fanNumber = determineComponentNumber(numberRegex, componentPath)
+			if fanNumber != 0:
+				fanSplitted = componentPath.split(str(fanNumber))
+				componentPath = fanSplitted[0] + fanSplitted[1]
+
 		mappedDataPoint = session.query(PathMapping).filter(PathMapping._path == componentPath).first()
 
+		#If datapoint doesnt exactly match
 		if mappedDataPoint == None:
-			#If datapoint doesnt exactly match
 
 			mappedDataPoints = session.query(PathMapping).filter(PathMapping._path.like('%'+componentPath+'%')).all()
 
-			#print(dataPoint.path)
-
 			if len(mappedDataPoints) > 0:
 
-				for mappedDataPoint in mappedDataPoints:
+				for mDataPoint in mappedDataPoints:
 					dataPointType = determineDataPointTypeByPath(dataPoint.path)
-					#print(dataPointType)
 
-					if dataPointType == mappedDataPoint.componentType:
-						#We know to what the point maps to
-						print(dataPoint.path, mappedDataPoint.databaseMapping)
+					if dataPointType == mDataPoint.componentType:
+						mappedDataPoint = mDataPoint
+						dataPointMapped = True
 						break
+					else:
+						dataPointMapped = False
 
 			else:
-				print(dataPoint.path + " mapped data point not found")
+				dataPointMapped = False
+
+		if dataPointMapped == False:
+			print(dataPoint.path + " DataPoint could not be mapped")		
 		else:
-			#print(mappedDataPoint.componentType)
+			#print(dataPoint.path, mappedDataPoint.databaseMapping)
+
 			if mappedDataPoint.componentType == "AHU":
-				#We know to what the point maps to
-				print(dataPoint.path, mappedDataPoint.databaseMapping)
 				pass
-				#print(dataPoint.path)
-				#print(mappedDataPoint.databaseMapping)
+				#We know to what the point maps to
+			if mappedDataPoint.componentType == "Fan":
+				pass
+				#We know to what the point maps to
 
 	session.close()
 
@@ -164,7 +177,7 @@ def main():
 	#zonecsvToDb(zone4FilepATH, session, "4")
 	print("writting sucessfull")
 
-	StoreAHUDataPoints(session)
+	MapDataPoints(session)
 
 
 
