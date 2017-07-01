@@ -98,9 +98,21 @@ def determineDataPointTypeByPath(path):
 	return None
 
 def MapDataPoints(session):
-	"""Store all the data points corresponding to AHUs"""
+	"""Map each datapoint to its corresponding table and component"""
 
 	dataPointMapped = True
+
+	#data structures
+	ahuDataPoints = list()
+	vfdDataPoints = list()
+	fanDataPoints = list()
+	damperDataPoints = list()
+	filterDataPoints = list()
+	savDataPoints = list()
+	vavDataPoints = list()
+	hecDataPoints = list()
+	thermafuserDataPoints = list()
+	mappedDataPoints = dict()
 
 	numberRegex = re.compile(r'\d+', flags = re.IGNORECASE)
 
@@ -124,11 +136,11 @@ def MapDataPoints(session):
 		#If datapoint doesnt exactly match
 		if mappedDataPoint == None:
 
-			mappedDataPoints = session.query(PathMapping).filter(PathMapping._path.like('%'+componentPath+'%')).all()
+			mDataPoints = session.query(PathMapping).filter(PathMapping._path.like('%'+componentPath+'%')).all()
 
-			if len(mappedDataPoints) > 0:
+			if len(mDataPoints) > 0:
 
-				for mDataPoint in mappedDataPoints:
+				for mDataPoint in mDataPoints:
 					dataPointType = determineDataPointTypeByPath(dataPoint.path)
 
 					if dataPointType == mDataPoint.componentType:
@@ -144,16 +156,94 @@ def MapDataPoints(session):
 		if dataPointMapped == False:
 			print(dataPoint.path + " DataPoint could not be mapped")		
 		else:
-			#print(dataPoint.path, mappedDataPoint.databaseMapping)
+			#print(dataPoint.path, dataPoint.controlProgram, mappedDataPoint.databaseMapping)
 
 			if mappedDataPoint.componentType == "AHU":
-				pass
-				#We know to what the point maps to
+				ahuDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
+			if mappedDataPoint.componentType == "VFD":
+				vfdDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
 			if mappedDataPoint.componentType == "Fan":
-				pass
-				#We know to what the point maps to
+				fanDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
+			if mappedDataPoint.componentType == "Filter":
+				filterDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
+			if mappedDataPoint.componentType == "Damper":
+				damperDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
+			if mappedDataPoint.componentType == "HEC":
+				hecDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
+			if mappedDataPoint.componentType == "Thermafuser":
+				thermafuserDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
+			if mappedDataPoint.componentType == "VAV":
+				vavDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
+			if mappedDataPoint.componentType == "SAV":
+				savDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
 
-	session.close()
+	mappedDataPoints["ahu"] = ahuDataPoints
+	mappedDataPoints["vfd"] = vfdDataPoints
+	mappedDataPoints["fan"] = fanDataPoints
+	mappedDataPoints["filter"] = filterDataPoints
+	mappedDataPoints["damper"] = damperDataPoints
+	mappedDataPoints["hec"] = hecDataPoints
+	mappedDataPoints["thermafuser"] = thermafuserDataPoints
+	mappedDataPoints["vav"] = vavDataPoints
+	mappedDataPoints["sav"] = savDataPoints
+
+	return mappedDataPoints
+
+def printMappedDataPoints(mappedDataPoints):
+
+	print("AHU datapoints")
+	for dataPoint in mappedDataPoints["ahu"]:
+		controlProgram = dataPoint[0]
+		mappedDataPoint = dataPoint[1]
+		print(controlProgram, mappedDataPoint.databaseMapping)
+
+	print("\nVFD datapoints")
+	for dataPoint in mappedDataPoints["vfd"]:
+		controlProgram = dataPoint[0]
+		mappedDataPoint = dataPoint[1]
+		print(controlProgram, mappedDataPoint.databaseMapping)
+
+	print("\nFan datapoints")
+	for dataPoint in mappedDataPoints["fan"]:
+		controlProgram = dataPoint[0]
+		mappedDataPoint = dataPoint[1]
+		print(controlProgram, mappedDataPoint.databaseMapping)
+
+	print("\nFilter datapoints")
+	for dataPoint in mappedDataPoints["filter"]:
+		controlProgram = dataPoint[0]
+		mappedDataPoint = dataPoint[1]
+		print(controlProgram, mappedDataPoint.databaseMapping)
+
+	print("\nDamper datapoints")
+	for dataPoint in mappedDataPoints["damper"]:
+		controlProgram = dataPoint[0]
+		mappedDataPoint = dataPoint[1]
+		print(controlProgram, mappedDataPoint.databaseMapping)
+
+	print("\nHEC datapoints")
+	for dataPoint in mappedDataPoints["hec"]:
+		controlProgram = dataPoint[0]
+		mappedDataPoint = dataPoint[1]
+		print(controlProgram, mappedDataPoint.databaseMapping)
+
+	print("\nThermafuser datapoints")
+	for dataPoint in mappedDataPoints["thermafuser"]:
+		controlProgram = dataPoint[0]
+		mappedDataPoint = dataPoint[1]
+		print(controlProgram, mappedDataPoint.databaseMapping)
+
+	print("\nVAV datapoints")
+	for dataPoint in mappedDataPoints["vav"]:
+		controlProgram = dataPoint[0]
+		mappedDataPoint = dataPoint[1]
+		print(controlProgram, mappedDataPoint.databaseMapping)
+
+	print("\nSAV datapoints")
+	for dataPoint in mappedDataPoints["sav"]:
+		controlProgram = dataPoint[0]
+		mappedDataPoint = dataPoint[1]
+		print(controlProgram, mappedDataPoint.databaseMapping)
 
 
 def main():
@@ -174,10 +264,17 @@ def main():
 		return False
 
 	#Attempt to write csv to the database
-	#zonecsvToDb(zone4FilepATH, session, "4")
-	print("writting sucessfull")
+	try:
+		#zonecsvToDb(zone4FilepATH, session, "4")
+		print("writting sucessfull")
+	except:
+		print("Error writting to the database")
 
-	MapDataPoints(session)
+	mappedDataPoints = MapDataPoints(session)
+
+	printMappedDataPoints(mappedDataPoints)
+
+	session.close()
 
 
 

@@ -10,13 +10,13 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m186", "Thermafuser", "Zone Temperature", "Thermafuser_Reading.ZoneTemperature");
 
 #Heat Exchanger Coil
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cw_valve", "Heat Exchanger Coil", "Chilled Water Valve Opening", "Heat_Exchanger_Coil.ValveOpeningPercentage");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("chw_valve", "Heat Exchanger Coil", "Chilled Water Valve Opening", "Heat_Exchanger_Coil.ValveOpeningPercentage");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cwcr", "Heat Exchanger Coil", "Chilled Water Return Temperature", "Heat_Exchanger_Coil.ReturnWaterTemperature");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cwcs", "Heat Exchanger Coil", "Chilled Water Supply Temperature", "Heat_Exchanger_Coil.SupplyWaterTemperature");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("hw_valve", "Heat Exchanger Coil", "Hot Water Valve Opening", "Heat_Exchanger_Coil.ValveOpeningPercentage");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("hwcr", "Heat Exchanger Coil", "Hot Water Return Temperature", "Heat_Exchanger_Coil.ReturnWaterTemperature");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("hwcs", "Heat Exchanger Coil", "Hot Water Supply Temperature", "Heat_Exchanger_Coil.SupplyWaterTemperature");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cw_valve", "HEC", "Chilled Water Valve Opening", "Heat_Exchanger_Coil.ValveOpeningPercentage");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("chw_valve", "HEC", "Chilled Water Valve Opening", "Heat_Exchanger_Coil.ValveOpeningPercentage");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cwcr", "HEC", "Chilled Water Return Temperature", "Heat_Exchanger_Coil.ReturnWaterTemperature");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cwcs", "HEC", "Chilled Water Supply Temperature", "Heat_Exchanger_Coil.SupplyWaterTemperature");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("hw_valve", "HEC", "Hot Water Valve Opening", "Heat_Exchanger_Coil.ValveOpeningPercentage");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("hwcr", "HEC", "Hot Water Return Temperature", "Heat_Exchanger_Coil.ReturnWaterTemperature");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("hwcs", "HEC", "Hot Water Supply Temperature", "Heat_Exchanger_Coil.SupplyWaterTemperature");
 
 #Damper
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ea_dmpr", "Damper", "Exhaust Air Damper Opening", "Damper.OpeningPercentage");
