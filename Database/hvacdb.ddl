@@ -115,45 +115,46 @@ CREATE TABLE Fan_Reading (
   FanId)) ENGINE=InnoDB;
 CREATE TABLE Air_Handling_Unit (
   AHUNumber int(10) NOT NULL AUTO_INCREMENT, 
+  AHUName   varchar(255) NOT NULL, 
   PRIMARY KEY (AHUNumber)) ENGINE=InnoDB;
 CREATE TABLE Fan (
   FanId     int(10) NOT NULL AUTO_INCREMENT, 
   AHUNumber int(10) NOT NULL, 
-  FanNumber int(10) NOT NULL, 
+  FanName   varchar(255) NOT NULL, 
   PRIMARY KEY (FanId)) ENGINE=InnoDB;
 CREATE TABLE Damper (
-  DamperId     int(10) NOT NULL AUTO_INCREMENT, 
-  AHUNumber    int(10) NOT NULL, 
-  DamperNumber int(10) NOT NULL, 
+  DamperId   int(10) NOT NULL AUTO_INCREMENT, 
+  AHUNumber  int(10) NOT NULL, 
+  DamperName varchar(255) NOT NULL, 
   PRIMARY KEY (DamperId)) ENGINE=InnoDB;
 CREATE TABLE Filter (
-  FilterId     int(10) NOT NULL AUTO_INCREMENT, 
-  AHUNumber    int(10) NOT NULL, 
-  FilterNumber int(10) NOT NULL, 
+  FilterId   int(10) NOT NULL AUTO_INCREMENT, 
+  AHUNumber  int(10) NOT NULL, 
+  FilterName varchar(255) NOT NULL, 
   PRIMARY KEY (FilterId)) ENGINE=InnoDB;
 CREATE TABLE Staged_Air_Volume (
   SAVId     int(10) NOT NULL AUTO_INCREMENT, 
   AHUNumber int(10) NOT NULL, 
-  SAVNumber int(10) NOT NULL, 
+  SAVName   varchar(255) NOT NULL, 
   PRIMARY KEY (SAVId)) ENGINE=InnoDB;
 CREATE TABLE Variable_Air_Volume (
   VAVId     int(10) NOT NULL AUTO_INCREMENT, 
   AHUNumber int(10) NOT NULL, 
-  VAVNumber int(10) NOT NULL, 
+  VAVName   varchar(255) NOT NULL, 
   PRIMARY KEY (VAVId)) ENGINE=InnoDB;
 CREATE TABLE Heat_Exchanger_Coil (
   HECId     int(10) NOT NULL AUTO_INCREMENT, 
   AHUNumber int(10), 
   SAVId     int(10), 
   VAVId     int(10), 
-  HECNumber int(10) NOT NULL, 
+  HECName   varchar(255) NOT NULL, 
   PRIMARY KEY (HECId)) ENGINE=InnoDB;
 CREATE TABLE Thermafuser (
-  ThermafuserId     int(10) NOT NULL AUTO_INCREMENT, 
-  AHUNumber         int(10) NOT NULL, 
-  SAVId             int(10), 
-  VAVId             int(10), 
-  ThermafuserNumber int(10) NOT NULL, 
+  ThermafuserId   int(10) NOT NULL AUTO_INCREMENT, 
+  AHUNumber       int(10) NOT NULL, 
+  SAVId           int(10), 
+  VAVId           int(10), 
+  ThermafuserName varchar(255) NOT NULL, 
   PRIMARY KEY (ThermafuserId)) ENGINE=InnoDB;
 CREATE TABLE DataPoints (
   Path           varchar(255) NOT NULL, 
@@ -164,6 +165,7 @@ CREATE TABLE DataPoints (
   ControlProgram varchar(255) NOT NULL, 
   Point          varchar(255) NOT NULL, 
   Zone           int(10) NOT NULL, 
+  PathMappingsId int(10), 
   PRIMARY KEY (Path)) ENGINE=InnoDB;
 CREATE TABLE PathMappings (
   Id              int(10) NOT NULL AUTO_INCREMENT, 
@@ -175,7 +177,7 @@ CREATE TABLE PathMappings (
 CREATE TABLE VFD (
   VFDId     int(10) NOT NULL AUTO_INCREMENT, 
   AHUNumber int(10) NOT NULL, 
-  VFDNumber int(10) NOT NULL, 
+  VFDName   varchar(255) NOT NULL, 
   PRIMARY KEY (VFDId)) ENGINE=InnoDB;
 CREATE TABLE VFD_Reading (
   VFDId      int(10) NOT NULL, 
@@ -212,3 +214,4 @@ ALTER TABLE VFD ADD INDEX FKVFD797583 (AHUNumber), ADD CONSTRAINT FKVFD797583 FO
 ALTER TABLE VFD_Reading ADD INDEX FKVFD_Readin673303 (VFDId), ADD CONSTRAINT FKVFD_Readin673303 FOREIGN KEY (VFDId) REFERENCES VFD (VFDId);
 ALTER TABLE Thermafuser ADD INDEX FKThermafuse421350 (AHUNumber), ADD CONSTRAINT FKThermafuse421350 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE ComponentRelationships ADD INDEX FKComponentR699506 (ParentComponent), ADD CONSTRAINT FKComponentR699506 FOREIGN KEY (ParentComponent) REFERENCES ComponentRelationships (ComponentName);
+ALTER TABLE DataPoints ADD INDEX FKDataPoints676132 (PathMappingsId), ADD CONSTRAINT FKDataPoints676132 FOREIGN KEY (PathMappingsId) REFERENCES PathMappings (Id);

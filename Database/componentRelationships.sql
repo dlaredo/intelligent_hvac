@@ -34,7 +34,7 @@ insert into ComponentRelationships (ComponentName, ParentComponent, Group) value
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Office 321, 322, 323 VAV-3-33", "AHU-4", 1);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Office Support 315B & C VAV-3-32", "AHU-4", 4);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Printers 120C VAV-1-21", 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Research Equip. 001 VAV-B-34", "AHU-4", -1);
+insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Research Equip. 001 VAV-B-34", "AHU-4", 6);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Research Equip. 120D VAV-1-22", "AHU-4", 1);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Research Group 1-3 213C-E VAV-2-33", "AHU-4", 1);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Research Group 4 213B VAV-2-37", "AHU-4", 1);
@@ -45,7 +45,7 @@ insert into ComponentRelationships (ComponentName, ParentComponent, Group) value
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Scholarly Activity 102 VAV-1-18", "AHU-4", 2);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Scholarly Activity 220 VAV-2-29", "AHU-4", 1);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Scholarly Activity 320  VAV-3-34", "AHU-4", 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Vending 002 VAV-B-35", "AHU-4", -1);
+insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Vending 002 VAV-B-35", "AHU-4", 6);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Video Conference 302 VAV-3-24", "AHU-4", 2);
 
 
@@ -82,7 +82,7 @@ insert into ComponentRelationships (ComponentName, ParentComponent, Group) value
  
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Bridge 2C7-1", "Hallway 2C1,6,7 VAV-2-25", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Bridge 2C7-2", "Hallway 2C1,6,7 VAV-2-25", NULL);
-#Research Cooridor
+#Research Corridor
  
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room 102A-1", "Scholarly Activity 102 VAV-1-18", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room 102A-2", "Scholarly Activity 102 VAV-1-18", NULL);

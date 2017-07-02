@@ -18,10 +18,14 @@ class DataPoint(Base):
 	_controlProgram = Column('ControlProgram', String(255))
 	_point = Column('Point', String(255))
 	_zone = Column('Zone', String(255))
+	_pathMappingId = Column('PathMappingsId', String(255), ForeignKey("PathMappings.Id"))
+
+	#PathMapping relationship
+	_pathMapping = relationship("PathMapping", back_populates = "_dataPoints")
 
 	#Constructor
 
-	def __init__(self, path, server, location, branch, subBranch, controlProgram, point, zone):
+	def __init__(self, path, server, location, branch, subBranch, controlProgram, point, zone, pathMappingId = None, pathMapping = None):
 
 		self._path = path
 		self._server = server
@@ -31,6 +35,8 @@ class DataPoint(Base):
 		self._controlProgram = controlProgram
 		self._point = point
 		self._zone = zone
+		self._pathMappingId = pathMappingId
+		self._pathMapping = pathMapping
 
 	#Properties
 
@@ -96,11 +102,27 @@ class DataPoint(Base):
 
 	@zone.setter
 	def zone(self, value):
-		self._zone = value                  
+		self._zone = value 
+
+	@property
+	def pathMappingId(self):
+		return self._pathMappingId
+
+	@pathMappingId.setter
+	def pathMappingId(self, value):
+		self._pathMappingId = value 
+
+	@property
+	def pathMapping(self):
+		return self._pathMapping
+
+	@pathMapping.setter
+	def pathMapping(self, value):
+		self._pathMapping = value                 
 
 	def __str__(self):
-		return "<DataPoint(path = '%s', server = '%s', location = '%s', branch = '%s', subBranch = '%s', controlProgram = '%s', point = '%s', zone = '%s')>" \
-		% (self._path, self._server, self._location, self._branch, self._subBranch, self._controlProgram, self._point, self._zone)
+		return "<DataPoint(path = '%s', server = '%s', location = '%s', branch = '%s', subBranch = '%s', controlProgram = '%s', point = '%s', zone = '%s', pathMappingId = '%s', pathMapping = '%s')>" \
+		% (self._path, self._server, self._location, self._branch, self._subBranch, self._controlProgram, self._point, self._zone, self._pathMappingId, str(self._pathMapping))
 
 
 class PathMapping(Base):
@@ -114,15 +136,19 @@ class PathMapping(Base):
 	_description = Column('Description', String(255))
 	_databaseMapping = Column('DatabaseMapping', String(255))
 
+	#PathMapping relationship
+	_dataPoints = relationship("DataPoint", back_populates = "_pathMapping")
+
 	#Constructor
 
-	def __init__(self, identifier, path, componentType, description, databaseMapping):
+	def __init__(self, identifier, path, componentType, description, databaseMapping, dataPoints = []):
 
 		self._id = identifier
 		self._path = path
 		self._componentType = componentType
 		self._description = description
 		self._databaseMapping = databaseMapping
+		self._dataPoints = dataPoints
 
 	#Properties
 
@@ -164,11 +190,19 @@ class PathMapping(Base):
 
 	@databaseMapping.setter
 	def databaseMapping(self, value):
-		self._databaseMapping = value 
+		self._databaseMapping = value
+
+	@property
+	def dataPoints(self):
+		return self._dataPoints
+
+	@dataPoints.setter
+	def dataPoints(self, value):
+		self._dataPoints = value  
 
 	def __str__(self):
-		return "<DataPoint(id = '%s', path = '%s', componentType = '%s', description = '%s', databaseMapping = '%s')>" \
-		% (self._id, self._path, self._componentType, self._description, self._databaseMapping)
+		return "<DataPoint(id = '%s', path = '%s', componentType = '%s', description = '%s', databaseMapping = '%s', dataPoints = '%s')>" \
+		% (self._id, self._path, self._componentType, self._description, self._databaseMapping, str(self._dataPoints))
 
 
 class ComponentRelationship(Base):
@@ -247,6 +281,7 @@ class AHU(Base):
 	__tablename__ = "Air_Handling_Unit"
 
 	_AHUNumber = Column('AHUNumber', Integer, primary_key = True, autoincrement = True)
+	_AHUName = Column('AHUName', String(255))
 
 	#Relationships
 
@@ -262,9 +297,10 @@ class AHU(Base):
 
 	#Constructor
 
-	def __init__(self, AHUNumber, ahuReadings = [], filters = [], fans = [], dampers = [], vavs = [], savs = [], hecs = [], vfds = [], thermafusers = []):
+	def __init__(self, AHUNumber, AHUName, ahuReadings = [], filters = [], fans = [], dampers = [], vavs = [], savs = [], hecs = [], vfds = [], thermafusers = []):
 
 		self._AHUNumber = AHUNumber
+		self._AHUName = AHUName
 		self._ahuReadings = ahuReadings
 		self._filters = filters
 		self._fans = fans
@@ -284,6 +320,14 @@ class AHU(Base):
 	@AHUNumber.setter
 	def AHUNumber(self, value):
 		self._AHUNumber = value
+
+	@property
+	def AHUName(self):
+		return self._AHUName
+
+	@AHUName.setter
+	def AHUName(self, value):
+		self._AHUName = value
 
 	@property
 	def ahuReadings(self):
@@ -358,8 +402,8 @@ class AHU(Base):
 		self._thermafusers = value
 
 	def __str__(self):
-		return "<AHU(AHUNumber = '%d', ahuReadings = '%s', filters = '%s', fans = '%s', dampers = '%s', vavs = '%s', savs = '%s', hecs = '%s', vfds = '%s', thermafusers = '%s' )>" \
-		% (self._AHUNumber, str(self._ahuReadings), str(self._filters), str(self._fans), str(self._dampers), str(self._vavs), str(self._savs), str(self._hecs), str(self._vfds),\
+		return "<AHU(AHUNumber = '%d', AHUName = '%s', ahuReadings = '%s', filters = '%s', fans = '%s', dampers = '%s', vavs = '%s', savs = '%s', hecs = '%s', vfds = '%s', thermafusers = '%s' )>" \
+		% (self._AHUNumber, self._AHUName, str(self._ahuReadings), str(self._filters), str(self._fans), str(self._dampers), str(self._vavs), str(self._savs), str(self._hecs), str(self._vfds),\
 		 str(self._thermafusers))
 
 
@@ -660,7 +704,7 @@ class VFD(Base):
 
 	_vfdId = Column('VFDId', Integer, primary_key = True, autoincrement = True)
 	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"))
-	_vfdNumber = Column('VFDNumber', Integer)
+	_vfdName = Column('VFDName', String(255))
 	
 	#Relationships
 	_ahu = relationship("AHU", back_populates = "_vfds") #Relatiionship between Filter and AHU
@@ -668,10 +712,10 @@ class VFD(Base):
 
 	#Constructor
 
-	def __init__(self, vfdId, AHUNumber, vfdNumber, ahu = None, vfdReadings = []):
+	def __init__(self, vfdId, AHUNumber, vfdName, ahu = None, vfdReadings = []):
 
 		self._vfdId = vfdId
-		self._vfdNumber = vfdNumber
+		self._vfdName = vfdName
 		self._AHUNumber = AHUNumber
 		self._ahu = ahu
 		self._vfdReadings = vfdReadings
@@ -687,12 +731,12 @@ class VFD(Base):
 		self._vfdId = value
 
 	@property
-	def vfdNumber(self):
-		return self._vfdNumber
+	def vfdName(self):
+		return self._vfdName
 
-	@vfdNumber.setter
-	def vfdNumber(self, value):
-		self._vfdNumber = value
+	@vfdName.setter
+	def vfdName(self, value):
+		self._vfdName = value
 
 	@property
 	def AHUNumber(self):
@@ -719,8 +763,8 @@ class VFD(Base):
 		self._vfdReadings = value
 
 	def __str__(self):
-		return "<Filter(vfdId = '%d', AHUNumber = '%d', vfdNumber = '%d', ahu = '%s', vfdReadings = '%s')>" \
-		% (self._vfdId, self._AHUNumber, self._vfdNumber, str(self._ahu), str(self._vfdReadings))
+		return "<Filter(vfdId = '%d', AHUNumber = '%d', vfdName = '%d', ahu = '%s', vfdReadings = '%s')>" \
+		% (self._vfdId, self._AHUNumber, self._vfdName, str(self._ahu), str(self._vfdReadings))
 
 
 class VFDReading(Base):
@@ -810,7 +854,7 @@ class Filter(Base):
 
 	_filterId = Column('FilterId', Integer, primary_key = True, autoincrement = True)
 	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"))
-	_filterNumber = Column('FilterNumber', Integer)
+	_filterName = Column('FilterName', String(255))
 	
 	#Relationships
 	_ahu = relationship("AHU", back_populates = "_filters") #Relatiionship between Filter and AHU
@@ -818,10 +862,10 @@ class Filter(Base):
 
 	#Constructor
 
-	def __init__(self, filterId, AHUNumber, filterNumber, ahu = None, filterReadings = []):
+	def __init__(self, filterId, AHUNumber, filterName, ahu = None, filterReadings = []):
 
 		self._filterId = filterId
-		self._filterNumber = filterNumber
+		self._filterName = filterName
 		self._AHUNumber = AHUNumber
 		self._ahu = ahu
 		self._filterReadings = filterReadings
@@ -837,12 +881,12 @@ class Filter(Base):
 		self._filterId = value
 
 	@property
-	def filterNumber(self):
-		return self._filterNumber
+	def filterName(self):
+		return self._filterName
 
-	@filterNumber.setter
-	def filterNumber(self, value):
-		self._filterNumber = value
+	@filterName.setter
+	def filterName(self, value):
+		self._filterName = value
 
 	@property
 	def AHUNumber(self):
@@ -869,8 +913,8 @@ class Filter(Base):
 		self._filterReadings = value
 
 	def __str__(self):
-		return "<Filter(filterId = '%d', AHUNumber = '%d', filterNumber = '%d', ahu = '%s', filterReadings = '%s')>" \
-		% (self._filterId, self._AHUNumber, self._filterNumber, str(self._ahu), str(self._filterReadings))
+		return "<Filter(filterId = '%d', AHUNumber = '%d', filterName = '%d', ahu = '%s', filterReadings = '%s')>" \
+		% (self._filterId, self._AHUNumber, self._filterName, str(self._ahu), str(self._filterReadings))
 
 
 class FilterReading(Base):
@@ -950,7 +994,7 @@ class Damper(Base):
 
 	_damperId = Column('DamperId', Integer, primary_key = True, autoincrement = True)
 	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"))
-	_damperNumber = Column('DamperNumber', Integer)
+	_damperName = Column('DamperName', String(255))
 	
 	#Relationships
 
@@ -959,11 +1003,11 @@ class Damper(Base):
 
 	#Constructor
 
-	def __init__(self, damperId, AHUNumber, damperNumber, ahu = None, damperReadings = []):
+	def __init__(self, damperId, AHUNumber, damperName, ahu = None, damperReadings = []):
 
 		self._damperId = damperId
 		self._AHUNumber = AHUNumber
-		self._damperNumber = damperNumber
+		self._damperName = damperName
 		self._ahu = ahu
 		self._damperReadings = damperReadings
 
@@ -978,12 +1022,12 @@ class Damper(Base):
 		self._damperId = value
 
 	@property
-	def damperNumber(self):
-		return self._damperNumber
+	def damperName(self):
+		return self._damperName
 
-	@damperNumber.setter
-	def damperNumber(self, value):
-		self._damperNumber = value
+	@damperName.setter
+	def damperName(self, value):
+		self._damperName = value
 
 	@property
 	def AHUNumber(self):
@@ -1010,8 +1054,8 @@ class Damper(Base):
 		self._damperReadings = value
 
 	def __str__(self):
-		return "<Damper(damperId = '%d', AHUNumber = '%d', damperNumber = '%d', ahu = '%s', damperReadings = '%s')>" \
-		% (self._damperId, self._AHUNumber, self._damperNumber, str(self._ahu), str(self._damperReadings))
+		return "<Damper(damperId = '%d', AHUNumber = '%d', damperName = '%d', ahu = '%s', damperReadings = '%s')>" \
+		% (self._damperId, self._AHUNumber, self._damperName, str(self._ahu), str(self._damperReadings))
 
 
 class DamperReading(Base):
@@ -1111,7 +1155,7 @@ class Fan(Base):
 
 	_fanId = Column('FanId', Integer, primary_key = True, autoincrement = True)
 	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"))
-	_fanNumber = Column('FanNumber', Integer)
+	_fanName = Column('FanName', String(255))
 	
 	#Relationships
 
@@ -1120,11 +1164,11 @@ class Fan(Base):
 
 	#Constructor
 
-	def __init__(self, fanId, AHUNumber, fanNumber, ahu = None, fanReadings = []):
+	def __init__(self, fanId, AHUNumber, fanName, ahu = None, fanReadings = []):
 
 		self._fanId = fanId
 		self._AHUNumber = AHUNumber
-		self._fanNumber = fanNumber
+		self._fanName = fanName
 		self._ahu = ahu
 		self._fanReadings = fanReadings
 
@@ -1139,12 +1183,12 @@ class Fan(Base):
 		self._fanId = value
 
 	@property
-	def fanNumber(self):
-		return self._fanNumber
+	def fanName(self):
+		return self._fanName
 
-	@fanNumber.setter
-	def fanNumber(self, value):
-		self._fanNumber = value
+	@fanName.setter
+	def fanName(self, value):
+		self._fanName = value
 
 	@property
 	def AHUNumber(self):
@@ -1171,8 +1215,8 @@ class Fan(Base):
 		self._fanReadings = value
 
 	def __str__(self):
-		return "<Fan(fanId = '%d', AHUNumber = '%d', fanNumber = '%d', ahu = '%s', fanReadings = '%s')>" \
-		% (self._fanId, self._AHUNumber, self._fanNumber, str(self._ahu), str(self._fanReadings))
+		return "<Fan(fanId = '%d', AHUNumber = '%d', fanName = '%d', ahu = '%s', fanReadings = '%s')>" \
+		% (self._fanId, self._AHUNumber, self._fanName, str(self._ahu), str(self._fanReadings))
 
 
 class FanReading(Base):
@@ -1347,7 +1391,7 @@ class HEC(Base):
 	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"), nullable = True)
 	_SAVId = Column('SAVId', Integer, ForeignKey("Staged_Air_Volume.SAVId"), nullable = True)
 	_VAVId = Column('VAVId', Integer, ForeignKey("Variable_Air_Volume.VAVId"), nullable = True)
-	_HECNumber = Column('HECNumber', Integer)
+	_HECName = Column('HECName', String(255))
 	
 	#Relationships
 	
@@ -1358,10 +1402,10 @@ class HEC(Base):
 
 	#Constructor
 
-	def __init__(self, HECId, HECNumber, AHUNumber = None, VAVId = None, SAVId = None, ahu = None, vav = None, sav = None, hecReadings = []):
+	def __init__(self, HECId, HECName, AHUNumber = None, VAVId = None, SAVId = None, ahu = None, vav = None, sav = None, hecReadings = []):
 
 		self._HECId = HECId
-		self._HECNumber = HECNumber
+		self._HECName = HECName
 		self._AHUNumber = AHUNumber
 		self._VAVId = VAVId
 		self._SAVId = SAVId
@@ -1381,12 +1425,12 @@ class HEC(Base):
 		self._HECId = value
 
 	@property
-	def HECNumber(self):
-		return self._HECNumber
+	def HECName(self):
+		return self._HECName
 
-	@HECNumber.setter
-	def HECNumber(self, value):
-		self._HECNumber = value
+	@HECName.setter
+	def HECName(self, value):
+		self._HECName = value
 
 	@property
 	def AHUNumber(self):
@@ -1445,8 +1489,8 @@ class HEC(Base):
 		self._hecReadings = value
 
 	def __str__(self):
-		return "<HEC(HECId = '%d', AHUNumber = '%d', HECNumber = '%d', SAVId = '%d', VAVId = '%d', ahu = '%s', sav = '%s', vav = '%s', hecReadings = '%s')>" \
-		% (self._HECId, self._AHUNumber, self._HECNumber, self._SAVId, self._VAVId, str(self._ahu), str(self._sav), str(self._vav), str(self._hecReadings))
+		return "<HEC(HECId = '%d', AHUNumber = '%d', HECName = '%d', SAVId = '%d', VAVId = '%d', ahu = '%s', sav = '%s', vav = '%s', hecReadings = '%s')>" \
+		% (self._HECId, self._AHUNumber, self._HECName, self._SAVId, self._VAVId, str(self._ahu), str(self._sav), str(self._vav), str(self._hecReadings))
 
 
 class HECReading(Base):
@@ -1546,7 +1590,7 @@ class SAV(Base):
 
 	_SAVId = Column('SAVId', Integer, primary_key = True, autoincrement = True)
 	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"))
-	_SAVNumber = Column('SAVNumber', Integer)
+	_SAVName = Column('SAVName', String(255))
 	
 	#Relationships
 	_ahu = relationship("AHU", back_populates = "_savs") #Relationship between SAV and AHU
@@ -1556,11 +1600,11 @@ class SAV(Base):
 
 	#Constructor
 
-	def __init__(self, SAVId, AHUNumber, SAVNumber, ahu = None, hecs = [], thermafusers = [], SAVReadings = []):
+	def __init__(self, SAVId, AHUNumber, SAVName, ahu = None, hecs = [], thermafusers = [], SAVReadings = []):
 
 		self._SAVId = SAVId
 		self._AHUNumber = AHUNumber
-		self._SAVNumber = SAVNumber
+		self._SAVName = SAVName
 		self._ahu = ahu
 		self._hecs = hecs
 		self._SAVReadings = SAVReadings
@@ -1577,12 +1621,12 @@ class SAV(Base):
 		self._SAVId = value
 
 	@property
-	def SAVNumber(self):
-		return self._SAVNumber
+	def SAVName(self):
+		return self._SAVName
 
-	@SAVNumber.setter
-	def SAVNumber(self, value):
-		self._SAVNumber = value
+	@SAVName.setter
+	def SAVName(self, value):
+		self._SAVName = value
 
 	@property
 	def AHUNumber(self):
@@ -1625,8 +1669,8 @@ class SAV(Base):
 		self._SAVReadings = value
 
 	def __str__(self):
-		return "<SAV(SAVId = '%d', AHUNumber = '%d', SAVNumber = '%d', ahu = '%s', hecs = '%s', thermafusers = '%s', SAVReadings = '%s')>" \
-		% (self._SAVId, self._AHUNumber, self._SAVNumber, str(self._ahu), str(self._hecs), str(_thermafusers), str(self._SAVReadings))
+		return "<SAV(SAVId = '%d', AHUNumber = '%d', SAVName = '%d', ahu = '%s', hecs = '%s', thermafusers = '%s', SAVReadings = '%s')>" \
+		% (self._SAVId, self._AHUNumber, self._SAVName, str(self._ahu), str(self._hecs), str(_thermafusers), str(self._SAVReadings))
 
 
 class SAVReading(Base):
@@ -1758,7 +1802,7 @@ class VAV(Base):
 
 	_VAVId = Column('VAVId', Integer, primary_key = True, autoincrement = True)
 	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"))
-	_VAVNumber = Column('VAVNumber', Integer)
+	_VAVName = Column('VAVName', String(255))
 	
 	#Relationships
 	_ahu = relationship("AHU", back_populates = "_vavs") #Relationship between VAV and AHU
@@ -1768,11 +1812,11 @@ class VAV(Base):
 
 	#Constructor
 
-	def __init__(self, VAVId, AHUNumber, VAVNumber, ahu = None, hecs = [], thermafusers = [], VAVReadings = []):
+	def __init__(self, VAVId, AHUNumber, VAVName, ahu = None, hecs = [], thermafusers = [], VAVReadings = []):
 
 		self._VAVId = VAVId
 		self._AHUNumber = AHUNumber
-		self._VAVNumber = VAVNumber
+		self._VAVName = VAVName
 		self._ahu = ahu
 		self._hecs = hecs
 		self._VAVReadings = VAVReadings
@@ -1789,12 +1833,12 @@ class VAV(Base):
 		self._VAVId = value
 
 	@property
-	def VAVNumber(self):
-		return self._VAVNumber
+	def VAVName(self):
+		return self._VAVName
 
-	@VAVNumber.setter
-	def VAVNumber(self, value):
-		self._VAVNumber = value
+	@VAVName.setter
+	def VAVName(self, value):
+		self._VAVName = value
 
 	@property
 	def AHUNumber(self):
@@ -1837,8 +1881,8 @@ class VAV(Base):
 		self._VAVReadings = value
 
 	def __str__(self):
-		return "<VAV(VAVId = '%d', AHUNumber = '%d', VAVNumber = '%d', ahu = '%s', hecs = '%s', thermafusers = '%s', VAVReadings = '%s')>" \
-		% (self._VAVId, self._AHUNumber, self._VAVNumber, str(self._ahu), str(self._hecs), str(_thermafusers), str(self._VAVReadings))
+		return "<VAV(VAVId = '%d', AHUNumber = '%d', VAVName = '%d', ahu = '%s', hecs = '%s', thermafusers = '%s', VAVReadings = '%s')>" \
+		% (self._VAVId, self._AHUNumber, self._VAVName, str(self._ahu), str(self._hecs), str(_thermafusers), str(self._VAVReadings))
 
 
 class VAVReading(Base):
@@ -2012,7 +2056,7 @@ class Thermafuser(Base):
 	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"), nullable = True)
 	_SAVId = Column('SAVId', Integer, ForeignKey("Staged_Air_Volume.SAVId"), nullable = True)
 	_VAVId = Column('VAVId', Integer, ForeignKey("Variable_Air_Volume.VAVId"), nullable = True)
-	_thermafuserNumber = Column('ThermafuserNumber', Integer)
+	_thermafuserName = Column('ThermafuserName', Integer)
 	
 	#Relationships
 	
@@ -2023,8 +2067,8 @@ class Thermafuser(Base):
 
 	#Constructor
 
-	def __init__(self, thermafuserId, thermafuserNumber, AHUNumber = None, VAVId = None, SAVId = None, ahu = None, vav = None, sav = None, thermafuserReadings = []):
-		self._thermafuserNumber = thermafuserNumber
+	def __init__(self, thermafuserId, thermafuserName, AHUNumber = None, VAVId = None, SAVId = None, ahu = None, vav = None, sav = None, thermafuserReadings = []):
+		self._thermafuserName = thermafuserName
 		self._AHUNumber = AHUNumber
 		self._VAVId = VAVId
 		self._SAVId = SAVId
@@ -2045,12 +2089,12 @@ class Thermafuser(Base):
 		self._thermafuserId = value
 
 	@property
-	def thermafuserNumber(self):
-		return self._thermafuserNumber
+	def thermafuserName(self):
+		return self._thermafuserName
 
-	@thermafuserNumber.setter
-	def thermafuserNumber(self, value):
-		self._thermafuserNumber = value
+	@thermafuserName.setter
+	def thermafuserName(self, value):
+		self._thermafuserName = value
 
 	@property
 	def AHUNumber(self):
@@ -2109,8 +2153,8 @@ class Thermafuser(Base):
 		self._thermafuserReadings = value
 
 	def __str__(self):
-		return "<Thermafuser(thermafuserId = '%d', AHUNumber = '%d', SAVId = '%d', VAVId = '%d', thermafuserNumber = '%d', ahu = '%s', sav = '%s', vav = '%s', thermafuserReadings = '%s')>" \
-		% (self._thermafuserId, self._AHUNumber, self._SAVId, self._VAVId, self._thermafuserNumber, str(self._ahu), str(self._sav), str(self._vav), str(self._thermafuserReadings))
+		return "<Thermafuser(thermafuserId = '%d', AHUNumber = '%d', SAVId = '%d', VAVId = '%d', thermafuserName = '%d', ahu = '%s', sav = '%s', vav = '%s', thermafuserReadings = '%s')>" \
+		% (self._thermafuserId, self._AHUNumber, self._SAVId, self._VAVId, self._thermafuserName, str(self._ahu), str(self._sav), str(self._vav), str(self._thermafuserReadings))
 
 
 class ThermafuserReading(Base):

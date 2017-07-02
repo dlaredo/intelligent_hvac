@@ -6,10 +6,20 @@ import traceback
 import datetime
 import re
 
+
+global numberRegex
+numberRegex = re.compile(r'\d+', flags = re.IGNORECASE)
+
 def zonecsvToDb(filepath, dbsession, zone):
 	"""Function used to read from csv files"""
 
 	count = 0
+
+	dataPoints = dbsession.query(DataPoint).all()
+	dataPointInserted = set()
+
+	for dataPoint in dataPoints:
+		dataPointInserted.add(dataPoint.path)
 
 	with open(filepath, 'r') as csvfile:
 		reader = csv.reader(csvfile)
@@ -20,14 +30,18 @@ def zonecsvToDb(filepath, dbsession, zone):
 				continue
 			else:
 
-				#add the datapoints to the DB session
-				dataPoint = DataPoint(path = row[6], server = row[0], location = row[1], branch = row[2], subBranch = row[3], controlProgram = row[4], point = row[5], zone = zone)
-				dbsession.add(dataPoint)
+				path = row[6]
+				if path not in dataPointInserted:
+					#add the datapoints to the DB session
+					dataPoint = DataPoint(path = path, server = row[0], location = row[1], branch = row[2], subBranch = row[3], controlProgram = row[4], point = row[5], zone = zone)
+					dbsession.add(dataPoint)
+					#print("writting ", dataPoint)
 
 		#commit changes to the database
 		dbsession.commit()
 
 def getAHUByAHUNumber(AHUNumber, ahus):
+	"""Get AHU by Ahu Number"""
 
 	for ahu in ahus:
 		if ahu.AHUNumber == AHUNumber:
@@ -35,14 +49,14 @@ def getAHUByAHUNumber(AHUNumber, ahus):
 
 	return None
 
-def determineComponentNumber(numberRegex, dataString):
+def determineComponentNumber(pathString):
 	"""Determine the component number based on the path string"""
 
 	componentNumber = 0
-	matchComponentNumber = numberRegex.search(dataString) #Look for the number of the component and create a new component for each new component number found
+	matchComponentNumber = numberRegex.findall(pathString.split("/")[0])
 
 	if matchComponentNumber:
-		componentNumber = int(matchComponentNumber.group())
+		componentNumber = "-".join(matchComponentNumber)
 
 	return componentNumber
 
@@ -103,30 +117,33 @@ def MapDataPoints(session):
 	dataPointMapped = True
 
 	#data structures
-	ahuDataPoints = list()
-	vfdDataPoints = list()
-	fanDataPoints = list()
-	damperDataPoints = list()
-	filterDataPoints = list()
-	savDataPoints = list()
-	vavDataPoints = list()
-	hecDataPoints = list()
-	thermafuserDataPoints = list()
 	mappedDataPoints = dict()
-
-	numberRegex = re.compile(r'\d+', flags = re.IGNORECASE)
+	mappedDataPoints["ahu"] = list()
+	mappedDataPoints["vfd"] = list()
+	mappedDataPoints["fan"] = list()
+	mappedDataPoints["filter"] = list()
+	mappedDataPoints["damper"] = list()
+	mappedDataPoints["hec"] = list()
+	mappedDataPoints["thermafuser"] = list()
+	mappedDataPoints["vav"] = list()
+	mappedDataPoints["sav"] = list()
 
 	#get all data points
 	datapoints = session.query(DataPoint).all()
 
 	for dataPoint in datapoints:
 
+		#If the point has already been mapped, skip it
+		if dataPoint.pathMapping != None:
+			mappedDataPoints[dataPoint.pathMapping.componentType.lower()].append(dataPoint)
+			continue
+
 		splittedPath = dataPoint.path.split("/")
 		componentPath = splittedPath[len(splittedPath) - 1]
 
 		#The datapoint may be a supply/return fan point
 		if "rf" in componentPath or "sf" in componentPath:
-			fanNumber = determineComponentNumber(numberRegex, componentPath)
+			fanNumber = determineComponentNumber(componentPath)
 			if fanNumber != 0:
 				fanSplitted = componentPath.split(str(fanNumber))
 				componentPath = fanSplitted[0] + fanSplitted[1]
@@ -140,8 +157,9 @@ def MapDataPoints(session):
 
 			if len(mDataPoints) > 0:
 
+				dataPointType = determineDataPointTypeByPath(dataPoint.path)
+
 				for mDataPoint in mDataPoints:
-					dataPointType = determineDataPointTypeByPath(dataPoint.path)
 
 					if dataPointType == mDataPoint.componentType:
 						mappedDataPoint = mDataPoint
@@ -158,93 +176,74 @@ def MapDataPoints(session):
 		else:
 			#print(dataPoint.path, dataPoint.controlProgram, mappedDataPoint.databaseMapping)
 
-			if mappedDataPoint.componentType == "AHU":
-				ahuDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
-			if mappedDataPoint.componentType == "VFD":
-				vfdDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
-			if mappedDataPoint.componentType == "Fan":
-				fanDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
-			if mappedDataPoint.componentType == "Filter":
-				filterDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
-			if mappedDataPoint.componentType == "Damper":
-				damperDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
-			if mappedDataPoint.componentType == "HEC":
-				hecDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
-			if mappedDataPoint.componentType == "Thermafuser":
-				thermafuserDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
-			if mappedDataPoint.componentType == "VAV":
-				vavDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
-			if mappedDataPoint.componentType == "SAV":
-				savDataPoints.append((dataPoint.controlProgram, mappedDataPoint))
+			dataPoint.pathMappingId = mappedDataPoint.id
+			dataPoint.pathMapping = mappedDataPoint
+			mappedDataPoint.dataPoints.append(dataPoint)
 
-	mappedDataPoints["ahu"] = ahuDataPoints
-	mappedDataPoints["vfd"] = vfdDataPoints
-	mappedDataPoints["fan"] = fanDataPoints
-	mappedDataPoints["filter"] = filterDataPoints
-	mappedDataPoints["damper"] = damperDataPoints
-	mappedDataPoints["hec"] = hecDataPoints
-	mappedDataPoints["thermafuser"] = thermafuserDataPoints
-	mappedDataPoints["vav"] = vavDataPoints
-	mappedDataPoints["sav"] = savDataPoints
+			mappedDataPoints[mappedDataPoint.componentType.lower()].append(dataPoint)
+
+			session.add(mappedDataPoint)
+			session.add(dataPoint)
+
+	session.commit()
 
 	return mappedDataPoints
 
 def printMappedDataPoints(mappedDataPoints):
+	"""Print all the mapped datapoints"""
 
-	print("AHU datapoints")
-	for dataPoint in mappedDataPoints["ahu"]:
-		controlProgram = dataPoint[0]
-		mappedDataPoint = dataPoint[1]
-		print(controlProgram, mappedDataPoint.databaseMapping)
+	totalDataPoints = 0
+	#print(mappedDataPoints)
 
-	print("\nVFD datapoints")
-	for dataPoint in mappedDataPoints["vfd"]:
-		controlProgram = dataPoint[0]
-		mappedDataPoint = dataPoint[1]
-		print(controlProgram, mappedDataPoint.databaseMapping)
+	for key in mappedDataPoints:
 
-	print("\nFan datapoints")
-	for dataPoint in mappedDataPoints["fan"]:
-		controlProgram = dataPoint[0]
-		mappedDataPoint = dataPoint[1]
-		print(controlProgram, mappedDataPoint.databaseMapping)
+		componentDataPoints = len(mappedDataPoints[key])
+		totalDataPoints += componentDataPoints
 
-	print("\nFilter datapoints")
-	for dataPoint in mappedDataPoints["filter"]:
-		controlProgram = dataPoint[0]
-		mappedDataPoint = dataPoint[1]
-		print(controlProgram, mappedDataPoint.databaseMapping)
+		print("\n" + key + " datapoints = ", componentDataPoints)
 
-	print("\nDamper datapoints")
-	for dataPoint in mappedDataPoints["damper"]:
-		controlProgram = dataPoint[0]
-		mappedDataPoint = dataPoint[1]
-		print(controlProgram, mappedDataPoint.databaseMapping)
+		for mappedDataPoint in mappedDataPoints[key]:
+			print(mappedDataPoint.path, mappedDataPoint.controlProgram, mappedDataPoint.pathMapping.databaseMapping)
 
-	print("\nHEC datapoints")
-	for dataPoint in mappedDataPoints["hec"]:
-		controlProgram = dataPoint[0]
-		mappedDataPoint = dataPoint[1]
-		print(controlProgram, mappedDataPoint.databaseMapping)
+	print("\nTotal data points = ", totalDataPoints)
 
-	print("\nThermafuser datapoints")
-	for dataPoint in mappedDataPoints["thermafuser"]:
-		controlProgram = dataPoint[0]
-		mappedDataPoint = dataPoint[1]
-		print(controlProgram, mappedDataPoint.databaseMapping)
 
-	print("\nVAV datapoints")
-	for dataPoint in mappedDataPoints["vav"]:
-		controlProgram = dataPoint[0]
-		mappedDataPoint = dataPoint[1]
-		print(controlProgram, mappedDataPoint.databaseMapping)
+def createListOfNewComponents(ComponentClass, mappedDataPoints, componentKey, componentNumbersList):
+	"""Fill components in a list to be inserted to the database"""
 
-	print("\nSAV datapoints")
-	for dataPoint in mappedDataPoints["sav"]:
-		controlProgram = dataPoint[0]
-		mappedDataPoint = dataPoint[1]
-		print(controlProgram, mappedDataPoint.databaseMapping)
+	new_components = list()
 
+	for mdataPoint in mappedDataPoints[componentKey]:
+
+		dataPoint = mdataPoint[0]
+		mappedDataPoint = mdataPoint[1]
+
+		componentNumber = determineComponentNumber(dataPoint.path)
+		print(componentNumber)
+		if componentNumber not in componentNumbersList:
+			new_components.append(ComponentClass(componentNumber))
+			componentNumbersList.add(componentNumber)
+
+	return new_components
+
+
+def fillComponentsInDatabase(mappedDataPoints, session):
+	"""Take the mapped datapoints and fill the corresponding components in the database"""
+
+	#data structures
+	#ahu = set()
+
+	#ahus = session.query(AHU).all()
+
+	#for ahu in ahus:
+	#	ahuNumbers.add(ahu.AHUNumber)
+
+	#print(ahuNumbers)
+
+	#new_ahus = createListOfNewComponents(AHU, mappedDataPoints, "ahu", ahuNumbers)
+
+	#for new_ahu in new_ahus:
+	#	print("AHU " + str(new_ahu.AHUNumber))
 
 def main():
 	"""Main function"""
@@ -265,14 +264,18 @@ def main():
 
 	#Attempt to write csv to the database
 	try:
-		#zonecsvToDb(zone4FilepATH, session, "4")
+		zonecsvToDb(zone4FilepATH, session, "4")
 		print("writting sucessfull")
 	except:
 		print("Error writting to the database")
 
+	print("Mapping DataPoints")
 	mappedDataPoints = MapDataPoints(session)
 
 	printMappedDataPoints(mappedDataPoints)
+
+	print("Filling components in Database")
+	fillComponentsInDatabase(mappedDataPoints, session)
 
 	session.close()
 
