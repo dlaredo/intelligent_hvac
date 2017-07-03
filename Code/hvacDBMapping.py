@@ -705,6 +705,7 @@ class VFD(Base):
 	_vfdId = Column('VFDId', Integer, primary_key = True, autoincrement = True)
 	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"))
 	_vfdName = Column('VFDName', String(255))
+	_vfdType = Column('VFDType', String(255))
 	
 	#Relationships
 	_ahu = relationship("AHU", back_populates = "_vfds") #Relatiionship between Filter and AHU
@@ -712,11 +713,12 @@ class VFD(Base):
 
 	#Constructor
 
-	def __init__(self, vfdId, AHUNumber, vfdName, ahu = None, vfdReadings = []):
+	def __init__(self, vfdId, AHUNumber, vfdName, vfdType, ahu = None, vfdReadings = []):
 
 		self._vfdId = vfdId
 		self._vfdName = vfdName
 		self._AHUNumber = AHUNumber
+		self._vfdType = vfdType
 		self._ahu = ahu
 		self._vfdReadings = vfdReadings
 
@@ -747,6 +749,14 @@ class VFD(Base):
 		self._AHUNumber = value
 
 	@property
+	def vfdType(self):
+		return self._vfdType
+
+	@vfdType.setter
+	def vfdType(self, value):
+		self._vfdType = value
+
+	@property
 	def ahu(self):
 		return self._ahu
 
@@ -763,8 +773,8 @@ class VFD(Base):
 		self._vfdReadings = value
 
 	def __str__(self):
-		return "<Filter(vfdId = '%d', AHUNumber = '%d', vfdName = '%d', ahu = '%s', vfdReadings = '%s')>" \
-		% (self._vfdId, self._AHUNumber, self._vfdName, str(self._ahu), str(self._vfdReadings))
+		return "<Filter(vfdId = '%d', AHUNumber = '%d', vfdName = '%d',  vfdType = '%s', ahu = '%s', vfdReadings = '%s')>" \
+		% (self._vfdId, self._AHUNumber, self._vfdName, self._vfdType, str(self._ahu), str(self._vfdReadings))
 
 
 class VFDReading(Base):
@@ -774,7 +784,6 @@ class VFDReading(Base):
 
 	_timestamp = Column('Time_Stamp', DateTime, primary_key = True)
 	_vfdId = Column('VFDId', Integer, ForeignKey("VFD.VFDId"), primary_key = True)
-	_vfdType = Column('VFDType', String(255))
 	_powerKW = Column('PowerKW', Float)
 	_speedRPM = Column('SpeedRPM', Float)
 	
@@ -783,11 +792,10 @@ class VFDReading(Base):
 
 	#Constructor
 
-	def __init__(self, timestamp, vfdId, vfdType = None, powerKW = None, speedRPM = None, vfdRef = None):
+	def __init__(self, timestamp, vfdId, powerKW = None, speedRPM = None, vfdRef = None):
 
 		self._timestamp = timestamp
 		self._vfdId = vfdId
-		self._vfdType = vfdType
 		self._powerKW = powerKW
 		self._speedRPM = speedRPM
 		self._vfd = vfdRef
@@ -809,14 +817,6 @@ class VFDReading(Base):
 	@vfdId.setter
 	def vfdId(self, value):
 		self._vfdId = value
-
-	@property
-	def vfdType(self):
-		return self._vfdType
-
-	@vfdType.setter
-	def vfdType(self, value):
-		self._vfdType = value
 
 	@property
 	def powerKW(self):
@@ -843,8 +843,8 @@ class VFDReading(Base):
 		self._vfd = value
 
 	def __str__(self):
-		return "<FilterReading(timestamp = '%s', vfdId = '%s', vfdType = '%s', powerKW = '%s', speedRPM = '%s', vfd = '%s')>" \
-		% (str(self._timestamp), self._vfdId, self._vfdType, self._powerKW, self._speedRPM, str(self._vfd))
+		return "<FilterReading(timestamp = '%s', vfdId = '%s', powerKW = '%s', speedRPM = '%s', vfd = '%s')>" \
+		% (str(self._timestamp), self._vfdId, self._powerKW, self._speedRPM, str(self._vfd))
 
 
 class Filter(Base):
@@ -855,6 +855,7 @@ class Filter(Base):
 	_filterId = Column('FilterId', Integer, primary_key = True, autoincrement = True)
 	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"))
 	_filterName = Column('FilterName', String(255))
+	_filterType = Column('FilterType', String(255))
 	
 	#Relationships
 	_ahu = relationship("AHU", back_populates = "_filters") #Relatiionship between Filter and AHU
@@ -862,11 +863,12 @@ class Filter(Base):
 
 	#Constructor
 
-	def __init__(self, filterId, AHUNumber, filterName, ahu = None, filterReadings = []):
+	def __init__(self, filterId, AHUNumber, filterName, filterType = None, ahu = None, filterReadings = []):
 
 		self._filterId = filterId
 		self._filterName = filterName
 		self._AHUNumber = AHUNumber
+		self._filterType = filterType
 		self._ahu = ahu
 		self._filterReadings = filterReadings
 
@@ -897,6 +899,14 @@ class Filter(Base):
 		self._AHUNumber = value
 
 	@property
+	def filterType(self):
+		return self._filterType
+
+	@filterType.setter
+	def filterType(self, value):
+		self._filterType = value
+
+	@property
 	def ahu(self):
 		return self._ahu
 
@@ -913,8 +923,8 @@ class Filter(Base):
 		self._filterReadings = value
 
 	def __str__(self):
-		return "<Filter(filterId = '%d', AHUNumber = '%d', filterName = '%d', ahu = '%s', filterReadings = '%s')>" \
-		% (self._filterId, self._AHUNumber, self._filterName, str(self._ahu), str(self._filterReadings))
+		return "<Filter(filterId = '%d', AHUNumber = '%d', filterName = '%d', filterType = '%s', ahu = '%s', filterReadings = '%s')>" \
+		% (self._filterId, self._AHUNumber, self._filterName, self._filterType, str(self._ahu), str(self._filterReadings))
 
 
 class FilterReading(Base):
@@ -924,7 +934,6 @@ class FilterReading(Base):
 
 	_timestamp = Column('Time_Stamp', DateTime, primary_key = True)
 	_filterId = Column('FilterId', Integer, ForeignKey("Filter.FilterId"), primary_key = True)
-	_filterType = Column('FilterType', String(255))
 	_differencePressure = Column('DifferencePressure', Float)
 	
 	#Relationship between Filter and Filter_Reading
@@ -932,11 +941,10 @@ class FilterReading(Base):
 
 	#Constructor
 
-	def __init__(self, timestamp, filterId, filterType = None, differencePressure = None, filterRef = None):
+	def __init__(self, timestamp, filterId, differencePressure = None, filterRef = None):
 
 		self._timestamp = timestamp
 		self._filterId = filterId
-		self._filterType = filterType
 		self._differencePressure = differencePressure
 		self._filter = filterRef
 
@@ -959,14 +967,6 @@ class FilterReading(Base):
 		self._filterId = value
 
 	@property
-	def filterType(self):
-		return self._filterType
-
-	@filterType.setter
-	def filterType(self, value):
-		self._filterType = value
-
-	@property
 	def differencePressure(self):
 		return self._differencePressure
 
@@ -983,8 +983,8 @@ class FilterReading(Base):
 		self._filter = value
 
 	def __str__(self):
-		return "<FilterReading(timestamp = '%s', filterId = '%s', filterType = '%s', differencePressure = '%s', filter = '%s')>" \
-		% (str(self._timestamp), self._filterId, self._filterType, self._differencePressure, str(self._filter))
+		return "<FilterReading(timestamp = '%s', filterId = '%s', differencePressure = '%s', filter = '%s')>" \
+		% (str(self._timestamp), self._filterId, self._differencePressure, str(self._filter))
 
 
 class Damper(Base):
@@ -995,6 +995,7 @@ class Damper(Base):
 	_damperId = Column('DamperId', Integer, primary_key = True, autoincrement = True)
 	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"))
 	_damperName = Column('DamperName', String(255))
+	_damperType = Column('DamperType', String(255))
 	
 	#Relationships
 
@@ -1003,11 +1004,12 @@ class Damper(Base):
 
 	#Constructor
 
-	def __init__(self, damperId, AHUNumber, damperName, ahu = None, damperReadings = []):
+	def __init__(self, damperId, AHUNumber, damperName, damperType = None, ahu = None, damperReadings = []):
 
 		self._damperId = damperId
 		self._AHUNumber = AHUNumber
 		self._damperName = damperName
+		self._damperType = damperType
 		self._ahu = ahu
 		self._damperReadings = damperReadings
 
@@ -1038,6 +1040,14 @@ class Damper(Base):
 		self._AHUNumber = value
 
 	@property
+	def damperType(self):
+		return self._damperType
+
+	@damperType.setter
+	def damperType(self, value):
+		self._damperType = value
+
+	@property
 	def ahu(self):
 		return self._ahu
 
@@ -1054,8 +1064,8 @@ class Damper(Base):
 		self._damperReadings = value
 
 	def __str__(self):
-		return "<Damper(damperId = '%d', AHUNumber = '%d', damperName = '%d', ahu = '%s', damperReadings = '%s')>" \
-		% (self._damperId, self._AHUNumber, self._damperName, str(self._ahu), str(self._damperReadings))
+		return "<Damper(damperId = '%d', AHUNumber = '%d', damperName = '%d', damperType = '%s', ahu = '%s', damperReadings = '%s')>" \
+		% (self._damperId, self._AHUNumber, self._damperName, self._damperType, str(self._ahu), str(self._damperReadings))
 
 
 class DamperReading(Base):
@@ -1065,7 +1075,6 @@ class DamperReading(Base):
 
 	_damperId = Column('DamperId', Integer, ForeignKey("Damper.DamperId"), primary_key = True)
 	_time_stamp = Column('Time_stamp', DateTime, primary_key=True)
-	_damperType = Column('DamperType', String(255))
 	_damperInputVoltage = Column('DamperInputVoltage', Float, nullable=True)
 	_damperOpeningPercentage = Column('DamperOpeningPercentage', Float, nullable=True)
 	_isolationDamper = Column('isolationDamper', Boolean, nullable=True )
@@ -1075,11 +1084,10 @@ class DamperReading(Base):
 
 	#Constructor
 
-	def __init__(self, damperId, time_stamp, damperType = None, damperInputVoltage = None, damperOpeningPercentage = None, isolationDamper = None, damper = None):
+	def __init__(self, damperId, time_stamp, damperInputVoltage = None, damperOpeningPercentage = None, isolationDamper = None, damper = None):
 
 		self._damperId = damperId
 		self._time_stamp = time_stamp
-		self._damperType = damperType
 		self._damperInputVoltage = damperInputVoltage
 		self._damperOpeningPercentage = damperOpeningPercentage
 		self._isolationDamper = isolationDamper
@@ -1102,14 +1110,6 @@ class DamperReading(Base):
 	@time_stamp.setter
 	def time_stamp(self, value):
 		self._time_stamp = value
-
-	@property
-	def damperType(self):
-		return self._damperType
-
-	@damperType.setter
-	def damperType(self, value):
-		self._damperType = value
 
 	@property
 	def damperInputVoltage(self):
@@ -1144,8 +1144,8 @@ class DamperReading(Base):
 		self._damper = value            
 
 	def __str__(self):
-		return "<DamperReading(damperId = '%s', time_stamp = '%s', damperType = '%s', damperInputVoltage = '%s', damperOpeningPercentage = '%s', isolationDamper = '%s', damper = '%s')>" \
-		% (self._damperId, self._time_stamp, self._damperType, self._damperInputVoltage, self._damperOpeningPercentage, self._isolationDamper, str(self._damper))
+		return "<DamperReading(damperId = '%s', time_stamp = '%s', damperInputVoltage = '%s', damperOpeningPercentage = '%s', isolationDamper = '%s', damper = '%s')>" \
+		% (self._damperId, self._time_stamp, self._damperInputVoltage, self._damperOpeningPercentage, self._isolationDamper, str(self._damper))
 
 
 class Fan(Base):
@@ -1156,6 +1156,7 @@ class Fan(Base):
 	_fanId = Column('FanId', Integer, primary_key = True, autoincrement = True)
 	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"))
 	_fanName = Column('FanName', String(255))
+	_fanType = Column('FanType', String(255))
 	
 	#Relationships
 
@@ -1164,11 +1165,12 @@ class Fan(Base):
 
 	#Constructor
 
-	def __init__(self, fanId, AHUNumber, fanName, ahu = None, fanReadings = []):
+	def __init__(self, fanId, AHUNumber, fanName, fanType = None, ahu = None, fanReadings = []):
 
 		self._fanId = fanId
 		self._AHUNumber = AHUNumber
 		self._fanName = fanName
+		self._fanType = fanType
 		self._ahu = ahu
 		self._fanReadings = fanReadings
 
@@ -1199,6 +1201,14 @@ class Fan(Base):
 		self._AHUNumber = value
 
 	@property
+	def fanType(self):
+		return self._fanType
+
+	@fanType.setter
+	def fanType(self, value):
+		self._fanType = value
+
+	@property
 	def ahu(self):
 		return self._ahu
 
@@ -1215,8 +1225,8 @@ class Fan(Base):
 		self._fanReadings = value
 
 	def __str__(self):
-		return "<Fan(fanId = '%d', AHUNumber = '%d', fanName = '%d', ahu = '%s', fanReadings = '%s')>" \
-		% (self._fanId, self._AHUNumber, self._fanName, str(self._ahu), str(self._fanReadings))
+		return "<Fan(fanId = '%d', AHUNumber = '%d', fanName = '%d', fanType = '%s', ahu = '%s', fanReadings = '%s')>" \
+		% (self._fanId, self._AHUNumber, self._fanName, self._fanType, str(self._ahu), str(self._fanReadings))
 
 
 class FanReading(Base):
@@ -1226,7 +1236,6 @@ class FanReading(Base):
 
 	_fanId = Column('FanId', Integer, ForeignKey("Fan.FanId"), primary_key = True)
 	_time_stamp = Column('Time_stamp', DateTime, primary_key = True)
-	_fanType = Column('FanType', String(255))
 	_airVelocityPressure = Column('AirVelocityPressure', Float, nullable=True)
 	_VFDSpeed = Column('VFDSpeed', Float, nullable=True)
 	_fanStatus = Column('FanStatus', Boolean, nullable=True)
@@ -1243,12 +1252,11 @@ class FanReading(Base):
 
 	#Constructor
 
-	def __init__(self, fanId, time_stamp, fanType = None, airVelocityPressure = None, VFDSpeed = None, fanStatus = None, VFDFault = None, HiStaticReset = None,\
+	def __init__(self, fanId, time_stamp, airVelocityPressure = None, VFDSpeed = None, fanStatus = None, VFDFault = None, HiStaticReset = None,\
 	 FAReturnFanShutdown = None, fanVFD = None, isolationDampers = None, fanSS = None, airVelocityCFM = None, fan = None):
 
 		self._fanId = fanId
 		self._time_stamp = time_stamp
-		self._fanType = fanType
 		self._airVelocityPressure = airVelocityPressure
 		self._VFDSpeed = VFDSpeed
 		self._fanStatus = fanStatus
@@ -1278,14 +1286,6 @@ class FanReading(Base):
 	@time_stamp.setter
 	def time_stamp(self, value):
 		self._time_stamp = value
-
-	@property
-	def fanType(self):
-		return self._fanType
-
-	@fanType.setter
-	def fanType(self, value):
-		self._fanType = value
 
 	@property
 	def airVelocityPressure(self):
@@ -1376,9 +1376,9 @@ class FanReading(Base):
 		self._fan = value     
 
 	def __str__(self):
-		return "<FanReading(fanId = '%s', time_stamp = '%s', fanType = '%s', 'airVelocityPressure' = '%s' VFDSpeed = '%s', fanStatus = '%s', VFDFault = '%s',\
+		return "<FanReading(fanId = '%s', time_stamp = '%s', 'airVelocityPressure' = '%s' VFDSpeed = '%s', fanStatus = '%s', VFDFault = '%s',\
 		 HiStaticReset = '%s', FAReturnFanShutdown = '%s',fanVFD = '%s',isolationDampers = '%s', fanSS = '%s', airVelocityCFM = '%s', fan = '%s')>" \
-		% (self._fanId, self._time_stamp, self._fanType, self.airVelocityPressure, self._VFDSpeed, self._fanStatus, self._VFDFault, self._HiStaticReset,\
+		% (self._fanId, self._time_stamp, self.airVelocityPressure, self._VFDSpeed, self._fanStatus, self._VFDFault, self._HiStaticReset,\
 		 self._FAReturnFanShutdown, self._fanVFD, self._isolationDampers, self._fanSS, self._airVelocityCFM, str(self._fan))
 
 
@@ -1392,6 +1392,7 @@ class HEC(Base):
 	_SAVId = Column('SAVId', Integer, ForeignKey("Staged_Air_Volume.SAVId"), nullable = True)
 	_VAVId = Column('VAVId', Integer, ForeignKey("Variable_Air_Volume.VAVId"), nullable = True)
 	_HECName = Column('HECName', String(255))
+	_HECType = Column('HECType', String(255))
 	
 	#Relationships
 	
@@ -1402,10 +1403,11 @@ class HEC(Base):
 
 	#Constructor
 
-	def __init__(self, HECId, HECName, AHUNumber = None, VAVId = None, SAVId = None, ahu = None, vav = None, sav = None, hecReadings = []):
+	def __init__(self, HECId, HECName, HECType = None, AHUNumber = None, VAVId = None, SAVId = None, ahu = None, vav = None, sav = None, hecReadings = []):
 
 		self._HECId = HECId
 		self._HECName = HECName
+		self._HECType = HECType
 		self._AHUNumber = AHUNumber
 		self._VAVId = VAVId
 		self._SAVId = SAVId
@@ -1431,6 +1433,14 @@ class HEC(Base):
 	@HECName.setter
 	def HECName(self, value):
 		self._HECName = value
+
+	@property
+	def HECType(self):
+		return self._HECType
+
+	@HECType.setter
+	def HECType(self, value):
+		self._HECType = value
 
 	@property
 	def AHUNumber(self):
@@ -1489,8 +1499,8 @@ class HEC(Base):
 		self._hecReadings = value
 
 	def __str__(self):
-		return "<HEC(HECId = '%d', AHUNumber = '%d', HECName = '%d', SAVId = '%d', VAVId = '%d', ahu = '%s', sav = '%s', vav = '%s', hecReadings = '%s')>" \
-		% (self._HECId, self._AHUNumber, self._HECName, self._SAVId, self._VAVId, str(self._ahu), str(self._sav), str(self._vav), str(self._hecReadings))
+		return "<HEC(HECId = '%d', AHUNumber = '%d', HECName = '%d', HECType = '%s', SAVId = '%d', VAVId = '%d', ahu = '%s', sav = '%s', vav = '%s', hecReadings = '%s')>" \
+		% (self._HECId, self._AHUNumber, self._HECName, self._HECType, self._SAVId, self._VAVId, str(self._ahu), str(self._sav), str(self._vav), str(self._hecReadings))
 
 
 class HECReading(Base):
@@ -1500,7 +1510,6 @@ class HECReading(Base):
 
 	_HECId = Column('HECId', Integer, ForeignKey("Heat_Exchanger_Coil.HECId"), primary_key = True)
 	_time_stamp = Column('Time_stamp', DateTime, primary_key = True)
-	_isHeatingCoil = Column('isHeatingCoil', Boolean)
 	_supplyWaterTemperature = Column('SupplyWaterTemperature', Float, nullable=True)
 	_returnWaterTemperature = Column('ReturnWaterTemperature', Float, nullable=True)
 	_valveOpeningPercentage = Column('valveOpeningPercentage', Float, nullable=True)
@@ -1510,11 +1519,10 @@ class HECReading(Base):
   
 	#Constructor
 
-	def __init__(self, HECId, time_stamp, isHeatingCoil, supplyWaterTemperature, returnWaterTemperature = None, valveOpeningPercentage = None, hec = []):
+	def __init__(self, HECId, time_stamp, supplyWaterTemperature, returnWaterTemperature = None, valveOpeningPercentage = None, hec = []):
 
 		self._HECId = HECId
 		self._time_stamp = time_stamp
-		self._isHeatingCoil = isHeatingCoil
 		self._supplyWaterTemperature = supplyWaterTemperature
 		self._returnWaterTemperature = returnWaterTemperature
 		self._valveOpeningPercentage = valveOpeningPercentage
@@ -1537,14 +1545,6 @@ class HECReading(Base):
 	@time_stamp.setter
 	def time_stamp(self, value):
 		self._time_stamp = value
-
-	@property
-	def isHeatingCoil(self):
-		return self._isHeatingCoil
-
-	@isHeatingCoil.setter
-	def isHeatingCoil(self, value):
-		self._isHeatingCoil = value
 
 	@property
 	def supplyWaterTemperature(self):
@@ -1579,8 +1579,8 @@ class HECReading(Base):
 		self._hec = value   
 		
 	def __str__(self):
-		return "<HECReading(HECId = '%s', time_stamp = '%s', isHeatingCoil = '%s', supplyWaterTemperature = '%s', returnWaterTemperature = '%s', valveOpeningPercentage = '%s', hec = '%s')>" \
-		% (self._HECId, self._time_stamp, self._isHeatingCoil, self._supplyWaterTemperature, self._returnWaterTemperature, self._valveOpeningPercentage, str(self._hec))
+		return "<HECReading(HECId = '%s', time_stamp = '%s', supplyWaterTemperature = '%s', returnWaterTemperature = '%s', valveOpeningPercentage = '%s', hec = '%s')>" \
+		% (self._HECId, self._time_stamp, self._supplyWaterTemperature, self._returnWaterTemperature, self._valveOpeningPercentage, str(self._hec))
 
 
 class SAV(Base):
@@ -1680,7 +1680,6 @@ class SAVReading(Base):
 
 	_SAVId = Column('SAVId', Integer, ForeignKey("Staged_Air_Volume.SAVId"), primary_key = True)
 	_time_stamp = Column('Time_stamp', DateTime, primary_key = True)
-	_SAVName = Column('SAVName', String(255), nullable=True)
 	_miscSpareInput = Column('MiscSpareInput', Float, nullable=True)
 	_zoneTemperature = Column('ZoneTemperature', Float, nullable=True)
 	_dischargeTemperature = Column('DischargeTemperature', Float, nullable=True)
@@ -1693,12 +1692,11 @@ class SAVReading(Base):
   
 	#Constructor
 
-	def __init__(self, SAVId, time_stamp, SAVName = None, miscSpareInput = None, zoneTemperature = None, dischargeTemperature = None, miscInput = None,\
+	def __init__(self, SAVId, time_stamp, miscSpareInput = None, zoneTemperature = None, dischargeTemperature = None, miscInput = None,\
 	 condensateDetector = None, valveOutputPercentage = None, sav = None):
 
 		self._SAVId = SAVId
 		self._time_stamp = time_stamp
-		self._SAVName = SAVName
 		self._miscSpareInput = miscSpareInput
 		self._zoneTemperature = zoneTemperature
 		self._dischargeTemperature = dischargeTemperature
@@ -1724,14 +1722,6 @@ class SAVReading(Base):
 	@time_stamp.setter
 	def time_stamp(self, value):
 		self._time_stamp = value
-
-	@property
-	def SAVName(self):
-		return self._SAVName
-
-	@SAVName.setter
-	def SAVName(self, value):
-		self._SAVName = value
 
 	@property
 	def miscSpareInput(self):
@@ -1789,9 +1779,9 @@ class SAVReading(Base):
 		self._sav = value   
 
 	def __str__(self):
-		return "<SAVReading(SAVId = '%s', time_stamp = '%s', SAVName = '%s', miscSpareInput = '%s', zoneTemperature = '%s', dischargeTemperature = '%s',\
+		return "<SAVReading(SAVId = '%s', time_stamp = '%s', miscSpareInput = '%s', zoneTemperature = '%s', dischargeTemperature = '%s',\
 		 miscInput = '%s', condensateDetector = '%s', sav = '%s')>" \
-		% (self._SAVId, self._time_stamp, self._SAVName, self._miscSpareInput, self._zoneTemperature, self._dischargeTemperature, self._miscInput,\
+		% (self._SAVId, self._time_stamp, self._miscSpareInput, self._zoneTemperature, self._dischargeTemperature, self._miscInput,\
 		 self._condensateDetector,self._valveOutputPercentage, self._sav)
 
 
@@ -1892,7 +1882,6 @@ class VAVReading(Base):
 
 	_VAVId = Column('VAVId', String(255), ForeignKey("Variable_Air_Volume.VAVId"), primary_key = True)
 	_time_stamp = Column('Time_stamp', String(255), primary_key = True)
-	_VAVName = Column('VAVName', Float)
 	_flowInput = Column('FlowInput', Float)
 	_miscSpareInput = Column('MiscSpareInput', Float, nullable=True)
 	_zoneTemperature = Column('ZoneTemperature', Float, nullable=True)
@@ -1909,12 +1898,11 @@ class VAVReading(Base):
  
 	#Constructor
 
-	def __init__(self, VAVId, time_stamp, VAVName = None, flowInput = None, miscSpareInput = None, zoneTemperature = None, dischargeTemperature = None,\
+	def __init__(self, VAVId, time_stamp, flowInput = None, miscSpareInput = None, zoneTemperature = None, dischargeTemperature = None,\
 	 condensateDetector = None, ductStaticPressure = None, zoneCO2 = None, damperPosition = None, coolingSetpoint = None, heatingSetpoint = None, vav = None):
 
 		self._VAVId = VAVId
 		self._time_stamp = time_stamp
-		self._VAVName = VAVName
 		self._flowInput = flowInput
 		self._miscSpareInput = miscSpareInput
 		self._zoneTemperature = zoneTemperature
@@ -1944,14 +1932,6 @@ class VAVReading(Base):
 	@time_stamp.setter
 	def time_stamp(self, value):
 		self._time_stamp = value
-
-	@property
-	def VAVName(self):
-		return self._VAVName
-
-	@VAVName.setter
-	def VAVName(self, value):
-		self._VAVName = value
 
 	@property
 	def flowInput(self):
@@ -2041,9 +2021,9 @@ class VAVReading(Base):
 		self._vav = value
 
 	def __str__(self):
-		return "<VAVReading(VAVId = '%s', time_stamp = '%s', VAVName = '%s', flowInput = '%s', miscSpareInput = '%s', zoneTemperature = '%s', dischargeTemperature = '%s',\
+		return "<VAVReading(VAVId = '%s', time_stamp = '%s', flowInput = '%s', miscSpareInput = '%s', zoneTemperature = '%s', dischargeTemperature = '%s',\
 		 condensateDetector = '%s',ductStaticPressure = '%s',zoneCO2 = '%s', damperPosition = '%s', coolingSetpoint = '%s', heatingSetpoint = '%s', vav = '%s')>" \
-		% (self._VAVId, self._time_stamp, self._VAVName, self._flowInput, self._miscSpareInput, self._zoneTemperature, self._dischargeTemperature,\
+		% (self._VAVId, self._time_stamp, self._flowInput, self._miscSpareInput, self._zoneTemperature, self._dischargeTemperature,\
 		 self._condensateDetector, self._ductStaticPressure, self._zoneCO2, self._damperPosition, self._coolingSetpoint, self._heatingSetpoint, str(self._vav))
 
 

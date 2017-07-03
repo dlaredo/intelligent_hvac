@@ -53,7 +53,7 @@ def determineComponentNumber(pathString):
 	"""Determine the component number based on the path string"""
 
 	componentNumber = 0
-	matchComponentNumber = numberRegex.findall(pathString.split("/")[0])
+	matchComponentNumber = numberRegex.findall(pathString)
 
 	if matchComponentNumber:
 		componentNumber = "-".join(matchComponentNumber)
@@ -148,6 +148,7 @@ def MapDataPoints(session):
 				fanSplitted = componentPath.split(str(fanNumber))
 				componentPath = fanSplitted[0] + fanSplitted[1]
 
+
 		mappedDataPoint = session.query(PathMapping).filter(PathMapping._path == componentPath).first()
 
 		#If datapoint doesnt exactly match
@@ -193,7 +194,6 @@ def printMappedDataPoints(mappedDataPoints):
 	"""Print all the mapped datapoints"""
 
 	totalDataPoints = 0
-	#print(mappedDataPoints)
 
 	for key in mappedDataPoints:
 
@@ -207,22 +207,132 @@ def printMappedDataPoints(mappedDataPoints):
 
 	print("\nTotal data points = ", totalDataPoints)
 
+def printComponents(components):
 
-def createListOfNewComponents(ComponentClass, mappedDataPoints, componentKey, componentNumbersList):
+	for ahu in components["ahu"]:
+		print("AHU Number: " + str(ahu.AHUNumber) + ", AHU Name: " + str(ahu.AHUName))
+	for vfd in components["vfd"]:
+		print("VFD Number: " + str(vfd.vfdId) + ", VFD Name: " + str(vfd.vfdName) + ", Parent AHU: " + str(vfd.AHUNumber))
+	for filt in components["filter"]:
+		print("Filter Number: " + str(filt.filterId) + ", Filter Name: " + str(filt.filterName) + ", Parent AHU: " + str(filt.AHUNumber))
+	for damper in components["damper"]:
+		print("Damper Number: " + str(damper.damperId) + ", Damper Name: " + str(damper.damperName) + ", Parent AHU: " + str(damper.AHUNumber))
+	for fan in components["fan"]:
+		print("Fan Number: " + str(fan.fanId) + ", Fan Name: " + str(fan.fanName) + ", Parent AHU: " + str(fan.AHUNumber))
+
+
+def determineAhu(components, componentNames, ComponentClass, mappedDataPoint):
+	"""Determine the ahu that supplies certain component based on its datapoint"""
+
+	determinedAhu = None
+
+	if ComponentClass == VFD:
+		for ahu in components["ahu"]:
+			if ahu.AHUName.lower() in mappedDataPoint.controlProgram.lower():
+				determinedAhu = ahu
+
+	if ComponentClass == Filter or ComponentClass == Damper or ComponentClass == Fan:
+		for ahu in components["ahu"]:
+			if ahu.AHUName.lower() in mappedDataPoint.path.lower():
+				determinedAhu = ahu
+				
+	return determinedAhu
+
+
+def determineComponentType(componentClass, dataPoint):
+	"""Determine component type based on its dataPoint"""
+
+	componentType = ""
+
+	if componentClass == VFD:
+		if "supply" in dataPoint.controlProgram.lower() or "supply" in dataPoint.path.lower():
+			componentType = "Supply"
+		elif "return" in dataPoint.controlProgram.lower() or "return" in dataPoint.path.lower():
+			componentType = "Return"
+		else:
+			componentType = ""
+	elif componentClass == Filter:
+		if "final" in dataPoint.point.lower() or "ffilter" in dataPoint.path.lower():
+			componentType = "Final"
+		elif "pre" in dataPoint.point.lower() or "pfilter" in dataPoint.path.lower():
+			componentType = "Pre"
+		else:
+			componentType = ""
+	elif componentClass == Damper:
+		if "ra" in dataPoint.point.lower() or "ra" in dataPoint.path.lower():
+			componentType = "Return Air"
+		elif "oa" in dataPoint.point.lower() or "oa" in dataPoint.path.lower():
+			componentType = "Outside Air"
+		elif "ea" in dataPoint.point.lower() or "ea" in dataPoint.path.lower():
+			componentType = "Exhaust Air"
+		elif "sa" in dataPoint.point.lower() or "sa" in dataPoint.path.lower():
+			componentType = "Supply Air"
+		else:
+			componentType = ""
+	elif componentClass == Fan:
+		if "supply" in dataPoint.point.lower() or "sf" in dataPoint.path.lower():
+			componentType = "Supply Air"
+		elif "return" in dataPoint.point.lower() or "rf" in dataPoint.path.lower():
+			componentType = "Return Air"
+		elif "exhaust" in dataPoint.point.lower() or "ef" in dataPoint.path.lower():
+			componentType = "Exhaust Air"
+		elif "outside" in dataPoint.point.lower() or "of" in dataPoint.path.lower():
+			componentType = "Exhaust Air"
+		else:
+			componentType = ""
+
+	return componentType
+
+
+def appendNewComponents(components, componentNames, ComponentClass, mappedDataPoints, componentKey, totalNumberOfComponents):
 	"""Fill components in a list to be inserted to the database"""
 
 	new_components = list()
 
 	for mdataPoint in mappedDataPoints[componentKey]:
 
-		dataPoint = mdataPoint[0]
-		mappedDataPoint = mdataPoint[1]
+		#componentNumber = determineComponentNumber(mdataPoint.path)
+		#print(componentNumber)
 
-		componentNumber = determineComponentNumber(dataPoint.path)
-		print(componentNumber)
-		if componentNumber not in componentNumbersList:
-			new_components.append(ComponentClass(componentNumber))
-			componentNumbersList.add(componentNumber)
+		#fill AHUs
+		if ComponentClass == AHU:
+			
+			if mdataPoint.controlProgram not in componentNames[componentKey]:
+				components["ahu"].append(ComponentClass(AHUNumber = totalNumberOfComponents + 1, AHUName = mdataPoint.controlProgram))
+				componentNames["ahu"].add(mdataPoint.controlProgram)
+				totalNumberOfComponents += 1
+		#Fill VFDs, Filters, Dampers, Fans
+		elif ComponentClass == VFD or ComponentClass == Fan or ComponentClass == Filter or ComponentClass == Damper:
+
+			componentType = determineComponentType(ComponentClass, mdataPoint)
+
+			if ComponentClass == VFD:
+				componentName = mdataPoint.controlProgram
+			else:
+				splittedPath = mdataPoint.path.split("/")
+				componentPath = splittedPath[len(splittedPath) - 1]
+				componentNumber = determineComponentNumber(componentPath)
+				componentName = componentType + " "  + componentKey.title() + " " + str(componentNumber)
+
+			#print(componentName)
+
+			if componentName not in componentNames[componentKey]:
+				ahu = determineAhu(components, componentNames, ComponentClass, mdataPoint)
+
+				if ahu != None and componentType != "":
+					component = ComponentClass(totalNumberOfComponents + 1, ahu.AHUNumber, componentName, componentType, ahu)
+					#ahu.filters.append(filt)
+					components[componentKey].append(component)
+					componentNames[componentKey].add(componentName)
+					totalNumberOfComponents += 1
+
+					#print(mdataPoint.path, ahu.AHUName)
+				else:
+					if ahu == None:
+						print("Could not determine ahu")
+					elif componentType == "":
+						print("Could not determine componentType")
+			
 
 	return new_components
 
@@ -231,19 +341,61 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 	"""Take the mapped datapoints and fill the corresponding components in the database"""
 
 	#data structures
-	#ahu = set()
+	componentNames = dict()
+	componentNames["ahu"] = set()
+	componentNames["vfd"] = set()
+	componentNames["filter"] = set()
+	componentNames["damper"] = set()
+	componentNames["fan"] = set()
+	componentNames["hec"] = set()
+	componentNames["sav"] = set()
+	componentNames["vav"] = set()
+	componentNames["thermafuser"] = set()
 
-	#ahus = session.query(AHU).all()
+	components = dict()
+	components["ahu"] = session.query(AHU).all()
+	components["vfd"] = session.query(VFD).all()
+	components["filter"] = session.query(Filter).all()
+	components["damper"] = session.query(Damper).all()
+	components["fan"] = session.query(Fan).all()
+	components["hec"] = session.query(HEC).all()
+	components["sav"] = session.query(SAV).all()
+	components["vav"] = session.query(VAV).all()
+	components["thermafuser"] = session.query(Thermafuser).all()
 
-	#for ahu in ahus:
-	#	ahuNumbers.add(ahu.AHUNumber)
+	for ahu in components["ahu"]:
+		componentNames["ahu"].add(ahu.AHUName)
+	for vfd in components["vfd"]:
+		componentNames["vfd"].add(vfd.vfdName)
+	for filt in components["filter"]:
+		componentNames["filter"].add(filt.filterName)
+	for damper in components["damper"]:
+		componentNames["damper"].add(damper.damperName)
+	for fan in components["fan"]:
+		componentNames["fan"].add(fan.fanName)
+	for hec in components["hec"]:
+		componentNames["hec"].add(hec.HECName)
+	for sav in components["sav"]:
+		componentNames["sav"].add(sav.SAVName)
+	for vav in components["vav"]:
+		componentNames["vav"].add(vav.VAVName)
+	for thermafuser in components["thermafuser"]:
+		componentNames["thermafuser"].add(thermafuser.thermafuserName)
 
-	#print(ahuNumbers)
+	appendNewComponents(components, componentNames, AHU, mappedDataPoints, "ahu", len(components["ahu"]))
+	appendNewComponents(components, componentNames, VFD, mappedDataPoints, "vfd", len(components["vfd"]))
+	appendNewComponents(components, componentNames, Filter, mappedDataPoints, "filter", len(components["filter"]))
+	appendNewComponents(components, componentNames, Damper, mappedDataPoints, "damper", len(components["damper"]))
+	appendNewComponents(components, componentNames, Fan, mappedDataPoints, "fan", len(components["fan"]))
 
-	#new_ahus = createListOfNewComponents(AHU, mappedDataPoints, "ahu", ahuNumbers)
+	printComponents(components)
 
-	#for new_ahu in new_ahus:
-	#	print("AHU " + str(new_ahu.AHUNumber))
+	#Commit changes to the database
+	for key in components:
+		session.add_all(components[key])
+	
+	session.commit()
+
 
 def main():
 	"""Main function"""
@@ -272,7 +424,7 @@ def main():
 	print("Mapping DataPoints")
 	mappedDataPoints = MapDataPoints(session)
 
-	printMappedDataPoints(mappedDataPoints)
+	#printMappedDataPoints(mappedDataPoints)
 
 	print("Filling components in Database")
 	fillComponentsInDatabase(mappedDataPoints, session)
