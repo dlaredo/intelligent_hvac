@@ -96,7 +96,7 @@ insert into ComponentRelationships (ComponentName, ParentComponent, Group) value
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120B-2", "Computation 120A&B VAV-1-25", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120B-3", "Computation 120A&B VAV-1-25", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120C", "Printers 120C VAV-1-21", NULL);
-#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120D", "", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120D", "Research Equip. 120D VAV-1-22", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120E", "Office 120E-H VAV-1-24", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120F", "Office 120E-H VAV-1-24", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120G", "Office 120E-H VAV-1-24", NULL);
