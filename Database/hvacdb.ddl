@@ -18,7 +18,6 @@ CREATE TABLE Thermafuser_Reading (
 CREATE TABLE Staged_Air_Volume_Reading (
   Time_stamp            datetime NOT NULL, 
   SAVId                 int(10) NOT NULL, 
-  SAVName               varchar(255), 
   MiscSpareInput        real, 
   ZoneTemperature       real, 
   DischargeTemperature  real, 
@@ -59,7 +58,6 @@ CREATE TABLE Air_Handling_Unit_Reading (
 CREATE TABLE Variable_Air_Volume_Reading (
   Time_stamp           datetime NOT NULL, 
   VAVId                int(10) NOT NULL, 
-  VAVName              varchar(255), 
   FlowInput            real, 
   MiscSpareInput       real, 
   ZoneTemperature      real, 
@@ -75,7 +73,6 @@ CREATE TABLE Variable_Air_Volume_Reading (
 CREATE TABLE Heat_Exchanger_Coil_Reading (
   Time_stamp             datetime NOT NULL, 
   HECId                  int(10) NOT NULL, 
-  IsHeatingCoil          bit(1) NOT NULL, 
   SupplyWaterTemperature real, 
   ReturnWaterTemperature real, 
   ValveOpeningPercentage real, 
@@ -84,14 +81,12 @@ CREATE TABLE Heat_Exchanger_Coil_Reading (
 CREATE TABLE Filter_Reading (
   Time_stamp         datetime NOT NULL, 
   FilterId           int(10) NOT NULL, 
-  FilterType         varchar(255) NOT NULL, 
   DifferencePressure real, 
   PRIMARY KEY (Time_stamp, 
   FilterId)) ENGINE=InnoDB;
 CREATE TABLE Damper_Reading (
   Time_stamp              datetime NOT NULL, 
   DamperId                int(10) NOT NULL, 
-  DamperType              varchar(255) NOT NULL, 
   DamperInputVoltage      real, 
   DamperOpeningPercentage real, 
   IsolationDamper         bit(1), 
@@ -100,7 +95,6 @@ CREATE TABLE Damper_Reading (
 CREATE TABLE Fan_Reading (
   Time_stamp          datetime NOT NULL, 
   FanId               int(10) NOT NULL, 
-  FanType             varchar(255) NOT NULL, 
   AirVelocityPressure real, 
   VFDSpeed            real, 
   FanStatus           bit(1), 
@@ -121,16 +115,19 @@ CREATE TABLE Fan (
   FanId     int(10) NOT NULL AUTO_INCREMENT, 
   AHUNumber int(10) NOT NULL, 
   FanName   varchar(255) NOT NULL, 
+  FanType   varchar(255) NOT NULL, 
   PRIMARY KEY (FanId)) ENGINE=InnoDB;
 CREATE TABLE Damper (
   DamperId   int(10) NOT NULL AUTO_INCREMENT, 
   AHUNumber  int(10) NOT NULL, 
   DamperName varchar(255) NOT NULL, 
+  DamperType varchar(255) NOT NULL, 
   PRIMARY KEY (DamperId)) ENGINE=InnoDB;
 CREATE TABLE Filter (
   FilterId   int(10) NOT NULL AUTO_INCREMENT, 
   AHUNumber  int(10) NOT NULL, 
   FilterName varchar(255) NOT NULL, 
+  FilterType varchar(255) NOT NULL, 
   PRIMARY KEY (FilterId)) ENGINE=InnoDB;
 CREATE TABLE Staged_Air_Volume (
   SAVId     int(10) NOT NULL AUTO_INCREMENT, 
@@ -148,6 +145,7 @@ CREATE TABLE Heat_Exchanger_Coil (
   SAVId     int(10), 
   VAVId     int(10), 
   HECName   varchar(255) NOT NULL, 
+  HECType   varchar(255) NOT NULL, 
   PRIMARY KEY (HECId)) ENGINE=InnoDB;
 CREATE TABLE Thermafuser (
   ThermafuserId   int(10) NOT NULL AUTO_INCREMENT, 
@@ -178,11 +176,11 @@ CREATE TABLE VFD (
   VFDId     int(10) NOT NULL AUTO_INCREMENT, 
   AHUNumber int(10) NOT NULL, 
   VFDName   varchar(255) NOT NULL, 
+  VFDType   varchar(255) NOT NULL, 
   PRIMARY KEY (VFDId)) ENGINE=InnoDB;
 CREATE TABLE VFD_Reading (
   VFDId      int(10) NOT NULL, 
   Time_stamp datetime NOT NULL, 
-  VFDType    varchar(255) NOT NULL, 
   PowerKW    real, 
   SpeedRPM   real, 
   PRIMARY KEY (VFDId, 
