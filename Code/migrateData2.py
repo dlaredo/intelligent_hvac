@@ -235,6 +235,9 @@ def determineAhu(components, componentNames, ComponentClass, mappedDataPoint):
 		for ahu in components["ahu"]:
 			if ahu.AHUName.lower() in mappedDataPoint.path.lower():
 				determinedAhu = ahu
+
+	if ComponentClass == VAV or ComponentClass == SAV:
+		
 				
 	return determinedAhu
 
@@ -332,6 +335,11 @@ def appendNewComponents(components, componentNames, ComponentClass, mappedDataPo
 						print("Could not determine ahu")
 					elif componentType == "":
 						print("Could not determine componentType")
+		#Fill VAVs and SAVs
+		elif ComponentClass == VAV or ComponentClass = SAV:
+			componentName = mdataPoint.controlProgram
+
+			if componentName not in componentNames[componentKey]:
 			
 
 	return new_components
@@ -382,6 +390,7 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 	for thermafuser in components["thermafuser"]:
 		componentNames["thermafuser"].add(thermafuser.thermafuserName)
 
+	#Order in which new elements are appended is important, dont change this order
 	appendNewComponents(components, componentNames, AHU, mappedDataPoints, "ahu", len(components["ahu"]))
 	appendNewComponents(components, componentNames, VFD, mappedDataPoints, "vfd", len(components["vfd"]))
 	appendNewComponents(components, componentNames, Filter, mappedDataPoints, "filter", len(components["filter"]))
