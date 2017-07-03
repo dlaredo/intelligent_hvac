@@ -70,26 +70,25 @@ insert into ComponentRelationships (ComponentName, ParentComponent, Group) value
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("2C6E", "Hallway 2C1,6,7 VAV-2-25", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("3C1-A", "Hallway 3C1,5,6,7 VAV-3-23", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("3C1-B", "Hallway 3C1,5,6,7 VAV-3-23", NULL);
- 
-#no 3c2
+#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("3C2", "", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("3C4", "Hallway 3C4, Conference Support 325  VAV-3-25", NULL);
-insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("3C6-A", "Hallway 3C1,5,6,7 VAV-3-23", NULL);
-insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("3C6-A", "Hallway 3C1,5,6,7 VAV-3-23", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("3C6-A", "Hallway 3C1,5,6,7 VAV-3-23", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("3C6-B", "Hallway 3C1,5,6,7 VAV-3-23", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("3C6-C", "Hallway 3C1,5,6,7 VAV-3-23", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("3C6-D", "Hallway 3C1,5,6,7 VAV-3-23", NULL);
- 
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Bridge 2C7-1", "Hallway 2C1,6,7 VAV-2-25", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Bridge 2C7-2", "Hallway 2C1,6,7 VAV-2-25", NULL);
-#Research Corridor
- 
+#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Research Cooridor", "", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room 102A-1", "Scholarly Activity 102 VAV-1-18", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room 102A-2", "Scholarly Activity 102 VAV-1-18", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room 102A-3", "Scholarly Activity 102 VAV-1-18", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room 102A-4", "Scholarly Activity 102 VAV-1-18", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room 102A-5", "Scholarly Activity 102 VAV-1-18", NULL);
- 
+#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-001", "", NULL);
+#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-002", "", NULL);
+#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-0C1", "", NULL);
+#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-0C6A", "", NULL);
+#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-0C6B", "", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120A-1", "Computation 120A&B VAV-1-25", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120A-2", "Computation 120A&B VAV-1-25", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120A-3", "Computation 120A&B VAV-1-25", NULL);
@@ -97,6 +96,7 @@ insert into ComponentRelationships (ComponentName, ParentComponent, Group) value
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120B-2", "Computation 120A&B VAV-1-25", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120B-3", "Computation 120A&B VAV-1-25", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120C", "Printers 120C VAV-1-21", NULL);
+#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120D", "", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120E", "Office 120E-H VAV-1-24", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120F", "Office 120E-H VAV-1-24", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120G", "Office 120E-H VAV-1-24", NULL);
@@ -105,8 +105,8 @@ insert into ComponentRelationships (ComponentName, ParentComponent, Group) value
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120J-1", "Breakout 120J VAV-1-23", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-120J-2", "Breakout 120J VAV-1-23", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-205", "Office 205 VAV-2-39", NULL);
-insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-206-2", "CSE Lab 206 VAV-2-38", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-206-1", "CSE Lab 206 VAV-2-38", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-206-2", "CSE Lab 206 VAV-2-38", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-207", "Office 207-217 VAV-2-30", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-208", "Office 207-217 VAV-2-30", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-209", "Office 207-217 VAV-2-30", NULL);
@@ -122,8 +122,8 @@ insert into ComponentRelationships (ComponentName, ParentComponent, Group) value
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-213D-2", "Research Group 1-3 213C-E VAV-2-33", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-213E-1", "Research Group 1-3 213C-E VAV-2-33", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-213E-2", "Research Group 1-3 213C-E VAV-2-33", NULL);
-#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-213F-1", "Office 207-217 VAV-2-30", NULL);
-#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-213F-2", "Office 207-217 VAV-2-30", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-213F-1", "Research Group 5 213F VAV-2-32", NULL);res
+insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-213F-2", "Research Group 5 213F VAV-2-32", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-214", "Office 207-217 VAV-2-30", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-215", "Office 207-217 VAV-2-30", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-216", "Office 207-217 VAV-2-30", NULL);
@@ -140,7 +140,7 @@ insert into ComponentRelationships (ComponentName, ParentComponent, Group) value
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-305-B", "Office 305 VAV-3-30", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-305-C", "Office 305 VAV-3-30", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-305a", "Office 305 VAV-3-30", NULL);
-#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-310", "Office 305A, 310A-C, 315E-G VAV-3-36", NULL);
+#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-310", "", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-310A", "Office 305A, 310A-C, 315E-G VAV-3-36", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-310B", "Office 305A, 310A-C, 315E-G VAV-3-36", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-310C", "Office 305A, 310A-C, 315E-G VAV-3-36", NULL);
@@ -155,10 +155,9 @@ insert into ComponentRelationships (ComponentName, ParentComponent, Group) value
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-314B", "Research Group 8 314 VAV-3-27", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-315", "Engineering 315, Reception 315A VAV-3-35", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-315A", "Engineering 315, Reception 315A VAV-3-35", NULL);
-#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-315B", "Office Support 315B & C VAV-3-32", NULL);
-#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-315C", "Office Support 315B & C VAV-3-32", NULL);
-
-#315d
+insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-315B", "Office Support 315B & C VAV-3-32", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-315C", "Office Support 315B & C VAV-3-32", NULL);
+#insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-315D", "", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-315E", "Office 305A, 310A-C, 315E-G VAV-3-36", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-315F", "Office 305A, 310A-C, 315E-G VAV-3-36", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("Room-315G", "Office 305A, 310A-C, 315E-G VAV-3-36", NULL);
