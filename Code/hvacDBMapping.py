@@ -411,6 +411,14 @@ class AHU(Base):
 	def thermafusers(self, value):
 		self._thermafusers = value
 
+	#Methods
+
+	def getComponentName(self):
+		return self._AHUName
+
+	def getComponentType(self):
+		return "AHU"
+
 	def __str__(self):
 		return "<AHU(AHUNumber = '%d', AHUName = '%s', ahuReadings = '%s', filters = '%s', fans = '%s', dampers = '%s', vavs = '%s', savs = '%s', hecs = '%s', vfds = '%s', thermafusers = '%s' )>" \
 		% (self._AHUNumber, self._AHUName, str(self._ahuReadings), str(self._filters), str(self._fans), str(self._dampers), str(self._vavs), str(self._savs), str(self._hecs), str(self._vfds),\
@@ -782,6 +790,14 @@ class VFD(Base):
 	def vfdReadings(self, value):
 		self._vfdReadings = value
 
+	#Methods
+
+	def getComponentName(self):
+		return self._vfdName
+
+	def getComponentType(self):
+		return "VFD" + self._vfdType
+
 	def __str__(self):
 		return "<Filter(vfdId = '%d', AHUNumber = '%d', vfdName = '%d',  vfdType = '%s', ahu = '%s', vfdReadings = '%s')>" \
 		% (self._vfdId, self._AHUNumber, self._vfdName, self._vfdType, str(self._ahu), str(self._vfdReadings))
@@ -932,6 +948,14 @@ class Filter(Base):
 	def filterReadings(self, value):
 		self._filterReadings = value
 
+	#Methods
+
+	def getComponentName(self):
+		return self._filterName
+
+	def getComponentType(self):
+		return "Filter" + self._filterType
+
 	def __str__(self):
 		return "<Filter(filterId = '%d', AHUNumber = '%d', filterName = '%d', filterType = '%s', ahu = '%s', filterReadings = '%s')>" \
 		% (self._filterId, self._AHUNumber, self._filterName, self._filterType, str(self._ahu), str(self._filterReadings))
@@ -1072,6 +1096,14 @@ class Damper(Base):
 	@damperReadings.setter
 	def damperReadings(self, value):
 		self._damperReadings = value
+
+	#Methods
+
+	def getComponentName(self):
+		return self._damperName
+
+	def getComponentType(self):
+		return "Damper" + self._damperType
 
 	def __str__(self):
 		return "<Damper(damperId = '%d', AHUNumber = '%d', damperName = '%d', damperType = '%s', ahu = '%s', damperReadings = '%s')>" \
@@ -1233,6 +1265,14 @@ class Fan(Base):
 	@fanReadings.setter
 	def fanReadings(self, value):
 		self._fanReadings = value
+
+	#Methods
+
+	def getComponentName(self):
+		return self._fanName
+
+	def getComponentType(self):
+		return "Fan" + self._fanType
 
 	def __str__(self):
 		return "<Fan(fanId = '%d', AHUNumber = '%d', fanName = '%d', fanType = '%s', ahu = '%s', fanReadings = '%s')>" \
@@ -1508,6 +1548,14 @@ class HEC(Base):
 	def hecReadings(self, value):
 		self._hecReadings = value
 
+	#Methods
+
+	def getComponentName(self):
+		return self._HECName
+
+	def getComponentType(self):
+		return "HEC" + self._HECType
+
 	def __str__(self):
 		return "<HEC(HECId = '%d', AHUNumber = '%d', HECName = '%d', HECType = '%s', SAVId = '%d', VAVId = '%d', ahu = '%s', sav = '%s', vav = '%s', hecReadings = '%s')>" \
 		% (self._HECId, self._AHUNumber, self._HECName, self._HECType, self._SAVId, self._VAVId, str(self._ahu), str(self._sav), str(self._vav), str(self._hecReadings))
@@ -1677,6 +1725,14 @@ class SAV(Base):
 	@SAVReadings.setter
 	def SAVReadings(self, value):
 		self._SAVReadings = value
+
+	#Methods
+
+	def getComponentName(self):
+		return self._SAVName
+
+	def getComponentType(self):
+		return "SAV"
 
 	def __str__(self):
 		return "<SAV(SAVId = '%d', AHUNumber = '%d', SAVName = '%d', ahu = '%s', hecs = '%s', thermafusers = '%s', SAVReadings = '%s')>" \
@@ -1879,6 +1935,14 @@ class VAV(Base):
 	@VAVReadings.setter
 	def VAVReadings(self, value):
 		self._VAVReadings = value
+
+	#Methods
+
+	def getComponentName(self):
+		return self._VAVName
+
+	def getComponentType(self):
+		return "VAV"
 
 	def __str__(self):
 		return "<VAV(VAVId = '%d', AHUNumber = '%d', VAVName = '%d', ahu = '%s', hecs = '%s', thermafusers = '%s', VAVReadings = '%s')>" \
@@ -2141,6 +2205,14 @@ class Thermafuser(Base):
 	@thermafuserReadings.setter
 	def thermafuserReadings(self, value):
 		self._thermafuserReadings = value
+
+	#Methods
+
+	def getComponentName(self):
+		return self._thermafuserName
+
+	def getComponentType(self):
+		return "Thermafuser"
 
 	def __str__(self):
 		return "<Thermafuser(thermafuserId = '%d', AHUNumber = '%d', SAVId = '%d', VAVId = '%d', thermafuserName = '%d', ahu = '%s', sav = '%s', vav = '%s', thermafuserReadings = '%s')>" \

@@ -253,7 +253,7 @@ def getParentComponent(components, componentNames, relationships, ComponentClass
 			if relationship.componentName.lower() == mappedDataPoint.controlProgram.lower():
 				ahuName = relationship.parentComponent
 				for ahu in components["ahu"]:
-					if ahu.AHUName.lower() in ahuName.lower():
+					if ahu.AHUName.lower() == ahuName.lower():
 						determinedParent = ahu
 
 	if ComponentClass == SAV:
@@ -261,8 +261,24 @@ def getParentComponent(components, componentNames, relationships, ComponentClass
 			if relationship.componentName.lower() == mappedDataPoint.controlProgram.lower():
 				ahuName = relationship.parentComponent
 				for ahu in components["ahu"]:
-					if ahu.AHUName.lower() in ahuName.lower():
+					if ahu.AHUName.lower() == ahuName.lower():
 						determinedParent = ahu
+
+	if ComponentClass == Thermafuser:
+		for relationship in relationships["thermafuser"]:
+			if relationship.componentName.lower() == mappedDataPoint.controlProgram.lower():
+				parentName = relationship.parentComponent
+
+				#Look for the parent component in either ahus, savs or vavs
+				for ahu in components["ahu"]:
+					if ahu.AHUName.lower() == parentName.lower():
+						determinedParent = ahu
+				for vav in components["vav"]:
+					if vav.VAVName.lower() == parentName.lower():
+						determinedParent = vav
+				for sav in components["sav"]:
+					if sav.SAVName.lower() == parentName.lower():
+						determinedParent = sav
 
 	if ComponentClass == HEC:
 		if parentComponentType == "AHU":
@@ -329,6 +345,8 @@ def determineComponentType(componentClass, dataPoint):
 			componentType = "Hot Water"
 		else:
 			componentType = ""
+	elif componentClass == Thermafuser:
+		componentType = "Thermafuser"
 
 	return componentType
 
@@ -400,51 +418,72 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 				else:
 					print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
 					print("Could not determine ahu")
-		#Fill HECs
+		#Fill HECs and thermafusers
 		elif ComponentClass == HEC or Thermafuser:
 			componentType = determineComponentType(ComponentClass, mdataPoint)
-			
-			if ComponentClass == HEC:
-				splittedPath = mdataPoint.path.split("/")
-				componentPath = splittedPath[len(splittedPath) - 1]
-				componentNumber = determineComponentNumber(componentPath)
 
 			#Determine parent component
 			if "AHU" in mdataPoint.controlProgram:
 				parentComponentType = "AHU"
-				parentComponent = getParentComponent(components, componentNames, relationships, ComponentClass, parentComponentType, mdataPoint)
-				componentName = parentComponent.AHUName + "/" + componentType + " "  + componentKey.title() + " " + str(componentNumber)
 			elif "VAV" in mdataPoint.controlProgram:
 				parentComponentType = "VAV"
-				parentComponent = getParentComponent(components, componentNames, relationships, ComponentClass, parentComponentType, mdataPoint)
-				componentName = parentComponent.VAVName + "/" + componentType + " "  + componentKey.title() + " " + str(componentNumber)
-			else:
+			elif "SAV" in mdataPoint.controlProgram:
 				parentComponentType = "SAV"
-				parentComponent = getParentComponent(components, componentNames, relationships, ComponentClass, parentComponentType, mdataPoint)
-				componentName = parentComponent.SAVName + "/" + componentType + " "  + componentKey.title() + " " + str(componentNumber)
+			else:  #Thermafuser case, we dont know what its parent component type is a priory
+				parentComponentType = ""
 			
-			#print(componentName, mdataPoint.path)
+			#Try to determine its parent component
+			parentComponent = getParentComponent(components, componentNames, relationships, ComponentClass, parentComponentType, mdataPoint)
 
-			if componentName not in componentNames[componentKey]:
+			if parentComponent != None:
+				parentComponentName = parentComponent.getComponentName()
+
+				#Form componentName
+				if ComponentClass == HEC:
+					splittedPath = mdataPoint.path.split("/")
+					componentPath = splittedPath[len(splittedPath) - 1]
+					componentNumber = determineComponentNumber(componentPath)
+					componentName = parentComponentName + "/" + componentType + " "  + componentKey.title() + " " + str(componentNumber)
+				else:
+					componentName = parentComponentName + "/" + mdataPoint.controlProgram
 			
-				#Create the new component
-				if parentComponent != None:
-					if parentComponentType == "AHU":
-						component = ComponentClass(totalNumberOfComponents + 1, componentName, componentType, AHUNumber = parentComponent.AHUNumber, ahu = parentComponent)
-						#ahu.hecs.append(component)
-					elif parentComponentType == "VAV":
-						component = ComponentClass(totalNumberOfComponents + 1, componentName, componentType, VAVId = parentComponent.VAVId, vav = parentComponent)
-						#vav.hecs.append(component)
+				#print(componentName, mdataPoint.path)
+
+				if componentName not in componentNames[componentKey]:
+			
+					#Create the new component
+					if parentComponent.getComponentType() == "AHU":
+						if ComponentClass == HEC:
+							component = ComponentClass(totalNumberOfComponents + 1, componentName, componentType, AHUNumber = parentComponent.AHUNumber, ahu = parentComponent)
+							#ahu.hecs.append(component)
+						else:
+							component = ComponentClass(totalNumberOfComponents + 1, componentName, AHUNumber = parentComponent.AHUNumber, ahu = parentComponent)
+							#ahu.thermafusers.append(component)
+					elif parentComponent.getComponentType() == "VAV":
+						if ComponentClass == HEC:
+							component = ComponentClass(totalNumberOfComponents + 1, componentName, componentType, VAVId = parentComponent.VAVId, vav = parentComponent)
+							#vav.hecs.append(component)
+						else:
+							component = ComponentClass(totalNumberOfComponents + 1, componentName, VAVId = parentComponent.VAVId, vav = parentComponent)
+							#vav.thermafusers.append(component)
+					elif parentComponent.getComponentType() == "SAV":
+						if ComponentClass == HEC:
+							component = ComponentClass(totalNumberOfComponents + 1, componentName, componentType, SAVId = parentComponent.SAVId, sav = parentComponent)
+							#sav.hecs.append(component)
+						else:
+							component = ComponentClass(totalNumberOfComponents + 1, componentName, SAVId = parentComponent.SAVId, sav = parentComponent)
+							#sav.thermafusers.append(component)
 					else:
-						component = ComponentClass(totalNumberOfComponents + 1, componentName, componentType, SAVId = parentComponent.SAVId, sav = parentComponent)
-						#sav.hecs.append(component)
+						print("Undetermined parent component " + parentComponent.getComponentType())
+						continue
 
 					components[componentKey].append(component)
 					componentNames[componentKey].add(componentName)
 					totalNumberOfComponents += 1
-				else:
-					print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
-					print("Could not determine parent " + parentComponentType)
+
+			else:
+				print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
+				print("Could not determine parent " + parentComponentType)
 
 
 	return new_components
@@ -479,7 +518,7 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 	relationships = dict()
 	relationships["vav"] = session.query(ComponentRelationship).filter(ComponentRelationship._componentType == "VAV").all()
 	relationships["sav"] = session.query(ComponentRelationship).filter(ComponentRelationship._componentType == "SAV").all()
-	relationships["themafuser"] = session.query(ComponentRelationship).filter(ComponentRelationship._componentType == "Thermafuser").all()
+	relationships["thermafuser"] = session.query(ComponentRelationship).filter(ComponentRelationship._componentType == "Thermafuser").all()
 
 	for ahu in components["ahu"]:
 		componentNames["ahu"].add(ahu.AHUName)
@@ -509,6 +548,7 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 	appendNewComponents(components, componentNames, relationships, VAV, mappedDataPoints, "vav", len(components["vav"]))
 	appendNewComponents(components, componentNames, relationships, SAV, mappedDataPoints, "sav", len(components["sav"]))
 	appendNewComponents(components, componentNames, relationships, HEC, mappedDataPoints, "hec", len(components["hec"]))
+	appendNewComponents(components, componentNames, relationships, Thermafuser, mappedDataPoints, "thermafuser", len(components["thermafuser"]))
 
 	printComponents(components)
 

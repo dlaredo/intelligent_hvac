@@ -1,5 +1,3 @@
-use HVAC;
-
 CREATE TABLE Thermafuser_Reading (
   Time_stamp                int(10) NOT NULL, 
   ThermafuserId             int(10) NOT NULL, 
@@ -151,7 +149,7 @@ CREATE TABLE Heat_Exchanger_Coil (
   PRIMARY KEY (HECId)) ENGINE=InnoDB;
 CREATE TABLE Thermafuser (
   ThermafuserId   int(10) NOT NULL AUTO_INCREMENT, 
-  AHUNumber       int(10) NOT NULL, 
+  AHUNumber       int(10), 
   SAVId           int(10), 
   VAVId           int(10), 
   ThermafuserName varchar(255) NOT NULL, 
