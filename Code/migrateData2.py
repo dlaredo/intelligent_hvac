@@ -219,9 +219,11 @@ def printComponents(components):
 		print("Damper Number: " + str(damper.damperId) + ", Damper Name: " + str(damper.damperName) + ", Parent AHU: " + str(damper.AHUNumber))
 	for fan in components["fan"]:
 		print("Fan Number: " + str(fan.fanId) + ", Fan Name: " + str(fan.fanName) + ", Parent AHU: " + str(fan.AHUNumber))
+	for vav in components["vav"]:
+		print("VAV Number: " + str(vav.VAVId) + ", VAV Name: " + str(vav.VAVName) + ", Parent AHU: " + str(vav.AHUNumber))
 
 
-def determineAhu(components, componentNames, ComponentClass, mappedDataPoint):
+def determineAhu(components, componentNames, relationships, ComponentClass, mappedDataPoint):
 	"""Determine the ahu that supplies certain component based on its datapoint"""
 
 	determinedAhu = None
@@ -236,8 +238,23 @@ def determineAhu(components, componentNames, ComponentClass, mappedDataPoint):
 			if ahu.AHUName.lower() in mappedDataPoint.path.lower():
 				determinedAhu = ahu
 
-	if ComponentClass == VAV or ComponentClass == SAV:
-		
+
+	#Determination of AHU for VAV and SAV needs to be improved for performance since a search in a list is performed everytime
+	if ComponentClass == VAV:
+		for relationship in relationships["vav"]:
+			if relationship.componentName.lower() == mappedDataPoint.controlProgram.lower():
+				ahuName = relationship.parentComponent
+				for ahu in components["ahu"]:
+					if ahu.AHUName.lower() in ahuName.lower():
+						determinedAhu = ahu
+
+	if ComponentClass == SAV:
+		for relationship in relationships["sav"]:
+			if relationship.componentName.lower() == mappedDataPoint.controlProgram.lower():
+				ahuName = relationship.parentComponent
+				for ahu in components["ahu"]:
+					if ahu.AHUName.lower() in ahuName.lower():
+						determinedAhu = ahu
 				
 	return determinedAhu
 
@@ -287,7 +304,7 @@ def determineComponentType(componentClass, dataPoint):
 	return componentType
 
 
-def appendNewComponents(components, componentNames, ComponentClass, mappedDataPoints, componentKey, totalNumberOfComponents):
+def appendNewComponents(components, componentNames, relationships, ComponentClass, mappedDataPoints, componentKey, totalNumberOfComponents):
 	"""Fill components in a list to be inserted to the database"""
 
 	new_components = list()
@@ -320,7 +337,7 @@ def appendNewComponents(components, componentNames, ComponentClass, mappedDataPo
 			#print(componentName)
 
 			if componentName not in componentNames[componentKey]:
-				ahu = determineAhu(components, componentNames, ComponentClass, mdataPoint)
+				ahu = determineAhu(components, componentNames, relationships, ComponentClass, mdataPoint)
 
 				if ahu != None and componentType != "":
 					component = ComponentClass(totalNumberOfComponents + 1, ahu.AHUNumber, componentName, componentType, ahu)
@@ -331,16 +348,29 @@ def appendNewComponents(components, componentNames, ComponentClass, mappedDataPo
 
 					#print(mdataPoint.path, ahu.AHUName)
 				else:
+					print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
 					if ahu == None:
 						print("Could not determine ahu")
 					elif componentType == "":
 						print("Could not determine componentType")
 		#Fill VAVs and SAVs
-		elif ComponentClass == VAV or ComponentClass = SAV:
+		elif ComponentClass == VAV or ComponentClass == SAV:
 			componentName = mdataPoint.controlProgram
 
 			if componentName not in componentNames[componentKey]:
-			
+				ahu = determineAhu(components, componentNames, relationships, ComponentClass, mdataPoint)
+
+				if ahu != None:
+					component = ComponentClass(totalNumberOfComponents + 1, ahu.AHUNumber, componentName, ahu)
+					#ahu.filters.append(filt)
+					components[componentKey].append(component)
+					componentNames[componentKey].add(componentName)
+					totalNumberOfComponents += 1
+
+					#print(mdataPoint.path, ahu.AHUName)
+				else:
+					print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
+					print("Could not determine ahu")
 
 	return new_components
 
@@ -371,6 +401,11 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 	components["vav"] = session.query(VAV).all()
 	components["thermafuser"] = session.query(Thermafuser).all()
 
+	relationships = dict()
+	relationships["vav"] = session.query(ComponentRelationship).filter(ComponentRelationship._componentType == "VAV").all()
+	relationships["sav"] = session.query(ComponentRelationship).filter(ComponentRelationship._componentType == "SAV").all()
+	relationships["themafuser"] = session.query(ComponentRelationship).filter(ComponentRelationship._componentType == "Thermafuser").all()
+
 	for ahu in components["ahu"]:
 		componentNames["ahu"].add(ahu.AHUName)
 	for vfd in components["vfd"]:
@@ -391,11 +426,12 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 		componentNames["thermafuser"].add(thermafuser.thermafuserName)
 
 	#Order in which new elements are appended is important, dont change this order
-	appendNewComponents(components, componentNames, AHU, mappedDataPoints, "ahu", len(components["ahu"]))
-	appendNewComponents(components, componentNames, VFD, mappedDataPoints, "vfd", len(components["vfd"]))
-	appendNewComponents(components, componentNames, Filter, mappedDataPoints, "filter", len(components["filter"]))
-	appendNewComponents(components, componentNames, Damper, mappedDataPoints, "damper", len(components["damper"]))
-	appendNewComponents(components, componentNames, Fan, mappedDataPoints, "fan", len(components["fan"]))
+	appendNewComponents(components, componentNames, relationships, AHU, mappedDataPoints, "ahu", len(components["ahu"]))
+	appendNewComponents(components, componentNames, relationships, VFD, mappedDataPoints, "vfd", len(components["vfd"]))
+	appendNewComponents(components, componentNames, relationships, Filter, mappedDataPoints, "filter", len(components["filter"]))
+	appendNewComponents(components, componentNames, relationships, Damper, mappedDataPoints, "damper", len(components["damper"]))
+	appendNewComponents(components, componentNames, relationships, Fan, mappedDataPoints, "fan", len(components["fan"]))
+	appendNewComponents(components, componentNames, relationships, VAV, mappedDataPoints, "vav", len(components["vav"]))
 
 	printComponents(components)
 

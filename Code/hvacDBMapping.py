@@ -212,7 +212,8 @@ class ComponentRelationship(Base):
 
 	_componentName = Column('ComponentName', String(255), primary_key = True)
 	_parentComponent = Column('ParentComponent', String(255), ForeignKey("ComponentRelationships.ComponentName"))
-	_group = Column('Group', String(255))
+	_componentType = Column('ComponentType', String(255))
+	_group = Column('ComponentGroup', String(255))
 
 	#Relationships between Component parents and children
 	#_parent = relationship("ComponentRelationship", back_populates = "_children")
@@ -220,10 +221,11 @@ class ComponentRelationship(Base):
 
 	#Constructor
 
-	def __init__(self, componentName, parentComponent, group, parent = None, children = []):
+	def __init__(self, componentName, parentComponent, componentType, group, parent = None, children = []):
 
 		self._componentName = componentName
 		self._parentComponent = parentComponent
+		self._componentType = componentType
 		self._group = group
 		self._parent = parent
 		self._children = children
@@ -245,6 +247,14 @@ class ComponentRelationship(Base):
 	@parentComponent.setter
 	def parentComponent(self, value):
 		self._parentComponent = value
+
+	@property
+	def componentType(self):
+		return self._componentType
+
+	@componentType.setter
+	def componentType(self, value):
+		self._componentType = value
 
 	@property
 	def group(self):
@@ -271,8 +281,8 @@ class ComponentRelationship(Base):
 		self._children = value 
 
 	def __str__(self):
-		return "<DataPoint(componentName = '%s', parentComponent = '%s', group = '%s', parent = '%s', children = '%s')>" %\
-		 (self._componentName, self._parentComponent, self._group, str(self._parent), str(self._children))
+		return "<DataPoint(componentName = '%s', parentComponent = '%s', componentType = '%s', group = '%s', parent = '%s', children = '%s')>" %\
+		 (self._componentName, self._parentComponent, self._componentType, self._group, str(self._parent), str(self._children))
 
 
 class AHU(Base):
