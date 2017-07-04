@@ -1680,7 +1680,7 @@ class SAV(Base):
 
 	def __str__(self):
 		return "<SAV(SAVId = '%d', AHUNumber = '%d', SAVName = '%d', ahu = '%s', hecs = '%s', thermafusers = '%s', SAVReadings = '%s')>" \
-		% (self._SAVId, self._AHUNumber, self._SAVName, str(self._ahu), str(self._hecs), str(_thermafusers), str(self._SAVReadings))
+		% (self._SAVId, self._AHUNumber, self._SAVName, str(self._ahu), str(self._hecs), str(self._thermafusers), str(self._SAVReadings))
 
 
 class SAVReading(Base):
@@ -1882,7 +1882,7 @@ class VAV(Base):
 
 	def __str__(self):
 		return "<VAV(VAVId = '%d', AHUNumber = '%d', VAVName = '%d', ahu = '%s', hecs = '%s', thermafusers = '%s', VAVReadings = '%s')>" \
-		% (self._VAVId, self._AHUNumber, self._VAVName, str(self._ahu), str(self._hecs), str(_thermafusers), str(self._VAVReadings))
+		% (self._VAVId, self._AHUNumber, self._VAVName, str(self._ahu), str(self._hecs), str(self._thermafusers), str(self._VAVReadings))
 
 
 class VAVReading(Base):

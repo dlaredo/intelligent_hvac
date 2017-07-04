@@ -221,22 +221,30 @@ def printComponents(components):
 		print("Fan Number: " + str(fan.fanId) + ", Fan Name: " + str(fan.fanName) + ", Parent AHU: " + str(fan.AHUNumber))
 	for vav in components["vav"]:
 		print("VAV Number: " + str(vav.VAVId) + ", VAV Name: " + str(vav.VAVName) + ", Parent AHU: " + str(vav.AHUNumber))
+	for sav in components["sav"]:
+		print("SAV Number: " + str(sav.VAVId) + ", SAV Name: " + str(sav.VAVName) + ", Parent AHU: " + str(sav.AHUNumber))
+	for hec in components["hec"]:
+		print("HEC Number: " + str(hec.HECId) + ", HEC Name: " + str(hec.HECName) + ", Parent AHU: " + str(hec.AHUNumber) +
+		", Parent VAV: " + str(hec.VAVId)  + ", Parent SAV: " + str(hec.SAVId))
+	for thermafuser in components["thermafuser"]:
+		print("THR Number: " + str(thermafuser.thermafuserId) + ", THR Name: " + str(thermafuser.thermafuserName) + ", Parent AHU: " + str(thermafuser.AHUNumber) + 
+		", Parent VAV: " + str(thermafuser.VAVId) + ", Parent SAV: " + str(thermafuser.SAVId))
 
 
-def determineAhu(components, componentNames, relationships, ComponentClass, mappedDataPoint):
+def getParentComponent(components, componentNames, relationships, ComponentClass, parentComponentType, mappedDataPoint):
 	"""Determine the ahu that supplies certain component based on its datapoint"""
 
-	determinedAhu = None
+	determinedParent = None
 
 	if ComponentClass == VFD:
 		for ahu in components["ahu"]:
 			if ahu.AHUName.lower() in mappedDataPoint.controlProgram.lower():
-				determinedAhu = ahu
+				determinedParent = ahu
 
 	if ComponentClass == Filter or ComponentClass == Damper or ComponentClass == Fan:
 		for ahu in components["ahu"]:
 			if ahu.AHUName.lower() in mappedDataPoint.path.lower():
-				determinedAhu = ahu
+				determinedParent = ahu
 
 
 	#Determination of AHU for VAV and SAV needs to be improved for performance since a search in a list is performed everytime
@@ -246,7 +254,7 @@ def determineAhu(components, componentNames, relationships, ComponentClass, mapp
 				ahuName = relationship.parentComponent
 				for ahu in components["ahu"]:
 					if ahu.AHUName.lower() in ahuName.lower():
-						determinedAhu = ahu
+						determinedParent = ahu
 
 	if ComponentClass == SAV:
 		for relationship in relationships["sav"]:
@@ -254,9 +262,23 @@ def determineAhu(components, componentNames, relationships, ComponentClass, mapp
 				ahuName = relationship.parentComponent
 				for ahu in components["ahu"]:
 					if ahu.AHUName.lower() in ahuName.lower():
-						determinedAhu = ahu
+						determinedParent = ahu
+
+	if ComponentClass == HEC:
+		if parentComponentType == "AHU":
+			for parent in components["ahu"]:
+				if parent.AHUName.lower() in mappedDataPoint.controlProgram.lower():
+					determinedParent = parent
+		if parentComponentType == "VAV":
+			for parent in components["vav"]:
+				if parent.VAVName.lower() in mappedDataPoint.controlProgram.lower():
+					determinedParent = parent
+		if parentComponentType == "SAV":
+			for parent in components["sav"]:
+				if parent.SAVName.lower() in mappedDataPoint.controlProgram.lower():
+					determinedParent = parent
 				
-	return determinedAhu
+	return determinedParent
 
 
 def determineComponentType(componentClass, dataPoint):
@@ -300,6 +322,13 @@ def determineComponentType(componentClass, dataPoint):
 			componentType = "Exhaust Air"
 		else:
 			componentType = ""
+	elif componentClass == HEC:
+		if "cw" in dataPoint.point.lower() or "chw" in dataPoint.path.lower():
+			componentType = "Cold Water"
+		elif "hw" in dataPoint.point.lower() or "hw" in dataPoint.path.lower():
+			componentType = "Hot Water"
+		else:
+			componentType = ""
 
 	return componentType
 
@@ -337,7 +366,7 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 			#print(componentName)
 
 			if componentName not in componentNames[componentKey]:
-				ahu = determineAhu(components, componentNames, relationships, ComponentClass, mdataPoint)
+				ahu = getParentComponent(components, componentNames, relationships, ComponentClass, "AHU", mdataPoint)
 
 				if ahu != None and componentType != "":
 					component = ComponentClass(totalNumberOfComponents + 1, ahu.AHUNumber, componentName, componentType, ahu)
@@ -358,7 +387,7 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 			componentName = mdataPoint.controlProgram
 
 			if componentName not in componentNames[componentKey]:
-				ahu = determineAhu(components, componentNames, relationships, ComponentClass, mdataPoint)
+				ahu = getParentComponent(components, componentNames, relationships, ComponentClass, "AHU", mdataPoint)
 
 				if ahu != None:
 					component = ComponentClass(totalNumberOfComponents + 1, ahu.AHUNumber, componentName, ahu)
@@ -371,6 +400,52 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 				else:
 					print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
 					print("Could not determine ahu")
+		#Fill HECs
+		elif ComponentClass == HEC or Thermafuser:
+			componentType = determineComponentType(ComponentClass, mdataPoint)
+			
+			if ComponentClass == HEC:
+				splittedPath = mdataPoint.path.split("/")
+				componentPath = splittedPath[len(splittedPath) - 1]
+				componentNumber = determineComponentNumber(componentPath)
+
+			#Determine parent component
+			if "AHU" in mdataPoint.controlProgram:
+				parentComponentType = "AHU"
+				parentComponent = getParentComponent(components, componentNames, relationships, ComponentClass, parentComponentType, mdataPoint)
+				componentName = parentComponent.AHUName + "/" + componentType + " "  + componentKey.title() + " " + str(componentNumber)
+			elif "VAV" in mdataPoint.controlProgram:
+				parentComponentType = "VAV"
+				parentComponent = getParentComponent(components, componentNames, relationships, ComponentClass, parentComponentType, mdataPoint)
+				componentName = parentComponent.VAVName + "/" + componentType + " "  + componentKey.title() + " " + str(componentNumber)
+			else:
+				parentComponentType = "SAV"
+				parentComponent = getParentComponent(components, componentNames, relationships, ComponentClass, parentComponentType, mdataPoint)
+				componentName = parentComponent.SAVName + "/" + componentType + " "  + componentKey.title() + " " + str(componentNumber)
+			
+			#print(componentName, mdataPoint.path)
+
+			if componentName not in componentNames[componentKey]:
+			
+				#Create the new component
+				if parentComponent != None:
+					if parentComponentType == "AHU":
+						component = ComponentClass(totalNumberOfComponents + 1, componentName, componentType, AHUNumber = parentComponent.AHUNumber, ahu = parentComponent)
+						#ahu.hecs.append(component)
+					elif parentComponentType == "VAV":
+						component = ComponentClass(totalNumberOfComponents + 1, componentName, componentType, VAVId = parentComponent.VAVId, vav = parentComponent)
+						#vav.hecs.append(component)
+					else:
+						component = ComponentClass(totalNumberOfComponents + 1, componentName, componentType, SAVId = parentComponent.SAVId, sav = parentComponent)
+						#sav.hecs.append(component)
+
+					components[componentKey].append(component)
+					componentNames[componentKey].add(componentName)
+					totalNumberOfComponents += 1
+				else:
+					print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
+					print("Could not determine parent " + parentComponentType)
+
 
 	return new_components
 
@@ -432,6 +507,8 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 	appendNewComponents(components, componentNames, relationships, Damper, mappedDataPoints, "damper", len(components["damper"]))
 	appendNewComponents(components, componentNames, relationships, Fan, mappedDataPoints, "fan", len(components["fan"]))
 	appendNewComponents(components, componentNames, relationships, VAV, mappedDataPoints, "vav", len(components["vav"]))
+	appendNewComponents(components, componentNames, relationships, SAV, mappedDataPoints, "sav", len(components["sav"]))
+	appendNewComponents(components, componentNames, relationships, HEC, mappedDataPoints, "hec", len(components["hec"]))
 
 	printComponents(components)
 
@@ -475,7 +552,6 @@ def main():
 	fillComponentsInDatabase(mappedDataPoints, session)
 
 	session.close()
-
 
 
 #invoke main
