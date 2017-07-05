@@ -5,6 +5,7 @@ from sqlalchemy.orm import sessionmaker
 import traceback
 import datetime
 import re
+import os
 
 
 global numberRegex
@@ -25,9 +26,8 @@ def zonecsvToDb(filepath, dbsession, zone):
 		reader = csv.reader(csvfile)
 		for row in reader:
 			#skip the header
-			if (count == 0):
+			if count == 0:
 				count += 1
-				continue
 			else:
 
 				path = row[6]
@@ -35,7 +35,6 @@ def zonecsvToDb(filepath, dbsession, zone):
 					#add the datapoints to the DB session
 					dataPoint = DataPoint(path = path, server = row[0], location = row[1], branch = row[2], subBranch = row[3], controlProgram = row[4], point = row[5], zone = zone)
 					dbsession.add(dataPoint)
-					#print("writting ", dataPoint)
 
 		#commit changes to the database
 		dbsession.commit()
@@ -269,7 +268,8 @@ def getParentComponent(components, componentNames, relationships, ComponentClass
 			if relationship.componentName.lower() == mappedDataPoint.controlProgram.lower():
 				parentName = relationship.parentComponent
 
-				#Look for the parent component in either ahus, savs or vavs
+				#Look for the parent component in either ahus, savs or vavs.
+				#Determination of parent for Thermafuser needs to be improved for performance since a search in 3 lists is performed everytime
 				for ahu in components["ahu"]:
 					if ahu.AHUName.lower() == parentName.lower():
 						determinedParent = ahu
@@ -358,16 +358,19 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 
 	for mdataPoint in mappedDataPoints[componentKey]:
 
-		#componentNumber = determineComponentNumber(mdataPoint.path)
-		#print(componentNumber)
-
 		#fill AHUs
 		if ComponentClass == AHU:
 			
+			componentName = mdataPoint.controlProgram
 			if mdataPoint.controlProgram not in componentNames[componentKey]:
-				components["ahu"].append(ComponentClass(AHUNumber = totalNumberOfComponents + 1, AHUName = mdataPoint.controlProgram))
-				componentNames["ahu"].add(mdataPoint.controlProgram)
+				components[componentKey].append(ComponentClass(AHUNumber = totalNumberOfComponents + 1, AHUName = mdataPoint.controlProgram))
+				#componentNames[componentKey].add(mdataPoint.controlProgram)
 				totalNumberOfComponents += 1
+				mdataPoint.componentId = totalNumberOfComponents
+				componentNames[componentKey][componentName] = mdataPoint.componentId
+			else:
+				mdataPoint.componentId = componentNames[componentKey][componentName]
+
 		#Fill VFDs, Filters, Dampers, Fans
 		elif ComponentClass == VFD or ComponentClass == Fan or ComponentClass == Filter or ComponentClass == Damper:
 
@@ -390,8 +393,10 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 					component = ComponentClass(totalNumberOfComponents + 1, ahu.AHUNumber, componentName, componentType, ahu)
 					#ahu.filters.append(filt)
 					components[componentKey].append(component)
-					componentNames[componentKey].add(componentName)
+					#componentNames[componentKey].add(componentName)
 					totalNumberOfComponents += 1
+					mdataPoint.componentId = totalNumberOfComponents
+					componentNames[componentKey][componentName] = mdataPoint.componentId
 
 					#print(mdataPoint.path, ahu.AHUName)
 				else:
@@ -400,6 +405,9 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 						print("Could not determine ahu")
 					elif componentType == "":
 						print("Could not determine componentType")
+			else:
+				mdataPoint.componentId = componentNames[componentKey][componentName]
+
 		#Fill VAVs and SAVs
 		elif ComponentClass == VAV or ComponentClass == SAV:
 			componentName = mdataPoint.controlProgram
@@ -411,13 +419,18 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 					component = ComponentClass(totalNumberOfComponents + 1, ahu.AHUNumber, componentName, ahu)
 					#ahu.filters.append(filt)
 					components[componentKey].append(component)
-					componentNames[componentKey].add(componentName)
+					#componentNames[componentKey].add(componentName)
 					totalNumberOfComponents += 1
+					mdataPoint.componentId = totalNumberOfComponents
+					componentNames[componentKey][componentName] = mdataPoint.componentId
 
 					#print(mdataPoint.path, ahu.AHUName)
 				else:
 					print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
 					print("Could not determine ahu")
+			else:
+				mdataPoint.componentId = componentNames[componentKey][componentName]
+
 		#Fill HECs and thermafusers
 		elif ComponentClass == HEC or Thermafuser:
 			componentType = determineComponentType(ComponentClass, mdataPoint)
@@ -478,8 +491,12 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 						continue
 
 					components[componentKey].append(component)
-					componentNames[componentKey].add(componentName)
+					#componentNames[componentKey].add(componentName)
 					totalNumberOfComponents += 1
+					mdataPoint.componentId = totalNumberOfComponents
+					componentNames[componentKey][componentName] = mdataPoint.componentId
+				else:
+					mdataPoint.componentId = componentNames[componentKey][componentName]
 
 			else:
 				print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
@@ -494,15 +511,15 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 
 	#data structures
 	componentNames = dict()
-	componentNames["ahu"] = set()
-	componentNames["vfd"] = set()
-	componentNames["filter"] = set()
-	componentNames["damper"] = set()
-	componentNames["fan"] = set()
-	componentNames["hec"] = set()
-	componentNames["sav"] = set()
-	componentNames["vav"] = set()
-	componentNames["thermafuser"] = set()
+	componentNames["ahu"] = dict()
+	componentNames["vfd"] = dict()
+	componentNames["filter"] = dict()
+	componentNames["damper"] = dict()
+	componentNames["fan"] = dict()
+	componentNames["hec"] = dict()
+	componentNames["sav"] = dict()
+	componentNames["vav"] = dict()
+	componentNames["thermafuser"] = dict()
 
 	components = dict()
 	components["ahu"] = session.query(AHU).all()
@@ -550,19 +567,65 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 	appendNewComponents(components, componentNames, relationships, HEC, mappedDataPoints, "hec", len(components["hec"]))
 	appendNewComponents(components, componentNames, relationships, Thermafuser, mappedDataPoints, "thermafuser", len(components["thermafuser"]))
 
-	printComponents(components)
+	#printComponents(components)
 
 	#Commit changes to the database
 	for key in components:
 		session.add_all(components[key])
+
+	#session.add_all(mappedDataPoints)
 	
 	session.commit()
+
+
+def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
+	"""Take the mapped datapoints and fill the corresponding readings in the database"""
+
+	header = None
+	count = 0
+
+	for root, dirs, files in os.walk(dataFolder):
+		
+		print(root)
+
+		count = 0
+		for csvFile in files:
+			splittedPath = os.path.splitext(csvFile)
+			extension = splittedPath[len(splittedPath) - 1]
+			
+			#Verify if the file is a csv file
+			if extension == ".csv":
+				fullpath = os.path.join(root,csvFile)
+
+				#Open the csv file
+				with open(os.path.join(root,csvFile), 'r') as csvfile:
+					reader = csv.reader(csvfile)
+					for row in reader:
+						
+						#get the header
+						if count == 0:
+							header = row
+
+							for i in range(len(header)):
+								header[i] = header[i].replace("[","")
+								header[i] = header[i].replace("]","")
+								header[i] = header[i].replace("'","")
+							
+							print(header)
+							count += 1
+				#print(fullpath)
+
+			
+					
 
 
 def main():
 	"""Main function"""
 
+	#Order of the function calls matters in this function, do not change it.
+
 	zone4FilepATH = "../csv_files/Zone4.csv"
+	dataFolder = "/Users/davidlaredorazo/Box Sync/Data/Zone4"
 	
 	#Attempt connection to the database
 	try:
@@ -584,12 +647,15 @@ def main():
 		print("Error writting to the database")
 
 	print("Mapping DataPoints")
-	mappedDataPoints = MapDataPoints(session)
+	#mappedDataPoints = MapDataPoints(session)
 
 	#printMappedDataPoints(mappedDataPoints)
 
 	print("Filling components in Database")
-	fillComponentsInDatabase(mappedDataPoints, session)
+	#fillComponentsInDatabase(mappedDataPoints, session)
+
+	print("Migrating from csv files")
+	fillReadingsInDatabase(dataFolder, None, None)
 
 	session.close()
 

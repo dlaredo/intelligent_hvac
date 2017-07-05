@@ -17,15 +17,16 @@ class DataPoint(Base):
 	_subBranch = Column('SubBranch', String(255))
 	_controlProgram = Column('ControlProgram', String(255))
 	_point = Column('Point', String(255))
-	_zone = Column('Zone', String(255))
-	_pathMappingId = Column('PathMappingsId', String(255), ForeignKey("PathMappings.Id"))
+	_zone = Column('Zone', Integer)
+	_componentId = Column('ComponentId', Integer)
+	_pathMappingId = Column('PathMappingsId', Integer, ForeignKey("PathMappings.Id"))
 
 	#PathMapping relationship
 	_pathMapping = relationship("PathMapping", back_populates = "_dataPoints")
 
 	#Constructor
 
-	def __init__(self, path, server, location, branch, subBranch, controlProgram, point, zone, pathMappingId = None, pathMapping = None):
+	def __init__(self, path, server, location, branch, subBranch, controlProgram, point, zone, componentId = None, pathMappingId = None, pathMapping = None):
 
 		self._path = path
 		self._server = server
@@ -35,6 +36,7 @@ class DataPoint(Base):
 		self._controlProgram = controlProgram
 		self._point = point
 		self._zone = zone
+		self._componentId = componentId
 		self._pathMappingId = pathMappingId
 		self._pathMapping = pathMapping
 
@@ -102,7 +104,15 @@ class DataPoint(Base):
 
 	@zone.setter
 	def zone(self, value):
-		self._zone = value 
+		self._zone = value
+
+	@property
+	def componentId(self):
+		return self._componentId
+
+	@componentId.setter
+	def componentId(self, value):
+		self._componentId = value 
 
 	@property
 	def pathMappingId(self):
@@ -121,8 +131,10 @@ class DataPoint(Base):
 		self._pathMapping = value                 
 
 	def __str__(self):
-		return "<DataPoint(path = '%s', server = '%s', location = '%s', branch = '%s', subBranch = '%s', controlProgram = '%s', point = '%s', zone = '%s', pathMappingId = '%s', pathMapping = '%s')>" \
-		% (self._path, self._server, self._location, self._branch, self._subBranch, self._controlProgram, self._point, self._zone, self._pathMappingId, str(self._pathMapping))
+		return "<DataPoint(path = '%s', server = '%s', location = '%s', branch = '%s', subBranch = '%s', controlProgram = '%s', point = '%s',\
+		 zone = '%s', componentId = '%s', pathMappingId = '%s', pathMapping = '%s')>" \
+		% (self._path, self._server, self._location, self._branch, self._subBranch, self._controlProgram, self._point,\
+		 self._zone, self._componentId, self._pathMappingId, str(self._pathMapping))
 
 
 class PathMapping(Base):

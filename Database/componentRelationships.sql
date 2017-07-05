@@ -78,7 +78,7 @@ insert into ComponentRelationships (ComponentName, ParentComponent, ComponentTyp
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("3C6-D", "Hallway 3C1,5,6,7 VAV-3-23", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Bridge 2C7-1", "Hallway 2C1,6,7 VAV-2-25", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Bridge 2C7-2", "Hallway 2C1,6,7 VAV-2-25", "Thermafuser", NULL);
-#insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Research Cooridor", "", "Thermafuser", NULL);
+#insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Research Cooridor", "", "Thermafuser", NULL); **
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room 102A-1", "Scholarly Activity 102 VAV-1-18", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room 102A-2", "Scholarly Activity 102 VAV-1-18", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room 102A-3", "Scholarly Activity 102 VAV-1-18", "Thermafuser", NULL);

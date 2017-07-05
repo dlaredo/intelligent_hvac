@@ -1,3 +1,5 @@
+use HVAC;
+
 CREATE TABLE Thermafuser_Reading (
   Time_stamp                int(10) NOT NULL, 
   ThermafuserId             int(10) NOT NULL, 
@@ -162,7 +164,8 @@ CREATE TABLE DataPoints (
   SubBranch      varchar(255) NOT NULL, 
   ControlProgram varchar(255) NOT NULL, 
   Point          varchar(255) NOT NULL, 
-  Zone           int(10) NOT NULL, 
+  Zone           int(10), 
+  ComponentId    int(10), 
   PathMappingsId int(10), 
   PRIMARY KEY (Path)) ENGINE=InnoDB;
 CREATE TABLE PathMappings (
