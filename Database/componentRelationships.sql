@@ -70,7 +70,7 @@ insert into ComponentRelationships (ComponentName, ParentComponent, ComponentTyp
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("2C6E", "Hallway 2C1,6,7 VAV-2-25", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("3C1-A", "Hallway 3C1,5,6,7 VAV-3-23", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("3C1-B", "Hallway 3C1,5,6,7 VAV-3-23", "Thermafuser", NULL);
-#insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("3C2", "", "Thermafuser", NULL);
+#insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("3C2", "Office 310 D,E Lactaion 312 VAV-3-31", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("3C4", "Hallway 3C4, Conference Support 325  VAV-3-25", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("3C6-A", "Hallway 3C1,5,6,7 VAV-3-23", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("3C6-B", "Hallway 3C1,5,6,7 VAV-3-23", "Thermafuser", NULL);
@@ -78,7 +78,7 @@ insert into ComponentRelationships (ComponentName, ParentComponent, ComponentTyp
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("3C6-D", "Hallway 3C1,5,6,7 VAV-3-23", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Bridge 2C7-1", "Hallway 2C1,6,7 VAV-2-25", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Bridge 2C7-2", "Hallway 2C1,6,7 VAV-2-25", "Thermafuser", NULL);
-#insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Research Cooridor", "", "Thermafuser", NULL); **
+#insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Research Cooridor", "Office 310 D,E Lactaion 312 VAV-3-31", "Thermafuser", NULL); **
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room 102A-1", "Scholarly Activity 102 VAV-1-18", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room 102A-2", "Scholarly Activity 102 VAV-1-18", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room 102A-3", "Scholarly Activity 102 VAV-1-18", "Thermafuser", NULL);
@@ -86,7 +86,7 @@ insert into ComponentRelationships (ComponentName, ParentComponent, ComponentTyp
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room 102A-5", "Scholarly Activity 102 VAV-1-18", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-001", "Research Equip. 001 VAV-B-34", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-002", "Vending 002 VAV-B-35", "Thermafuser", NULL);
-#insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-0C1", "", "Thermafuser", NULL);
+#insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-0C1", "Hallway 0C6 VAV-B-36", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-0C6A", "Hallway 0C6 VAV-B-36", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-0C6B", "Hallway 0C6 VAV-B-36", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-120A-1", "Computation 120A&B VAV-1-25", "Thermafuser", NULL);
@@ -140,7 +140,7 @@ insert into ComponentRelationships (ComponentName, ParentComponent, ComponentTyp
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-305-B", "Office 305 VAV-3-30", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-305-C", "Office 305 VAV-3-30", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-305a", "Office 305 VAV-3-30", "Thermafuser", NULL);
-#insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-310", "", "Thermafuser", NULL);
+#insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-310", "Office 310 D,E Lactaion 312 VAV-3-31", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-310A", "Office 305A, 310A-C, 315E-G VAV-3-36", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-310B", "Office 305A, 310A-C, 315E-G VAV-3-36", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-310C", "Office 305A, 310A-C, 315E-G VAV-3-36", "Thermafuser", NULL);
@@ -157,7 +157,7 @@ insert into ComponentRelationships (ComponentName, ParentComponent, ComponentTyp
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-315A", "Engineering 315, Reception 315A VAV-3-35", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-315B", "Office Support 315B & C VAV-3-32", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-315C", "Office Support 315B & C VAV-3-32", "Thermafuser", NULL);
-#insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-315D", "", "Thermafuser", NULL);
+#insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-315D", "Office 310 D,E Lactaion 312 VAV-3-31", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-315E", "Office 305A, 310A-C, 315E-G VAV-3-36", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-315F", "Office 305A, 310A-C, 315E-G VAV-3-36", "Thermafuser", NULL);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-315G", "Office 305A, 310A-C, 315E-G VAV-3-36", "Thermafuser", NULL);
