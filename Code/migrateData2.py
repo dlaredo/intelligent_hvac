@@ -538,23 +538,23 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 	relationships["thermafuser"] = session.query(ComponentRelationship).filter(ComponentRelationship._componentType == "Thermafuser").all()
 
 	for ahu in components["ahu"]:
-		componentNames["ahu"].add(ahu.AHUName)
+		componentNames["ahu"][ahu.AHUName] = ahu.AHUNumber
 	for vfd in components["vfd"]:
-		componentNames["vfd"].add(vfd.vfdName)
+		componentNames["vfd"][vfd.vfdName] = vfd.vfdId
 	for filt in components["filter"]:
-		componentNames["filter"].add(filt.filterName)
+		componentNames["filter"][filt.filterName] = filt.filterId
 	for damper in components["damper"]:
-		componentNames["damper"].add(damper.damperName)
+		componentNames["damper"][damper.damperName] = damper.damperId
 	for fan in components["fan"]:
-		componentNames["fan"].add(fan.fanName)
+		componentNames["fan"][fan.fanName] = fan.fanId
 	for hec in components["hec"]:
-		componentNames["hec"].add(hec.HECName)
+		componentNames["hec"][hec.HECName] = hec.HECId
 	for sav in components["sav"]:
-		componentNames["sav"].add(sav.SAVName)
+		componentNames["sav"][sav.SAVName] = sav.SAVId
 	for vav in components["vav"]:
-		componentNames["vav"].add(vav.VAVName)
+		componentNames["vav"][vav.VAVName] = vav.VAVId
 	for thermafuser in components["thermafuser"]:
-		componentNames["thermafuser"].add(thermafuser.thermafuserName)
+		componentNames["thermafuser"][thermafuser.thermafuserName] = thermafuser.thermafuserId
 
 	#Order in which new elements are appended is important, dont change this order
 	appendNewComponents(components, componentNames, relationships, AHU, mappedDataPoints, "ahu", len(components["ahu"]))
@@ -577,6 +577,24 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 	
 	session.commit()
 
+def getMappedPoint(dataPointPath, mappedDataPoints):
+	"""For each data point in the database, get its mapped datapoint that contains all the information regarding how such data point maps to the database"""
+
+	#This can be improved for better performance, since for each data point it has to look through all the datapoints which is of quadratic complexity
+
+	mdataPoint = None
+
+	for key in mappedDataPoints:
+		for mappedDataPoint in mappedDataPoints[key]:
+			#print(dataPointPath, mappedDataPoint.path)
+			if mappedDataPoint.path == dataPointPath:
+
+				mdataPoint = mappedDataPoint
+				break
+
+	return mdataPoint
+
+
 
 def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 	"""Take the mapped datapoints and fill the corresponding readings in the database"""
@@ -588,8 +606,11 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 		
 		print(root)
 
-		count = 0
+		headerMapped = False
+		fileTypeMappedDataPoints = list()
+
 		for csvFile in files:
+
 			splittedPath = os.path.splitext(csvFile)
 			extension = splittedPath[len(splittedPath) - 1]
 			
@@ -599,24 +620,38 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 
 				#Open the csv file
 				with open(os.path.join(root,csvFile), 'r') as csvfile:
+
+					columnCount = 0
+					rowCount = 0
+					
 					reader = csv.reader(csvfile)
 					for row in reader:
 						
-						#get the header
-						if count == 0:
+						#get the header and the mapped data points
+						if rowCount == 0 and headerMapped == False:
 							header = row
 
-							for i in range(len(header)):
+							for i in range(1, len(header)):
 								header[i] = header[i].replace("[","")
 								header[i] = header[i].replace("]","")
 								header[i] = header[i].replace("'","")
+								header[i] = header[i].replace(" ","")
+								mdataPoint = getMappedPoint(header[i], mappedDataPoints)
+
+								if mdataPoint.pathMapping != None:
+									fileTypeMappedDataPoints.append(mdataPoint)
+								else:
+									print(header[i], "Point not mapped")
+
+								columnCount += 1
 							
 							print(header)
-							count += 1
-				#print(fullpath)
-
-			
-					
+							headerMapped = True
+							rowCount += 1
+						elif rowCount == 0:
+							rowCount += 1
+						else:
+							print(row)
 
 
 def main():
@@ -647,15 +682,15 @@ def main():
 		print("Error writting to the database")
 
 	print("Mapping DataPoints")
-	#mappedDataPoints = MapDataPoints(session)
+	mappedDataPoints = MapDataPoints(session)
 
-	#printMappedDataPoints(mappedDataPoints)
+	printMappedDataPoints(mappedDataPoints)
 
 	print("Filling components in Database")
-	#fillComponentsInDatabase(mappedDataPoints, session)
+	fillComponentsInDatabase(mappedDataPoints, session)
 
 	print("Migrating from csv files")
-	fillReadingsInDatabase(dataFolder, None, None)
+	fillReadingsInDatabase(dataFolder, mappedDataPoints, session)
 
 	session.close()
 
