@@ -10,28 +10,28 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m186", "Thermafuser", "Zone Temperature", "Thermafuser_Reading.zoneTemperature");
 
 #Heat Exchanger Coil
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cw_valve", "HEC", "Chilled Water Valve Opening", "Heat_Exchanger_Coil.valveOpeningPercentage");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("chw_valve", "HEC", "Chilled Water Valve Opening", "Heat_Exchanger_Coil.valveOpeningPercentage");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cwcr", "HEC", "Chilled Water Return Temperature", "Heat_Exchanger_Coil.returnWaterTemperature");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cwcs", "HEC", "Chilled Water Supply Temperature", "Heat_Exchanger_Coil.supplyWaterTemperature");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("hw_valve", "HEC", "Hot Water Valve Opening", "Heat_Exchanger_Coil.valveOpeningPercentage");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("hwcr", "HEC", "Hot Water Return Temperature", "Heat_Exchanger_Coil.returnWaterTemperature");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("hwcs", "HEC", "Hot Water Supply Temperature", "Heat_Exchanger_Coil.supplyWaterTemperature");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cw_valve", "HEC", "Chilled Water Valve Opening", "Heat_Exchanger_Coil_Reading.valveOpeningPercentage");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("chw_valve", "HEC", "Chilled Water Valve Opening", "Heat_Exchanger_Coil_Reading.valveOpeningPercentage");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cwcr", "HEC", "Chilled Water Return Temperature", "Heat_Exchanger_Coil_Reading.returnWaterTemperature");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cwcs", "HEC", "Chilled Water Supply Temperature", "Heat_Exchanger_Coil_Reading.supplyWaterTemperature");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("hw_valve", "HEC", "Hot Water Valve Opening", "Heat_Exchanger_Coil_Reading.valveOpeningPercentage");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("hwcr", "HEC", "Hot Water Return Temperature", "Heat_Exchanger_Coil_Reading.returnWaterTemperature");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("hwcs", "HEC", "Hot Water Supply Temperature", "Heat_Exchanger_Coil_Reading.supplyWaterTemperature");
 
-#Damper
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ea_dmpr", "Damper", "Exhaust Air Damper Opening", "Damper.damperOpeningPercentage");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("oa_dmpr", "Damper", "Outside Air Damper Opening", "Damper.damperOpeningPercentage");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ra_dmpr", "Damper", "Return Air Damper Opening", "Damper.damperOpeningPercentage");
+#Damper_Reading
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ea_dmpr", "Damper", "Exhaust Air Damper Opening", "Damper_Reading.damperOpeningPercentage");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("oa_dmpr", "Damper", "Outside Air Damper Opening", "Damper_Reading.damperOpeningPercentage");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ra_dmpr", "Damper", "Return Air Damper Opening", "Damper_Reading.damperOpeningPercentage");
 
 #Filter
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ffilter_dp", "Filter", "Final Filter Difference Pressure", "Filter.differencePressure");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("pfilter_dp", "Filter", "Pre Filter Difference Pressure", "Filter.differencePressure");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ffilter_dp", "Filter", "Final Filter Difference Pressure", "Filter_Reading.differencePressure");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("pfilter_dp", "Filter", "Pre Filter Difference Pressure", "Filter_Reading.differencePressure");
 
 #Fan
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf_vel_press", "Fan", "Return Fan Velocity Pressure", "Fan.airVelocityPressure");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf_cfm_tnd", "Fan", "Return Fan CFM", "Fan.AirVelocityCFM");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf_vel_press", "Fan", "Supply Fan Velocity Pressure", "Fan.airVelocityPressure");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf_cfm_tnd", "Fan", "Supply Fan CFM", "Fan.AirVelocityCFM");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf_vel_press", "Fan", "Return Fan Velocity Pressure", "Fan_Reading.airVelocityPressure");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("rf_cfm_tnd", "Fan", "Return Fan CFM", "Fan_Reading.AirVelocityCFM");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf_vel_press", "Fan", "Supply Fan Velocity Pressure", "Fan_Reading.airVelocityPressure");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sf_cfm_tnd", "Fan", "Supply Fan CFM", "Fan_Reading.AirVelocityCFM");
 
 #AHU
 #Zone 4
@@ -62,7 +62,7 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("vav/cl_stpt_tn", "VAV", "Cooling Setpoint", "Variable_Air_Volume_Reading.coolingSetpoint");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("vav/ht_stpt_tn", "VAV", "Heating Setpoint", "Variable_Air_Volume_Reading.heatingSetpoint");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("da_temp", "VAV", "Discharge Temperature", "Variable_Air_Volume_Reading.dischargeTemperature");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("dmpr_pos_tn", "VAV", "Damper Position", "Variable_Air_Volume_Reading.damperPosition");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("dmpr_pos_tn", "VAV", "Damper_Reading Position", "Variable_Air_Volume_Reading.damperPosition");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("st_press", "VAV", "Duct Static Pressure", "Variable_Air_Volume_Reading.ductStaticPressure");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("flow_input", "VAV", "Flow Control/Flow Input", "Variable_Air_Volume_Reading.flowInput");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m311", "VAV", "Zone Temperature", "Variable_Air_Volume_Reading.zoneTemperature");
