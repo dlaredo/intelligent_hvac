@@ -3,9 +3,11 @@ import sqlalchemy
 from hvacDBMapping import *
 from sqlalchemy.orm import sessionmaker
 import traceback
-import datetime
+from datetime import datetime
 import re
 import os
+from dateutil.parser import *
+import copy
 
 
 global numberRegex
@@ -595,6 +597,34 @@ def getMappedPoint(dataPointPath, mappedDataPoints):
 	return mdataPoint
 
 
+def getComponentReadingClassByPathMapping(pathMapping):
+	"""Given the path mapping of a point, get the class that it belongs to"""
+
+	componentClass = None
+
+	if pathMapping.componentType == "AHU":
+		componentClass = AHUReading
+	elif pathMapping.componentType == "VFD":
+		componentClass = VFDReading
+	elif pathMapping.componentType == "Filter":
+		componentClass = FilterReading
+	elif pathMapping.componentType == "Damper":
+		componentClass = DamperReading
+	elif pathMapping.componentType == "Fan":
+		componentClass = FanReading
+	elif pathMapping.componentType == "HEC":
+		componentClass = HECReading
+	elif pathMapping.componentType == "SAV":
+		componentClass = SAVReading
+	elif pathMapping.componentType == "VAV":
+		componentClass = VAVReading
+	elif pathMapping.componentType == "Thermafuser":
+		componentClass = ThermafuserReading
+	else:
+		componentClass = None
+
+	return componentClass
+
 
 def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 	"""Take the mapped datapoints and fill the corresponding readings in the database"""
@@ -621,11 +651,13 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 				#Open the csv file
 				with open(os.path.join(root,csvFile), 'r') as csvfile:
 
-					columnCount = 0
+					readingClasses = dict()
 					rowCount = 0
 					
 					reader = csv.reader(csvfile)
 					for row in reader:
+
+						columnCount = 0
 						
 						#get the header and the mapped data points
 						if rowCount == 0 and headerMapped == False:
@@ -638,20 +670,62 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 								header[i] = header[i].replace(" ","")
 								mdataPoint = getMappedPoint(header[i], mappedDataPoints)
 
-								if mdataPoint.pathMapping != None:
-									fileTypeMappedDataPoints.append(mdataPoint)
-								else:
-									print(header[i], "Point not mapped")
-
-								columnCount += 1
+								fileTypeMappedDataPoints.append(mdataPoint)
 							
-							print(header)
+							#print(header)
 							headerMapped = True
 							rowCount += 1
 						elif rowCount == 0:
 							rowCount += 1
 						else:
-							print(row)
+
+							#print(row)
+
+							time = row[0]
+							for j in range(1, len(row) - 1):
+
+								i = j-1
+
+								componentFound = False
+
+								if fileTypeMappedDataPoints[i].pathMapping != None and fileTypeMappedDataPoints[i].componentId != None:
+
+									componentClass = getComponentReadingClassByPathMapping(fileTypeMappedDataPoints[i].pathMapping)
+
+									#Create new component if necessary or retrieve an existing one to store the reading
+									if fileTypeMappedDataPoints[i].pathMapping.componentType in readingClasses:
+										if fileTypeMappedDataPoints[i].componentId in readingClasses[fileTypeMappedDataPoints[i].pathMapping.componentType]:
+											reading = readingClasses[fileTypeMappedDataPoints[i].pathMapping.componentType][fileTypeMappedDataPoints[i].componentId]
+										else:
+											reading = componentClass(None, fileTypeMappedDataPoints[i].componentId)
+											readingClasses[fileTypeMappedDataPoints[i].pathMapping.componentType][fileTypeMappedDataPoints[i].componentId] = reading
+									else:
+										readingClasses[fileTypeMappedDataPoints[i].pathMapping.componentType] = dict()
+										reading = componentClass(None, fileTypeMappedDataPoints[i].componentId)
+										readingClasses[fileTypeMappedDataPoints[i].pathMapping.componentType][fileTypeMappedDataPoints[i].componentId] = reading
+	
+									#reading.timestamp = datetime.strptime(time, "%m/%d/%y %H:%M")
+									reading.timestamp = parse(time, None, ignoretz = True)
+									#Set the current column value in its corresponding attribute in the components
+									attribute = fileTypeMappedDataPoints[i].pathMapping.databaseMapping
+									setattr(reading, attribute, row[j])
+
+								else:
+									if fileTypeMappedDataPoints[i].pathMapping == None:
+										print(header[i], "Point not mapped")
+									else:
+										print(header[i], "Component not found")
+
+							for key1 in readingClasses:
+								for key2 in readingClasses[key1]:
+									print(readingClasses[key1][key2])
+									session.add(readingClasses[key1][key2])  #Add the readings to the database
+									print(session.dirty())
+									session.commit()
+									#session.expunge(readingClasses[key1][key2])
+
+					#Commit changes to the database
+					#session.commit()
 
 
 def main():

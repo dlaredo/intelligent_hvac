@@ -1,7 +1,5 @@
-use HVAC;
-
 CREATE TABLE Thermafuser_Reading (
-  Time_stamp                int(10) NOT NULL, 
+  Time_stamp                datetime NOT NULL, 
   ThermafuserId             int(10) NOT NULL, 
   RoomOccupied              bit(1), 
   ZoneTemperature           real, 
