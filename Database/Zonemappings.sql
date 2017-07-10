@@ -53,6 +53,8 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sa_temp", "AHU", "Supple Air Temperature", "Air_Handling_Unit_Reading.supplyAirTemperature");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ra_sp", "AHU" , "Return Air Static Pressure", "Air_Handling_Unit_Reading.staticPressure");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sa_stpt_tn", "AHU", "Supply Air Set Point", "Air_Handling_Unit_Reading.SupplyAirSetpoint");
+#Zone 3
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("st_press1","AHU","Static Pressure 2 A", "Air_Handling_Unit_Reading.StaticPressure")
 
 #VFD
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("power_kw_1610_tn", "VFD", "Power KW", "VFD_Reading.powerKW");
