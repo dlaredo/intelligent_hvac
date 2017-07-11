@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Table, DateTime, Float, Boolean, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
+from sqlalchemy import PrimaryKeyConstraint
 
 Base = declarative_base()
 
@@ -2234,8 +2235,8 @@ class ThermafuserReading(Base):
 
 	__tablename__ = 'Thermafuser_Reading'
 
-	_thermafuserId = Column('ThermafuserId', Integer, ForeignKey("Thermafuser.ThermafuserId"), primary_key = True)
 	_timestamp = Column('Time_stamp', DateTime, primary_key = True)
+	_thermafuserId = Column('ThermafuserId', Integer, ForeignKey("Thermafuser.ThermafuserId"), primary_key = True)
 	_roomOccupied = Column('RoomOccupied', Boolean)
 	_zoneTemperature = Column('ZoneTemperature', Float)
 	_supplyAir = Column('SupplyAir', Float, nullable=True)

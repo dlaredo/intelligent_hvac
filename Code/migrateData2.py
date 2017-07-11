@@ -653,6 +653,7 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 
 					readingClasses = dict()
 					rowCount = 0
+					readings = list()
 					
 					reader = csv.reader(csvfile)
 					for row in reader:
@@ -672,14 +673,12 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 
 								fileTypeMappedDataPoints.append(mdataPoint)
 							
-							#print(header)
+							#header is just mapped once per folder, no need to map it more than once per folder
 							headerMapped = True
 							rowCount += 1
 						elif rowCount == 0:
 							rowCount += 1
 						else:
-
-							#print(row)
 
 							time = row[0]
 							for j in range(1, len(row) - 1):
@@ -704,7 +703,6 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 										reading = componentClass(None, fileTypeMappedDataPoints[i].componentId)
 										readingClasses[fileTypeMappedDataPoints[i].pathMapping.componentType][fileTypeMappedDataPoints[i].componentId] = reading
 	
-									#reading.timestamp = datetime.strptime(time, "%m/%d/%y %H:%M")
 									reading.timestamp = parse(time, None, ignoretz = True)
 									#Set the current column value in its corresponding attribute in the components
 									attribute = fileTypeMappedDataPoints[i].pathMapping.databaseMapping
@@ -718,13 +716,22 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 
 							for key1 in readingClasses:
 								for key2 in readingClasses[key1]:
-									print(readingClasses[key1][key2])
-									session.add(readingClasses[key1][key2])  #Add the readings to the database
-									print(session.dirty())
-									session.commit()
-									#session.expunge(readingClasses[key1][key2])
+									new_object = copy.copy(readingClasses[key1][key2])
+									#print(hex(id(readingClasses[key1][key2])), hex(id(new_object)))
+									readings.append(new_object)
+									#print(readingClasses[key1][key2])
+									#session.add(readingClasses[key1][key2])  #Add the readings to the database
 
+					#print(readings)
+					#for reading in readings:
+					#	print(reading)
 					#Commit changes to the database
+					session.add_all(readings)
+
+					print(session.new)
+					for new in session.new:
+						print(new)
+
 					#session.commit()
 
 
