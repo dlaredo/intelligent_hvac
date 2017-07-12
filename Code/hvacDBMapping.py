@@ -2396,13 +2396,16 @@ class ThermafuserReading(Base):
 	def thermafuser(self, value):
 		self._thermafuser = value
 
-	def __str__(self):
+	def __str2__(self):
 		return "<ThermafuserReading(thermafuserId = '%s', timestamp = '%s', roomOccupied = '%s', zoneTemperature = '%s', supplyAir = '%s', airflowFeedback = '%s',\
 		CO2Input = '%s', maxAirflow = '%s', minAirflow = '%s', unoccupiedHeatingSetpoint = '%s', unoccupiedCoolingSetpoint = '%s', occupiedCoolingSetpoint = '%s',\
 		 occupiedHeatingSetpoint = '%s', terminalLoad = '%s')>" \
 		% (self._thermafuserId, str(self._timestamp), self._roomOccupied, self._zoneTemperature, self._supplyAir, self._airflowFeedback, self._CO2Input,\
 		 self._maxAirflow,self._minAirflow,self._unoccupiedHeatingSetpoint,self._unoccupiedCoolingSetpoint, self._occupiedCoolingSetpoint,\
 		  self._occupiedHeatingSetpoint, self._terminalLoad)
+
+	def __str__(self):
+		return "<ThermafuserReading(thermafuserId = '%s', timestamp = '%s')>" % (self._thermafuserId, str(self._timestamp))
 
 
 

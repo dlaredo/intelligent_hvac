@@ -78,13 +78,19 @@ def main():
 				count += 1
 				continue
 
-			print(row)
+			#print(row)
 			timestamp = parse(row[0], None, ignoretz = True)
 
+			reading.timestamp = timestamp
 			new_object = copy.copy(reading)
 			new_object.timestamp = timestamp
 
-			print(new_object, mapper.identity_key_from_instance(new_object))
+			#print(new_object, mapper.identity_key_from_instance(new_object))
+			session.add(new_object)
+
+	print("new elements")
+	for new in session.new:
+		print(new)
 
 main()
 

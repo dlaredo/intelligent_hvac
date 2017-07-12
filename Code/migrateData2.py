@@ -707,7 +707,6 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 										reading = componentClass(None, fileTypeMappedDataPoints[i].componentId)
 										readingClasses[fileTypeMappedDataPoints[i].pathMapping.componentType][fileTypeMappedDataPoints[i].componentId] = reading
 
-									reading.timestamp = timestamp
 									#Set the current column value in its corresponding attribute in the components
 									attribute = fileTypeMappedDataPoints[i].pathMapping.databaseMapping
 									setattr(reading, attribute, row[j])
@@ -721,25 +720,26 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 							for key1 in readingClasses:
 								for key2 in readingClasses[key1]:
 
+									readingClasses[key1][key2].timestamp = timestamp
 									new_object = copy.copy(readingClasses[key1][key2])
 									#new_object.timestamp = timestamp
 									#print(hex(id(readingClasses[key1][key2])), hex(id(new_object)))
-									#print(new_object, mapper.identity_key_from_instance(new_object))
+									print(new_object, mapper.identity_key_from_instance(new_object))
 									readings.append(new_object)
 									#print(readingClasses[key1][key2])
-									#session.add(readingClasses[key1][key2])  #Add the readings to the database
+									session.add(new_object)  #Add the readings to the database
 
-					print(readings)
-					for reading in readings:
-						print(reading, mapper.identity_key_from_instance(reading))
+					#print(readings)
+					#for reading in readings:
+					#	print(reading, mapper.identity_key_from_instance(reading))
 					
 					#Commit changes to the database
 					#session.add_all(readings)
 
 					#print(session.new)
-					#print("new elements")
-					#for new in session.new:
-					#	print(new)
+					print("new elements")
+					for new in session.new:
+						print(new)
 
 					#print("dirty elements")
 					#for dirty in session.dirty:
