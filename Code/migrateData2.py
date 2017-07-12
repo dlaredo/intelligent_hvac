@@ -8,6 +8,8 @@ import re
 import os
 from dateutil.parser import *
 import copy
+from sqlalchemy.inspection import inspect
+from sqlalchemy.orm.util import identity_key
 
 
 global numberRegex
@@ -631,6 +633,7 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 
 	header = None
 	count = 0
+	mapper = inspect(ThermafuserReading)
 
 	for root, dirs, files in os.walk(dataFolder):
 		
@@ -681,6 +684,7 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 						else:
 
 							time = row[0]
+							timestamp = parse(time, None, ignoretz = True)
 							for j in range(1, len(row) - 1):
 
 								i = j-1
@@ -702,8 +706,8 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 										readingClasses[fileTypeMappedDataPoints[i].pathMapping.componentType] = dict()
 										reading = componentClass(None, fileTypeMappedDataPoints[i].componentId)
 										readingClasses[fileTypeMappedDataPoints[i].pathMapping.componentType][fileTypeMappedDataPoints[i].componentId] = reading
-	
-									reading.timestamp = parse(time, None, ignoretz = True)
+
+									reading.timestamp = timestamp
 									#Set the current column value in its corresponding attribute in the components
 									attribute = fileTypeMappedDataPoints[i].pathMapping.databaseMapping
 									setattr(reading, attribute, row[j])
@@ -716,21 +720,30 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 
 							for key1 in readingClasses:
 								for key2 in readingClasses[key1]:
+
 									new_object = copy.copy(readingClasses[key1][key2])
+									#new_object.timestamp = timestamp
 									#print(hex(id(readingClasses[key1][key2])), hex(id(new_object)))
+									#print(new_object, mapper.identity_key_from_instance(new_object))
 									readings.append(new_object)
 									#print(readingClasses[key1][key2])
 									#session.add(readingClasses[key1][key2])  #Add the readings to the database
 
-					#print(readings)
-					#for reading in readings:
-					#	print(reading)
+					print(readings)
+					for reading in readings:
+						print(reading, mapper.identity_key_from_instance(reading))
+					
 					#Commit changes to the database
-					session.add_all(readings)
+					#session.add_all(readings)
 
-					print(session.new)
-					for new in session.new:
-						print(new)
+					#print(session.new)
+					#print("new elements")
+					#for new in session.new:
+					#	print(new)
+
+					#print("dirty elements")
+					#for dirty in session.dirty:
+					#	print(dirty)
 
 					#session.commit()
 
