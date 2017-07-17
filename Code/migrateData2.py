@@ -176,7 +176,7 @@ def MapDataPoints(session):
 				dataPointMapped = False
 
 		if dataPointMapped == False:
-			print(dataPoint.path + " DataPoint could not be mapped")		
+			print(dataPoint.path + " DataPoint could not be mapped")
 		else:
 			#print(dataPoint.path, dataPoint.controlProgram, mappedDataPoint.databaseMapping)
 
@@ -230,7 +230,7 @@ def printComponents(components):
 		print("HEC Number: " + str(hec.HECId) + ", HEC Name: " + str(hec.HECName) + ", Parent AHU: " + str(hec.AHUNumber) +
 		", Parent VAV: " + str(hec.VAVId)  + ", Parent SAV: " + str(hec.SAVId))
 	for thermafuser in components["thermafuser"]:
-		print("THR Number: " + str(thermafuser.thermafuserId) + ", THR Name: " + str(thermafuser.thermafuserName) + ", Parent AHU: " + str(thermafuser.AHUNumber) + 
+		print("THR Number: " + str(thermafuser.thermafuserId) + ", THR Name: " + str(thermafuser.thermafuserName) + ", Parent AHU: " + str(thermafuser.AHUNumber) +
 		", Parent VAV: " + str(thermafuser.VAVId) + ", Parent SAV: " + str(thermafuser.SAVId))
 
 
@@ -267,6 +267,15 @@ def getParentComponent(components, componentNames, relationships, ComponentClass
 					if ahu.AHUName.lower() == ahuName.lower():
 						determinedParent = ahu
 
+	# Option 1: Mirge the VAV and SAV  if statements. Not sure if computing power will stay the same.
+	#if ComponentClass == VAV or ComponentClass == SAV:
+		#for relationship in relationships["vav"] and for relationship in relationships["sav"]:
+			#if relationship.componentName.lower() == mappedDataPoint.controlProgram.lower():
+				#ahuName = relationship.parentComponent
+				#for ahu in components["ahu"]:
+					#if ahu.AHUName.lower() == ahuName.lower():
+						#determinedParent = ahu
+
 	if ComponentClass == Thermafuser:
 		for relationship in relationships["thermafuser"]:
 			if relationship.componentName.lower() == mappedDataPoint.controlProgram.lower():
@@ -284,6 +293,19 @@ def getParentComponent(components, componentNames, relationships, ComponentClass
 					if sav.SAVName.lower() == parentName.lower():
 						determinedParent = sav
 
+				# Option 1 merge AHU, VAV, and SAV into a single list
+				#listofparents = []
+				#for n in components["ahu"]:
+					#listofparents.append(n)
+				#for n in components["vav"]:
+					#listofparents.append(n)
+				#for n in components["sav"]:
+					#listofparents.append(n)
+				#for parent in listofparents:
+					#if parent.listofparents.lower() == parentName.lower():
+						#determinedParent = parent
+
+
 	if ComponentClass == HEC:
 		if parentComponentType == "AHU":
 			for parent in components["ahu"]:
@@ -297,7 +319,7 @@ def getParentComponent(components, componentNames, relationships, ComponentClass
 			for parent in components["sav"]:
 				if parent.SAVName.lower() in mappedDataPoint.controlProgram.lower():
 					determinedParent = parent
-				
+
 	return determinedParent
 
 
@@ -364,7 +386,7 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 
 		#fill AHUs
 		if ComponentClass == AHU:
-			
+
 			componentName = mdataPoint.controlProgram
 			if mdataPoint.controlProgram not in componentNames[componentKey]:
 				components[componentKey].append(ComponentClass(AHUNumber = totalNumberOfComponents + 1, AHUName = mdataPoint.controlProgram))
@@ -448,7 +470,7 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 				parentComponentType = "SAV"
 			else:  #Thermafuser case, we dont know what its parent component type is a priory
 				parentComponentType = ""
-			
+
 			#Try to determine its parent component
 			parentComponent = getParentComponent(components, componentNames, relationships, ComponentClass, parentComponentType, mdataPoint)
 
@@ -463,11 +485,11 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 					componentName = parentComponentName + "/" + componentType + " "  + componentKey.title() + " " + str(componentNumber)
 				else:
 					componentName = parentComponentName + "/" + mdataPoint.controlProgram
-			
+
 				#print(componentName, mdataPoint.path)
 
 				if componentName not in componentNames[componentKey]:
-			
+
 					#Create the new component
 					if parentComponent.getComponentType() == "AHU":
 						if ComponentClass == HEC:
@@ -578,7 +600,7 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 		session.add_all(components[key])
 
 	#session.add_all(mappedDataPoints)
-	
+
 	session.commit()
 
 def getMappedPoint(dataPointPath, mappedDataPoints):
@@ -636,7 +658,7 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 	mapper = inspect(ThermafuserReading)
 
 	for root, dirs, files in os.walk(dataFolder):
-		
+
 		print(root)
 
 		headerMapped = False
@@ -646,7 +668,7 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 
 			splittedPath = os.path.splitext(csvFile)
 			extension = splittedPath[len(splittedPath) - 1]
-			
+
 			#Verify if the file is a csv file
 			if extension == ".csv":
 				fullpath = os.path.join(root,csvFile)
@@ -657,12 +679,12 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 					readingClasses = dict()
 					rowCount = 0
 					readings = list()
-					
+
 					reader = csv.reader(csvfile)
 					for row in reader:
 
 						columnCount = 0
-						
+
 						#get the header and the mapped data points
 						if rowCount == 0 and headerMapped == False:
 							header = row
@@ -675,7 +697,7 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 								mdataPoint = getMappedPoint(header[i], mappedDataPoints)
 
 								fileTypeMappedDataPoints.append(mdataPoint)
-							
+
 							#header is just mapped once per folder, no need to map it more than once per folder
 							headerMapped = True
 							rowCount += 1
@@ -732,7 +754,7 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 					#print(readings)
 					#for reading in readings:
 					#	print(reading, mapper.identity_key_from_instance(reading))
-					
+
 					#Commit changes to the database
 					#session.add_all(readings)
 
@@ -755,7 +777,7 @@ def main():
 
 	zone4FilepATH = "../csv_files/Zone4.csv"
 	dataFolder = "/Users/davidlaredorazo/Box Sync/Data/Zone4"
-	
+
 	#Attempt connection to the database
 	try:
 		sqlengine = sqlalchemy.create_engine("mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC")
@@ -791,7 +813,3 @@ def main():
 
 #invoke main
 main()
-
-
-
-
