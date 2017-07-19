@@ -8,3 +8,5 @@ Code/__pycache__
 *.lck
 
 Code/crap\.py
+
+Code/untracked/
