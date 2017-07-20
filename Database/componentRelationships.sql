@@ -1,13 +1,13 @@
 use HVAC;
 
 #AHU
-insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("AHU-1", NULL, 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("AHU-2", NULL, 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("AHU-3", NULL, 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("AHU-4", NULL, 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("AHU-5", NULL, 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("AHU-6", NULL, 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, Group) values ("AHU-7", NULL, 1);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-1", NULL, 1);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-2", NULL, 1);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-3", NULL, 1);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-4", NULL, 1);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-5", NULL, 1);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-6", NULL, 1);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-7", NULL, 1);
 
 #SAV
 #Basement
