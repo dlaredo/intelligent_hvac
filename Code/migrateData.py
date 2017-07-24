@@ -63,43 +63,6 @@ def determineComponentNumber(pathString):
 
 	return componentNumber
 
-def getStoredAHUComponentsId(stored_ahus):
-	"""Return a dictionary containing the component numbers for each of the stored AHUs"""
-
-	ahu_numbers = set()
-
-	fan_numbers = set()
-	damper_numbers = set()
-	hec_numbers = set()
-	filter_numbers = set()
-
-	ahu_fan_numbers = {}
-	ahu_damper_numbers = {}
-	ahu_hec_numbers = {}
-	ahu_filter_numbers = {}
-
-	for ahu in stored_ahus:
-		ahu_numbers.add(ahu.AHUNumber)
-
-		for ahu_fan in ahu.fans:
-			fan_numbers.add(ahu_fan.fanNumber)
-
-		for ahu_damper in ahu.dampers:
-			damper_numbers.add(ahu_damper.damperNumber)
-
-		for ahu_filter in ahu.filters:
-			filter_numbers.add(ahu_filter.filterNumber)
-
-		for ahu_hec in ahu.hecs:
-			hec_numbers.add(ahu_hec.hecNumber)
-
-		ahu_fan_numbers[ahu.AHUNumber] = fan_numbers
-		ahu_damper_numbers[ahu.AHUNumber] = damper_numbers
-		ahu_hec_numbers[ahu.AHUNumber] = filter_numbers
-		ahu_filter_numbers[ahu.AHUNumber] = hec_numbers
-
-	return ahu_numbers, ahu_fan_numbers, ahu_damper_numbers, ahu_hec_numbers, ahu_filter_numbers
-
 def determineDataPointTypeByPath(path):
 	"""Given the path of the datapoint determine its type"""
 
