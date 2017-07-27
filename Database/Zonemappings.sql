@@ -76,18 +76,18 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 
 #SAV
 #Zone 1 & 2
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m277", "SAV", "GEX Damper Position", #Not in database);
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m277", "SAV", "GEX Damper Position",""); #Not in database);
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m285", "SAV", "Cool Requests", "Air_Handling_Unit_Reading.CoolingRequest"); #CoolingRequest only found for AHU, not sure if SAV should have one as well
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m288", "SAV", "Heat Requests", "Air_Handling_Unit_Reading.HeatingRequest"); #HeatingRequest only found for AHU.
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m310", "SAV", "SAV Damper Position", "" # Damper Position fpr SAV needs t be added to database);
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m310", "SAV", "SAV Damper Position", ""); # Damper Position fpr SAV needs t be added to database);
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m318", "SAV", "Exhaust Air Flow", ""); # Exaust Air Flow not in database
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m320", "SAV", "Supply Air Flow", ""); # Supply Air Flow not in database
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m322", "SAV", "Flow Difference", ""); # Flow Difference not in database
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m328", "SAV", "Exhaust Flow Setpoint", ""); # Exhaust Flow Setpoint not in database
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("da_temp", "SAV", "Discharge Temperature", "Staged_Air_Volume_Reading.DischargeTemperature");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cl_pct_tn", "SAV", "Cooling #unsure what pct stands for");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ht_pct_tn", "SAV", "Heating #unsure what pct stands for");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("cl_pct_tn", "SAV", "Cooling",""); #unsure what pct stands for");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ht_pct_tn", "SAV", "Heating",""); #unsure what pct stands for");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sav/cl_stpt_tn", "SAV", "Cooling Setpoint", ""); #SAV does not have a cooling setpoint path in database
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sav/ht_stpt_tn", "SAV", "Heating Setpoint", ""); #SAV does not have a heating setpoint path in database
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("lstat/zone_temp", "SAV", "Zone Temperature", "Staged_Air_Volume_Reading.ZoneTemperature");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m423", "SAV", "CER Temperature", # CER Temp not in database);
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m423", "SAV", "CER Temperature",""); # CER Temp not in database);
