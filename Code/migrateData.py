@@ -7,10 +7,6 @@ from datetime import datetime
 import re
 import os
 from dateutil.parser import *
-import copy
-from sqlalchemy.inspection import inspect
-from sqlalchemy.orm.util import identity_key
-
 
 global numberRegex
 numberRegex = re.compile(r'\d+', flags = re.IGNORECASE)
@@ -596,7 +592,6 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 
 	header = None
 	count = 0
-	mapper = inspect(ThermafuserReading)
 
 	for root, dirs, files in os.walk(dataFolder):
 		
@@ -701,10 +696,11 @@ def main():
 
 	zone4FilepATH = "../csv_files/Zone4.csv"
 	dataFolder = "/Users/davidlaredorazo/Desktop/Zone4"
+	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC"
 	
 	#Attempt connection to the database
 	try:
-		sqlengine = sqlalchemy.create_engine("mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC")
+		sqlengine = sqlalchemy.create_engine(database)
 		Session = sessionmaker(bind=sqlengine)
 		session = Session()
 
