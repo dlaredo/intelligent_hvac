@@ -6,6 +6,7 @@ Code/__pycache__
 *.pyc
 
 *.lck
+*-checkpoint.ipynb
 
 Code/crap\.py
 
