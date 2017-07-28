@@ -1787,13 +1787,30 @@ class SAVReading(Base):
 	_condensateDetector = Column('CondensateDetector', Boolean, nullable=True)
 	_valveOutputPercentage = Column('ValveOutputPercentage', Float, nullable=True)
 
+	_GEXDamperPosition = Column('GEXDamperPosition', Float, nullable=True)
+	_coolingRequest = Column('CoolingRequest', Boolean, nullable=True)
+	_heatingRequest = Column('HeatingRequest', Boolean, nullable=True)
+	_damperPosition = Column('DamperPosition', Float, nullable=True)
+	_exhaustAirflow = Column('ExhaustAirflow', Float, nullable=True)
+	_supplyAirflow = Column('SupplyAirflow', Float, nullable=True)
+	_flowDifference = Column('FlowDifference', Float, nullable=True)
+	_exhaustFlowSetpoint = Column('ExhaustFlowSetpoint', Float, nullable=True)
+	_heatingPercentage = Column('HeatingPercentage', Float, nullable=True)
+	_coolingPercentage = Column('CoolingPercentage', Float, nullable=True)
+	_coolingSetpoint = Column('CoolingSetpoint', Float, nullable=True)
+	_heatingSetpoint = Column('HeatingSetpoint', Float, nullable=True)
+	_CERTemperature = Column('CERTemperature', Float, nullable=True)
+
+
 	#Relationship between SAV Reading and SAV
 	_sav = relationship("SAV", back_populates = "_savReadings", cascade = "all, delete-orphan", single_parent = True)
   
 	#Constructor
 
 	def __init__(self, timestamp = None, SAVId = None, miscSpareInput = None, zoneTemperature = None, dischargeTemperature = None, miscInput = None,\
-	 condensateDetector = None, valveOutputPercentage = None, sav = None):
+	 condensateDetector = None, valveOutputPercentage = None, GEXDamperPosition = None, coolingRequest = None, heatingRequest = None, damperPosition = None,\
+	 exhaustAirflow = None, supplyAirflow = None, flowDifference = None, exhaustFlowSetpoint = None, heatingPercentage = None, coolingPercentage = None,\
+	 coolingSetpoint = None, heatingSetpoint = None, CERTemperature = None, sav = None):
 
 		self._SAVId = SAVId
 		self._timestamp = timestamp
@@ -1871,6 +1888,110 @@ class SAVReading(Base):
 		self._valveOutputPercentage = value
 
 	@property
+	def GEXDamperPosition(self):
+		return self._GEXDamperPosition
+
+	@GEXDamperPosition.setter
+	def GEXDamperPosition(self, value):
+		self._GEXDamperPosition = value
+
+	@property
+	def coolingRequest(self):
+		return self._coolingRequest
+
+	@coolingRequest.setter
+	def coolingRequest(self, value):
+		self._coolingRequest = value
+
+	@property
+	def heatingRequest(self):
+		return self._heatingRequest
+
+	@heatingRequest.setter
+	def heatingRequest(self, value):
+		self._heatingRequest = value
+
+	@property
+	def damperPosition(self):
+		return self._damperPosition
+
+	@damperPosition.setter
+	def damperPosition(self, value):
+		self._damperPosition = value
+
+	@property
+	def exhaustAirflow(self):
+		return self._exhaustAirflow
+
+	@exhaustAirflow.setter
+	def exhaustAirflow(self, value):
+		self._exhaustAirflow = value
+
+	@property
+	def supplyAirflow(self):
+		return self._supplyAirflow
+
+	@supplyAirflow.setter
+	def supplyAirflow(self, value):
+		self._supplyAirflow = value
+
+	@property
+	def flowDifference(self):
+		return self._flowDifference
+
+	@flowDifference.setter
+	def flowDifference(self, value):
+		self._flowDifference = value
+
+	@property
+	def exhaustFlowSetpoint(self):
+		return self._exhaustFlowSetpoint
+
+	@exhaustFlowSetpoint.setter
+	def exhaustFlowSetpoint(self, value):
+		self._exhaustFlowSetpoint = value
+
+	@property
+	def heatingPercentage(self):
+		return self._heatingPercentage
+
+	@heatingPercentage.setter
+	def heatingPercentage(self, value):
+		self._heatingPercentage = value
+
+	@property
+	def coolingPercentage(self):
+		return self._coolingPercentage
+
+	@coolingPercentage.setter
+	def coolingPercentage(self, value):
+		self._coolingPercentage = value
+
+	@property
+	def coolingSetpoint(self):
+		return self._coolingSetpoint
+
+	@coolingSetpoint.setter
+	def coolingSetpoint(self, value):
+		self._coolingSetpoint = value
+
+	@property
+	def heatingSetpoint(self):
+		return self._heatingSetpoint
+
+	@heatingSetpoint.setter
+	def heatingSetpoint(self, value):
+		self._heatingSetpoint = value
+
+	@property
+	def CERTemperature(self):
+		return self._CERTemperature
+
+	@CERTemperature.setter
+	def CERTemperature(self, value):
+		self._CERTemperature = value
+
+	@property
 	def sav(self):
 		return self._sav
 
@@ -1880,9 +2001,14 @@ class SAVReading(Base):
 
 	def __str__(self):
 		return "<SAVReading(SAVId = '%s', timestamp = '%s', miscSpareInput = '%s', zoneTemperature = '%s', dischargeTemperature = '%s',\
-		 miscInput = '%s', condensateDetector = '%s', valveOutputPercentage = '%s')>" \
+		 miscInput = '%s', condensateDetector = '%s', valveOutputPercentage = '%s', GEXDamperPosition = '%s', coolingRequest = '%s',\
+		 heatingRequest = '%s', damperPosition = '%s', exhaustAirflow = '%s', supplyAirflow = '%s', flowDifference = '%s'\
+		 exhaustFlowSetpoint = '%s', heatingPercentage = '%s', coolingPercentage = '%s', coolingSetpoint = '%s', heatingSetpoint = '%s'\
+		 CERTemperature = '%s')>" \
 		% (self._SAVId, str(self._timestamp), self._miscSpareInput, self._zoneTemperature, self._dischargeTemperature, self._miscInput,\
-		 self._condensateDetector,self._valveOutputPercentage)
+		 self._condensateDetector, self._valveOutputPercentage, self._GEXDamperPosition, self._coolingRequest, self._heatingRequest,\
+		 self._damperPosition, self._exhaustAirflow, self._supplyAirflow, self._flowDifference, self._exhaustFlowSetpoint,\
+		 self._heatingPercentage, self._coolingPercentage, self._coolingSetpoint, self._heatingSetpoint, self._CERTemperature)
 
 
 class VAV(Base):
