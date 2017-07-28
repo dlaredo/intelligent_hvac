@@ -31,7 +31,7 @@ def getDBSession():
 		return False
 
 	return session
-	
+
 
 def getComponentReadingClassByType(componentType):
 	"""Given the path mapping of a point, get the class that it belongs to"""
@@ -139,7 +139,11 @@ def getDataForGaussianAnalysis(dataFrames):
 	for instance it makes no sense to keep boolean values since they are not drawn from a gaussian 
 	distribution but instead a binary distribution, and thus they can not be fitted into a gausssian one"""
 	for dfkey in dataFrames:
-	    removableColumns = list(filter(lambda colName: dataFrames[dfkey][colName].dtype == bool, dataFrames[dfkey].columns))    
+	    removableColumns = list(filter(lambda colName: dataFrames[dfkey][colName].dtype == bool, dataFrames[dfkey].columns))
+	    removableColumns += list(filter(lambda colName: 'setpoint' in colName.lower() or 'stpoint' in colName.lower(), dataFrames[dfkey].columns))
+
+	    #Just for the test, must be deleted
+	    removableColumns.append('airflowFeedback')
 	    gaussianDistDF = dataFrames[dfkey].drop(removableColumns, axis=1)
 	    arrays[dfkey] = gaussianDistDF.values
 
