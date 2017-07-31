@@ -8,7 +8,9 @@ import re
 import os
 from dateutil.parser import *
 
-global numberRegex
+global numberRegex, componentsList, componentsClasses 
+componentsList = ["ahu", "vfd", "filter", "damper", "fan", "hec", "sav", "vav", "thermafuser"]
+componentsClasses = ["ahu":AHU, "vfd":VFD, "filter":Filter, "damper":Damper, "fan":Fan, "hec":HEC, "sav":SAV, "vav":VAV, "thermafuser":Thermafuser]
 numberRegex = re.compile(r'\d+', flags = re.IGNORECASE)
 
 def zonecsvToDb(filepath, dbsession, zone):
@@ -473,27 +475,8 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 	"""Take the mapped datapoints and fill the corresponding components in the database"""
 
 	#data structures
-	componentNames = dict()
-	componentNames["ahu"] = dict()
-	componentNames["vfd"] = dict()
-	componentNames["filter"] = dict()
-	componentNames["damper"] = dict()
-	componentNames["fan"] = dict()
-	componentNames["hec"] = dict()
-	componentNames["sav"] = dict()
-	componentNames["vav"] = dict()
-	componentNames["thermafuser"] = dict()
-
-	components = dict()
-	components["ahu"] = session.query(AHU).all()
-	components["vfd"] = session.query(VFD).all()
-	components["filter"] = session.query(Filter).all()
-	components["damper"] = session.query(Damper).all()
-	components["fan"] = session.query(Fan).all()
-	components["hec"] = session.query(HEC).all()
-	components["sav"] = session.query(SAV).all()
-	components["vav"] = session.query(VAV).all()
-	components["thermafuser"] = session.query(Thermafuser).all()
+	componentNames = {key:dict for key in componentsList}
+	components = {key:componentsClasses[key] for key in componentsList}
 
 	relationships = dict()
 	relationships["vav"] = session.query(ComponentRelationship).filter(ComponentRelationship._componentType == "VAV").all()
@@ -694,9 +677,9 @@ def main():
 
 	#Order of the function calls matters in this function, do not change it.
 
-	zone4FilepATH = "../csv_files/Zone4.csv"
-	dataFolder = "/Users/davidlaredorazo/Desktop/Zone4"
-	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC"
+	zoneFilepATH = "../csv_files/Zone_1and2.csv"
+	dataFolder = "/Users/davidlaredorazo/Box Sync/Data/Zone12"
+	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2"
 	
 	#Attempt connection to the database
 	try:
@@ -712,10 +695,11 @@ def main():
 
 	#Attempt to write csv to the database
 	try:
-		zonecsvToDb(zone4FilepATH, session, "4")
+		zonecsvToDb(zoneFilepATH, session, "1_2")
 		print("writting sucessfull")
 	except:
 		print("Error writting to the database")
+		print(traceback.format.exc())
 
 	print("Mapping DataPoints")
 	mappedDataPoints = MapDataPoints(session)
@@ -726,7 +710,7 @@ def main():
 	fillComponentsInDatabase(mappedDataPoints, session)
 
 	print("Migrating from csv files")
-	fillReadingsInDatabase(dataFolder, mappedDataPoints, session)
+	#fillReadingsInDatabase(dataFolder, mappedDataPoints, session)
 
 	session.close()
 

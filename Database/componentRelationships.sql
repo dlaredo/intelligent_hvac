@@ -1,13 +1,13 @@
 use HVAC;
 
 #AHU
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-1", NULL, 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-2", NULL, 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-3", NULL, 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-4", NULL, 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-5", NULL, 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-6", NULL, 1);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentGroup) values ("AHU-7", NULL, 1);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("AHU-1", NULL, "AHU", 7);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("AHU-2", NULL, "AHU", 7);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("AHU-3", NULL, "AHU", 7);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("AHU-4", NULL, "AHU", 7);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("AHU-5", NULL, "AHU", 7);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("AHU-6", NULL, "AHU", 7);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("AHU-7", NULL, "AHU", 7);
 
 #SAV
 #Basement
@@ -291,48 +291,48 @@ insert into ComponentRelationships (ComponentName, ParentComponent, ComponentTyp
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-325", "Hallway 3C4, Conference Support 325  VAV-3-25", "Thermafuser", NULL);
  
 #Zone 3
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-270","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-271","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-272","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-273","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-274","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-275","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-276","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-277","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-278","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-279","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-280","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-281","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-282","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-283","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-284","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-285","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-286","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-370","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-371","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-372","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-373","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-374","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-375","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-376","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-377","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-378","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-379","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-380","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-381","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-382","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-383","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-384","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-385","AHU-3","Thermafuser",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-386","AHU-3","Thermafuser",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-270", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-271", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-272", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-273", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-274", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-275", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-276", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-277", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-278", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-279", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-280", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-281", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-282", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-283", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-284", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-285", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-286", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-370", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-371", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-372", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-373", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-374", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-375", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-376", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-377", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-378", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-379", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-380", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-381", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-382", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-383", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-384", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-385", "AHU-3", "Thermafuser", NULL);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-386", "AHU-3", "Thermafuser", NULL);
 
 #Zone 1&2
 #found in the csv file but not in alc
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Computation 230A SAV-2A23-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Engineering 050 East SAV-B28-E", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Engineering 050 West SAV-B27-E", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Material Science 080 East SAV-B18-E", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Material Science 080 West SAV-B13-E", "AHU-1,AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Computation 230A SAV-2A23-C", "AHU-1,AHU-2", "SAV", 6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Engineering 050 East SAV-B28-E", "AHU-1,AHU-2", "SAV", 6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Engineering 050 West SAV-B27-E", "AHU-1,AHU-2", "SAV", 6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Material Science 080 East SAV-B18-E", "AHU-1,AHU-2", "SAV", 6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Material Science 080 West SAV-B13-E", "AHU-1,AHU-2", "SAV", 6);
 
 
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-291", "Offices 291-293 SAV-2A2-C", "Thermafuser", NULL);

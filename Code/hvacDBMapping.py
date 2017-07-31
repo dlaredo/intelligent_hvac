@@ -4,6 +4,13 @@ from sqlalchemy.orm import relationship, backref, class_mapper
 
 Base = declarative_base()
 
+
+AHU_SAV = Table('AHU_SAV', Base.metadata,
+    Column('_AHUNumber', Integer, ForeignKey('Air_Handling_Unit.AHUNumber')),
+    Column('_SAVId', Integer, ForeignKey('Staged_Air_Volume.SAVId'))
+)
+
+
 def copy_sqla_object(obj, omit_fk=True):
 	"""Given an SQLAlchemy object, creates a new object (FOR WHICH THE OBJECT
 	MUST SUPPORT CREATION USING __init__() WITH NO PARAMETERS), and copies
@@ -334,7 +341,7 @@ class AHU(Base):
 	_fans = relationship('Fan', back_populates = '_ahu') #Fan and AHU
 	_dampers = relationship('Damper', back_populates = '_ahu') #Damper and AHU
 	_vavs = relationship('VAV', back_populates = '_ahu') #VAV and AHU
-	_savs = relationship('SAV', back_populates = '_ahu') #SAV and AHU
+	_savs = relationship('SAV', secondary = AHU_SAV, back_populates = '_ahus') #SAV and AHU
 	_hecs = relationship('HEC', back_populates = '_ahu') #HEC and AHU
 	_vfds = relationship('VFD', back_populates = '_ahu') #VFD and AHU
 	_thermafusers = relationship('Thermafuser', back_populates = '_ahu') #Thermafuser and AHU
@@ -488,6 +495,9 @@ class AHUReading(Base):
 	_staticPressureSmoothed = Column('StaticPressureSmoothed', Float, nullable=True)
 	_staticSP = Column('StaticSP', Float, nullable=True)
 	_supplyAirSetpoint = Column('SupplyAirSetpoint', Float, nullable=True)
+	_STReq = Column('STReq', Float, nullable=True)
+	_staticSP1 = Column('StaticSP1', Float, nullable=True)
+	_staticSP2 = Column('StaticSP2', Float, nullable=True)
 
 	#Relationship between AHU Reading and AHU
 	_ahu = relationship("AHU", back_populates = "_ahuReadings", cascade = "all, delete-orphan", single_parent = True)
@@ -497,7 +507,7 @@ class AHUReading(Base):
 	def __init__(self, timestamp = None, AHUNumber = None, zoneTemperature = None, staticPressure = None, returnAirTemperature = None, supplyAirTemperature = None, exhaustAirTemperature = None,\
 	 outsideAirTemperature = None, smokeDetector = None, outsideAirCo2 = None, returnAirCo2 = None, spare = None, hiStatic = None, ductStaticPressure = None,\
 	  mixedAirTemperature = None, OSACFM = None, coolingRequest = None, coolingSetpoint = None, heatingRequest = None, heatingSetpoint = None, economizerSetpoint = None,\
-	  occupiedMode = None, returnAirCo2Setpoint = None, staticPressureSmoothed = None, staticSP = None, supplyAirSetpoint = None, ahu = None):
+	  occupiedMode = None, returnAirCo2Setpoint = None, staticPressureSmoothed = None, staticSP = None, supplyAirSetpoint = None, STReq = None, staticSP1 = None, staticSP2 = None, ahu = None):
 
 		self._AHUNumber = AHUNumber
 		self._timestamp = timestamp
@@ -525,6 +535,9 @@ class AHUReading(Base):
 		self._staticPressureSmoothed = staticPressureSmoothed
 		self._staticSP = staticSP
 		self._supplyAirSetpoint = supplyAirSetpoint
+		self._STReq = STReq
+		self._staticSP1 = staticSP1
+		self._staticSP2 = staticSP2
 		self._ahu = ahu
 
 	#properties
@@ -737,6 +750,30 @@ class AHUReading(Base):
 		self._supplyAirSetpoint = value
 
 	@property
+	def STReq(self):
+		return self._STReq
+
+	@STReq.setter
+	def STReq(self, value):
+		self._STReq = value
+
+	@property
+	def staticSP1(self):
+		return self._staticSP1
+
+	@staticSP1.setter
+	def staticSP1(self, value):
+		self._staticSP1 = value
+
+	@property
+	def staticSP2(self):
+		return self._staticSP2
+
+	@staticSP2.setter
+	def staticSP2(self, value):
+		self._staticSP2 = value
+
+	@property
 	def ahu(self):
 		return self._ahu
 
@@ -748,11 +785,13 @@ class AHUReading(Base):
 		return "<AHUReading(AHUNumber = '%s', timestamp = '%s', zoneTemperature = '%s', staticPressure = '%s', returnAirTemperature = '%s', supplyAirTemperature = '%s', \
 		exhaustAirTemperature = '%s', outsideAirTemperature = '%s', smokeDetector = '%s', outsideAirCo2 = '%s', returnAirCo2 = '%s',spare = '%s',hiStatic = '%s', \
 		ductstaticPressure = '%s',mixedAirTemperature = '%s', OSACFM = '%s', CoolingRequest = '%s', CoolingSetpoint = '%s', HeatingRequest = '%s', HeatingSetpoint = '%s',\
-		EconomizerSetpoint = '%s', OccupiedMode = '%s', ReturnAirCo2Setpoint = '%s', StaticPressureSmoothed = '%s', StaticSP = '%s', supplyAirSetpoint = '%s')>" \
+		EconomizerSetpoint = '%s', OccupiedMode = '%s', ReturnAirCo2Setpoint = '%s', StaticPressureSmoothed = '%s', StaticSP = '%s', supplyAirSetpoint = '%s', STReq = '%s',\
+		StaticSP1 = '%s', StaticSP2 = '%s')>" \
 		% (self._AHUNumber, str(self._timestamp), self._zoneTemperature, self._staticPressure, self._returnAirTemperature, self._supplyAirTemperature, \
 		 self._exhaustAirTemperature, self._outsideAirTemperature,self._smokeDetector, self._outsideAirCo2, self._returnAirCo2, self._spare, self._hiStatic, \
 		 self.ductStaticPressure, self._mixedAirTemperature, self._OSACFM, self._coolingRequest, self._coolingSetpoint, self._heatingRequest, self._heatingSetpoint,\
-		 self._economizerSetpoint, self._occupiedMode, self._returnAirCo2Setpoint, self._staticPressureSmoothed, self._staticSP, self._supplyAirSetpoint)
+		 self._economizerSetpoint, self._occupiedMode, self._returnAirCo2Setpoint, self._staticPressureSmoothed, self._staticSP, self._supplyAirSetpoint, self._STReq,\
+		 self._staticSP1, self._staticSP2)
 
 
 
@@ -1682,23 +1721,22 @@ class SAV(Base):
 	__tablename__ = "Staged_Air_Volume"
 
 	_SAVId = Column('SAVId', Integer, primary_key = True, autoincrement = True)
-	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"))
 	_SAVName = Column('SAVName', String(255))
 	
 	#Relationships
-	_ahu = relationship("AHU", back_populates = "_savs") #Relationship between SAV and AHU
+	_ahus = relationship("AHU", secondary = AHU_SAV, back_populates = "_savs") #Relationship between SAV and AHU
 	_hecs = relationship("HEC", back_populates = "_sav") #Relationship between SAV and HEC
 	_thermafusers = relationship("Thermafuser", back_populates = "_sav") #Relationship between SAV and Thermafuser
 	_savReadings = relationship("SAVReading", back_populates = "_sav") #Relationship between SAV and SAV_Reading
 
 	#Constructor
 
-	def __init__(self, SAVId, AHUNumber, SAVName, ahu = None, hecs = [], thermafusers = [], SAVReadings = []):
+	def __init__(self, SAVId, AHUNumber, SAVName, ahus = [], hecs = [], thermafusers = [], SAVReadings = []):
 
 		self._SAVId = SAVId
 		self._AHUNumber = AHUNumber
 		self._SAVName = SAVName
-		self._ahu = ahu
+		self._ahus = ahus
 		self._hecs = hecs
 		self._SAVReadings = SAVReadings
 		self._thermafusers = thermafusers
@@ -1722,20 +1760,12 @@ class SAV(Base):
 		self._SAVName = value
 
 	@property
-	def AHUNumber(self):
-		return self._AHUNumber
+	def ahus(self):
+		return self._ahus
 
-	@AHUNumber.setter
-	def AHUNumber(self, value):
-		self._AHUNumber = value
-
-	@property
-	def ahu(self):
-		return self._ahu
-
-	@ahu.setter
-	def ahu(self, value):
-		self._ahu = value
+	@ahus.setter
+	def ahus(self, value):
+		self._ahus = value
 
 	@property
 	def hecs(self):
@@ -1770,7 +1800,7 @@ class SAV(Base):
 		return "SAV"
 
 	def __str__(self):
-		return "<SAV(SAVId = '%d', AHUNumber = '%d', SAVName = '%d')>" % (self._SAVId, self._AHUNumber, self._SAVName)
+		return "<SAV(SAVId = '%d', SAVName = '%d')>" % (self._SAVId, self._SAVName)
 
 
 class SAVReading(Base):
@@ -1786,7 +1816,6 @@ class SAVReading(Base):
 	_miscInput = Column('MiscInput', Boolean, nullable=True)
 	_condensateDetector = Column('CondensateDetector', Boolean, nullable=True)
 	_valveOutputPercentage = Column('ValveOutputPercentage', Float, nullable=True)
-
 	_GEXDamperPosition = Column('GEXDamperPosition', Float, nullable=True)
 	_coolingRequest = Column('CoolingRequest', Boolean, nullable=True)
 	_heatingRequest = Column('HeatingRequest', Boolean, nullable=True)

@@ -1,4 +1,4 @@
-use HVAC;
+use HVAC2;
 
 #Thermafuser
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m076", "Thermafuser", "Terminal Load", "terminalLoad");
@@ -55,6 +55,10 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sa_stpt_tn", "AHU", "Supply Air Set Point", "supplyAirSetpoint");
 #Zone 3
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("st_press1","AHU","Static Pressure 2 A", "staticPressure");
+#Zones 1_2
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m496","AHU","ST Req", "STReq");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m124","AHU","Static SP1", "staticSP1");
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m415","AHU","Static SP2", "staticSP2");
 
 #VFD
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("power_kw_1610_tn", "VFD", "Power KW", "powerKW");
@@ -86,5 +90,5 @@ insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) val
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("ht_pct_tn", "SAV", "Heating Percentage","coolingPercentage");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sav/cl_stpt_tn", "SAV", "Cooling Setpoint", "coolingSetpoint");
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("sav/ht_stpt_tn", "SAV", "Heating Setpoint", "heatingSetpoint");
-insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("lstat/zone_temp", "SAV", "Zone Temperature", "zoneTemperature"); 
+insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("zone_temp", "SAV", "Zone Temperature", "zoneTemperature"); 
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m423", "SAV", "CER Temperature","CERTemperature");
