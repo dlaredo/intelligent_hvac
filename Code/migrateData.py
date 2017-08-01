@@ -358,16 +358,13 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 				splittedPath = mdataPoint.path.split("/")
 				componentPath = splittedPath[len(splittedPath) - 1]
 				componentNumber = determineComponentNumber(componentPath)
-				componentName = componentType + " "  + componentKey.title() + " " + str(componentNumber)
-
-			#print(componentName)
+				componentName = mdataPoint.controlProgram + "/" + componentType + " "  + componentKey.title() + " " + str(componentNumber)
 
 			if componentName not in componentNames[componentKey]:
 				ahu = getParentComponent(components, componentNames, relationships, ComponentClass, "AHU", mdataPoint)
 
 				if ahu != None and componentType != "":
 					component = ComponentClass(totalNumberOfComponents + 1, ahu.AHUNumber, componentName, componentType, ahu)
-					#ahu.filters.append(filt)
 					components[componentKey].append(component)
 					#componentNames[componentKey].add(componentName)
 					totalNumberOfComponents += 1
@@ -624,7 +621,11 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 								header[i] = header[i].replace(" ","")
 								mdataPoint = getMappedPoint(header[i], mappedDataPoints)
 
-								fileTypeMappedDataPoints.append(mdataPoint)
+								if mdataPoint != None:
+									fileTypeMappedDataPoints.append(mdataPoint)
+								else:
+									print("Point not mapped " + header[i])
+
 							
 							#header is just mapped once per folder, no need to map it more than once per folder
 							headerMapped = True
@@ -635,7 +636,9 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 
 							time = row[0]
 							timestamp = parse(time, None, ignoretz = True)
-							for j in range(1, len(row) - 1):
+							#print(len(row), len(fileTypeMappedDataPoints))
+							#for j in range(1, len(row) - 1):
+							for j in range(1, len(fileTypeMappedDataPoints)+1):
 
 								i = j-1
 
@@ -687,7 +690,7 @@ def main():
 	#Order of the function calls matters in this function, do not change it.
 
 	zoneFilepATH = "../csv_files/Zone_1and2.csv"
-	dataFolder = "/Users/davidlaredorazo/Box Sync/Data/Zone12"
+	dataFolder = "/Users/davidlaredorazo/Desktop/Zone12"
 	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2"
 	
 	#Attempt connection to the database
@@ -712,6 +715,8 @@ def main():
 
 	print("Mapping DataPoints")
 	mappedDataPoints = MapDataPoints(session)
+
+	#printMappedDataPoints(mappedDataPoints, 'fan')
 
 	print("Filling components in Database")
 	fillComponentsInDatabase(mappedDataPoints, session)
