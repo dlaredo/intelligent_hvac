@@ -1,5 +1,5 @@
-create database HVAC2;
-use HVAC2;
+create database HVAC;
+use HVAC;
 
 CREATE TABLE Thermafuser_Reading (
   Time_stamp                datetime NOT NULL, 

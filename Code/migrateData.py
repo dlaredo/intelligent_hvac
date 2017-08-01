@@ -75,22 +75,14 @@ def determineDataPointTypeByPath(path):
 
 	return None
 
+
 def MapDataPoints(session):
 	"""Map each datapoint to its corresponding table and component"""
 
 	dataPointMapped = True
 
 	#data structures
-	mappedDataPoints = dict()
-	mappedDataPoints["ahu"] = list()
-	mappedDataPoints["vfd"] = list()
-	mappedDataPoints["fan"] = list()
-	mappedDataPoints["filter"] = list()
-	mappedDataPoints["damper"] = list()
-	mappedDataPoints["hec"] = list()
-	mappedDataPoints["thermafuser"] = list()
-	mappedDataPoints["vav"] = list()
-	mappedDataPoints["sav"] = list()
+	mappedDataPoints = {key:list() for key in componentsList}
 
 	#get all data points
 	datapoints = session.query(DataPoint).all()
@@ -154,6 +146,7 @@ def MapDataPoints(session):
 
 	return mappedDataPoints
 
+
 def printMappedDataPoints(mappedDataPoints, key = None):
 	"""Print all the mapped datapoints"""
 
@@ -181,6 +174,7 @@ def printMappedDataPoints(mappedDataPoints, key = None):
 			print(mappedDataPoint.path, mappedDataPoint.controlProgram, mappedDataPoint.pathMapping.databaseMapping)
 
 	print("\nTotal data points = ", totalDataPoints)
+
 
 def printComponents(components):
 
@@ -691,7 +685,7 @@ def main():
 
 	zoneFilepATH = "../csv_files/Zone_1and2.csv"
 	dataFolder = "/Users/davidlaredorazo/Desktop/Zone12"
-	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2"
+	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC"
 	
 	#Attempt connection to the database
 	try:
@@ -699,7 +693,7 @@ def main():
 		Session = sessionmaker(bind=sqlengine)
 		session = Session()
 
-		print("Connection successfull")
+		print("Connection to " + database + " successfull")
 	except Exception as e:
 		print(traceback.format.exc())
 		print("Error in connection")
