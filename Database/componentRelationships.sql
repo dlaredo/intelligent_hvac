@@ -1,4 +1,7 @@
-use HVAC;
+use HVAC2;
+
+#Insert ghost AHU (AHU-1/AHU-2)
+insert into Air_Handling_Unit (AHUNumber, AHUName) values (1, "AHU-1/AHU-2");
 
 #AHU
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("AHU-1", NULL, "AHU", 7);
@@ -8,107 +11,108 @@ insert into ComponentRelationships (ComponentName, ParentComponent, ComponentTyp
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("AHU-5", NULL, "AHU", 7);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("AHU-6", NULL, "AHU", 7);
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("AHU-7", NULL, "AHU", 7);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("AHU-1/AHU-2", NULL, "AHU", 7);
 
 #SAV
 #Basement
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mircotome 090F SAV-B1-A","AHU-1,AHU-2","SAV",6); #2 AHU control this SAV
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Prep 090G SAV-B2-C", "AHU-1,AHU-2","SAV",6); #2 AHU control this SAV
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Imaging 090 SAV-B3-B", "AHU-1,AHU-2","SAV",6 );#2 AHU control this SAV
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Training 090E SAV-B4-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("SEM 090D SAV-B5-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Titan 090B North SAV-B6-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Dual Beam 090A SAV-B7-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Titan 090B South SAV-B8-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Pump 085 SAV-B9-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("TEM 090C SAV-B10-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 080G SAV-B11-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 080F SAV-B12-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Equipment 080C SAV-B14-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 080E SAV-B15-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 080D SAV-B16-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Hallway 0C9 SAV-B17-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Computation 080A SAV-B19-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Laser lab 070 SAV-B20-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Material Science 080B SAV-B21-E", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Visualization 060 SAV-B22-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("CER 50H SAV-B23-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Support 050G SAV-B24-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Equipment 050D SAV-B25-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 050F SAV-B26-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Support 050A SAV-B29-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 050C SAV-B30-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Computation 050B SAV-B31-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Equipment 050E SAV-B32-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Server Tech 030 SAV-B33-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mass Spec 024 SAV-B37-D", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("NMR Pumps 020C SAV-B38-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("NMR Mass 020 SAV-B-39", "AHU-1,AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Microtome 090F SAV-B1-A","AHU-1/AHU-2","SAV",6); #2 AHU control this SAV
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Prep 090G SAV-B2-C", "AHU-1/AHU-2","SAV",6); #2 AHU control this SAV
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Imaging 090 SAV-B3-B", "AHU-1/AHU-2","SAV",6 );#2 AHU control this SAV
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Training 090E SAV-B4-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("SEM 090D SAV-B5-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Titan 090B North SAV-B6-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Dual Beam 090A SAV-B7-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Titan 090B South SAV-B8-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Pump 085 SAV-B9-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("TEM 090C SAV-B10-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 080G SAV-B11-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 080F SAV-B12-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Equipment 080C SAV-B14-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 080E SAV-B15-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 080D SAV-B16-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Hallway 0C9 SAV-B17-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Computation 080A SAV-B19-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Laser lab 070 SAV-B20-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Material Science 080B SAV-B21-E", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Visualization 060 SAV-B22-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("CER 50H SAV-B23-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Support 050G SAV-B24-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Equipment 050D SAV-B25-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 050F SAV-B26-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Support 050A SAV-B29-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 050C SAV-B30-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Computation 050B SAV-B31-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Equipment 050E SAV-B32-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Server Tech 030 SAV-B33-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mass Spec 024 SAV-B37-D", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("NMR Pumps 020C SAV-B38-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("NMR Mass 020 SAV-B-39", "AHU-1/AHU-2","SAV",6);
 #First Floor
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wind Tunnel 185 West SAV-1A1-C", "AHU-1,AHU-2","SAV",6); # multiple AHU used for this SAV
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wind Tunnel 185 East SAV-1A2-C", "AHU-1,AHU-2","SAV",6); #multiple AHU used for this SAV
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instructor Support 190 SAV-1A3-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Thermofluid Lab 180 SAV-1A4-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Prep 170 SAV-1A5-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wet Lab 160 West SAV-1A6-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wet Lab 160 East SAV-1A7-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Machine Shop 175 SAV-1A8-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Learning 165 West SAV-1B9-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Learning 165 East SAV-1B10-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wet Lab 150 West SAV-1B11-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wet Lab 150 East SAV-1B12-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Prep 140 SAV-1B13-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wet Lab 130 West SAV-1B14-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wet Lab 130 East SAV-1B15-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Electronics 155 SAV-1B16-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Tech Office 135 SAV-1B17-CA", "AHU-1,AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wind Tunnel 185 West SAV-1A1-C", "AHU-1/AHU-2","SAV",6); # multiple AHU used for this SAV
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wind Tunnel 185 East SAV-1A2-C", "AHU-1/AHU-2","SAV",6); #multiple AHU used for this SAV
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instructor Support 190 SAV-1A3-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Thermofluid Lab 180 SAV-1A4-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Prep 170 SAV-1A5-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wet Lab 160 West SAV-1A6-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wet Lab 160 East SAV-1A7-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Machine Shop 175 SAV-1A8-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Learning 165 West SAV-1B9-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Learning 165 East SAV-1B10-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wet Lab 150 West SAV-1B11-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wet Lab 150 East SAV-1B12-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Prep 140 SAV-1B13-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wet Lab 130 West SAV-1B14-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Wet Lab 130 East SAV-1B15-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Electronics 155 SAV-1B16-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Tech Office 135 SAV-1B17-CA", "AHU-1/AHU-2","SAV",6);
 
 #second floor
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Breakout 290 SAV-2A1-C", "AHU-1,AHU-2","SAV",6); 
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Offices 291-293 SAV-2A2-C", "AHU-1,AHU-2","SAV",6); 
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Computation 230Q SAV-2A3-A", "AHU-1,AHU-2","SAV",6); # multiple AHU used for this SAV
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Enginnering 230P SAV-2A4-A", "AHU-1,AHU-2","SAV",6); #multiple AHU used for this SAV
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Engineering 230N SAV-2A5-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Office 265 SAV-2A6-CA", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Enginnering 230M SAV-2A7-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Engineering 230R SAV-2A8-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh Engineering 230K SAV-2A9-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Hallway 230 SAV-2A10-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Hallway 2C9 SAV-2A11-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Engineering 230S SAV-2A12-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Engineering 230J SAV-2A13-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Engineering 230T SAV-2A14-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Engineering 230H SAV-2A15-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Engineering 230F SAV-2A16-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Hallway 230 SAV-2A17-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Engineering 230U SAV-2A18-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Engineering 230E SAV-2A19-D", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Engineering 230V SAV-2A20-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Engineering 230D SAV-2A21-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mesh. Engineering 230C SAV-2A22-A", "AHU-1,AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Breakout 290 SAV-2A1-C", "AHU-1/AHU-2","SAV",6); 
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Offices 291-293 SAV-2A2-C", "AHU-1/AHU-2","SAV",6); 
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Computation 230Q SAV-2A3-A", "AHU-1/AHU-2","SAV",6); # multiple AHU used for this SAV
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Enginnering 230P SAV-2A4-A", "AHU-1/AHU-2","SAV",6); #multiple AHU used for this SAV
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Engineering 230N SAV-2A5-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Office 265 SAV-2A6-CA", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Enginnering 230M SAV-2A7-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Engineering 230R  SAV-2A8-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech Engineering 230K SAV-2A9-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Hallway 230 SAV-2A10-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Hallway 2C9 SAV-2A11-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Engineering 230S SAV-2A12-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Engineering 230J SAV-2A13-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Engineering 230T SAV-2A14-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Engineering 230H SAV-2A15-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Engineering 230F SAV-2A16-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Hallway 230 SAV-2A17-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Engineering 230U SAV-2A18-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Engineering 230E SAV-2A19-D", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Engineering 230V SAV-2A20-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Engineering 230D SAV-2A21-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Mech. Engineering 230C SAV-2A22-A", "AHU-1/AHU-2","SAV",6);
 
 #third floor
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Breakout 390 SAV-3A1-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Offices 391-393 SAV-3A2-C", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Office Support 365 SAV-3A3-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 340P SAV-3A4-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 340R SAV-3A5-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 340Q SAV-3A6-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 340N SAV-3A7-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Bioengineering 340 West SAV-3A8-E", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Cell Culture 340L SAV-3A9-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Cell Culture 340J SAV-3A10-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Hallway 3C9 SAV-3A11-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Cell Culture 340H SAV-3A12-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Bioengineering 340 Center SAV-3A13-E", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Cell Culture 340G SAV-3A14-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Autoclave 355 SAV-3A15-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Cell Culture 340F SAV-3A16-B", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Cell Culture 340C SAV-3A17-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Bioengineering 340 East SAV-3A18-E", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 340D SAV-3A19-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 340B SAV-3A20-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Organic Chemistry 335 SAV-3A21-A", "AHU-1,AHU-2","SAV",6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Organic Chemistry 330 3A22", "AHU-1,AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Breakout 390 SAV-3A1-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Offices 391-393 SAV-3A2-C", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Office Support 365 SAV-3A3-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 340P SAV-3A4-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 340R SAV-3A5-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 340Q SAV-3A6-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 340N SAV-3A7-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Bioengineering 340 West SAV-3A8-E", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Cell Culture 340L SAV-3A9-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Cell Culture 340J SAV-3A10-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Hallway 3C9 SAV-3A11-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Cell Culture 340H SAV-3A12-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Bioengineering 340 Center SAV-3A13-E", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Cell Culture 340G SAV-3A14-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Autoclave 355 SAV-3A15-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Cell Culture 340F SAV-3A16-B", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Cell Culture 340C SAV-3A17-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Bioengineering 340 East SAV-3A18-E", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 340D SAV-3A19-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Instrument 340B SAV-3A20-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Organic Chemistry 335 SAV-3A21-A", "AHU-1/AHU-2","SAV",6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Organic Chemistry 330  3A22", "AHU-1/AHU-2","SAV",6);
 
 
 
@@ -328,11 +332,11 @@ insert into ComponentRelationships (ComponentName, ParentComponent, ComponentTyp
 
 #Zone 1&2
 #found in the csv file but not in alc
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Computation 230A SAV-2A23-C", "AHU-1,AHU-2", "SAV", 6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Engineering 050 East SAV-B28-E", "AHU-1,AHU-2", "SAV", 6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Engineering 050 West SAV-B27-E", "AHU-1,AHU-2", "SAV", 6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Material Science 080 East SAV-B18-E", "AHU-1,AHU-2", "SAV", 6);
-insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Material Science 080 West SAV-B13-E", "AHU-1,AHU-2", "SAV", 6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Computation 230A SAV-2A23-C", "AHU-1/AHU-2", "SAV", 6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Engineering 050 East SAV-B28-E", "AHU-1/AHU-2", "SAV", 6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Engineering 050 West SAV-B27-E", "AHU-1/AHU-2", "SAV", 6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Material Science 080 East SAV-B18-E", "AHU-1/AHU-2", "SAV", 6);
+insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Material Science 080 West SAV-B13-E", "AHU-1/AHU-2", "SAV", 6);
 
 
 insert into ComponentRelationships (ComponentName, ParentComponent, ComponentType, ComponentGroup) values ("Room-291", "Offices 291-293 SAV-2A2-C", "Thermafuser", NULL);

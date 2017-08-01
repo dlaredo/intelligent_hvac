@@ -5,12 +5,6 @@ from sqlalchemy.orm import relationship, backref, class_mapper
 Base = declarative_base()
 
 
-AHU_SAV = Table('AHU_SAV', Base.metadata,
-    Column('_AHUNumber', Integer, ForeignKey('Air_Handling_Unit.AHUNumber')),
-    Column('_SAVId', Integer, ForeignKey('Staged_Air_Volume.SAVId'))
-)
-
-
 def copy_sqla_object(obj, omit_fk=True):
 	"""Given an SQLAlchemy object, creates a new object (FOR WHICH THE OBJECT
 	MUST SUPPORT CREATION USING __init__() WITH NO PARAMETERS), and copies
@@ -341,7 +335,7 @@ class AHU(Base):
 	_fans = relationship('Fan', back_populates = '_ahu') #Fan and AHU
 	_dampers = relationship('Damper', back_populates = '_ahu') #Damper and AHU
 	_vavs = relationship('VAV', back_populates = '_ahu') #VAV and AHU
-	_savs = relationship('SAV', secondary = AHU_SAV, back_populates = '_ahus') #SAV and AHU
+	_savs = relationship('SAV', back_populates = '_ahu') #SAV and AHU
 	_hecs = relationship('HEC', back_populates = '_ahu') #HEC and AHU
 	_vfds = relationship('VFD', back_populates = '_ahu') #VFD and AHU
 	_thermafusers = relationship('Thermafuser', back_populates = '_ahu') #Thermafuser and AHU
@@ -1721,22 +1715,23 @@ class SAV(Base):
 	__tablename__ = "Staged_Air_Volume"
 
 	_SAVId = Column('SAVId', Integer, primary_key = True, autoincrement = True)
+	_AHUNumber = Column('AHUNumber', Integer, ForeignKey("Air_Handling_Unit.AHUNumber"), nullable = True)
 	_SAVName = Column('SAVName', String(255))
 	
 	#Relationships
-	_ahus = relationship("AHU", secondary = AHU_SAV, back_populates = "_savs") #Relationship between SAV and AHU
+	_ahu = relationship("AHU", back_populates = "_savs") #Relationship between SAV and AHU
 	_hecs = relationship("HEC", back_populates = "_sav") #Relationship between SAV and HEC
 	_thermafusers = relationship("Thermafuser", back_populates = "_sav") #Relationship between SAV and Thermafuser
 	_savReadings = relationship("SAVReading", back_populates = "_sav") #Relationship between SAV and SAV_Reading
 
 	#Constructor
 
-	def __init__(self, SAVId, AHUNumber, SAVName, ahus = [], hecs = [], thermafusers = [], SAVReadings = []):
+	def __init__(self, SAVId, AHUNumber, SAVName, ahu = None, hecs = [], thermafusers = [], SAVReadings = []):
 
 		self._SAVId = SAVId
 		self._AHUNumber = AHUNumber
 		self._SAVName = SAVName
-		self._ahus = ahus
+		self._ahu = ahu
 		self._hecs = hecs
 		self._SAVReadings = SAVReadings
 		self._thermafusers = thermafusers
@@ -1760,12 +1755,20 @@ class SAV(Base):
 		self._SAVName = value
 
 	@property
-	def ahus(self):
-		return self._ahus
+	def AHUNumber(self):
+		return self._AHUNumber
 
-	@ahus.setter
-	def ahus(self, value):
-		self._ahus = value
+	@AHUNumber.setter
+	def AHUNumber(self, value):
+		self._AHUNumber = value
+
+	@property
+	def ahu(self):
+		return self._ahu
+
+	@ahu.setter
+	def ahu(self, value):
+		self._ahu = value
 
 	@property
 	def hecs(self):
@@ -1800,7 +1803,7 @@ class SAV(Base):
 		return "SAV"
 
 	def __str__(self):
-		return "<SAV(SAVId = '%d', SAVName = '%d')>" % (self._SAVId, self._SAVName)
+		return "<SAV(SAVId = '%d', AHUNumber = '%d', SAVName = '%d')>" % (self._SAVId, self._SAVName)
 
 
 class SAVReading(Base):
@@ -1829,6 +1832,8 @@ class SAVReading(Base):
 	_coolingSetpoint = Column('CoolingSetpoint', Float, nullable=True)
 	_heatingSetpoint = Column('HeatingSetpoint', Float, nullable=True)
 	_CERTemperature = Column('CERTemperature', Float, nullable=True)
+	_htRequest = Column('HtRequest', Float, nullable=True)
+	_clRequest = Column('ClRequest', Float, nullable=True)
 
 
 	#Relationship between SAV Reading and SAV
@@ -1839,7 +1844,7 @@ class SAVReading(Base):
 	def __init__(self, timestamp = None, SAVId = None, miscSpareInput = None, zoneTemperature = None, dischargeTemperature = None, miscInput = None,\
 	 condensateDetector = None, valveOutputPercentage = None, GEXDamperPosition = None, coolingRequest = None, heatingRequest = None, damperPosition = None,\
 	 exhaustAirflow = None, supplyAirflow = None, flowDifference = None, exhaustFlowSetpoint = None, heatingPercentage = None, coolingPercentage = None,\
-	 coolingSetpoint = None, heatingSetpoint = None, CERTemperature = None, sav = None):
+	 coolingSetpoint = None, heatingSetpoint = None, CERTemperature = None, htRequest = None, clRequest = None, sav = None):
 
 		self._SAVId = SAVId
 		self._timestamp = timestamp
@@ -1849,6 +1854,21 @@ class SAVReading(Base):
 		self._miscInput = miscInput
 		self._condensateDetector = condensateDetector                
 		self._valveOutputPercentage = valveOutputPercentage
+		self._GEXDamperPosition = GEXDamperPosition
+		self._coolingRequest = coolingRequest
+		self._heatingRequest = heatingRequest
+		self._damperPosition = damperPosition
+		self._exhaustAirflow = exhaustAirflow
+		self._supplyAirflow = supplyAirflow
+		self._flowDifference = flowDifference
+		self._exhaustFlowSetpoint = exhaustFlowSetpoint
+		self._heatingPercentage = heatingPercentage
+		self._coolingPercentage = coolingPercentage
+		self._coolingSetpoint = coolingSetpoint
+		self._heatingSetpoint = heatingSetpoint
+		self._CERTemperature = CERTemperature
+		self._htRequest = htRequest
+		self._clRequest = clRequest
 		self._sav = sav
 
 	#properties
@@ -2021,6 +2041,22 @@ class SAVReading(Base):
 		self._CERTemperature = value
 
 	@property
+	def htRequest(self):
+		return self._htRequest
+
+	@htRequest.setter
+	def htRequest(self, value):
+		self._htRequest = value
+
+	@property
+	def clRequest(self):
+		return self._clRequest
+
+	@clRequest.setter
+	def clRequest(self, value):
+		self._clRequest = value
+
+	@property
 	def sav(self):
 		return self._sav
 
@@ -2033,11 +2069,12 @@ class SAVReading(Base):
 		 miscInput = '%s', condensateDetector = '%s', valveOutputPercentage = '%s', GEXDamperPosition = '%s', coolingRequest = '%s',\
 		 heatingRequest = '%s', damperPosition = '%s', exhaustAirflow = '%s', supplyAirflow = '%s', flowDifference = '%s'\
 		 exhaustFlowSetpoint = '%s', heatingPercentage = '%s', coolingPercentage = '%s', coolingSetpoint = '%s', heatingSetpoint = '%s'\
-		 CERTemperature = '%s')>" \
+		 CERTemperature = '%s', htRequest = '%s', clRequest = '%s')>" \
 		% (self._SAVId, str(self._timestamp), self._miscSpareInput, self._zoneTemperature, self._dischargeTemperature, self._miscInput,\
 		 self._condensateDetector, self._valveOutputPercentage, self._GEXDamperPosition, self._coolingRequest, self._heatingRequest,\
 		 self._damperPosition, self._exhaustAirflow, self._supplyAirflow, self._flowDifference, self._exhaustFlowSetpoint,\
-		 self._heatingPercentage, self._coolingPercentage, self._coolingSetpoint, self._heatingSetpoint, self._CERTemperature)
+		 self._heatingPercentage, self._coolingPercentage, self._coolingSetpoint, self._heatingSetpoint, self._CERTemperature,\
+		 self._htRequest, self._clRequest)
 
 
 class VAV(Base):

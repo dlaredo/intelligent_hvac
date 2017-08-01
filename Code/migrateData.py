@@ -10,7 +10,7 @@ from dateutil.parser import *
 
 global numberRegex, componentsList, componentsClasses 
 componentsList = ["ahu", "vfd", "filter", "damper", "fan", "hec", "sav", "vav", "thermafuser"]
-componentsClasses = ["ahu":AHU, "vfd":VFD, "filter":Filter, "damper":Damper, "fan":Fan, "hec":HEC, "sav":SAV, "vav":VAV, "thermafuser":Thermafuser]
+componentsClasses = {"ahu":AHU, "vfd":VFD, "filter":Filter, "damper":Damper, "fan":Fan, "hec":HEC, "sav":SAV, "vav":VAV, "thermafuser":Thermafuser}
 numberRegex = re.compile(r'\d+', flags = re.IGNORECASE)
 
 def zonecsvToDb(filepath, dbsession, zone):
@@ -154,13 +154,24 @@ def MapDataPoints(session):
 
 	return mappedDataPoints
 
-def printMappedDataPoints(mappedDataPoints):
+def printMappedDataPoints(mappedDataPoints, key = None):
 	"""Print all the mapped datapoints"""
 
 	totalDataPoints = 0
 
-	for key in mappedDataPoints:
+	if key == None:
+		for key in mappedDataPoints:
 
+			print(key + "Datapoints")
+			componentDataPoints = len(mappedDataPoints[key])
+			totalDataPoints += componentDataPoints
+
+			#print("\n" + key + " datapoints = ", componentDataPoints)
+
+			for mappedDataPoint in mappedDataPoints[key]:
+				print(mappedDataPoint.path, mappedDataPoint.controlProgram, mappedDataPoint.pathMapping.databaseMapping)
+	else:
+		print(key + " Datapoints")
 		componentDataPoints = len(mappedDataPoints[key])
 		totalDataPoints += componentDataPoints
 
@@ -367,7 +378,7 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 				else:
 					print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
 					if ahu == None:
-						print("Could not determine ahu")
+						print("Could not determine parent ahu")
 					elif componentType == "":
 						print("Could not determine componentType")
 			else:
@@ -375,6 +386,7 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 
 		#Fill VAVs and SAVs
 		elif ComponentClass == VAV or ComponentClass == SAV:
+
 			componentName = mdataPoint.controlProgram
 
 			if componentName not in componentNames[componentKey]:
@@ -382,9 +394,7 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 
 				if ahu != None:
 					component = ComponentClass(totalNumberOfComponents + 1, ahu.AHUNumber, componentName, ahu)
-					#ahu.filters.append(filt)
 					components[componentKey].append(component)
-					#componentNames[componentKey].add(componentName)
 					totalNumberOfComponents += 1
 					mdataPoint.componentId = totalNumberOfComponents
 					componentNames[componentKey][componentName] = mdataPoint.componentId
@@ -392,20 +402,21 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 					#print(mdataPoint.path, ahu.AHUName)
 				else:
 					print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
-					print("Could not determine ahu")
+					print("Could not determine parent ahu")
 			else:
 				mdataPoint.componentId = componentNames[componentKey][componentName]
 
 		#Fill HECs and thermafusers
 		elif ComponentClass == HEC or Thermafuser:
+			#print("HEC or Thermafuser")
 			componentType = determineComponentType(ComponentClass, mdataPoint)
 
 			#Determine parent component
-			if "AHU" in mdataPoint.controlProgram:
+			if "AHU" in mdataPoint.controlProgram.upper() or "AHU" in mdataPoint.path.upper():
 				parentComponentType = "AHU"
-			elif "VAV" in mdataPoint.controlProgram:
+			elif "VAV" in mdataPoint.controlProgram.upper() or "VAV" in mdataPoint.path.upper():
 				parentComponentType = "VAV"
-			elif "SAV" in mdataPoint.controlProgram:
+			elif "SAV" in mdataPoint.controlProgram.upper() or "SAV" in mdataPoint.path.upper():
 				parentComponentType = "SAV"
 			else:  #Thermafuser case, we dont know what its parent component type is a priory
 				parentComponentType = ""
@@ -475,8 +486,8 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 	"""Take the mapped datapoints and fill the corresponding components in the database"""
 
 	#data structures
-	componentNames = {key:dict for key in componentsList}
-	components = {key:componentsClasses[key] for key in componentsList}
+	componentNames = {key:dict() for key in componentsList}
+	components = {key:session.query(componentsClasses[key]).all() for key in componentsList}
 
 	relationships = dict()
 	relationships["vav"] = session.query(ComponentRelationship).filter(ComponentRelationship._componentType == "VAV").all()
@@ -518,8 +529,6 @@ def fillComponentsInDatabase(mappedDataPoints, session):
 	#Commit changes to the database
 	for key in components:
 		session.add_all(components[key])
-
-	#session.add_all(mappedDataPoints)
 	
 	session.commit()
 
@@ -704,13 +713,11 @@ def main():
 	print("Mapping DataPoints")
 	mappedDataPoints = MapDataPoints(session)
 
-	#printMappedDataPoints(mappedDataPoints)
-
 	print("Filling components in Database")
 	fillComponentsInDatabase(mappedDataPoints, session)
 
 	print("Migrating from csv files")
-	#fillReadingsInDatabase(dataFolder, mappedDataPoints, session)
+	fillReadingsInDatabase(dataFolder, mappedDataPoints, session)
 
 	session.close()
 

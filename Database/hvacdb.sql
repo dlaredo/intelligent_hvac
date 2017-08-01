@@ -28,8 +28,8 @@ CREATE TABLE Staged_Air_Volume_Reading (
   CondensateDetector     bit(1), 
   ValveOutputPercentage  real,
   GEXDamperPosition      real,
-  CoolingRequest         bit(1),
-  HeatingRequest         bit(1),
+  CoolingRequest         int(10),
+  HeatingRequest         int(10),
   DamperPosition         real,
   ExhaustAirflow         real,
   SupplyAirflow          real,
@@ -40,6 +40,8 @@ CREATE TABLE Staged_Air_Volume_Reading (
   CoolingSetpoint        real,
   HeatingSetpoint        real,
   CERTemperature         real,
+  HtRequest 	         int(10),
+  ClRequest		         int(10),
   PRIMARY KEY (Time_stamp, 
   SAVId)) ENGINE=InnoDB;
 CREATE TABLE Air_Handling_Unit_Reading (
@@ -59,9 +61,9 @@ CREATE TABLE Air_Handling_Unit_Reading (
   DuctStaticPressure     real, 
   MixedAirTemperature    real, 
   OutsideAirCFM          real, 
-  CoolingRequest         bit(1), 
+  CoolingRequest         int(10), 
   CoolingSetpoint        real, 
-  HeatingRequest         bit(1), 
+  HeatingRequest         int(10), 
   HeatingSetpoint        real, 
   EconomizerSetpoint     real, 
   OccupiedMode           bit(1), 
@@ -150,6 +152,7 @@ CREATE TABLE Filter (
   PRIMARY KEY (FilterId)) ENGINE=InnoDB;
 CREATE TABLE Staged_Air_Volume (
   SAVId     int(10) NOT NULL AUTO_INCREMENT, 
+  AHUNumber int(10) NOT NULL,
   SAVName   varchar(255) NOT NULL, 
   PRIMARY KEY (SAVId)) ENGINE=InnoDB;
 CREATE TABLE Variable_Air_Volume (
@@ -210,16 +213,12 @@ CREATE TABLE ComponentRelationships (
   ComponentGroup  int(10), 
   ComponentType   varchar(255) NOT NULL, 
   PRIMARY KEY (ComponentName)) ENGINE=InnoDB;
-CREATE TABLE AHU_SAV (
-  AHUNumber int(10) NOT NULL,
-  SAVId     int(10) NOT NULL, 
-  PRIMARY KEY (AHUNumber, SAVId)) ENGINE=InnoDB;
 ALTER TABLE Air_Handling_Unit_Reading ADD INDEX FKAir_Handli855032 (AHUNumber), ADD CONSTRAINT FKAir_Handli855032 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE Fan ADD INDEX FKFan812080 (AHUNumber), ADD CONSTRAINT FKFan812080 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE Damper ADD INDEX FKDamper841472 (AHUNumber), ADD CONSTRAINT FKDamper841472 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE Filter ADD INDEX FKFilter462060 (AHUNumber), ADD CONSTRAINT FKFilter462060 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE Damper_Reading ADD INDEX FKDamper_Rea482334 (DamperId), ADD CONSTRAINT FKDamper_Rea482334 FOREIGN KEY (DamperId) REFERENCES Damper (DamperId);
-#ALTER TABLE Staged_Air_Volume ADD INDEX FKStaged_Air556433 (AHUNumber), ADD CONSTRAINT FKStaged_Air556433 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
+ALTER TABLE Staged_Air_Volume ADD INDEX FKStaged_Air556433 (AHUNumber), ADD CONSTRAINT FKStaged_Air556433 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE Staged_Air_Volume_Reading ADD INDEX FKStaged_Air505830 (SAVId), ADD CONSTRAINT FKStaged_Air505830 FOREIGN KEY (SAVId) REFERENCES Staged_Air_Volume (SAVId);
 ALTER TABLE Variable_Air_Volume ADD INDEX FKVariable_A540853 (AHUNumber), ADD CONSTRAINT FKVariable_A540853 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE Heat_Exchanger_Coil ADD INDEX FKHeat_Excha729184 (AHUNumber), ADD CONSTRAINT FKHeat_Excha729184 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
@@ -237,5 +236,3 @@ ALTER TABLE VFD_Reading ADD INDEX FKVFD_Readin673303 (VFDId), ADD CONSTRAINT FKV
 ALTER TABLE Thermafuser ADD INDEX FKThermafuse421350 (AHUNumber), ADD CONSTRAINT FKThermafuse421350 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
 ALTER TABLE ComponentRelationships ADD INDEX FKComponentR699506 (ParentComponent), ADD CONSTRAINT FKComponentR699506 FOREIGN KEY (ParentComponent) REFERENCES ComponentRelationships (ComponentName);
 ALTER TABLE DataPoints ADD INDEX FKDataPoints676132 (PathMappingsId), ADD CONSTRAINT FKDataPoints676132 FOREIGN KEY (PathMappingsId) REFERENCES PathMappings (Id);
-ALTER TABLE AHU_SAV ADD INDEX FKAHU_SAV123456 (AHUNumber), ADD CONSTRAINT FKAHU_SAV123456 FOREIGN KEY (AHUNumber) REFERENCES Air_Handling_Unit (AHUNumber);
-ALTER TABLE AHU_SAV ADD INDEX FKAHU_SAV123457 (SAVId), ADD CONSTRAINT FKAHU_SAV123457 FOREIGN KEY (SAVId) REFERENCES Staged_Air_Volume (SAVId);
