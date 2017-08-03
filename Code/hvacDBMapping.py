@@ -542,7 +542,7 @@ class AHUReading(Base):
 
 	@AHUNumber.setter
 	def AHUNumber(self, value):
-		self._AHUNumber = value
+		self._AHUNumber = float(value) if value != None else None
 
 	@property
 	def timestamp(self):
@@ -550,7 +550,7 @@ class AHUReading(Base):
 
 	@timestamp.setter
 	def timestamp(self, value):
-		self._timestamp = value
+		self._timestamp = float(value) if value != None else None
 
 	@property
 	def zoneTemperature(self):
@@ -558,7 +558,7 @@ class AHUReading(Base):
 
 	@zoneTemperature.setter
 	def zoneTemperature(self, value):
-		self._zoneTemperature = value
+		self._zoneTemperature = float(value) if value != None else None
 
 	@property
 	def staticPressure(self):
@@ -566,7 +566,7 @@ class AHUReading(Base):
 
 	@staticPressure.setter
 	def staticPressure(self, value):
-		self._staticPressure = value
+		self._staticPressure = float(value) if value != None else None
 
 	@property
 	def returnAirTemperature(self):
@@ -574,7 +574,7 @@ class AHUReading(Base):
 
 	@returnAirTemperature.setter
 	def returnAirTemperature(self, value):
-		self._returnAirTemperature = value  
+		self._returnAirTemperature = float(value) if value != None else None  
 
 	@property
 	def supplyAirTemperature(self):
@@ -582,7 +582,7 @@ class AHUReading(Base):
 
 	@supplyAirTemperature.setter
 	def supplyAirTemperature(self, value):
-		self._supplyAirTemperature = value  
+		self._supplyAirTemperature = float(value) if value != None else None  
 
 	@property
 	def exhaustAirTemperature(self):
@@ -590,14 +590,14 @@ class AHUReading(Base):
 
 	@exhaustAirTemperature.setter
 	def exhaustAirTemperature(self, value):
-		self._exhaustAirTemperature = value 
+		self._exhaustAirTemperature = float(value) if value != None else None 
 	@property
 	def outsideAirTemperature(self):
 		return self._outsideAirTemperature
 
 	@outsideAirTemperature.setter
 	def outsideAirTemperature(self, value):
-		self._outsideAirTemperature = value 
+		self._outsideAirTemperature = float(value) if value != None else None 
 		
 	@property
 	def smokeDetector(self):
@@ -605,7 +605,7 @@ class AHUReading(Base):
 
 	@smokeDetector.setter
 	def smokeDetector(self, value):
-		self._smokeDetector = value 
+		self._smokeDetector = bool(value) if value != None else None 
 		
 	@property
 	def outsideAirCo2(self):
@@ -613,7 +613,7 @@ class AHUReading(Base):
 
 	@outsideAirCo2.setter
 	def outsideAirCo2(self, value):
-		self._outsideAirCo2 = value 
+		self._outsideAirCo2 = float(value) if value != None else None 
 		
 	@property
 	def returnAirCo2(self):
@@ -621,7 +621,7 @@ class AHUReading(Base):
 
 	@returnAirCo2.setter
 	def returnAirCo2(self, value):
-		self._returnAirCo2 = value
+		self._returnAirCo2 = float(value) if value != None else None
 		
 	@property
 	def spare(self):
@@ -629,7 +629,7 @@ class AHUReading(Base):
 
 	@spare.setter
 	def spare(self, value):
-		self._spare = value 
+		self._spare = float(value) if value != None else None 
 	
 	@property
 	def hiStatic(self):
@@ -637,7 +637,7 @@ class AHUReading(Base):
 
 	@hiStatic.setter
 	def hiStatic(self, value):
-		self._hiStatic = value  
+		self._hiStatic = bool(value) if value != None else None  
 	
 	@property
 	def ductStaticPressure(self):
@@ -645,7 +645,7 @@ class AHUReading(Base):
 
 	@ductStaticPressure.setter
 	def ductStaticPressure(self, value):
-		self._ductStaticPressure = value    
+		self._ductStaticPressure = float(value) if value != None else None    
 	
 	@property
 	def mixedAirTemperature(self):
@@ -653,7 +653,7 @@ class AHUReading(Base):
 
 	@mixedAirTemperature.setter
 	def mixedAirTemperature(self, value):
-		self._mixedAirTemperature = value   
+		self._mixedAirTemperature = float(value) if value != None else None   
 	
 	@property
 	def OSACFM(self):
@@ -661,7 +661,7 @@ class AHUReading(Base):
 
 	@OSACFM.setter
 	def OSACFM(self, value):
-		self._OSACFM = value
+		self._OSACFM = float(value) if value != None else None
 
 	@property
 	def coolingRequest(self):
@@ -669,7 +669,7 @@ class AHUReading(Base):
 
 	@coolingRequest.setter
 	def coolingRequest(self, value):
-		self._coolingRequest = value
+		self._coolingRequest = float(value) if value != None else None
 
 	@property
 	def coolingSetpoint(self):
@@ -677,7 +677,7 @@ class AHUReading(Base):
 
 	@coolingSetpoint.setter
 	def coolingSetpoint(self, value):
-		self._coolingSetpoint = value
+		self._coolingSetpoint = float(value) if value != None else None
 	
 	@property
 	def heatingRequest(self):
@@ -685,7 +685,7 @@ class AHUReading(Base):
 
 	@heatingRequest.setter
 	def heatingRequest(self, value):
-		self._heatingRequest = value
+		self._heatingRequest = float(value) if value != None else None
 
 	@property
 	def heatingSetpoint(self):
@@ -693,7 +693,7 @@ class AHUReading(Base):
 
 	@heatingSetpoint.setter
 	def heatingSetpoint(self, value):
-		self._heatingSetpoint = value
+		self._heatingSetpoint = float(value) if value != None else None
 	
 	@property
 	def economizerSetpoint(self):
@@ -701,7 +701,7 @@ class AHUReading(Base):
 
 	@economizerSetpoint.setter
 	def economizerSetpoint(self, value):
-		self._economizerSetpoint = value
+		self._economizerSetpoint = float(value) if value != None else None
 	
 	@property
 	def occupiedMode(self):
@@ -709,7 +709,7 @@ class AHUReading(Base):
 
 	@occupiedMode.setter
 	def occupiedMode(self, value):
-		self._occupiedMode = value
+		self._occupiedMode = bool(value) if value != None else None
 	
 	@property
 	def returnAirCo2Setpoint(self):
@@ -717,7 +717,7 @@ class AHUReading(Base):
 
 	@returnAirCo2Setpoint.setter
 	def returnAirCo2Setpoint(self, value):
-		self._returnAirCo2Setpoint = value
+		self._returnAirCo2Setpoint = float(value) if value != None else None
 	
 	@property
 	def staticPressureSmoothed(self):
@@ -725,7 +725,7 @@ class AHUReading(Base):
 
 	@staticPressureSmoothed.setter
 	def staticPressureSmoothed(self, value):
-		self._staticPressureSmoothed = value
+		self._staticPressureSmoothed = float(value) if value != None else None
 	
 	@property
 	def staticSP(self):
@@ -733,7 +733,7 @@ class AHUReading(Base):
 
 	@staticSP.setter
 	def staticSP(self, value):
-		self._staticSP = value
+		self._staticSP = float(value) if value != None else None
 
 	@property
 	def supplyAirSetpoint(self):
@@ -741,7 +741,7 @@ class AHUReading(Base):
 
 	@supplyAirSetpoint.setter
 	def supplyAirSetpoint(self, value):
-		self._supplyAirSetpoint = value
+		self._supplyAirSetpoint = float(value) if value != None else None
 
 	@property
 	def STReq(self):
@@ -749,7 +749,7 @@ class AHUReading(Base):
 
 	@STReq.setter
 	def STReq(self, value):
-		self._STReq = value
+		self._STReq = float(value) if value != None else None
 
 	@property
 	def staticSP1(self):
@@ -757,7 +757,7 @@ class AHUReading(Base):
 
 	@staticSP1.setter
 	def staticSP1(self, value):
-		self._staticSP1 = value
+		self._staticSP1 = float(value) if value != None else None
 
 	@property
 	def staticSP2(self):
@@ -765,7 +765,7 @@ class AHUReading(Base):
 
 	@staticSP2.setter
 	def staticSP2(self, value):
-		self._staticSP2 = value
+		self._staticSP2 = float(value) if value != None else None
 
 	@property
 	def ahu(self):
@@ -923,7 +923,7 @@ class VFDReading(Base):
 
 	@powerKW.setter
 	def powerKW(self, value):
-		self._powerKW = value
+		self._powerKW = float(value) if value != None else None
 
 	@property
 	def speedRPM(self):
@@ -931,7 +931,7 @@ class VFDReading(Base):
 
 	@speedRPM.setter
 	def speedRPM(self, value):
-		self._speedRPM = value
+		self._speedRPM = float(value) if value != None else None
 
 	@property
 	def vfd(self):
@@ -1077,7 +1077,7 @@ class FilterReading(Base):
 
 	@differencePressure.setter
 	def differencePressure(self, value):
-		self._differencePressure = value
+		self._differencePressure = float(value) if value != None else None
 
 	@property
 	def filter(self):
@@ -1228,7 +1228,7 @@ class DamperReading(Base):
 
 	@damperInputVoltage.setter
 	def damperInputVoltage(self, value):
-		self._damperInputVoltage = value
+		self._damperInputVoltage = float(value) if value != None else None
 
 	@property
 	def damperOpeningPercentage(self):
@@ -1236,7 +1236,7 @@ class DamperReading(Base):
 
 	@damperOpeningPercentage.setter
 	def damperOpeningPercentage(self, value):
-		self._damperOpeningPercentage = value   
+		self._damperOpeningPercentage = float(value) if value != None else None   
 
 	@property
 	def isolationDamper(self):
@@ -1244,7 +1244,7 @@ class DamperReading(Base):
 
 	@isolationDamper.setter
 	def isolationDamper(self, value):
-		self._isolationDamper= value
+		self._isolationDamper = bool(value) if value != None else None
 
 	@property
 	def damper(self):
@@ -1411,7 +1411,7 @@ class FanReading(Base):
 
 	@airVelocityPressure.setter
 	def airVelocityPressure(self, value):
-		self._airVelocityPressure = value
+		self._airVelocityPressure = float(value) if value != None else None
 
 	@property
 	def VFDSpeed(self):
@@ -1419,7 +1419,7 @@ class FanReading(Base):
 
 	@VFDSpeed.setter
 	def VFDSpeed(self, value):
-		self._VFDSpeed = value
+		self._VFDSpeed = float(value) if value != None else None
 
 	@property
 	def fanStatus(self):
@@ -1427,7 +1427,7 @@ class FanReading(Base):
 
 	@fanStatus.setter
 	def fanStatus(self, value):
-		self._fanStatus = value 
+		self._fanStatus = bool(value) if value != None else None 
 
 	@property
 	def VFDFault(self):
@@ -1435,7 +1435,7 @@ class FanReading(Base):
 
 	@VFDFault.setter
 	def VFDFault(self, value):
-		self._VFDFault = value  
+		self._VFDFault = bool(value) if value != None else None  
 
 	@property
 	def HiStaticReset(self):
@@ -1443,7 +1443,7 @@ class FanReading(Base):
 
 	@HiStaticReset.setter
 	def HiStaticReset(self, value):
-		self._HiStaticReset = value 
+		self._HiStaticReset = bool(value) if value != None else None 
 
 	@property
 	def FAReturnFanShutdown(self):
@@ -1451,7 +1451,7 @@ class FanReading(Base):
 
 	@FAReturnFanShutdown.setter
 	def FAReturnFanShutdown(self, value):
-		self._FAReturnFanShutdown = value   
+		self._FAReturnFanShutdown = bool(value) if value != None else None   
 		
 	@property
 	def fanVFD(self):
@@ -1459,7 +1459,7 @@ class FanReading(Base):
 
 	@fanVFD.setter
 	def fanVFD(self, value):
-		self._fanVFD = value    
+		self._fanVFD = bool(value) if value != None else None    
 		
 	@property
 	def isolationDampers(self):
@@ -1467,7 +1467,7 @@ class FanReading(Base):
 
 	@isolationDampers.setter
 	def isolationDampers(self, value):
-		self._isolationDampers = value  
+		self._isolationDampers = bool(value) if value != None else None  
 		
 	@property
 	def fanSS(self):
@@ -1475,7 +1475,7 @@ class FanReading(Base):
 
 	@fanSS.setter
 	def fanSS(self, value):
-		self._fanSS = value
+		self._fanSS = bool(value) if value != None else None
 
 	@property
 	def airVelocityCFM(self):
@@ -1483,7 +1483,7 @@ class FanReading(Base):
 
 	@airVelocityCFM.setter
 	def airVelocityCFM(self, value):
-		self._airVelocityCFM = value
+		self._airVelocityCFM = float(value) if value != None else None
 
 	@property
 	def fan(self):
@@ -1491,7 +1491,7 @@ class FanReading(Base):
 
 	@fan.setter
 	def fan(self, value):
-		self._fan = value     
+		self._fan = value
 
 	def __str__(self):
 		return "<FanReading(fanId = '%s', timestamp = '%s', 'airVelocityPressure' = '%s' VFDSpeed = '%s', fanStatus = '%s', VFDFault = '%s',\
@@ -1678,7 +1678,7 @@ class HECReading(Base):
 
 	@supplyWaterTemperature.setter
 	def supplyWaterTemperature(self, value):
-		self._supplyWaterTemperature = value
+		self._supplyWaterTemperature = float(value) if value != None else None
 
 	@property
 	def returnWaterTemperature(self):
@@ -1686,7 +1686,7 @@ class HECReading(Base):
 
 	@returnWaterTemperature.setter
 	def returnWaterTemperature(self, value):
-		self._returnWaterTemperature = value  
+		self._returnWaterTemperature = float(value) if value != None else None
 
 	@property
 	def valveOpeningPercentage(self):
@@ -1694,7 +1694,7 @@ class HECReading(Base):
 
 	@valveOpeningPercentage.setter
 	def valveOpeningPercentage(self, value):
-		self._valveOpeningPercentage = value
+		self._valveOpeningPercentage = float(value) if value != None else None
 
 	@property
 	def hec(self):
@@ -1895,7 +1895,7 @@ class SAVReading(Base):
 
 	@miscSpareInput.setter
 	def miscSpareInput(self, value):
-		self._miscSpareInput = value
+		self._miscSpareInput = float(value) if value != None else None
 
 	@property
 	def zoneTemperature(self):
@@ -1903,7 +1903,7 @@ class SAVReading(Base):
 
 	@zoneTemperature.setter
 	def zoneTemperature(self, value):
-		self._zoneTemperature = value   
+		self._zoneTemperature = float(value) if value != None else None   
 
 	@property
 	def dischargeTemperature(self):
@@ -1911,7 +1911,7 @@ class SAVReading(Base):
 
 	@dischargeTemperature.setter
 	def dischargeTemperature(self, value):
-		self._dischargeTemperature = value  
+		self._dischargeTemperature = float(value) if value != None else None  
 
 	@property
 	def miscInput(self):
@@ -1919,14 +1919,14 @@ class SAVReading(Base):
 
 	@miscInput.setter
 	def miscInput(self, value):
-		self._miscInput = value 
+		self._miscInput = bool(value) if value != None else None 
 	@property
 	def condensateDetector(self):
 		return self._condensateDetector
 
 	@condensateDetector.setter
 	def condensateDetector(self, value):
-		self._condensateDetector = value    
+		self._condensateDetector = bool(value) if value != None else None    
 		
 	@property
 	def valveOutputPercentage(self):
@@ -1934,7 +1934,7 @@ class SAVReading(Base):
 
 	@valveOutputPercentage.setter
 	def valveOutputPercentage(self, value):
-		self._valveOutputPercentage = value
+		self._valveOutputPercentage = float(value) if value != None else None
 
 	@property
 	def GEXDamperPosition(self):
@@ -1942,7 +1942,7 @@ class SAVReading(Base):
 
 	@GEXDamperPosition.setter
 	def GEXDamperPosition(self, value):
-		self._GEXDamperPosition = value
+		self._GEXDamperPosition = float(value) if value != None else None
 
 	@property
 	def coolingRequest(self):
@@ -1950,7 +1950,7 @@ class SAVReading(Base):
 
 	@coolingRequest.setter
 	def coolingRequest(self, value):
-		self._coolingRequest = value
+		self._coolingRequest = bool(value) if value != None else None
 
 	@property
 	def heatingRequest(self):
@@ -1958,7 +1958,7 @@ class SAVReading(Base):
 
 	@heatingRequest.setter
 	def heatingRequest(self, value):
-		self._heatingRequest = value
+		self._heatingRequest = bool(value) if value != None else None
 
 	@property
 	def damperPosition(self):
@@ -1966,7 +1966,7 @@ class SAVReading(Base):
 
 	@damperPosition.setter
 	def damperPosition(self, value):
-		self._damperPosition = value
+		self._damperPosition = float(value) if value != None else None
 
 	@property
 	def exhaustAirflow(self):
@@ -1974,7 +1974,7 @@ class SAVReading(Base):
 
 	@exhaustAirflow.setter
 	def exhaustAirflow(self, value):
-		self._exhaustAirflow = value
+		self._exhaustAirflow = float(value) if value != None else None
 
 	@property
 	def supplyAirflow(self):
@@ -1982,7 +1982,7 @@ class SAVReading(Base):
 
 	@supplyAirflow.setter
 	def supplyAirflow(self, value):
-		self._supplyAirflow = value
+		self._supplyAirflow = float(value) if value != None else None
 
 	@property
 	def flowDifference(self):
@@ -1990,7 +1990,7 @@ class SAVReading(Base):
 
 	@flowDifference.setter
 	def flowDifference(self, value):
-		self._flowDifference = value
+		self._flowDifference = float(value) if value != None else None
 
 	@property
 	def exhaustFlowSetpoint(self):
@@ -1998,7 +1998,7 @@ class SAVReading(Base):
 
 	@exhaustFlowSetpoint.setter
 	def exhaustFlowSetpoint(self, value):
-		self._exhaustFlowSetpoint = value
+		self._exhaustFlowSetpoint = float(value) if value != None else None
 
 	@property
 	def heatingPercentage(self):
@@ -2006,7 +2006,7 @@ class SAVReading(Base):
 
 	@heatingPercentage.setter
 	def heatingPercentage(self, value):
-		self._heatingPercentage = value
+		self._heatingPercentage = float(value) if value != None else None
 
 	@property
 	def coolingPercentage(self):
@@ -2014,7 +2014,7 @@ class SAVReading(Base):
 
 	@coolingPercentage.setter
 	def coolingPercentage(self, value):
-		self._coolingPercentage = value
+		self._coolingPercentage = float(value) if value != None else None
 
 	@property
 	def coolingSetpoint(self):
@@ -2022,7 +2022,7 @@ class SAVReading(Base):
 
 	@coolingSetpoint.setter
 	def coolingSetpoint(self, value):
-		self._coolingSetpoint = value
+		self._coolingSetpoint = float(value) if value != None else None
 
 	@property
 	def heatingSetpoint(self):
@@ -2030,7 +2030,7 @@ class SAVReading(Base):
 
 	@heatingSetpoint.setter
 	def heatingSetpoint(self, value):
-		self._heatingSetpoint = value
+		self._heatingSetpoint = float(value) if value != None else None
 
 	@property
 	def CERTemperature(self):
@@ -2038,7 +2038,7 @@ class SAVReading(Base):
 
 	@CERTemperature.setter
 	def CERTemperature(self, value):
-		self._CERTemperature = value
+		self._CERTemperature = float(value) if value != None else None
 
 	@property
 	def htRequest(self):
@@ -2046,7 +2046,7 @@ class SAVReading(Base):
 
 	@htRequest.setter
 	def htRequest(self, value):
-		self._htRequest = value
+		self._htRequest = float(value) if value != None else None
 
 	@property
 	def clRequest(self):
@@ -2054,7 +2054,7 @@ class SAVReading(Base):
 
 	@clRequest.setter
 	def clRequest(self, value):
-		self._clRequest = value
+		self._clRequest = float(value) if value != None else None
 
 	@property
 	def sav(self):
@@ -2062,7 +2062,7 @@ class SAVReading(Base):
 
 	@sav.setter
 	def sav(self, value):
-		self._sav = value   
+		self._sav = value
 
 	def __str__(self):
 		return "<SAVReading(SAVId = '%s', timestamp = '%s', miscSpareInput = '%s', zoneTemperature = '%s', dischargeTemperature = '%s',\
@@ -2238,7 +2238,7 @@ class VAVReading(Base):
 
 	@flowInput.setter
 	def flowInput(self, value):
-		self._flowInput = value
+		self._flowInput = float(value) if value != None else None
 
 	@property
 	def miscSpareInput(self):
@@ -2246,7 +2246,7 @@ class VAVReading(Base):
 
 	@miscSpareInput.setter
 	def miscSpareInput(self, value):
-		self._miscSpareInput = value    
+		self._miscSpareInput = float(value) if value != None else None    
 
 	@property
 	def zoneTemperature(self):
@@ -2254,7 +2254,7 @@ class VAVReading(Base):
 
 	@zoneTemperature.setter
 	def zoneTemperature(self, value):
-		self._zoneTemperature = value   
+		self._zoneTemperature = float(value) if value != None else None   
 
 	@property
 	def dischargeTemperature(self):
@@ -2262,14 +2262,14 @@ class VAVReading(Base):
 
 	@dischargeTemperature.setter
 	def dischargeTemperature(self, value):
-		self._dischargeTemperature = value  
+		self._dischargeTemperature = float(value) if value != None else None  
 	@property
 	def condensateDetector(self):
 		return self._condensateDetector
 
 	@condensateDetector.setter
 	def condensateDetector(self, value):
-		self._condensateDetector = value    
+		self._condensateDetector = bool(value) if value != None else None    
 		
 	@property
 	def ductStaticPressure(self):
@@ -2277,7 +2277,7 @@ class VAVReading(Base):
 
 	@ductStaticPressure.setter
 	def ductStaticPressure(self, value):
-		self._ductStaticPressure = value    
+		self._ductStaticPressure = float(value) if value != None else None    
 		
 	@property
 	def zoneCO2(self):
@@ -2285,7 +2285,7 @@ class VAVReading(Base):
 
 	@zoneCO2.setter
 	def zoneCO2(self, value):
-		self._zoneCO2 = value   
+		self._zoneCO2 = float(value) if value != None else None   
 		
 	@property
 	def damperPosition(self):
@@ -2293,7 +2293,7 @@ class VAVReading(Base):
 
 	@damperPosition.setter
 	def damperPosition(self, value):
-		self._damperPosition = value
+		self._damperPosition = float(value) if value != None else None
 
 	@property
 	def coolingSetpoint(self):
@@ -2301,7 +2301,7 @@ class VAVReading(Base):
 
 	@coolingSetpoint.setter
 	def coolingSetpoint(self, value):
-		self._coolingSetpoint = value
+		self._coolingSetpoint = float(value) if value != None else None
 
 	@property
 	def heatingSetpoint(self):
@@ -2309,7 +2309,7 @@ class VAVReading(Base):
 
 	@heatingSetpoint.setter
 	def heatingSetpoint(self, value):
-		self._heatingSetpoint = value
+		self._heatingSetpoint = float(value) if value != None else None
 
 	@property
 	def vav(self):
@@ -2513,7 +2513,7 @@ class ThermafuserReading(Base):
 
 	@roomOccupied.setter
 	def roomOccupied(self, value):
-		self._roomOccupied = value
+		self._roomOccupied = bool(value) if value != None else None
 
 	@property
 	def zoneTemperature(self):
@@ -2521,7 +2521,7 @@ class ThermafuserReading(Base):
 
 	@zoneTemperature.setter
 	def zoneTemperature(self, value):
-		self._zoneTemperature = value
+		self._zoneTemperature = float(value) if value != None else None
 
 	@property
 	def supplyAir(self):
@@ -2529,7 +2529,7 @@ class ThermafuserReading(Base):
 
 	@supplyAir.setter
 	def supplyAir(self, value):
-		self._supplyAir = value 
+		self._supplyAir = float(value) if value != None else None 
 
 	@property
 	def airflowFeedback(self):
@@ -2537,7 +2537,7 @@ class ThermafuserReading(Base):
 
 	@airflowFeedback.setter
 	def airflowFeedback(self, value):
-		self._airflowFeedback = value   
+		self._airflowFeedback = float(value) if value != None else None   
 
 	@property
 	def CO2Input(self):
@@ -2545,14 +2545,14 @@ class ThermafuserReading(Base):
 
 	@CO2Input.setter
 	def CO2Input(self, value):
-		self._CO2Input = value  
+		self._CO2Input = float(value) if value != None else None  
 	@property
 	def maxAirflow(self):
 		return self._maxAirflow
 
 	@maxAirflow.setter
 	def maxAirflow(self, value):
-		self._maxAirflow = value    
+		self._maxAirflow = float(value) if value != None else None    
 		
 	@property
 	def minAirflow(self):
@@ -2560,7 +2560,7 @@ class ThermafuserReading(Base):
 
 	@minAirflow.setter
 	def minAirflow(self, value):
-		self._minAirflow = value    
+		self._minAirflow = float(value) if value != None else None    
 		
 	@property
 	def unoccupiedHeatingSetpoint(self):
@@ -2568,7 +2568,7 @@ class ThermafuserReading(Base):
 
 	@unoccupiedHeatingSetpoint.setter
 	def unoccupiedHeatingSetpoint(self, value):
-		self._unoccupiedHeatingSetpoint = value 
+		self._unoccupiedHeatingSetpoint = float(value) if value != None else None 
 		
 	@property
 	def unoccupiedCoolingSetpoint(self):
@@ -2576,7 +2576,7 @@ class ThermafuserReading(Base):
 
 	@unoccupiedCoolingSetpoint.setter
 	def unoccupiedCoolingSetpoint(self, value):
-		self._unoccupiedCoolingSetpoint = value
+		self._unoccupiedCoolingSetpoint = float(value) if value != None else None
 		
 	@property
 	def occupiedCoolingSetpoint(self):
@@ -2584,7 +2584,7 @@ class ThermafuserReading(Base):
 
 	@occupiedCoolingSetpoint.setter
 	def occupiedCoolingSetpoint(self, value):
-		self._occupiedCoolingSetpoint = value   
+		self._occupiedCoolingSetpoint = float(value) if value != None else None   
 	
 	@property
 	def occupiedHeatingSetpoint(self):
@@ -2592,7 +2592,7 @@ class ThermafuserReading(Base):
 
 	@occupiedHeatingSetpoint.setter
 	def occupiedHeatingSetpoint(self, value):
-		self._occupiedHeatingSetpoint = value
+		self._occupiedHeatingSetpoint = float(value) if value != None else None
 
 	@property
 	def terminalLoad(self):
@@ -2600,7 +2600,7 @@ class ThermafuserReading(Base):
 
 	@terminalLoad.setter
 	def terminalLoad(self, value):
-		self._terminalLoad = value    
+		self._terminalLoad = float(value) if value != None else None    
 
 	@property
 	def thermafuser(self):
