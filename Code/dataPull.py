@@ -27,8 +27,8 @@ def getClient(servicewsdl):
 		client = zeep.Client(wsdl=servicewsdl, transport=transport)
 		print('Client successfully created')
 	except Exception as e:
-		print("error in getting a client to the webservice")
 		print(traceback.format_exc())
+		print("error in getting a client to the webservice")
 
 	return client
 
@@ -97,7 +97,7 @@ def pullData(trendServiceClient, startDateTime, databaseSession):
 					
 					#Check if the current point already has a component
 					readingValue = data[-1]
-					#print(path, readingValue)
+					print(path, readingValue)
 					setattr(component, databaseMapping, readingValue)
 				except Exception as e:
 					print(traceback.format_exc())
@@ -106,6 +106,9 @@ def pullData(trendServiceClient, startDateTime, databaseSession):
 			databaseSession.add_all(components.values())
 
 		databaseSession.commit()
+
+		#Define the new start time
+		startDateTime = endDateTime
 
 def main():
 

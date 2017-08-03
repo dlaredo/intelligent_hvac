@@ -543,8 +543,8 @@ def main():
 		zonecsvToDb(zoneFilepATH, session, "1_2")
 		print("writting of the csv file was sucessfull")
 	except:
-		print("Error writting to the database")
 		print(traceback.format_exc())
+		print("Error writting to the database")
 
 	print("Mapping DataPoints")
 	mappedDataPoints = MapDataPoints(session)
