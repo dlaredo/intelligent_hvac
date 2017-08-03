@@ -174,7 +174,6 @@ def main():
 
 	#Order of the function calls matters in this function, do not change it.
 
-	zoneFilepATH = "../csv_files/Zone_1and2.csv"
 	dataFolder = "/Users/davidlaredorazo/Desktop/Zone12"
 	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2"
 	
