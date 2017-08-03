@@ -534,7 +534,7 @@ def main():
 
 		print("Connection to " + database + " successfull")
 	except Exception as e:
-		print(traceback.format.exc())
+		print(traceback.format_exc())
 		print("Error in connection")
 		return False
 
@@ -544,7 +544,7 @@ def main():
 		print("writting of the csv file was sucessfull")
 	except:
 		print("Error writting to the database")
-		print(traceback.format.exc())
+		print(traceback.format_exc())
 
 	print("Mapping DataPoints")
 	mappedDataPoints = MapDataPoints(session)

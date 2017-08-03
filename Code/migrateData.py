@@ -185,7 +185,7 @@ def main():
 
 		print("Connection to " + database + " successfull")
 	except Exception as e:
-		print(traceback.format.exc())
+		print(traceback.format_exc())
 		print("Error in connection")
 		return False
 
