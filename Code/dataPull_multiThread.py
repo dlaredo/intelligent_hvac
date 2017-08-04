@@ -3,17 +3,69 @@ import traceback
 import sqlalchemy
 import math
 import time
+import threading
 from zeep.transports import Transport
 from requests.auth import HTTPBasicAuth
 from requests import Session as WebSession
 from datetime import datetime, timezone, timedelta
 from hvacDBMapping import *
 from sqlalchemy.orm import sessionmaker
+from queue import Queue
+from threading import Thread
 
-global componentsList, componentsClasses
+global componentsList, componentsClasses, components, trendServiceClient, startDateTime, endDateTime
+
 componentsList = ["AHU", "VFD", "Filter", "Damper", "Fan", "HEC", "SAV", "VAV", "Thermafuser"]
 componentsClasses = {"ahu":AHU, "vfd":VFD, "filter":Filter, "damper":Damper, "fan":Fan, "hec":HEC, "sav":SAV, "vav":VAV, "thermafuser":Thermafuser}
 readingClasses = {"ahu":AHUReading, "vfd":VFDReading, "filter":FilterReading, "damper":DamperReading, "fan":FanReading, "hec":HECReading, "sav":SAVReading, "vav":VAVReading, "thermafuser":ThermafuserReading}
+
+class PullingWorker(Thread):
+	"""multithreaded worker to pull data from the data sourcer (ALC)"""
+
+	global components, trendServiceClient, startDateTime, endDateTime
+
+	def __init__(self, queue, lock, key):
+		Thread.__init__(self)
+		self.queue = queue
+		self.lock = lock
+		self.key = key
+
+	def run(self):
+
+		while True:
+			# Get the work from the queue and expand the tuple
+			dataPoint = self.queue.get()
+
+			#If the queue is empty
+			if dataPoint is None:
+				break
+
+			path, componentId, databaseMapping = dataPoint
+
+			#lock the threads so that the components are added properly
+			self.lock.acquire()
+			if componentId in components:
+				component = components[componentId]
+			else:
+				component = readingClasses[self.key](endDateTime, componentId)
+				components[componentId] = component
+			self.lock.release()
+
+			#Attempt to get the data from the server and create the object
+			try:
+				data = trendServiceClient.service.getTrendData('soap',"", path, startDateTime.strftime("%m/%d/20%y %I:%M:%S %p"), endDateTime.strftime("%m/%d/20%y %I:%M:%S %p"), False, 0)
+
+				#Check if the current point already has a component
+				readingValue = data[-1]
+				print(path, readingValue)
+				setattr(component, databaseMapping, readingValue)
+			except Exception as e:
+				print(traceback.format_exc())
+				print("Error in retrieving value for " + path)
+				setattr(component, databaseMapping, None)
+
+			self.queue.task_done()
+
 
 def getClient(servicewsdl):
 	"""Attempt to stablish a connection to the webservice and return a client object connected to servicewsdl webservice"""
@@ -51,9 +103,11 @@ def getDatabaseConnection(databaseString):
 	return sqlsession
 
 
-def pullData(trendServiceClient, startDateTime, databaseSession):
+def pullData_multiThread(databaseSession):
 	"""Retrieve the data stored in the trend points of the WebCtrl program from the indicated startDateTime onwards and store them in the database.
 	This function will pull data from the database every 5 minutes starting from startDateTime and will keep doing it indefinetly."""
+
+	global components, startDateTime, endDateTime
 
 	#get the datapoints and separate them by component type (this should be relaunched everytime the database is modified)
 	dataPoints = {key.lower():databaseSession.query(DataPoint._path, DataPoint._componentId, PathMapping._databaseMapping).
@@ -62,6 +116,8 @@ def pullData(trendServiceClient, startDateTime, databaseSession):
 	PDT = timezone(-timedelta(hours=7), 'PDT')
 	timeDelta = timedelta(minutes = 5)
 
+	lock = threading.Lock()
+
 	#Repeat indefinetely
 	while True:
 
@@ -69,6 +125,8 @@ def pullData(trendServiceClient, startDateTime, databaseSession):
 		endDateTime = startDateTime + timeDelta
 		currentTime = datetime.now(tz=PDT)
 		currentTime = currentTime.replace(second=0, microsecond=0)
+
+		print("Pulling data from " + str(startDateTime) + " to " + str(endDateTime))
 
 		#If desired time hasnt been reached yet, wait for a couple of minutes
 		if currentTime < endDateTime:
@@ -82,63 +140,64 @@ def pullData(trendServiceClient, startDateTime, databaseSession):
 			
 			print("\nPulling points of " + key + "\n")
 			components = dict()
-			
+
+			# Create a queue to communicate with the worker threads
+			queue = Queue()
+
+			#Add datapoints to the queue
 			for dataPoint in dataPoints[key]:
-				path, componentId, databaseMapping = dataPoint
+				queue.put(dataPoint)
+			
+			#create the threads and start them
+			# Create 8 worker threads
+			for x in range(8):
+				worker = PullingWorker(queue, lock, key)
+				# Setting daemon to True will let the main thread exit even though the workers are blocking
+				#worker.daemon = True
+				worker.start()
 
-				if componentId in components:
-					component = components[componentId]
-				else:
-					component = readingClasses[key](endDateTime, componentId)
-					components[componentId] = component
-
-				try:
-					data = trendServiceClient.service.getTrendData('soap',"", path, startDateTime.strftime("%m/%d/20%y %I:%M:%S %p"), endDateTime.strftime("%m/%d/20%y %I:%M:%S %p"), False, 0)
-					
-					#Check if the current point already has a component
-					readingValue = data[-1]
-					print(path, readingValue)
-					setattr(component, databaseMapping, readingValue)
-				except Exception as e:
-					print(traceback.format_exc())
-					print("Error in retrieving value for " + path)
-
+			#Wait until all the threads have finished
+			queue.join()
 			databaseSession.add_all(components.values())
+			#print(components.values())
 
 		databaseSession.commit()
 
 		#Define the new start time
 		startDateTime = endDateTime
 
+
 def main():
 
+
+	global trendServiceClient, startDateTime
 
 	Evalwsdl = 'http://10.20.0.47/_common/webservices/Eval?wsdl'
 	Trendwsdl = 'http://10.20.0.47/_common/webservices/TrendService?wsdl'
 
-	databaseString = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC"
+	databaseString = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2"
 
 	#Make sure starting time is a multiple of 5 in the minutes and that its a past time.
 	#To ensure that we will be able to get the readings we try to get the readings from 5+ minutes before the current time. 
 	PDT = timezone(-timedelta(hours=7), 'PDT')
-	startTime = datetime.now(tz=PDT)
-	minute = math.floor(startTime.minute/5)*5 - 5
+	startDateTime = datetime.now(tz=PDT)
+	minute = math.floor(startDateTime.minute/5)*5 - 5
 	
 	if minute < 0:
 		minute = 55
-		hour = startTime - timedelta(hour=1)
-		startTime = startTime.replace(second=0, microsecond=0, minute=minute, hour=hour)
+		differenceInHours = startDateTime - timedelta(hours=1)
+		startDateTime = startDateTime.replace(second=0, microsecond=0, minute=minute, hour=differenceInHours.hour)
 	else:
-		startTime = startTime.replace(second=0, microsecond=0, minute=minute)
+		startDateTime = startDateTime.replace(second=0, microsecond=0, minute=minute)
 	
-	print("Start time " + str(startTime))
+	print("Start time " + str(startDateTime))
 
 	#get a connection to the webservice
 	trendServiceClient = getClient(Trendwsdl)
 	sqlsession = getDatabaseConnection(databaseString)
 
 	if trendServiceClient != None and sqlsession != None:
-		pullData(trendServiceClient, startTime, sqlsession)
+		pullData_multiThread(sqlsession)
 
 
 main()
