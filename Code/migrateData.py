@@ -110,6 +110,7 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 									fileTypeMappedDataPoints.append(mdataPoint)
 								else:
 									print("Point not mapped " + header[i])
+									logging.warning("Point not mapped " + header[i])
 
 							
 							#header is just mapped once per folder, no need to map it more than once per folder
@@ -152,8 +153,10 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 								else:
 									if fileTypeMappedDataPoints[i].pathMapping == None:
 										print(header[i], "Point not mapped")
+										logging.warning(header[i], "Point not mapped")
 									else:
 										print(header[i], "Component not found")
+										logging.warning(header[i], "Component not found")
 
 							for key1 in readingClasses:
 								for key2 in readingClasses[key1]:
@@ -167,6 +170,7 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 					session.commit()
 
 	print("Finished migration " + dataFolder)
+	logging.info("Finished migration " + dataFolder)
 
 
 def main():
@@ -177,6 +181,12 @@ def main():
 	dataFolder = "/Users/davidlaredorazo/Desktop/Zone12"
 	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2"
 	
+	#set the logger config
+	logging.basicConfig(filename='migrateData.log', level=logging.INFO,\
+	format='%(levelname)s:%(threadName)s:%(asctime)s:%(filename)s:%(funcName)s:%(message)s', datefmt='%m/%d/%Y %H:%M:%S')
+
+	logging.info("Started migrating from csv files")
+
 	#Attempt connection to the database
 	try:
 		sqlengine = sqlalchemy.create_engine(database)
@@ -184,18 +194,23 @@ def main():
 		session = Session()
 
 		print("Connection to " + database + " successfull")
+		logging.info("Connection to " + database + " successfull")
 	except Exception as e:
-		print(traceback.format_exc())
-		print("Error in connection")
+		logging.error("Error in connection to the database")
+		logging.error(traceback.format_exc())
+		print("Error in connection to the database")
 		return False
 
 	#get the datapoints
 	mappedDataPoints = {key:session.query(DataPoint).join(PathMapping).filter(PathMapping._componentType == key).all() for key in componentsList}
 
 	print("Migrating from csv files")
+	logging.info("Migrating from csv files")
 	fillReadingsInDatabase(dataFolder, mappedDataPoints, session)
 
 	session.close()
+
+	logging.info("Finished migrating from csv files")
 
 
 #invoke main

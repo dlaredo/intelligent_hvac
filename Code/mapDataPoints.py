@@ -1,12 +1,13 @@
 import csv
 import sqlalchemy
-from hvacDBMapping import *
-from sqlalchemy.orm import sessionmaker
 import traceback
-from datetime import datetime
 import re
 import os
+import logging
 from dateutil.parser import *
+from hvacDBMapping import *
+from sqlalchemy.orm import sessionmaker
+from datetime import datetime
 
 global numberRegex, componentsList, componentsClasses 
 componentsList = ["ahu", "vfd", "filter", "damper", "fan", "hec", "sav", "vav", "thermafuser"]
@@ -176,7 +177,8 @@ def MapDataPoints(session):
 				dataPointMapped = False
 
 		if dataPointMapped == False:
-			print(dataPoint.path + " DataPoint could not be mapped")		
+			logging.warning(dataPoint.path + " could not be mapped")
+			print(dataPoint.path + " could not be mapped")		
 		else:
 			#print(dataPoint.path, dataPoint.controlProgram, mappedDataPoint.databaseMapping)
 
@@ -354,18 +356,19 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 				if ahu != None and componentType != "":
 					component = ComponentClass(totalNumberOfComponents + 1, ahu.AHUNumber, componentName, componentType, ahu)
 					components[componentKey].append(component)
-					#componentNames[componentKey].add(componentName)
 					totalNumberOfComponents += 1
 					mdataPoint.componentId = totalNumberOfComponents
 					componentNames[componentKey][componentName] = mdataPoint.componentId
-
-					#print(mdataPoint.path, ahu.AHUName)
 				else:
-					print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
+					#print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
 					if ahu == None:
-						print("Could not determine parent ahu")
+						errorString = "Could not determine parent ahu for " + mdataPoint.controlProgram + ", " + mdataPoint.point + ", " + mdataPoint.path
+						logging.warning(errorString)
+						print(errorString)
 					elif componentType == "":
-						print("Could not determine componentType")
+						errorString = "Could not determine componentType for " + mdataPoint.controlProgram + ", " + mdataPoint.point + ", " + mdataPoint.path
+						logging.warning(errorString)
+						print(errorString)
 			else:
 				mdataPoint.componentId = componentNames[componentKey][componentName]
 
@@ -386,8 +389,10 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 
 					#print(mdataPoint.path, ahu.AHUName)
 				else:
-					print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
-					print("Could not determine parent ahu")
+					#print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
+					errorString = "Could not determine parent ahu for " + mdataPoint.controlProgram + ", " + mdataPoint.point + ", " + mdataPoint.path
+					print(errorString)
+					logging.warning(errorString)
 			else:
 				mdataPoint.componentId = componentNames[componentKey][componentName]
 
@@ -448,7 +453,9 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 							component = ComponentClass(totalNumberOfComponents + 1, componentName, SAVId = parentComponent.SAVId, sav = parentComponent)
 							#sav.thermafusers.append(component)
 					else:
-						print("Undetermined parent component " + parentComponent.getComponentType())
+						errorString = "Could not determine parent parent component type for " + mdataPoint.controlProgram + ", " + mdataPoint.point + ", " + mdataPoint.path
+						print(errorString)
+						logging.warning(errorString)
 						continue
 
 					components[componentKey].append(component)
@@ -460,8 +467,10 @@ def appendNewComponents(components, componentNames, relationships, ComponentClas
 					mdataPoint.componentId = componentNames[componentKey][componentName]
 
 			else:
-				print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
-				print("Could not determine parent " + parentComponentType)
+				errorString = "Could not determine parent for " + mdataPoint.controlProgram + ", " + mdataPoint.point + ", " + mdataPoint.path + ", " + parentComponentType
+				#print(mdataPoint.controlProgram, mdataPoint.point, mdataPoint.path)
+				print(errorString)
+				logging.warning(errorString)
 
 	return new_components
 
@@ -523,8 +532,12 @@ def main():
 
 	#Order of the function calls matters in this function, do not change it.
 
-	zoneFilepATH = "../csv_files/Zone_1and2.csv"
+	zoneFilePaths = {"4":"../csv_files/Zone4.csv", "3":"../csv_files/Zone3.csv", "1_2":"../csv_files/Zone_1and2.csv"}
 	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2"
+
+	#set the logger config
+	logging.basicConfig(filename='mappingDataPoints.log', level=logging.INFO,\
+	format='%(levelname)s:%(threadName)s:%(asctime)s:%(filename)s:%(funcName)s:%(message)s', datefmt='%m/%d/%Y %H:%M:%S')
 	
 	#Attempt connection to the database
 	try:
@@ -532,31 +545,40 @@ def main():
 		Session = sessionmaker(bind=sqlengine)
 		session = Session()
 
-		print("Connection to " + database + " successfull")
+		logging.info("Connection to " + database + " successfull")
 	except Exception as e:
-		print(traceback.format_exc())
-		print("Error in connection")
+		logging.error("Error in connection to the database")
+		logging.error(traceback.format_exc())
+		print("Error in connection to the database")
 		return False
 
+	print("Writting csv files to the DB")
+	logging.info("Writting csv files to the DB")
 	#Attempt to write csv to the database
 	try:
-		zonecsvToDb(zoneFilepATH, session, "1_2")
-		print("writting of the csv file was sucessfull")
-	except:
-		print(traceback.format_exc())
-		print("Error writting to the database")
 
+		for key in zoneFilePaths:
+			filePath = zoneFilePaths[key]
+			zonecsvToDb(filePath, session, key)
+			logging.info("Writting of the csv file" + filePath + " to the DB was sucessfull")
+	except:
+		logging.error("Error writting the csv file " + filePath + " to the DB")
+		logging.error(traceback.format_exc())
+		print("Error writting the csv file " + filePath + " to the DB")
+
+	logging.info("Mapping DataPoints")
 	print("Mapping DataPoints")
 	mappedDataPoints = MapDataPoints(session)
 
 	#printMappedDataPoints(mappedDataPoints, 'fan')
-
+	logging.info("Filling components in Database")
 	print("Filling components in Database")
 	fillComponentsInDatabase(mappedDataPoints, session)
 
-	print("Finished mapping datapoints")
-
 	session.close()
+
+	logging.info("Finished mapping datapoints")
+	print("Finished mapping datapoints")
 
 
 #invoke main
