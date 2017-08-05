@@ -1,12 +1,13 @@
 import csv
 import sqlalchemy
-from hvacDBMapping import *
-from sqlalchemy.orm import sessionmaker
+import logging
 import traceback
-from datetime import datetime
 import re
 import os
 from dateutil.parser import *
+from hvacDBMapping import *
+from sqlalchemy.orm import sessionmaker
+from datetime import datetime
 
 global numberRegex, componentsList, componentsClasses 
 componentsList = ["ahu", "vfd", "filter", "damper", "fan", "hec", "sav", "vav", "thermafuser"]

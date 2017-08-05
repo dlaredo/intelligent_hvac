@@ -4,6 +4,7 @@ import sqlalchemy
 import math
 import time
 import threading
+import logging
 from zeep.transports import Transport
 from requests.auth import HTTPBasicAuth
 from requests import Session as WebSession
@@ -171,6 +172,8 @@ def pullData_multiThread(databaseSession):
 			#print(components.values())
 
 		databaseSession.commit()
+		print("Readings stored in the Database")
+		logging.info("Readings stored in the Database")
 
 		#Define the new start time
 		startDateTime = endDateTime

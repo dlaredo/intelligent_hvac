@@ -11,3 +11,5 @@ Code/__pycache__
 Code/crap\.py
 
 Code/untracked/
+
+*.log
