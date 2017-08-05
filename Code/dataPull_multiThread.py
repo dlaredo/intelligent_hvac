@@ -178,6 +178,9 @@ def pullData_multiThread(databaseSession):
 		#Define the new start time
 		startDateTime = endDateTime
 
+		#Exit loop
+		break
+
 
 def main():
 

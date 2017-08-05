@@ -110,13 +110,15 @@ def pullData(trendServiceClient, startDateTime, databaseSession):
 		#Define the new start time
 		startDateTime = endDateTime
 
+		break
+
 def main():
 
 
 	Evalwsdl = 'http://10.20.0.47/_common/webservices/Eval?wsdl'
 	Trendwsdl = 'http://10.20.0.47/_common/webservices/TrendService?wsdl'
 
-	databaseString = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC"
+	databaseString = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2"
 
 	#Make sure starting time is a multiple of 5 in the minutes and that its a past time.
 	#To ensure that we will be able to get the readings we try to get the readings from 5+ minutes before the current time. 
