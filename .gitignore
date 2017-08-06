@@ -13,9 +13,6 @@ Code/crap\.py
 Code/untracked/
 
 *.log
-
-Code/pullDataMProfile
-
-Code/pullDataProfile
+*.profile
 
 csv_files/Zone_1and2_2\.csv

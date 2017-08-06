@@ -533,7 +533,7 @@ def main():
 	#Order of the function calls matters in this function, do not change it.
 
 	#zoneFilePaths = {"4":"../csv_files/Zone4.csv", "3":"../csv_files/Zone3.csv", "1_2":"../csv_files/Zone_1and2.csv"}
-	zoneFilePaths = {"1_22":"../csv_files/Zone_1and2_2.csv"}
+	zoneFilePaths = {"1_2":"../csv_files/Zone_1and2.csv"}
 	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2"
 
 	#set the logger config

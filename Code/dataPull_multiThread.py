@@ -14,7 +14,7 @@ from sqlalchemy.orm import sessionmaker
 from queue import Queue
 from threading import Thread
 
-global componentsList, componentsClasses, components, trendServiceClient, startDateTime, endDateTime
+global componentsList, componentsClasses, readings, trendServiceClient, startDateTime, endDateTime
 
 componentsList = ["AHU", "VFD", "Filter", "Damper", "Fan", "HEC", "SAV", "VAV", "Thermafuser"]
 componentsClasses = {"ahu":AHU, "vfd":VFD, "filter":Filter, "damper":Damper, "fan":Fan, "hec":HEC, "sav":SAV, "vav":VAV, "thermafuser":Thermafuser}
@@ -23,7 +23,7 @@ readingClasses = {"ahu":AHUReading, "vfd":VFDReading, "filter":FilterReading, "d
 class PullingWorker(Thread):
 	"""multithreaded worker to pull data from the data sourcer (ALC)"""
 
-	global components, trendServiceClient, startDateTime, endDateTime
+	global readings, trendServiceClient, startDateTime, endDateTime
 
 	def __init__(self, queue, lock, key):
 		Thread.__init__(self)
@@ -43,14 +43,7 @@ class PullingWorker(Thread):
 
 			path, componentId, databaseMapping = dataPoint
 
-			#lock the threads so that the components are added properly
-			self.lock.acquire()
-			if componentId in components:
-				component = components[componentId]
-			else:
-				component = readingClasses[self.key](endDateTime, componentId)
-				components[componentId] = component
-			self.lock.release()
+			reading = readings[componentId]
 
 			#Attempt to get the data from the server and create the object
 			try:
@@ -59,14 +52,29 @@ class PullingWorker(Thread):
 				#Check if the current point already has a component
 				readingValue = data[-1]
 				#print(path, readingValue)
-				setattr(component, databaseMapping, readingValue)
+				setattr(reading, databaseMapping, readingValue)
 			except Exception as e:
 				print("Error in retrieving value for " + path)
 				logging.error("Error in retrieving value for " + path)
 				logging.error(traceback.format_exc())
-				setattr(component, databaseMapping, None)
+				setattr(reading, databaseMapping, None)
 
 			self.queue.task_done()
+
+
+def createReadingClasses(dataPoints, endDateTime, key):
+	"""Create the necessary reading classes to store the readings"""
+
+	global readings
+
+	readings = dict()
+
+	for dataPoint in dataPoints[key]:
+		path, componentId, databaseMapping = dataPoint
+
+		if componentId not in readings:
+			readingClass = readingClasses[key](endDateTime, componentId)
+			readings[componentId] = readingClass
 
 
 def getClient(servicewsdl):
@@ -100,7 +108,7 @@ def getDatabaseConnection(databaseString):
 		sqlsession = SQLSession()
 
 		print("Connection to " + databaseString + " successfull")
-		logging.info("Connection to " + database + " successfull")
+		logging.info("Connection to " + databaseString + " successfull")
 	except Exception as e:
 		logging.error("Error in connection to the database")
 		logging.error(traceback.format_exc())
@@ -113,7 +121,7 @@ def pullData_multiThread(databaseSession):
 	"""Retrieve the data stored in the trend points of the WebCtrl program from the indicated startDateTime onwards and store them in the database.
 	This function will pull data from the database every 5 minutes starting from startDateTime and will keep doing it indefinetly."""
 
-	global components, startDateTime, endDateTime
+	global readings, startDateTime, endDateTime
 
 	#get the datapoints and separate them by component type (this should be relaunched everytime the database is modified)
 	dataPoints = {key.lower():databaseSession.query(DataPoint._path, DataPoint._componentId, PathMapping._databaseMapping).
@@ -149,7 +157,9 @@ def pullData_multiThread(databaseSession):
 			
 			print("\nPulling points of " + key + "\n")
 			logging.info("\nPulling points of " + key + "\n")
-			components = dict()
+
+			#create the necessary classes for the readings
+			createReadingClasses(dataPoints, endDateTime, key)
 
 			# Create a queue to communicate with the worker threads
 			queue = Queue()
@@ -168,7 +178,7 @@ def pullData_multiThread(databaseSession):
 
 			#Wait until all the threads have finished
 			queue.join()
-			databaseSession.add_all(components.values())
+			databaseSession.add_all(readings.values())
 			#print(components.values())
 
 		databaseSession.commit()
