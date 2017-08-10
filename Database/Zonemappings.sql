@@ -1,4 +1,4 @@
-use HVAC;
+use HVAC2017;
 
 #Thermafuser
 insert into PathMappings (Path, ComponentType, Description, DatabaseMapping) values ("m076", "Thermafuser", "Terminal Load", "terminalLoad");

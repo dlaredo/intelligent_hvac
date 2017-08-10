@@ -1,0 +1,39 @@
+server,location,branch,sub_branch,control_program,point,path
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Cl Req,#ahu-1_0206/m045
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Duct SP AHU,#ahu-1_0206/st_press1
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Final Filter Diff. Press.,#ahu-1_0206/ffilter_dp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,OA Temp,#ahu-1_0206/oa_temperature
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Occ Mode,#ahu-1_0206/m041
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Pre-Filter Diff. Press.,#ahu-1_0206/pfilter_dp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,St Req,#ahu-1_0206/m496
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Static SP1,#ahu-1_0206/m124
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Static SP2,#ahu-1_0206/m415
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Sup Fan A Velocity Pressure,#ahu-1_0206/sf1_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Sup Fan B Velocity Pressure,#ahu-1_0206/sf2_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Sup Fan C Velocity Pressure,#ahu-1_0206/sf3_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Sup Fan D Velocity Pressure,#ahu-1_0206/sf4_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Supply Fan  CFM,#ahu-1_0206/sf_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Supply Fan 1 CFM,#ahu-1_0206/sf1_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Supply Fan 2 CFM,#ahu-1_0206/sf2_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Supply Fan 3 CFM,#ahu-1_0206/sf3_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Supply Fan 4 CFM,#ahu-1_0206/sf4_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-1,Supply Temp,#ahu-1_0206/sa_temp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Cl Req,#ahu-2_0206/m045
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Duct SP 2nd floor,#ahu-2_0206/st_press1
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Final Filter Diff. Press.,#ahu-2_0206/ffilter_dp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,OA Temp,#ahu-2_0206/oa_temperature
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Occ Mode,#ahu-2_0206/m041
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Pre-Filter Diff. Press.,#ahu-2_0206/pfilter_dp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,St Req,#ahu-2_0206/m496
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Static SP1,#ahu-2_0206/m124
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Static SP2,#ahu-2_0206/m415
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Sup Fan A Velocity Pressure,#ahu-2_0206/sf1_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Sup Fan B Velocity Pressure,#ahu-2_0206/sf2_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Sup Fan C Velocity Pressure,#ahu-2_0206/sf3_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Sup Fan D Velocity Pressure,#ahu-2_0206/sf4_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Supply Fan 1 CFM,#ahu-2_0206/sf_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Supply Fan 1 CFM,#ahu-2_0206/sf1_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Supply Fan 2 CFM,#ahu-2_0206/sf2_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Supply Fan 3 CFM,#ahu-2_0206/sf3_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Supply Fan 4 CFM,#ahu-2_0206/sf4_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-2,Supply Temp,#ahu-2_0206/sa_temp

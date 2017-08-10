@@ -28,36 +28,50 @@ class PullingWorker(Thread):
 	def __init__(self, queue, lock, key):
 		Thread.__init__(self)
 		self.queue = queue
-		self.lock = lock
 		self.key = key
+		self.lock = lock
+		self.maxTimesRead = 5
 
 	def run(self):
 
 		while True:
 			# Get the work from the queue and expand the tuple
-			dataPoint = self.queue.get()
+			data = self.queue.get()
 
 			#If the queue is empty
-			if dataPoint is None:
+			if data is None:
 				break
 
+			dataPoint, timesRead = data
 			path, componentId, databaseMapping = dataPoint
 
 			reading = readings[componentId]
 
-			#Attempt to get the data from the server and create the object
+			#Attempt to get the data from the server
 			try:
 				data = trendServiceClient.service.getTrendData('soap',"", path, startDateTime.strftime("%m/%d/20%y %I:%M:%S %p"), endDateTime.strftime("%m/%d/20%y %I:%M:%S %p"), False, 0)
 
-				#Check if the current point already has a component
-				readingValue = data[-1]
-				#print(path, readingValue)
-				setattr(reading, databaseMapping, readingValue)
+				#If the reading returned some values, store them
+				if len(data) != 0:
+					readingValue = data[-1]
+					#print(path, readingValue)
+					setattr(reading, databaseMapping, readingValue)
+				#If the webservice returned and empty array and the maximum number of attempts hasnt been reached insert the path in the queue to attempt reading again.
+				elif timesRead > self.maxTimesRead:
+					queue.put((dataPoint, timesRead+1))
+				else:   #After maxTimesRead attempts, insert None as the data since it could not be read.
+					setattr(reading, databaseMapping, None)
+					print("Empty value for " + path + " after " + str(self.maxTimesRead) + " attempts")
+					logging.error("Empty value for " + path + " after " + str(self.maxTimesRead) + " attempts")
+					
+
 			except Exception as e:
+				setattr(reading, databaseMapping, None)
+				#lock.acquire()
 				print("Error in retrieving value for " + path)
 				logging.error("Error in retrieving value for " + path)
 				logging.error(traceback.format_exc())
-				setattr(reading, databaseMapping, None)
+				#lock.release()
 
 			self.queue.task_done()
 
@@ -117,7 +131,7 @@ def getDatabaseConnection(databaseString):
 	return sqlsession
 
 
-def pullData_multiThread(databaseSession):
+def pullData_multiThread(databaseSession, finishingDateTime=None):
 	"""Retrieve the data stored in the trend points of the WebCtrl program from the indicated startDateTime onwards and store them in the database.
 	This function will pull data from the database every 5 minutes starting from startDateTime and will keep doing it indefinetly."""
 
@@ -132,8 +146,15 @@ def pullData_multiThread(databaseSession):
 
 	lock = threading.Lock()
 
-	#Repeat indefinetely
-	while True:
+	if finishingDateTime != None:
+		continueUntil = lambda endDateTime, finishingDateTime : endDateTime >= finishingDateTime
+		print("Finishing dateTime " + str(finishingDateTime))
+		logging.info("Finishing dateTime " + str(finishingDateTime))
+	else:
+		continueUntil = True
+
+	#If a finishing datetime is defined continue until that datetime is reached, otherwise continue indefinetely
+	while continueUntil:
 
 		#Define the endTime
 		endDateTime = startDateTime + timeDelta
@@ -166,7 +187,7 @@ def pullData_multiThread(databaseSession):
 
 			#Add datapoints to the queue
 			for dataPoint in dataPoints[key]:
-				queue.put(dataPoint)
+				queue.put((dataPoint, 1))
 			
 			#create the threads and start them
 			# Create 8 worker threads
@@ -189,7 +210,7 @@ def pullData_multiThread(databaseSession):
 		startDateTime = endDateTime
 
 		#Exit loop
-		break
+		#break
 
 
 def main():
@@ -218,6 +239,10 @@ def main():
 		startDateTime = startDateTime.replace(second=0, microsecond=0, minute=minute, hour=differenceInHours.hour)
 	else:
 		startDateTime = startDateTime.replace(second=0, microsecond=0, minute=minute)
+
+	#override start Datetime and finish Datetime to specify another starting dateTime
+	startDateTime = datetime(2017, 8, 9, hour=13, minute=55, second=0, microsecond=0, tzinfo=PDT)
+	finishingDateTime = datetime(2017, 8, 9, hour=14, minute=0, second=0, microsecond=0, tzinfo=PDT)
 	
 	print("Start time " + str(startDateTime))
 
@@ -227,6 +252,7 @@ def main():
 
 	if trendServiceClient != None and sqlsession != None:
 		pullData_multiThread(sqlsession)
+		#pullData_multiThread(sqlsession, finishingDateTime)
 
 
 main()

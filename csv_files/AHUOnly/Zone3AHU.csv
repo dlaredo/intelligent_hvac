@@ -1,0 +1,49 @@
+server,location,branch,sub_branch,control_program,point,path
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Supply Temp,#ahu-3_0206/sa_temp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Supply Fan 4 CFM,#ahu-3_0206/sf4_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Supply Fan 3 Total  CFM,#ahu-3_0206/sf_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Supply Fan 3 CFM,#ahu-3_0206/sf3_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Supply Fan 2 CFM,#ahu-3_0206/sf2_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Supply Fan 1 CFM,#ahu-3_0206/sf1_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Sup Fan 3D Velocity Pressure,#ahu-3_0206/sf4_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Sup Fan 3C Velocity Pressure,#ahu-3_0206/sf3_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Sup Fan 3B Velocity Pressure,#ahu-3_0206/sf2_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Sup Fan 3A Velocity Pressure,#ahu-3_0206/sf1_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Static SP,#ahu-3_0206/m403
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Static Press 2 A,#ahu-3_0206/st_press1
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Static Pres - Smoothed,#ahu-3_0206/m798
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,SA Stpt,#ahu-3_0206/sa_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,RF Fan 3A Velocity Pressure,#ahu-3_0206/rf1_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Return Fan 4 CFM,#ahu-3_0206/rf4_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Return Fan 3 CFM,#ahu-3_0206/rf3_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Return Fan 2 CFM,#ahu-3_0206/rf2_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Return Fan 1 CFM,#ahu-3_0206/rf1_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Return Fan  CFM,#ahu-3_0206/rf_cfm_tnd
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Return Air Temp,#ahu-3_0206/ra_temp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Return Air SP,#ahu-3_0206/ra_sp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Return Air CO2,#ahu-3_0206/ra_co2
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Ret Fan 3D Velocity Pressure,#ahu-3_0206/rf4_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Ret Fan 3C Velocity Pressure,#ahu-3_0206/rf3_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Ret Fan 3B Velocity Pressure,#ahu-3_0206/rf2_vel_press
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,RA DAMPER,#ahu-3_0206/ra_dmpr
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,RA CO2 Stpt,#ahu-3_0206/co2_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Pre-Filter Diff. Press.,#ahu-3_0206/pfilter_dp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,OSA CFM,#ahu-3_0206/osacfm
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,OSA  CO2,#ahu-3_0206/osa_co2
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Occ Mode,#ahu-3_0206/m041
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,OA Temp,#ahu-3_0206/oa_temperature
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,OA DAMPER,#ahu-3_0206/oa_dmpr
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Mixed Air Temp,#ahu-3_0206/ma_temp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,HW Valve,#ahu-3_0206/hw_valve
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,HW Coil Supply,#ahu-3_0206/hwcs
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,HW Coil Return,#ahu-3_0206/hwcr
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Ht Req,#ahu-3_0206/m044
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Heat Stpt,#ahu-3_0206/ht_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Final Filter Diff. Press.,#ahu-3_0206/ffilter_dp
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Econ Stpt,#ahu-3_0206/econ_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,EA DAMPER,#ahu-3_0206/ea_dmpr
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,CW Coil Supply,#ahu-3_0206/cwcs
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,CW Coil Return,#ahu-3_0206/cwcr
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Cool Stpt,#ahu-3_0206/cl_stpt_tn
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,Cl Req,#ahu-3_0206/m045
+10.20.0.47,Science & Engineering 2: 0206,Roof,,AHU-3,CHW Valve,#ahu-3_0206/chw_valve
