@@ -25,8 +25,8 @@ class PullingWorker(Thread):
 
 	global readings, trendServiceClient, startDateTime, endDateTime
 
-	def __init__(self, queue, lock, key):
-		Thread.__init__(self)
+	def __init__(self, queue, lock, key, tname):
+		Thread.__init__(self, name=tname)
 		self.queue = queue
 		self.key = key
 		self.lock = lock
@@ -34,13 +34,12 @@ class PullingWorker(Thread):
 
 	def run(self):
 
-		while True:
+		#print("Thread started " + threading.current_thread().getName())
+
+		while self.queue.empty() == False:
+
 			# Get the work from the queue and expand the tuple
 			data = self.queue.get()
-
-			#If the queue is empty
-			if data is None:
-				break
 
 			dataPoint, timesRead = data
 			path, componentId, databaseMapping = dataPoint
@@ -63,8 +62,6 @@ class PullingWorker(Thread):
 					setattr(reading, databaseMapping, None)
 					print("Empty value for " + path + " after " + str(self.maxTimesRead) + " attempts")
 					logging.error("Empty value for " + path + " after " + str(self.maxTimesRead) + " attempts")
-					
-
 			except Exception as e:
 				setattr(reading, databaseMapping, None)
 				#lock.acquire()
@@ -72,8 +69,10 @@ class PullingWorker(Thread):
 				logging.error("Error in retrieving value for " + path)
 				logging.error(traceback.format_exc())
 				#lock.release()
+			finally:
+				self.queue.task_done()
 
-			self.queue.task_done()
+		#print("Thread exit " + threading.current_thread().getName())
 
 
 def createReadingClasses(dataPoints, endDateTime, key):
@@ -137,6 +136,8 @@ def pullData_multiThread(databaseSession, finishingDateTime=None):
 
 	global readings, startDateTime, endDateTime
 
+	numberOfThreads = 8
+
 	#get the datapoints and separate them by component type (this should be relaunched everytime the database is modified)
 	dataPoints = {key.lower():databaseSession.query(DataPoint._path, DataPoint._componentId, PathMapping._databaseMapping).
 	join(PathMapping).filter(PathMapping._componentType == key).all() for key in componentsList}
@@ -191,16 +192,17 @@ def pullData_multiThread(databaseSession, finishingDateTime=None):
 			
 			#create the threads and start them
 			# Create 8 worker threads
-			for x in range(8):
-				worker = PullingWorker(queue, lock, key)
-				# Setting daemon to True will let the main thread exit even though the workers are blocking
-				#worker.daemon = True
-				worker.start()
+			workingThreads  = list()
+			for i in range(numberOfThreads):
+				workingThreads.append(PullingWorker(queue, lock, key, 'Thread-' + str(i+1)))
+				workingThreads[i].start()
 
-			#Wait until all the threads have finished
+			#Wait until all of the threads have finished
 			queue.join()
+			for i in range(numberOfThreads):
+				workingThreads[i].join()
+			
 			databaseSession.add_all(readings.values())
-			#print(components.values())
 
 		databaseSession.commit()
 		print("Readings stored in the Database")
@@ -251,8 +253,10 @@ def main():
 	sqlsession = getDatabaseConnection(databaseString)
 
 	if trendServiceClient != None and sqlsession != None:
-		pullData_multiThread(sqlsession)
-		#pullData_multiThread(sqlsession, finishingDateTime)
+		#pullData_multiThread(sqlsession)
+		pullData_multiThread(sqlsession, finishingDateTime)
+
+	print("Main exit")
 
 
 main()
