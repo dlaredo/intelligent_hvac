@@ -76,6 +76,7 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 	for root, dirs, files in os.walk(dataFolder):
 		
 		print(root)
+		logging.info("Migrating from migration " + root)
 
 		headerMapped = False
 		fileTypeMappedDataPoints = list()
@@ -184,7 +185,7 @@ def main():
 
 	#Order of the function calls matters in this function, do not change it.
 
-	dataFolder = "/Users/davidlaredorazo/Desktop/Zone12"
+	dataFolder = "/Users/davidlaredorazo/Desktop/Zone4"
 	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2"
 	
 	#set the logger config

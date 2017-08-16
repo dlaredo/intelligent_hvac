@@ -542,7 +542,7 @@ class AHUReading(Base):
 
 	@AHUNumber.setter
 	def AHUNumber(self, value):
-		self._AHUNumber = float(value) if value != None else None
+		self._AHUNumber = value
 
 	@property
 	def timestamp(self):
@@ -550,7 +550,7 @@ class AHUReading(Base):
 
 	@timestamp.setter
 	def timestamp(self, value):
-		self._timestamp = float(value) if value != None else None
+		self._timestamp = value
 
 	@property
 	def zoneTemperature(self):
