@@ -68,6 +68,11 @@ def fillReadingsInDatabase(dataFolder, mappedDataPoints, session):
 	header = None
 	count = 0
 
+	if os.path.isdir(dataFolder) == False:
+		print("Path " + dataFolder + " does not exist")
+		logging.error("Path " + dataFolder + " does not exist")
+		return
+
 	for root, dirs, files in os.walk(dataFolder):
 		
 		print(root)
