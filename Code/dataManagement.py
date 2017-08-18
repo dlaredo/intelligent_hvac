@@ -11,7 +11,7 @@ def getDBSession():
 	"""Attempt to connect to the database an get a session to it"""
 
 	engineType = "mysql+mysqldb://"
-	db = "HVAC"
+	db = "HVAC2"
 	host = "localhost"
 	port = "3306"
 	user = "dlaredorazo"
@@ -82,8 +82,6 @@ def loadData(starTimestamp, endTimestamp, componentTypes = []):
 	for componentReadingClass in componentsReadingClass:
 		readings = \
 		session.query(componentReadingClass).filter(and_(componentReadingClass._timestamp >= starTimestamp, componentReadingClass._timestamp < endTimestamp)).all()
-		#print(len(readings))
-		#readings[componentTypes[count] + 'Readings'] = readings
 
 		if readings != []:
 			#build the dictionary object
@@ -112,42 +110,46 @@ def loadData(starTimestamp, endTimestamp, componentTypes = []):
 	return dataFrames
 
 
-def getDataForGaussianAnalysis(dataFrames):
-	"""Clean each dataframe and return an dictionary of nparrays that can be used for Gaussian fitting"""
-
-	arrays = dict()
+def reshapeAndCleanDataFrame(dataFrame, removeSetpoints=False, removeRequests=False, removeBooleans=False):
+	"""Reshape the dataframe and return the dataframe reshaped. For each dataframe keep only the data/features that may result useful for the analysis
+	for instance it makes no sense to keep boolean values since they are not drawn from a gaussian distribution but instead a binary distribution, 
+	and thus they can not be fitted into a gausssian one. Same with setpoints, they are fixed values."""
 
 	#clean dataframe and reshape it
-	for dfkey in dataFrames:
-	    newColumnNames = {column:column.replace('_', "") for column in dataFrames[dfkey].columns}
-	    
-	    #Get the Id Column
-	    idColumn = list(filter(lambda colName: 'Id' in colName, newColumnNames.values()))
-	    if len(idColumn) != 1:
-	        print('Could not determine Id Column')
-	    else:
-	        idColumn = idColumn[0]
-	        #print(idColumn)
-	    
-	    dataFrames[dfkey].rename(columns=newColumnNames, inplace=True)
-	    dataFrames[dfkey].set_index(['timestamp', idColumn], inplace=True)
-	    dataFrames[dfkey].dropna(axis=1, how='all', inplace=True)
-	    #dataFrames[dfkey].fillna(value=nan, inplace=True)
-	    
-	    
-	"""For each dataframe keep only the data/features that may result useful for the analysis
-	for instance it makes no sense to keep boolean values since they are not drawn from a gaussian 
-	distribution but instead a binary distribution, and thus they can not be fitted into a gausssian one"""
-	for dfkey in dataFrames:
-	    removableColumns = list(filter(lambda colName: dataFrames[dfkey][colName].dtype == bool, dataFrames[dfkey].columns))
-	    removableColumns += list(filter(lambda colName: 'setpoint' in colName.lower() or 'stpoint' in colName.lower(), dataFrames[dfkey].columns))
+	df = dataFrame
 
-	    #Just for the test, must be deleted
-	    removableColumns.append('airflowFeedback')
-	    gaussianDistDF = dataFrames[dfkey].drop(removableColumns, axis=1)
-	    arrays[dfkey] = gaussianDistDF.values
+	newColumnNames = {column:column.replace('_', "") for column in df.columns}
+	df.rename(columns=newColumnNames, inplace=True)
+	
+	#Get the Id Column
+	idColumn = list(filter(lambda colName: 'Id' in colName or 'Number' in colName, newColumnNames.values()))
+	if len(idColumn) != 1:
+	    print('Could not determine Id Column')
+	else:
+	    idColumn = idColumn[0]
 
-	return arrays
+	indexColumns = ['timestamp']
+
+	#Remove setpoint related columns
+	if removeSetpoints == True:
+		dropColumns = list(filter(lambda colName: 'setpoint' in colName.lower() or 'stpnt' in colName.lower(), newColumnNames.values()))
+
+	#Remove request related columns
+	if removeRequests == True:
+		dropColumns += list(filter(lambda colName: "request" in colName.lower() or "req" in colName.lower(), newColumnNames.values()))
+
+	#Remove boolean columns
+	if removeBooleans == True:
+		dropColumns += list(filter(lambda colName: df[colName].dtype == bool, newColumnNames.values()))
+
+	#drop the undesired columns
+	df.drop(dropColumns, axis=1, inplace=True)
+	
+	df.set_index(indexColumns, inplace=True)
+	df.dropna(axis=1, how='all', inplace=True)
+	#dataFrames[dfkey].fillna(value=nan, inplace=True)
+
+	return df
 
 
 
