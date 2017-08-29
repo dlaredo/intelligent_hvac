@@ -130,6 +130,8 @@ def reshapeAndCleanDataFrame(dataFrame, removeSetpoints=False, removeRequests=Fa
 
 	indexColumns = ['timestamp']
 
+	dataColumns = list(filter(lambda colName: idColumn != colName and colName != 'timestamp', newColumnNames.values()))
+
 	#Remove setpoint related columns
 	if removeSetpoints == True:
 		dropColumns = list(filter(lambda colName: 'setpoint' in colName.lower() or 'stpnt' in colName.lower(), newColumnNames.values()))
@@ -147,6 +149,16 @@ def reshapeAndCleanDataFrame(dataFrame, removeSetpoints=False, removeRequests=Fa
 	
 	df.set_index(indexColumns, inplace=True)
 	df.dropna(axis=1, how='all', inplace=True)
+
+	currentColumns = df.columns.values.tolist()
+
+	currentColumns.remove(idColumn)
+
+	#when there is a -1 in the data, replace it by NaN
+	df.replace(-1, value=np.nan, inplace=True)
+	df.dropna(axis=0, how='all', inplace=True, subset=currentColumns)
+	#df.fillna(value=-1)
+
 	#dataFrames[dfkey].fillna(value=nan, inplace=True)
 
 	return df
