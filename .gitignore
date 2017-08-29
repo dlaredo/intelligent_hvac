@@ -16,3 +16,5 @@ Code/untracked/
 *.profile
 
 csv_files/Zone_1and2_2\.csv
+
+*.png
