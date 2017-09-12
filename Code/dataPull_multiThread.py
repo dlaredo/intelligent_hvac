@@ -136,7 +136,7 @@ def pullData_multiThread(databaseSession, finishingDateTime=None):
 
 	global readings, startDateTime, endDateTime
 
-	numberOfThreads = 8
+	numberOfThreads = 20
 
 	#get the datapoints and separate them by component type (this should be relaunched everytime the database is modified)
 	dataPoints = {key.lower():databaseSession.query(DataPoint._path, DataPoint._componentId, PathMapping._databaseMapping).
@@ -148,24 +148,23 @@ def pullData_multiThread(databaseSession, finishingDateTime=None):
 	lock = threading.Lock()
 
 	if finishingDateTime != None:
-		continueUntil = lambda endDateTime, finishingDateTime : endDateTime >= finishingDateTime
+		continueUntil = lambda endingDateTime : endingDateTime <= finishingDateTime
 		print("Finishing dateTime " + str(finishingDateTime))
 		logging.info("Finishing dateTime " + str(finishingDateTime))
 	else:
-		continueUntil = True
+		continueUntil = lambda endingDateTime : True
 
+	endDateTime = startDateTime + timeDelta
 	#If a finishing datetime is defined continue until that datetime is reached, otherwise continue indefinetely
-	while continueUntil:
+	while continueUntil(endDateTime):
 
-		#Define the endTime
-		endDateTime = startDateTime + timeDelta
 		currentTime = datetime.now(tz=PDT)
 		currentTime = currentTime.replace(second=0, microsecond=0)
 
 		print("Pulling data from " + str(startDateTime) + " to " + str(endDateTime))
 		logging.info("Pulling data from " + str(startDateTime) + " to " + str(endDateTime))
 
-		#If desired time hasnt been reached yet, wait for a couple of minutes
+		#If desired time hasnt been reached yet, wait until it has been reached
 		if currentTime < endDateTime:
 			waitingMinutes = (endDateTime - currentTime) + timedelta(minutes=1)
 			print(str(currentTime) + " Desired time " + str(endDateTime) + " not reached yet, halting for " + str(waitingMinutes) + " minutes")
@@ -208,8 +207,9 @@ def pullData_multiThread(databaseSession, finishingDateTime=None):
 		print("Readings stored in the Database")
 		logging.info("Readings stored in the Database")
 
-		#Define the new start time
+		#Define the new start time and end time
 		startDateTime = endDateTime
+		endDateTime = startDateTime + timeDelta
 
 		#Exit loop
 		#break
@@ -223,7 +223,7 @@ def main():
 	Evalwsdl = 'http://10.20.0.47/_common/webservices/Eval?wsdl'
 	Trendwsdl = 'http://10.20.0.47/_common/webservices/TrendService?wsdl'
 
-	databaseString = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2"
+	databaseString = "mysql+mysqldb://controlslab:controlslab@localhost:3306/HVACInternetTest"
 
 	#set the logger config
 	logging.basicConfig(filename='dataPull.log', level=logging.INFO,\
@@ -243,8 +243,8 @@ def main():
 		startDateTime = startDateTime.replace(second=0, microsecond=0, minute=minute)
 
 	#override start Datetime and finish Datetime to specify another starting dateTime
-	startDateTime = datetime(2017, 8, 9, hour=13, minute=55, second=0, microsecond=0, tzinfo=PDT)
-	finishingDateTime = datetime(2017, 8, 9, hour=14, minute=0, second=0, microsecond=0, tzinfo=PDT)
+	startDateTime = datetime(2017, 9, 10, hour=13, minute=55, second=0, microsecond=0, tzinfo=PDT)
+	finishingDateTime = datetime(2017, 9, 10, hour=14, minute=0, second=0, microsecond=0, tzinfo=PDT)
 	
 	print("Start time " + str(startDateTime))
 
