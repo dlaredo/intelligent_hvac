@@ -18,3 +18,13 @@ Code/untracked/
 csv_files/Zone_1and2_2\.csv
 
 *.png
+
+*.autosave
+
+*.r2016b
+
+*.unknown_version
+
+*.mat
+
+damadics/DABLib/slprj
