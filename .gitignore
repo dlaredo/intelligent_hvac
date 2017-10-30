@@ -28,3 +28,7 @@ csv_files/Zone_1and2_2\.csv
 *.mat
 
 damadics/DABLib/slprj
+
+Code/Tests/
+
+Database/Untracked/
