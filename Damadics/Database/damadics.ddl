@@ -1,7 +1,7 @@
 CREATE SCHEMA `damadics` DEFAULT CHARACTER SET utf8;
 
 CREATE TABLE `damadics`.`valveReadings` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `timestamp` DATETIME NOT NULL,
   `externalControllerOutput` real NULL,
   `undisturbedMediumFlow` real NULL,
@@ -10,5 +10,6 @@ CREATE TABLE `damadics`.`valveReadings` (
   `mediumTemperature` real NULL,
   `rodDisplacement` real NULL,
   `disturbedMediumFlow` real NULL,
+  `faultIntensity` real NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `timestamp_UNIQUE` (`timestamp` ASC));
