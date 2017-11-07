@@ -24,7 +24,7 @@ function startDamadicsSimulation2()
             
             logFile = evalin('base', 'logFileDescriptor');
             fprintf(logFile, 'Starting simulation on  %s\n', datestr(lastSimulationDateTime));
-            sim('RDataGeneration', 'StopTime', 'inf');
+            sim('RDataGeneration', 'StopTime', 'inf', 'SimulationMode', 'accelerator');
 
             clc;
     
