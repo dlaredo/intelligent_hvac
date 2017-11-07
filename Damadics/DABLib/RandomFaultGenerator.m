@@ -34,9 +34,14 @@ function [FSel, ftype] = RandomFaultGenerator(currentTime, DGenBlockAddress)
         %simulation
         simulationRunning = 0;
         assignin('base', 'simulationRunning', 0);
+        dbConn = evalin('base', 'dbconn');
         
         DSim = 1;
         fprintf(logFile, 'Stopping simulation after %f seconds of running\n', currentTime);
+        
+        %close log file and database connection
+        fclose(logFile);
+        close(dbConn);
         %stop simulation
         set_param(strcat(DGenBlockAddress, '/Disable simulation'), 'value', num2str(DSim));
         warning on;
