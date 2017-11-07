@@ -2,20 +2,25 @@ function [FSel, ftype] = RandomFaultGenerator(currentTime, DGenBlockAddress)
 
     %Variables used for the random generation of the fault
     muGen = 0;
-    stdGen = 0.02;
-    threshGen = 0.05;
+    stdGen = 1;
+    threshGen = 5.7;
     
     %Variables used for the stopping of the fault
     muStop = 0;
-    stdStop = 0.2;
-    threshStop = 0.2;
+    stdStop = 1;
+    threshStop = 2;
+    
+    %counter = evalin('base', 'counter');
+    %counter = counter+1;
+    %assignin('base', 'counter', counter);
     
     %offsetTime = 100; %In seconds to compensate for the overhead
     offsetTime = 1; %In seconds to compensate for the overhead
+    logFile = evalin('base', 'logFileDescriptor');
     
     %Based on Damadics Benchmark Definition V1_0
-    %horSeconds = [1500, 2400, 5100, 85500]; 
-    horSeconds = [15, 24, 51, 85];
+    horSeconds = [1500, 2400, 5100, 85500]; 
+    %horSeconds = [15, 24, 51, 85];
     
     FSel = evalin('base', 'FSel');
     ftype = evalin('base', 'ftype');
@@ -31,9 +36,10 @@ function [FSel, ftype] = RandomFaultGenerator(currentTime, DGenBlockAddress)
         assignin('base', 'simulationRunning', 0);
         
         DSim = 1;
-        fprintf(2, 'stopping simulation');
+        fprintf(logFile, 'Stopping simulation after %f seconds of running\n', currentTime);
         %stop simulation
         set_param(strcat(DGenBlockAddress, '/Disable simulation'), 'value', num2str(DSim));
+        warning on;
         return;
     end
     
@@ -55,7 +61,9 @@ function [FSel, ftype] = RandomFaultGenerator(currentTime, DGenBlockAddress)
 
             setSimulationParameters(DGenBlockAddress, FSel, FFrom, FDS, To, FSD);
             
-            fprintf(2, '     Generating Fault :%d of Type: %d at time %f', FSel, ftype, currentTime);
+            fprintf(logFile, 'Generating Fault: %d of Type:%d at time %f\n', FSel, ftype, currentTime);
+            fprintf(logFile, 'Simulation parameters: From: %d, FDS:%d, To:%f, FSD:%f\n', FFrom, FDS, To, FSD);
+            fprintf(2, 'Generating Fault: %d of Type:%d at time %f', FSel, ftype, currentTime);
             assignin('base', 'startTime', currentTime);
         end
     else
@@ -72,7 +80,8 @@ function [FSel, ftype] = RandomFaultGenerator(currentTime, DGenBlockAddress)
              b = stopFault(muStop, stdStop, threshStop);
              if b == 1
                  
-                 fprintf(2, '    Stopping Fault :%d of Type: %d after %f', FSel, ftype, elapsedSeconds);
+                 fprintf(logFile, 'Stopping Fault: %d of Type:%d at time %f\n', FSel, ftype, currentTime);
+                 fprintf(2, 'Stopping Fault: %d of Type:%d at time %f\n', FSel, ftype, elapsedSeconds);
                  faultInProcess = 0;
                  FSel = 20;
                  ftype = 1;
@@ -83,7 +92,6 @@ function [FSel, ftype] = RandomFaultGenerator(currentTime, DGenBlockAddress)
         
     end
 
-    %fprintf(2, "fsel: %d ftype:%d ", FSel, ftype);
     assignin('base', 'faultInProcess', faultInProcess);
     assignin('base', 'FSel', FSel);
     assignin('base', 'ftype', ftype);
@@ -125,7 +133,6 @@ function [fsel, ftype] = getRandomFault()
     
     ftypes = faultMap(fsel);
     asize = max(size(ftypes));
-    %fprintf(2, "fsel % d asize %d", fsel, asize);
     
     ftype = randi(asize,1);
 
@@ -159,14 +166,14 @@ function [DSim, FSD, FFrom, FTo, FMFS, FFDT] = getSimulationParameters(FSel, FTy
         FMFS=1;
         switch FSel
             case {2, 3, 5, 6, 9, 11, 18}
-                %FFDT = 3600*24;
-                FFDT = 3.6*24;
+                FFDT = 3600*24;
+                %FFDT = 3.6*24;
             case {4, 17}
-                %FFDT = 3600;
-                FFDT = 3.6;
+                FFDT = 3600;
+                %FFDT = 3.6;
             case {13}
-                %FFDT = 60*15;
-                FFDT = 6*1.5;
+                FFDT = 60*15;
+                %FFDT = 6*1.5;
             case {20}
                 FFDT = 0;
             otherwise
@@ -227,10 +234,6 @@ end
 %Change the simulation parameters in the model so that the new scenario
 %takes place.
 function setSimulationParameters(DGenBlockAddress, FSel, FFrom, FDS, To, FSD)
-
-    %assignin('base', 'FSD', FSD);
-    
-    fprintf(2, 'simulation parameters: from: %d, fds:%d, To:%f, fsd:%f', FFrom, FDS, To, FSD);
 
     set_param(strcat(DGenBlockAddress, '/FGen/Ramp'), 'start', num2str(FFrom));
     set_param(strcat(DGenBlockAddress, '/FGen/Ramp'), 'slope', num2str(FDS));

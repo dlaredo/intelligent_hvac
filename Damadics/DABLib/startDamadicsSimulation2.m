@@ -4,6 +4,10 @@ function startDamadicsSimulation2()
             DGenBlockAddress = 'RDataGeneration/RDGen';
 
             initModel();
+            
+            warning off;
+            
+            sampleTime = 60;
 
             if exist('lastDateTime.mat', 'file') == 2
                 load('lastDateTime.mat', 'lastSimulationDateTime')
@@ -12,11 +16,15 @@ function startDamadicsSimulation2()
                 save('lastDateTime.mat', 'lastSimulationDateTime');
             end
 
-            assignin('base', 'lastSimulationDateTime', lastSimulationDateTime+seconds(5));
+            lastSimulationDateTime = lastSimulationDateTime+seconds(sampleTime);
+            assignin('base', 'lastSimulationDateTime', lastSimulationDateTime);
 
             set_param(strcat(DGenBlockAddress, '/Disable simulation'), 'value', '0');
-            fprintf(2, 'starting simulation');
-            sim('RDataGeneration');
+            
+            
+            logFile = evalin('base', 'logFileDescriptor');
+            fprintf(logFile, 'Starting simulation on  %s\n', datestr(lastSimulationDateTime));
+            sim('RDataGeneration', 'StopTime', 'inf');
 
             clc;
     

@@ -28,8 +28,10 @@ function initModel()
     %Database initialization
     dbconn = database('damadics','dlaredorazo','@Dexsys13','com.mysql.jdbc.Driver','jdbc:mysql://localhost:3306/damadics'); 
     simulationDateTime = datetime();
-    %timeLimit = 2592000; %equivalent to 30 days
-    timeLimit = 10;
+    timeLimit = 2592000; %equivalent to 30 days
+    %timeLimit = 20;
+    
+    logFile = fopen('faultGeneratorLog.txt', 'a+');
     
     %create model variables in the workspace
     assignin('base', 'DSim', DSim);
@@ -49,6 +51,9 @@ function initModel()
     assignin('base', 'dbconn', dbconn);
     assignin('base', 'lastSimulationDateTime', simulationDateTime);
     assignin('base', 'timeLimit', timeLimit);
+    assignin('base', 'logFileDescriptor', logFile);
+    
+    assignin('base', 'counter', 0);
 
 end
 
