@@ -1,0 +1,212 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Journal Article
+% LaTeX Template
+% Version 1.3 (9/9/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{mathtools} %tools for mathematical writing
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{color}
+\usepackage{adjustbox}
+\usepackage[toc,page]{appendix}
+
+\usepackage[sc]{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\linespread{1.05} % Line spacing - Palatino needs more space between lines
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+
+\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry} % Document margins
+%\usepackage{multicol} % Used for the two-column layout of the document
+%\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+%\usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+\usepackage{hyperref} % For hyperlinks in the PDF
+
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
+
+\usepackage{abstract} % Allows abstract customization
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+
+\usepackage{titlesec} % Allows customization of titles
+%\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+%\renewcommand\thesubsection{\Roman{subsection}} % Roman numerals for subsections
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Change the look of the section titles
+
+\usepackage{fancyhdr} % Headers and footers
+\pagestyle{fancy} % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+%\fancyhead[C]{Running title $\bullet$ November 2012 $\bullet$ Vol. XXI, No. 1} % Custom header text
+\fancyfoot[RO,LE]{\thepage} % Custom footer text
+
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+
+\usepackage[acronym]{glossaries} %Used for the acronyms
+
+\usepackage{tikz}	%Used for the drawings
+\usetikzlibrary{arrows, calc,decorations.pathmorphing,positioning,decorations.markings}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%My definitions
+%\renewcommand{\tablename}{Table}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{remark}{Remark}
+\newenvironment{proof}{\begin{trivlist} \item[]\textbf{Proof}
+\hspace{0cm} }{\hfill $\Box$ \end{trivlist}}
+\newtheorem{mydef}{Definition}[section]
+%\newcommand{\eqref}[1]{\mbox{(\ref{#1})}}
+\newcommand{\Tr}{\mbox{Tr}}
+
+%Set space between paragraphs
+\setlength{\parskip}{2ex}
+
+\usepackage{authblk}
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{Problem statement and Data collection}
+\author[1]{David Laredo\thanks{dlaredorazo@ucmerced.edu}}
+
+\date{}
+%\renewcommand\Authands{ and }
+
+% Generate the glossary
+%\makeglossaries
+%\renewcommand*{\acronymname}{Acronyms}
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	FIGURE CONFIGURATION
+%----------------------------------------------------------------------------------------
+\tikzset{
+    shadedrec/.style={
+        rectangle,
+        draw=black,
+        top color=gray, 
+        bottom color=white, 
+        shading angle={135},
+        text width=3cm,
+        inner sep=1em,
+        rounded corners=1.2ex,
+        very thick,
+        text centered},
+    snake arrow/.style={
+        decorate,
+        decoration={zigzag,amplitude=3mm,segment length=5mm,post length=0mm}},
+    damper/.style={
+        very thick,
+        decoration={markings,  
+        mark connection node=dmp,
+        mark=at position 0.5 with 
+        {
+            \node (dmp) [very thick,transform shape,text width=.3cm,rotate=-90,minimum height=3pt,draw=none, fill=black,outer xsep=2pt, outer ysep=1pt] {};
+            \draw [very thick] ($(dmp.north east)+(-.6pt,0)$) -- ($(dmp.south east)+(-.6pt,0)$) -- ($(dmp.south west)+(-.6pt,0)$) -- ($(dmp.north west)+(-.6pt,0)$);
+            \draw [very thick,rotate=-90] ($(dmp.north)+(0,-5pt)$) -- ($(dmp.north)+(0,5pt)$);
+        }
+    }, decorate}
+}
+%----------------------------------------------------------------------------------------
+
+\makeglossaries
+\input{acronyms} %Insert acronym list
+
+\begin{document}
+
+\maketitle % Insert title
+
+\thispagestyle{fancy} % All pages have headers and footers
+
+%Used to not expand the first acronym
+\glsunsetall
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+\begin{abstract}
+
+\noindent 
+
+This report describes the procedure by which the data from SE2 \gls{hvac} system is obtained, stored and preprocessed. A database is designed to store all the information regarding the status of the \gls{hvac} system in SE2, this report also discuses its design and implementation.
+
+\end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+%Asymptotic Complexities of the Proposed Algorithms
+%Computational Power of the available equipment
+\input{introduction}
+\input{background}
+\input{DataAcquisition}
+\input{databaseDesign}
+
+%------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	GLOSSARY
+%----------------------------------------------------------------------------------------
+%\cleardoublepage
+%\phantomsection
+\addcontentsline{toc}{section}{List of Acronyms}
+\printglossaries
+
+
+%----------------------------------------------------------------------------------------
+%	REFERENCE LIST
+%----------------------------------------------------------------------------------------
+
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{unsrt}
+\bibliography{reference_introAndData}
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	Appendices
+%----------------------------------------------------------------------------------------
+\pagebreak
+\appendix
+%\nopartblankpage
+\appendixpage
+
+%\begin{appendices}
+%\renewcommand\sectionname{Appendix}
+%\chapter{Some Appendix}
+%The contents...
+%Appendices
+\include{annexA}
+%\end{appendices}
+
+
+\end{document}

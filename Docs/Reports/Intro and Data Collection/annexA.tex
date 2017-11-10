@@ -1,0 +1,226 @@
+\section{Sensor readings for each of the components in the HVAC system}
+\label{section:appendixA}
+
+\subsection{HEC Readings}
+
+This table describes the variables used for HEC readings
+
+\begin{table}[!htb]
+\centering
+\begin{tabular}{| l r |}
+	\hline
+	\textbf{Sensor Name}           & \textbf{Type} \\ 
+  	\hline
+Supply Water Temperature & real \\
+Return Water Temperature & real \\
+Valve Opening Percentage & real \\
+  	\hline
+\end{tabular}
+\caption{HEC Readings}
+\label{table:hec_readings}
+\end{table}
+
+\subsection{Thermafuser Readings}
+
+This table describes the variables used for Thermafuser readings
+
+\begin{table}[!htb]
+\centering
+\begin{tabular}{| l r |}
+	\hline
+	\textbf{Sensor Name}           & \textbf{Type} \\ 
+  	\hline
+Room Occupied               & bit  \\
+Zone Temperature            & real \\
+Supply Air                  & real \\
+Airflow Feedback            & real \\
+CO2 Input                   & real \\
+Max Airflow                 & real \\
+Min Airflow                 & real \\
+Unoccupied Heating Setpoint & real \\
+Unoccupied Cooling Setpoint & real \\
+Occupied Cooling Setpoint   & real \\
+Occupied Heating Setpoint   & real \\
+Terminal Load               & -   \\
+  	\hline
+\end{tabular}
+\caption{Thermafuser Readings}
+\label{table:thermafuser_readings}
+\end{table}
+
+\pagebreak
+
+\subsection{AHU Readings}
+
+This table describes the variables used for \gls{ahu} readings
+
+\begin{table}[!htb]
+\centering
+\begin{tabular}{| l r |}
+	\hline
+	\textbf{Sensor Name}           & \textbf{Type} \\ 
+  	\hline
+  	Zone Temperature         & real      \\
+Static Pressure          & real      \\
+Return Air Temperature   & real      \\
+Supply Air Temperature   & real      \\
+Exhaust Air Temperature  & real      \\
+Outside Air Temperature  & real      \\
+Smoke Detector           & bit       \\
+Outside CO2              & real      \\
+Return Air CO2           & real      \\
+Spare                    & real      \\
+Hi Static                & bit       \\
+Duct Static Pressure     & real      \\
+Mixed Air Temperature    & real      \\
+Outside Air CFM          & real      \\
+CoolingRequest           & real      \\
+Cooling Setpoint         & real      \\
+Heating Request          & real      \\
+Heating Setpoint         & real      \\
+Economizer Setpoint      & real      \\
+Occupied Mode            & bit       \\
+Return Air CO2 Setpoint  & real      \\
+Static Pressure Smoothed & real      \\
+Static SP                & real      \\
+Supply Air Setpoint      & real      \\
+STReq                    & -         \\
+StaticSP1                & -         \\
+StaticSP2                & -        \\
+  	\hline
+\end{tabular}
+\caption{AHU Readings}
+\label{table:ahu_readings}
+\end{table}
+
+\pagebreak
+
+\subsection{SAV Readings}
+
+This table describes the variables used for \gls{sav} readings
+
+\begin{table}[!htb]
+\centering
+\begin{tabular}{| l r |}
+	\hline
+	\textbf{Sensor Name}           & \textbf{Type} \\ 
+  	\hline
+  	Misc Spare Input         & real \\
+Zone Temperature         & real \\
+Discharge Temperature    & real \\
+Misc Input               & bit  \\
+Condensate Detector      & bit  \\
+Valve Output Percentage  & real \\
+GEX Damper Position      & real \\
+CoolingRequest           & real \\
+Cooling Setpoint         & real \\
+Heating Request          & real \\
+Heating Setpoint         & real \\
+Damper Position          & real \\
+Exhaust Airflow          & real \\
+Supply Airflow           & real \\
+Flow Difference          & real \\
+Exhaust Airflow Setpoint & real \\
+Cooling Percentage       & real \\
+Heating Percentage       & real \\
+CER Temprature           & real \\
+Ht Request               & real \\
+Cl Request               & real \\
+  	\hline
+\end{tabular}
+\caption{SAV Readings}
+\label{table:sav_readings}
+\end{table}
+
+
+\subsection{VAV Readings}
+
+This table describes the variables used for \gls{vav} readings
+
+\begin{table}[!htb]
+\centering
+\begin{tabular}{| l r |}
+	\hline
+	\textbf{Sensor Name}           & \textbf{Type} \\ 
+  	\hline
+  	Flow Input            & real \\
+Misc Spare Input      & real \\
+Zone Temperature      & real \\
+Discharge Temperature & real \\
+Condensate Detector   & bit  \\
+Duct Static Pressure  & real \\
+Zone CO2              & real \\
+Damper Position       & real \\
+Cooling Setpoint      & real \\
+Heating Setpoint      & real \\
+  	\hline
+\end{tabular}
+\caption{VAV Readings}
+\label{table:vav_readings}
+\end{table}
+
+
+\subsection{Fan Readings}
+
+This table describes the variables used for Fan readings
+
+\begin{table}[!htb]
+\centering
+\begin{tabular}{| l r |}
+	\hline
+	\textbf{Sensor Name}           & \textbf{Type} \\ 
+  	\hline
+  	Fan Type               & bit  \\
+Air Velocity Pressure  & real \\
+VFD Speed              & real \\
+Fan Status             & bit  \\
+VFD Fault              & bit  \\
+Hi Static Reset        & bit  \\
+FA Return fan Shutdown & bit  \\
+Fan VFD                & bit  \\
+Isolation Dampers      & bit  \\
+Fan SS                 & bit  \\
+Air Velocity CFM       & -   \\
+  	\hline
+\end{tabular}
+\caption{Fan Readings}
+\label{table:fan_readings}
+\end{table}
+
+
+\subsection{Filter Readings}
+
+This table describes the variables used for Filter readings
+
+\begin{table}[!htb]
+\centering
+\begin{tabular}{| l r |}
+	\hline
+	\textbf{Sensor Name}           & \textbf{Type} \\ 
+  	\hline
+Difference Pressure & real \\
+  	\hline
+\end{tabular}
+\caption{Filter Readings}
+\label{table:filter_readings}
+\end{table}
+
+
+\subsection{Damper Readings}
+
+This table describes the variables used for Damper readings
+
+\begin{table}[!htb]
+\centering
+\begin{tabular}{| l r |}
+	\hline
+	\textbf{Sensor Name}           & \textbf{Type} \\ 
+  	\hline
+Input Voltage      & real \\
+Opening Percentage & real \\
+Isolation Damper   & bit \\
+  	\hline
+\end{tabular}
+\caption{Damper Readings}
+\label{table:damper_readings}
+\end{table}

@@ -1,0 +1,16 @@
+\section{Data Acquisition}
+\label{section:dataAcquisition}
+
+A description of how the data is acquired from the SE2 \gls{hvac} is given in this section. As mentioned earlier, each major component of an \gls{hvac} system is made up of smaller components such as cooling and heating coils, air filters, fans, dampers, etc. Among each of these components there also a number of sensors installed throughout the \gls{hvac} network that provide real time information of the systems measurements such as airflow velocity, airflow pressure, airflow temperature, water valve opening percentage, damper opening percentage, among many others. There are in total about 3100 different sensors installed throughout SE2 \gls{hvac} network. The information provided by such sensors will be used to perform the pattern recognition on the different readings of the system in order to perform the fault detection and isolation.
+
+\subsection{BACnet}
+
+BACnet is a communications protocol for Building Automation and Control (\gls{bac}) networks that leverage the ASHRAE, ANSI, and ISO 16484-5 standard \cite{bacnet_protocol}. Bacnet was designed to allow communication of building automation and control systems for applications such as \gls{hvac} control, lighting control, access control, and fire detection systems and their associated equipment. The BACnet protocol provides mechanisms for computerized building automation devices to exchange information, regardless of the particular building service they perform.
+
+The BACnet protocol defines a number of services that are used to communicate between building devices. The protocol service includes Who-Is, I-Am, Who-Has, I-Have, which are used for device and object discovery. Services such as Read-Property and Write-Property are used for data sharing. As of ANSI/ASHRAE 135-2016, the BACnet protocol defines 60 object types that are acted upon by the services.
+
+The BACnet protocol defines a number of data link/physical layers, including ARCNET, Ethernet, BACnet/IP, BACnet/IPv6, Point-To-Point over RS-232, Master-Slave/Token-Passing over RS-485, ZigBee, and LonTalk.
+
+\subsection{Data Collection}
+
+By making use of the BACnet protocol and the services such as Who-Is, I-am and Read-Propertyl the data from each of the sensors in the \gls{hvac} network can be pulled. As mentioned in earlier sections, the \gls{hvac} system in SE2 has about 3100 different sensors. The recorded data, considered as the raw data in this study, is made up of samples taken from each of the sensors in the network every 5 minutes. For the data retrieval a python script that makes use of the BACnet protocol was written and is running as a service in order to constantly pull data from the system. This data is stored locally in a database that is to be described in the next section.

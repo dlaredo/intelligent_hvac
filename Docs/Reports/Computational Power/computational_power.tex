@@ -1,0 +1,25 @@
+\section{Computational Power of the Equipment}
+
+\lettrine[nindent=0em,lines=3]{I}n this chapter we present an analysis on the features of the available equipment for our experiments and final implementation of the system. We will make emphasis on the number of operations per second (FLOPS) that our equipment can handle.
+
+Floating Point Operations per Second (FLOPS) is a measure of computer performance, useful in fields of scientific computations that require floating-point calculations. For such cases it is a more accurate measure than measuring instructions per second \cite{flops_wikipedia}. The FLOPS value can be used to determine the power for both the CPU and GPU.
+
+The amount of Giga FLOPS (GFLOPS) for each node/computer can be calculated by using the following equation \cite{peak_theoretical_performance}.
+
+\begin{equation}
+GFLOPS = \textit{CPU speed in GHz} \times \textit{number of CPU cores} \times \textit{CPU instruction per cycle} \times \textit{number of CPUs per node} 
+\label{flops_eq_cpu}
+\end{equation}
+
+For the case of Graphics Processing Units (GPUs), the amount of flops the GPU can support can be computed by \cite{gpu_flops}
+
+\begin{equation}
+FLOPS = 2 \times \textit{number of parallel GPU processing cores} \times \textit{peak clock speed in MHz}
+\label{flops_eq_gpu}
+\end{equation}
+
+The computer used for our experiments has an Intel Core i7-7700K Processor; with a CPU speed of 4.2 GHz average and 4.5 GHz overclocked, 4 cores \cite{cpu_tech_specs}, and 16 IPC \cite{determine_number_flops_cpu}.  Using these values and eq. \eqref{flops_eq_cpu}, the FLOPS range for the CPU is: 268.8 GFLOPS to 288 GFLOPS.
+    
+The computer used for our experiments also comes with a dedicated GPU. The GPU used in our system is a NVDIA GeForce GTX 1080Ti with 11GB GDDR5X; with a boost clock of 1582 MHz and 3584 NVIDIA CUDA Cores \cite{gpu_tech_specs}. Using the given values and eq. \eqref{flops_eq_gpu} the FLOPS value for the GPU is 11339.776 GFLOPS which is approximately 11,300 GFLOPS.
+
+By combining the FLOPs value for both the CPU and GPU, the total FLOPs range of the server is 11608.576 GFLOPS to 11627.776 GFLOPS. This can be converted to FLOPS/month by multiplying the given range by $2592000$, using the assumption that a month is 30 days. This gives a final FLOPS/month of $3.00894 \times 10^{19}$ FLOPS/month to $3.01392 \times 10^{19}$ FLOPS/month.
