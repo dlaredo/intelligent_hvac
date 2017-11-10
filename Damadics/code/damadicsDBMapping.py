@@ -17,7 +17,7 @@ class ValveReading(Base):
 	_mediumTemperature = Column('mediumTemperature', Float, nullable=True)
 	_rodDisplacement = Column('rodDisplacement', Float, nullable=True)
 	_disturbedMediumFlow = Column('disturbedMediumFlow', Float, nullable=True)
-	_selectedFault = Column('selectedFault', Float, nullable=True)
+	_selectedFault = Column('selectedFault', Integer, nullable=True)
 	_faultType = Column('faultType', Integer, nullable=True)
 	_faultIntensity = Column('faultIntensity', Integer, nullable=True)
 

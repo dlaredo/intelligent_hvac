@@ -14,7 +14,7 @@ from dataManagement import DataManager
 
 def main():
 
-	dataManager = DataManager(user="", password="", engineType="", dbName="", host="", port="")
+	dataManager = DataManager(user="readOnly", password="readOnly", engineType="mysql+mysqldb://", dbName="damadics", host="localhost", port="3306")
 
 	classifiers = {'EllipticEnvelope':EllipticEnvelope(contamination=0.035)}
 
@@ -25,6 +25,6 @@ def main():
 	desiredComponents = ['Valve']
 
 	startDateTime = datetime(2017, 11, 6, hour=0, minute=0, second=0, microsecond=0)
-	endDateTime = datetime(2017, 3, 1, hour=0, minute=0, second=0, microsecond=0)
+	endDateTime = datetime(2017, 11, 16, hour=0, minute=0, second=0, microsecond=0)
 
-	dataFrames = getDesiredData(desiredComponents, startDateTime, endDateTime, removeSetpoints=True, removeRequests=True, removeBooleans=True)
+	dataFrames = dataManager.readData(desiredComponents, startDateTime, endDateTime, removeSetpoints=True, removeRequests=True, removeBooleans=True)
