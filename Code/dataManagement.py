@@ -15,8 +15,8 @@ def getDBSession():
 	host = "localhost"
 	port = "3306"
 	user = "dlaredorazo"
-	password = "Dexsys13"
-	databaseString = engineType + user + ":@" + password + "@" + host + ":" + port + "/" + db
+	password = "@Dexsys13"
+	databaseString = engineType + user + ":" + password + "@" + host + ":" + port + "/" + db
 
 	#Attempt connection to the database
 	try:

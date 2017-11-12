@@ -17,7 +17,7 @@ class DataManager:
 		#Object variables
 		self.dbSession = None
 
-		databaseString = engineType + user + ":@" + password + "@" + host + ":" + port + "/" + dbName
+		databaseString = engineType + user + ":" + password + "@" + host + ":" + port + "/" + dbName
 
 		#Attempt connection to the database
 		try:
