@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import sqlalchemy
 import logging
-from hvacDBMapping import *
+from damadicsDBMapping import *
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 from sqlalchemy import and_
@@ -16,12 +16,13 @@ class DataManager:
 
 		#Object variables
 		self.dbSession = None
+		self.databaseString = None
 
-		databaseString = engineType + user + ":" + password + "@" + host + ":" + port + "/" + dbName
+		self.databaseString = engineType + user + ":" + password + "@" + host + ":" + port + "/" + dbName
 
 		#Attempt connection to the database
 		try:
-			sqlengine = sqlalchemy.create_engine(databaseString)
+			sqlengine = sqlalchemy.create_engine(self.databaseString)
 			Session = sessionmaker(bind=sqlengine)
 			self.dbSession = Session()
 
@@ -77,7 +78,8 @@ class DataManager:
 
 			if readings != []:
 				#build the dictionary object
-				dictionaryOfReadings = readings[0].__dict__
+				dictionaryOfReadings = copy(readings[0]).__dict__
+				#print(dictionaryOfReadings)
 				dictionaryOfReadings.pop('_sa_instance_state')
 
 				#This is performed fast, no need to change it
@@ -149,13 +151,19 @@ class DataManager:
 		currentColumns.remove(idColumn)
 
 		#when there is a -1 in the data, replace it by NaN
-		df.replace(-1, value=np.nan, inplace=True)
+		#df.replace(-1, value=np.nan, inplace=True)
 		df.dropna(axis=0, how='all', inplace=True, subset=currentColumns)
 		#df.fillna(value=-1)
 
 		#dataFrames[dfkey].fillna(value=nan, inplace=True)
 
 		return df
+
+
+	def endDataManager(self):
+		"""Close the session"""
+
+		self.dbSession.close()
 
 
 
