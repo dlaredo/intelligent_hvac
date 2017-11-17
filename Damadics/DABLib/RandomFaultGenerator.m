@@ -139,7 +139,8 @@ function [fsel, ftype] = getRandomFault()
     ftypes = faultMap(fsel);
     asize = max(size(ftypes));
     
-    ftype = randi(asize,1);
+    rftype = randi(asize,1);
+    ftype = ftypes(rftype);
 
 end
 
