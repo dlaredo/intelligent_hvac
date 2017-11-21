@@ -60,3 +60,9 @@ Database/Untracked/
 *.gls
 
 *.ist
+
+*.mexmaci64
+
+*.o
+
+Damadics/DABLib/c_code/slprj/
