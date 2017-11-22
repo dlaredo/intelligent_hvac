@@ -82,7 +82,7 @@ void setNoFaultParameters(void)
 
 void randomFaultGenerator(double currentTime)
 {
-	float muGen = 0, stdGen = 1, treshGen = 2;
+	float muGen = 0, stdGen = 1, treshGen = 5.7;
 	float muStop = 0, stdStop = 1, treshStop = 2;
 	double offsetTime = 0, elapsedSeconds = 0;
 	int b = 0, Fsel = 0, Ftype = 0, horizonSeconds = 0;

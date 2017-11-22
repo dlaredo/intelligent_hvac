@@ -41,6 +41,7 @@ typedef struct
   int Fsel;
   int Ftype;
   double From;
+  double FMS;
   int DSim;
 } signalParameters;
 
@@ -113,7 +114,7 @@ static void mdlInitializeSizes(SimStruct *S)
     ssSetInputPortDirectFeedThrough(S, 0, 1);
 
     /*7 output signals, all of them scalar*/
-    if (!ssSetNumOutputPorts(S, 7)) return;
+    if (!ssSetNumOutputPorts(S, 8)) return;
     ssSetOutputPortWidth(S, 0, 1); 
     ssSetOutputPortWidth(S, 1, 1);
     ssSetOutputPortWidth(S, 2, 1);
@@ -121,6 +122,7 @@ static void mdlInitializeSizes(SimStruct *S)
     ssSetOutputPortWidth(S, 4, 1);
     ssSetOutputPortWidth(S, 5, 1);
     ssSetOutputPortWidth(S, 6, 1);
+    ssSetOutputPortWidth(S, 7, 1);
 
     ssSetNumSampleTimes(S, 1); //This is extremely important as it may affect the probability of a fault being drawn
     ssSetNumRWork(S, 0);
@@ -203,7 +205,8 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     real_T       *to = ssGetOutputPortSignal(S,3);
     real_T       *fds = ssGetOutputPortSignal(S,4);
     real_T       *fsd = ssGetOutputPortSignal(S,5);
-    real_T       *dsim = ssGetOutputPortSignal(S,6);
+    real_T       *fms = ssGetOutputPortSignal(S,6);
+    real_T       *dsim = ssGetOutputPortSignal(S,7);
     
     //Generate a random fault
     randomFaultGenerator((double)*currentTime);
@@ -214,6 +217,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     to[0] = (real_T)sParams.To;
     fds[0] = (real_T)sParams.FDS;
     fsd[0] = (real_T)sParams.FSD;
+    fms[0] = (real_T)sParams.FMS;
     dsim[0] = (real_T)sParams.DSim;
 }
 
@@ -257,6 +261,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
  */
 static void mdlTerminate(SimStruct *S)
 {
+  fprintf(logFile, "Simulation Terminated\n");
   fclose(logFile);
 }
 
@@ -269,7 +274,7 @@ void initValues(void)
   timeLimit = 2592000; //Equivalent to 30 days of simulation
   logFile = fopen("rFaultGeneratorLog.txt", "a");
   faultInProcess = 0;
-  simulationRunning = 0;
+  simulationRunning = 1;
   generatingFault = 0;
 
   setNoFaultParameters();
@@ -287,26 +292,17 @@ void setNoFaultParameters(void)
   sParams.FSD = 1;
   sParams.From = 0;
   sParams.DSim = 0;
+  sParams.FMS = 0;
 }
 
 void randomFaultGenerator(double currentTime)
 {
-  float muGen = 0, stdGen = 1, treshGen = 2;
+  float muGen = 0, stdGen = 1, treshGen = 5.7;
   float muStop = 0, stdStop = 1, treshStop = 2;
   double offsetTime = 0, elapsedSeconds = 0;
   int b = 0, Fsel = 0, Ftype = 0, horizonSeconds = 0;
 
-  ssPrintf("currentTime: %lf\n", currentTime);
-
-  if(currentTime > timeLimit)
-  {
-    simulationRunning = 0;
-    sParams.DSim = 1;
-
-    fclose(logFile);
-    fprintf(logFile, "Time up\n");
-    exit(0);
-  }
+  //ssPrintf("currentTime: %lf\n", currentTime);
 
   //One fault at the time only
   if(faultInProcess == 0 && generatingFault == 0)
@@ -436,6 +432,7 @@ void setSimulationParameters(int Fsel, int Ftype, double currentTime, double off
   sParams.From = currentTime +  offsetTime; /*evalin('base', 'From');*/ 
   sParams.Fsel = Fsel;
   sParams.Ftype = Ftype;
+  sParams.FMS = MFS;
 
   if(Fsel == 12 || Fsel == 14 || Fsel == 19)
     sParams.FSD = -1;

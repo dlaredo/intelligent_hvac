@@ -10,8 +10,8 @@ CREATE TABLE `damadics`.`valveReadings` (
   `mediumTemperature` real NULL,
   `rodDisplacement` real NULL,
   `disturbedMediumFlow` real NULL,
-  `selectedFault` real NULL,
+  `selectedFault` TINYINT NULL,
   `faultType` TINYINT NULL,
-  `faultIntensity` TINYINT NULL,
+  `faultIntensity` real NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `timestamp_UNIQUE` (`timestamp` ASC));
