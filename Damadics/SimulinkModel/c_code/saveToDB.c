@@ -317,7 +317,7 @@ int connect_to_DB(void)
       return -1;
   }
 
-  if (mysql_real_connect(con, "localhost", "dlaredorazo", "@Dexsys13", "damadics", 3306, NULL, 0) == NULL) 
+  if (mysql_real_connect(con, "192.168.56.1", "controlslab", "controlslab", "damadics2", 3306, NULL, 0) == NULL) 
   {
       fprintf(logFile, "%s\n", mysql_error(con));
       mysql_close(con);

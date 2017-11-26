@@ -68,6 +68,7 @@ int main(int argc, char **argv)
 
 	fclose(startDateTimeFile);
 	mysql_close(con);
+	mysql_library_end();
 
   	return 0;
 }
@@ -118,7 +119,9 @@ int initValues(void)
 int connect_to_DB(void)
 {
 
+	printf("Before mysql_init\n");
   con = mysql_init(NULL);
+  printf("after mysql_init\n");
 
   if (con == NULL) 
   {
@@ -126,12 +129,12 @@ int connect_to_DB(void)
       return -1;
   }
 
-  if (mysql_real_connect(con, "localhost", "dlaredorazo", "@Dexsys13", "damadics", 3306, NULL, 0) == NULL) 
+  if (mysql_real_connect(con, "192.168.56.1", "controlslab", "controlslab", "damadics2", 3306, NULL, 0) == NULL) 
   {
       fprintf(stdout, "%s\n", mysql_error(con));
       mysql_close(con);
       return -1;
-  }  
+  }
 
   return 0;
 

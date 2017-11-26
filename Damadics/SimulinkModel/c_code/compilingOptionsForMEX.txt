@@ -1,0 +1,14 @@
+gcc saveToDBTest.c -o saveToDBTest -I"C:\Program Files\MySQL\MySQL Connector.C 6.1\include" -L"C:\Program Files\MySQL\MySQL Connector.C 6.1\lib\vs14" -lmysqlclient
+
+
+gcc saveToDBTest.c -o saveToDBTest -I"C:\Program Files\MySQL\MySQL Server 5.7\include" -L"C:\Program Files\MySQL\MySQL Server 5.7\lib" -lmysqlclient
+
+gcc saveToDBTest.c -o saveToDBTest -I"C:\Program Files (x86)\MySQL\MySQL Connector C 6.1\include" -L"C:\Program Files (x86)\MySQL\MySQL Connector C 6.1\lib" -llibmysql
+
+This is the good one
+
+saveToDB.c -I"C:\Program Files\MySQL\MySQL Server 5.7\include" -L"C:\Program Files\MySQL\MySQL Server 5.7\lib" -llibmysql -lws2_32 -lSecur32
+
+gcc saveToDBTest.c -o saveToDBTest -I"C:\Program Files\MySQL\MySQL Server 5.7\include" -L"C:\Program Files\MySQL\MySQL Server 5.7\lib" -llibmysql -lws2_32 -lSecur32
+
+gcc saveToDBTest.c -o saveToDb -I/usr/local/include/mysql -L/usr/local/lib/mysql -lmysqlclient -lm
