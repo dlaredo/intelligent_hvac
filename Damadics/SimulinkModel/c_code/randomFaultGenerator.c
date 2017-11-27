@@ -258,6 +258,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
 static void mdlTerminate(SimStruct *S)
 {
   fprintf(logFile, "Simulation Terminated\n");
+  fflush(logFile);
   fclose(logFile);
 }
 
@@ -323,6 +324,7 @@ void randomFaultGenerator(double currentTime)
             faultStartTime = currentTime;
             fprintf(logFile, "\n\nGenerating Fault: %d of Type:%d at time %lf for at least %lf seconds\n", sParams.Fsel, sParams.Ftype, currentTime, horSeconds[sParams.Ftype-1]);
             fprintf(logFile, "Simulation parameters: From: %f, FDS:%f, To:%lf, FSD:%d\n", sParams.From, sParams.FDS, sParams.To, sParams.FSD);
+            fflush(logFile);
           }
 
           generatingFault = 0;
@@ -346,6 +348,7 @@ void randomFaultGenerator(double currentTime)
       if(b == 1)
       {
         fprintf(logFile, "Stopping Fault: %d of Type:%d at time %lf after %lf seconds\n", sParams.Fsel, sParams.Ftype, currentTime, elapsedSeconds);
+        fflush(logFile);
         setNoFaultParameters();
         faultInProcess = 0;
       }
@@ -399,6 +402,7 @@ void setSimulationParameters(int Fsel, int Ftype, double currentTime, double off
     else
     {
       fprintf(logFile, "Error! - Fault %d with type %d not specified for benchmark purpose\n", Fsel, Ftype);
+      fflush(logFile);
       Fsel = 20; //No fault selected
       FDT = 0;
     }
@@ -411,6 +415,7 @@ void setSimulationParameters(int Fsel, int Ftype, double currentTime, double off
     if(Fsel == 3 || Fsel == 4 || Fsel == 5 || Fsel == 6 || Fsel == 9)
     {
       fprintf(logFile, "Error! - Fault %d with type %d not specified for benchmark purpose\n", Fsel, Ftype);
+      fflush(logFile);
       Fsel = 20; //No fault selected
     }
     else if(Fsel == 2 || Fsel == 11 || Fsel == 15 || Fsel == 17)
@@ -418,6 +423,7 @@ void setSimulationParameters(int Fsel, int Ftype, double currentTime, double off
       if(Ftype < 3)
       {
         fprintf(logFile, "Error! - Fault %d with type %d not specified for benchmark purpose\n", Fsel, Ftype);
+        fflush(logFile);
         Fsel = 20; //No fault selected
       }
     }

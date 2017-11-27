@@ -205,6 +205,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
         if(writingStatus != 0)
         {
           fprintf(logFile, "%s\n", "Error ocurred while writing to the DB. Halting simulation.\n");
+          fflush(logFile);
           ssSetStopRequested(S, 1); //Stop simulation if writing to the DB is not possible
         }
     }
@@ -296,12 +297,16 @@ int initValues(void)
   connectionStatus = connect_to_DB();
 
   if(connectionStatus == 0)
-      fprintf(logFile, "Succesfully connected to: %s\n", mysql_get_client_info());
-    else
-    {
-      fprintf(logFile, "Connection to the database failed\n");
-      return -1;
-    }
+  {
+    fprintf(logFile, "Succesfully connected to: %s\n", mysql_get_client_info());
+    fflush(logFile);
+  }
+  else
+  {
+    fprintf(logFile, "Connection to the database failed\n");
+    fflush(logFile);
+    return -1;
+  }
 
   return 0;
 }
@@ -314,12 +319,14 @@ int connect_to_DB(void)
   if (con == NULL) 
   {
       fprintf(logFile, "%s\n", mysql_error(con));
+      fflush(logFile);
       return -1;
   }
 
   if (mysql_real_connect(con, "192.168.56.1", "controlslab", "controlslab", "damadics2", 3306, NULL, 0) == NULL) 
   {
       fprintf(logFile, "%s\n", mysql_error(con));
+      fflush(logFile);
       mysql_close(con);
       return -1;
   }  
@@ -349,6 +356,7 @@ int writeToDB(time_t elapsedSeconds)
   if (mysql_query(con, queryString))
     {
       fprintf(logFile, "%s\n", mysql_error(con));
+      fflush(logFile);
       return -1;
     }
     else
