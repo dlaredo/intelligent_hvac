@@ -92,8 +92,8 @@ void randomFaultGenerator(double currentTime)
 		simulationRunning = 0;
 		sParams.DSim = 1;
 
-		fclose(logFile);
 		fprintf(logFile, "Time up\n");
+		fclose(logFile);
 		exit(0);
 	}
 
