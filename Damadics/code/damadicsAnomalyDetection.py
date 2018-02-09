@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split, cross_validate
 from sklearn.dummy import DummyClassifier
 from sklearn.metrics import accuracy_score
 from mpl_toolkits.mplot3d import Axes3D
-from dataManagement import DataManager
+from dataManagement import DataManagerDamadics
 
 from IPython.display import display, HTML
 import plottingTools as pt

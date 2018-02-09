@@ -24,5 +24,31 @@ def jp_plotData(dataFrame, titleString, saveToFile='', nsamples = 100, vars=None
 		plt.savefig(saveToFile, format='png', pad_inches=0.5, bbox_inches='tight')
 		plt.close()
 	else:
-		pass
-		#plt.show()
+		plt.show()
+
+def scatterplot_fault(dataFrame, titleString, saveToFile='', nsamples = 100):
+
+	n_m = dataFrame.shape[0]
+	random_elements = random.sample(range(n_m), nsamples)
+	df_plot = dataFrame.iloc[random_elements]
+
+	desiredFeatures = df_plot.columns[:2]
+
+	plot_xy = df_plot.values
+	plot_c = df_plot['selectedFault'].values.astype(float)
+	plot_abnormal = plot_xy[plot_c != 20]
+	plot_normal = plot_xy[plot_c == 20]
+
+	plt.scatter(plot_normal[:,0], plot_normal[:,1], c = 'blue', cmap='inferno', label='Normal observations')
+	plt.scatter(plot_abnormal[:,0], plot_abnormal[:,1], c = 'red', cmap='inferno', label='Faulty observations')
+	plt.legend()
+	plt.title(titleString)
+	plt.xlabel(desiredFeatures[0])
+	plt.ylabel(desiredFeatures[1])
+
+	if saveToFile != '':
+		plt.savefig(saveToFile, format='png', pad_inches=0.5, bbox_inches='tight')
+		plt.close()
+	else:
+		plt.show()
+
