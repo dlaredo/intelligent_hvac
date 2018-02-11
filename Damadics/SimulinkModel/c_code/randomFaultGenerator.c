@@ -23,8 +23,11 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
+#include "utils.h"
 
-void initValues(void);
+#define INPUT_PARAMS 2
+
+void initValues(SimStruct *);
 void setNoFaultParameters(void);
 void randomFaultGenerator(double);
 int getBooleanFromRandom(float, float, float);
@@ -57,6 +60,9 @@ double horSeconds[4] = {1500, 2400, 5100, 85500};
 
 //Structure for the parameters of the fault
 signalParameters sParams;
+
+//Parameters for the simulation of the faul (treshgen and treshstop)
+float treshGen, treshStop;
 
 
 /* Error handling
@@ -93,7 +99,7 @@ signalParameters sParams;
  */
 static void mdlInitializeSizes(SimStruct *S)
 {
-    ssSetNumSFcnParams(S, 0);  /* Number of expected parameters */
+    ssSetNumSFcnParams(S, INPUT_PARAMS);  /* Number of expected parameters */
     if (ssGetNumSFcnParams(S) != ssGetSFcnParamsCount(S)) {
         /* Return if number of expected != number of actual parameters */
         return;
@@ -168,7 +174,7 @@ static void mdlInitializeSampleTimes(SimStruct *S)
    */
   static void mdlInitializeConditions(SimStruct *S)
   {
-    initValues();
+    initValues(S);
   }
 #endif /* MDL_INITIALIZE_CONDITIONS */
 
@@ -265,7 +271,7 @@ static void mdlTerminate(SimStruct *S)
 
 /*Function specific functions (implementation)*/
 
-void initValues(void)
+void initValues(SimStruct *S)
 {
   faultStartTime = 0;
   timeLimit = 2592000; //Equivalent to 30 days of simulation
@@ -273,6 +279,12 @@ void initValues(void)
   faultInProcess = 0;
   simulationRunning = 1;
   generatingFault = 0;
+
+  treshGen = *mxGetPr(ssGetSFcnParam(S, 0));
+  treshStop = *mxGetPr(ssGetSFcnParam(S, 1));
+
+  char simParams[128] = {};
+  sprintf(simParams, "Simulation started with threshGen: %f and treshStop %f", treshGen, treshStop);
 
   setNoFaultParameters();
 
@@ -296,10 +308,13 @@ void setNoFaultParameters(void)
 
 void randomFaultGenerator(double currentTime)
 {
-  float muGen = 0, stdGen = 1, treshGen = 5.7;
-  float muStop = 0, stdStop = 1, treshStop = 2;
+  float muGen = 0, stdGen = 1;
+  float muStop = 0, stdStop = 1;
   double offsetTime = 0, elapsedSeconds = 0;
   int b = 0, Fsel = 0, Ftype = 0, horizonSeconds = 0;
+  char msg[350];
+
+  fprintf(logFile, "%f %f\n", treshGen, treshStop);
 
   //ssPrintf("currentTime: %lf\n", currentTime);
 
@@ -322,9 +337,12 @@ void randomFaultGenerator(double currentTime)
           {
             faultInProcess = 1;
             faultStartTime = currentTime;
-            fprintf(logFile, "\n\nGenerating Fault: %d of Type:%d at time %lf for at least %lf seconds\n", sParams.Fsel, sParams.Ftype, currentTime, horSeconds[sParams.Ftype-1]);
-            fprintf(logFile, "Simulation parameters: From: %f, FDS:%f, To:%lf, FSD:%d\n", sParams.From, sParams.FDS, sParams.To, sParams.FSD);
-            fflush(logFile);
+            sprintf(msg, "\n\nGenerating Fault: %d of Type:%d at time %lf for at least %lf seconds\nSimulation parameters: From: %f, FDS:%f, To:%lf, FSD:%d\n", 
+             sParams.Fsel, sParams.Ftype, currentTime, horSeconds[sParams.Ftype-1], sParams.From, sParams.FDS, sParams.To, sParams.FSD);
+            logMsg(logFile, msg);
+            //fprintf(logFile, "\n\nGenerating Fault: %d of Type:%d at time %lf for at least %lf seconds\n", sParams.Fsel, sParams.Ftype, currentTime, horSeconds[sParams.Ftype-1]);
+            //fprintf(logFile, "Simulation parameters: From: %f, FDS:%f, To:%lf, FSD:%d\n", sParams.From, sParams.FDS, sParams.To, sParams.FSD);
+            //fflush(logFile);
           }
 
           generatingFault = 0;
@@ -347,8 +365,10 @@ void randomFaultGenerator(double currentTime)
 
       if(b == 1)
       {
-        fprintf(logFile, "Stopping Fault: %d of Type:%d at time %lf after %lf seconds\n", sParams.Fsel, sParams.Ftype, currentTime, elapsedSeconds);
-        fflush(logFile);
+        sprintf(msg, "Stopping Fault: %d of Type:%d at time %lf after %lf seconds\n", sParams.Fsel, sParams.Ftype, currentTime, elapsedSeconds);
+        logMsg(logFile, msg);
+        //fprintf(logFile, "Stopping Fault: %d of Type:%d at time %lf after %lf seconds\n", sParams.Fsel, sParams.Ftype, currentTime, elapsedSeconds);
+        //fflush(logFile);
         setNoFaultParameters();
         faultInProcess = 0;
       }
@@ -388,6 +408,7 @@ void setSimulationParameters(int Fsel, int Ftype, double currentTime, double off
 {
 
   double MFS = 0, FDT = 0;
+  char msg[350];
 
   if(Ftype == 4)//Abrupt fault
   {
@@ -401,8 +422,10 @@ void setSimulationParameters(int Fsel, int Ftype, double currentTime, double off
       FDT = 60*15; // 15 minutes to develop the fault
     else
     {
-      fprintf(logFile, "Error! - Fault %d with type %d not specified for benchmark purpose\n", Fsel, Ftype);
-      fflush(logFile);
+      sprintf(msg, "Error! - Fault %d with type %d not specified for benchmark purpose\n", Fsel, Ftype);
+      logMsg(logFile, msg);
+      //fprintf(logFile, "Error! - Fault %d with type %d not specified for benchmark purpose\n", Fsel, Ftype);
+      //fflush(logFile);
       Fsel = 20; //No fault selected
       FDT = 0;
     }
@@ -414,16 +437,20 @@ void setSimulationParameters(int Fsel, int Ftype, double currentTime, double off
 
     if(Fsel == 3 || Fsel == 4 || Fsel == 5 || Fsel == 6 || Fsel == 9)
     {
-      fprintf(logFile, "Error! - Fault %d with type %d not specified for benchmark purpose\n", Fsel, Ftype);
-      fflush(logFile);
+      sprintf(msg, "Error! - Fault %d with type %d not specified for benchmark purpose\n", Fsel, Ftype);
+      logMsg(logFile, msg);
+      //fprintf(logFile, "Error! - Fault %d with type %d not specified for benchmark purpose\n", Fsel, Ftype);
+      //fflush(logFile);
       Fsel = 20; //No fault selected
     }
     else if(Fsel == 2 || Fsel == 11 || Fsel == 15 || Fsel == 17)
     {
       if(Ftype < 3)
       {
-        fprintf(logFile, "Error! - Fault %d with type %d not specified for benchmark purpose\n", Fsel, Ftype);
-        fflush(logFile);
+        sprintf(msg, "Error! - Fault %d with type %d not specified for benchmark purpose\n", Fsel, Ftype);
+        logMsg(logFile, msg);
+        //fprintf(logFile, "Error! - Fault %d with type %d not specified for benchmark purpose\n", Fsel, Ftype);
+        //fflush(logFile);
         Fsel = 20; //No fault selected
       }
     }

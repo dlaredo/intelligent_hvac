@@ -2,10 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
-int sendMail(char *);
-void logMsg(FILE *, char *);
-void getCurrentTime(char *);
+#include "utils.h"
 
 int sendMail(char *msg){
 
@@ -54,23 +51,44 @@ void logMsg(FILE *logfile, char *msg){
 	strcat(logMsg, msg);
 
 	fprintf(logfile, "%s\n", logMsg);
+	fflush(logfile);
 
 }
 
-int main(){
+int getProcessPid(char *processName){
 
-	char ctime[100];
-	FILE *fp = NULL;
+	char command[100] = {};
+	FILE* fp = NULL;
+    int pid = 0;
 
-	fp = fopen("test.txt", "w");
+    sprintf(command, "pgrep -x %s", processName);
 
-	//getCurrentTime(ctime);
-	//sendMail("mensaje de prueba\n");
+    if((fp=popen(command, "r")) != NULL)
+    {
+    	fscanf(fp, "%d", &pid);
+    	pclose(fp);
+    }
 
-	printf("%s\n", ctime);
+    return pid;
+}
 
-	logMsg(fp, "mensaje de prueba");
+void profileProcessMemory(int pid, char *results){
 
-	fclose(fp);
+	char command[100] = {};
+	FILE* fp = NULL;
+    float pageToMbFactor = 4.0/1024.0;
+
+    float size = 0, resident = 0, shared = 0, lib = 0, text = 0, data_stack = 0, dt = 0;
+
+    sprintf(command, "cat /proc/%d/statm", pid);
+
+    if((fp=popen(command, "r")) != NULL)
+    {
+    	fscanf(fp, "%f %f %f %f %f %f %f", &size, &resident, &shared, &text, &lib, &data_stack, &dt);
+    	pclose(fp);
+    }
+
+    sprintf(results, "%10.4f %10.4f %10.4f %10.4f %10.4f\n", size*pageToMbFactor, resident*pageToMbFactor, 
+    	shared*pageToMbFactor, text*pageToMbFactor, data_stack*pageToMbFactor);
 
 }
