@@ -27,7 +27,7 @@
 #include "utils.h"
 
 #define INPUT_PARAMS 1
-#define BULK_INSERT_SIZE 100
+#define BULK_INSERT_SIZE 10
 #define STRING_APPROX_SIZE 150
 
 int connect_to_DB(char *, char *, char *, char *);
@@ -325,8 +325,8 @@ int initValues(SimStruct *S)
 
   dbParamsFromString(paramString, host, user, pass, db);
 
-  sprintf(msg, "DB Params:%s\n host:%s user:%s pass:%s db:%s", paramString, host, user, pass, db);
-  logMsg(logFile, msg);
+  //sprintf(msg, "DB Params:%s\n host:%s user:%s pass:%s db:%s", paramString, host, user, pass, db);
+  //logMsg(logFile, msg);
 
   if((startDateTimeFile = fopen("lastDateTime.txt", "r+")) != NULL)
   {
@@ -425,7 +425,7 @@ int dbBulkInsert()
   int i = 0;
   char insertString[256] = {}, dateTimeStr[24] = {}, msg[128] = {}; 
   char valueBulkStr[BULK_INSERT_SIZE*STRING_APPROX_SIZE+256] = {}, valueStr[STRING_APPROX_SIZE] = {};
-  
+  damadicsSensorValues sValues;
   time_t elementTimestamp;
   struct tm elementDateTime; 
 
@@ -442,32 +442,41 @@ int dbBulkInsert()
   {
     elementTimestamp = databaseElement[i].timestamp;
     elementDateTime = *localtime(&elementTimestamp);
-    
+    sValues = databaseElement[i].sensorValues;
+
     sprintf(dateTimeStr, "%04d-%02d-%02d %02d:%02d:%02d", elementDateTime.tm_year + 1900, elementDateTime.tm_mon + 1, 
     elementDateTime.tm_mday, elementDateTime.tm_hour, elementDateTime.tm_min, elementDateTime.tm_sec);
 
-    sprintf(valueStr, "(%s, %.6f, %.6f, %.6f, %.6f, %.6f, %.6f, %d, %d, %.6f), ", dateTimeStr, sensorValues.controlValue, sensorValues.disturbedMediumFlow, 
-    sensorValues.pressureValveInlet, sensorValues.pressureValveOutlet, sensorValues.mediumTemperature, sensorValues.rodDisplacement, 
-    sensorValues.selectedFault, sensorValues.faultType, sensorValues.faultIntensity);
+
+    if(i != (BULK_INSERT_SIZE - 1))
+    {
+      sprintf(valueStr, "('%s', %.6f, %.6f, %.6f, %.6f, %.6f, %.6f, %d, %d, %.6f), ", dateTimeStr, sValues.controlValue, 
+      sValues.disturbedMediumFlow, sValues.pressureValveInlet, sValues.pressureValveOutlet, sValues.mediumTemperature, 
+      sValues.rodDisplacement, sValues.selectedFault, sValues.faultType, sValues.faultIntensity);
+    }
+    else //For the last element omit the comma at the end of the string
+    {
+      sprintf(valueStr, "('%s', %.6f, %.6f, %.6f, %.6f, %.6f, %.6f, %d, %d, %.6f)", dateTimeStr, sValues.controlValue, 
+      sValues.disturbedMediumFlow, sValues.pressureValveInlet, sValues.pressureValveOutlet, sValues.mediumTemperature, 
+      sValues.rodDisplacement, sValues.selectedFault, sValues.faultType, sValues.faultIntensity);
+    }
 
     strcat(valueBulkStr, valueStr);
   }
 
   fprintf(fp, "%s\n", valueBulkStr);
 
-  /*
-  if (mysql_query(con, queryString))
+  if (mysql_query(con, valueBulkStr))
   {
     sprintf(msg, "%s\n", mysql_error(con));
     logMsg(logFile, msg);
     return -1;
   }
   else
-  { //Need to improve the performance of this. Not to write the simulation time at each iteration
+  {
     fseek(startDateTimeFile, 0, SEEK_SET);
-    fprintf(startDateTimeFile, "%li\n", currentSimulationTime+1);
+    fprintf(startDateTimeFile, "%li\n", elementTimestamp+1);
   }
-  */
 
   fclose(fp);
 
@@ -499,15 +508,10 @@ int addToBuffer(time_t elapsedSeconds)
   }
   else
   {
-    //Pause simulink model
     if(dbBulkInsert() == 0) //Attempt the bulk insert to mysql
-    { 
       cleanBuffer();
-      return -1;
-    }
     else
       return -1;
-    //Resume simulink model
   }  
 
   return 0;
