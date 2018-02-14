@@ -1,1 +1,0 @@
-mex saveToDB.c -I/usr/local/include/mysql -L/usr/local/lib/mysql -L. -lmysqlclient -lm -lutils

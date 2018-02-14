@@ -24,11 +24,14 @@
 #include <time.h>
 #include <math.h>
 #include <mysql.h>
+#include "utils.h"
 
-int connect_to_DB(void);
+#define INPUT_PARAMS 1
+
+int connect_to_DB(char *, char *, char *, char *);
 int writeToDB(time_t);
 void updateSensorValues(const real_T *);
-int initValues(void);
+int initValues(SimStruct *S);
 
 typedef struct
 {
@@ -49,6 +52,7 @@ int alreadySampled;
 time_t startDateTime;
 FILE *startDateTimeFile, *logFile;
 unsigned long lastSampleTime;
+int stopFlag, connectionUp;
 
 
 /* Error handling
@@ -85,7 +89,7 @@ unsigned long lastSampleTime;
  */
 static void mdlInitializeSizes(SimStruct *S)
 {
-    ssSetNumSFcnParams(S, 0);  /* Number of expected parameters */
+    ssSetNumSFcnParams(S, INPUT_PARAMS);  /* Number of expected parameters */
     if (ssGetNumSFcnParams(S) != ssGetSFcnParamsCount(S)) {
         /* Return if number of expected != number of actual parameters */
         return;
@@ -113,6 +117,8 @@ static void mdlInitializeSizes(SimStruct *S)
     ssSetNumPWork(S, 0);
     ssSetNumModes(S, 0);
     ssSetNumNonsampledZCs(S, 0);
+
+    ssSetSFcnParamTunable(S,0,false);
 
     /* Specify the sim state compliance to be same as a built-in block */
     ssSetSimStateCompliance(S, USE_DEFAULT_SIM_STATE);
@@ -153,9 +159,10 @@ static void mdlInitializeSampleTimes(SimStruct *S)
    */
   static void mdlInitializeConditions(SimStruct *S)
   {
-    if(initValues() != 0)
+    if(initValues(S) != 0)
     {
       ssPrintf("Initialization error\n");
+      stopFlag = 1;
       ssSetStopRequested(S, 1);
     }
     ssPrintf("Variables Initialized in saveToDB. Rest will be written to the log.\n");
@@ -195,20 +202,25 @@ static void mdlOutputs(SimStruct *S, int_T tid)
 
     intTime = (unsigned long)floor(clockTime);
 
-    //Take only one sample per sample cycle (minimum sample rate is 1 second due to precision issues)
-    if(intTime%sampleTime == 0 && lastSampleTime != intTime)
+    if(stopFlag != 1) //Try to write to database only if the stop flag is not raised
     {
-        lastSampleTime = intTime;
-        updateSensorValues(signalVector);
-        writingStatus = writeToDB((time_t)intTime);
 
-        if(writingStatus != 0)
-        {
-          fprintf(logFile, "%s\n", "Error ocurred while writing to the DB. Halting simulation.\n");
-          fflush(logFile);
-          ssSetStopRequested(S, 1); //Stop simulation if writing to the DB is not possible
-        }
+      //Take only one sample per sample cycle (minimum sample rate is 1 second due to precision issues)
+      if(intTime%sampleTime == 0 && lastSampleTime != intTime)
+      {
+          lastSampleTime = intTime;
+          updateSensorValues(signalVector);
+          writingStatus = writeToDB((time_t)intTime);
+
+          if(writingStatus != 0)
+          {
+            logMsg(logFile, "Error ocurred while writing to the DB. Halting simulation.\n");
+            ssSetStopRequested(S, 1); //Stop simulation if writing to the DB is not possible
+          }
+      }
     }
+    else
+      ssSetStopRequested(S, 1);
 }
 
 
@@ -251,7 +263,11 @@ static void mdlOutputs(SimStruct *S, int_T tid)
  */
 static void mdlTerminate(SimStruct *S)
 {
-  mysql_close(con);
+  if(connectionUp == 1)
+    mysql_close(con);
+  else
+    logMsg(logFile, "No DB connection");
+  
   fclose(startDateTimeFile);
   fclose(logFile);
 }
@@ -259,11 +275,13 @@ static void mdlTerminate(SimStruct *S)
 
 /*Function specific functions (implementation)*/
 
-int initValues(void)
+int initValues(SimStruct *S)
 {
   int bytesRead = 0, connectionStatus = 0;
+  char host[32]={}, user[128]={}, pass[128]={}, db[16]={}, paramString[512];
 
   lastSampleTime = -1; //Initilize to -1 to take the sample at time 0
+  stopFlag = 0; //Set stop flag to 0
   sensorValues.controlValue = 0;
   sensorValues.pressureValveInlet = 0;
   sensorValues.pressureValveOutlet = 0;
@@ -274,10 +292,26 @@ int initValues(void)
   sensorValues.selectedFault = 0;
   sensorValues.faultType = 0;
 
+  char msg[128];
+  connectionUp = 0;
+
   logFile = fopen("DamadicsDatabaseLog.txt", "a");
 
-  if(logFile == NULL)
-    ssPrintf("Could not open log file for randomFaultGenerator\n");
+  if(logFile == NULL){
+    ssPrintf("Could not open log file for Database\n");
+    return -1;
+  }
+
+  //Read connection parameters for the database
+  if(mxGetString(ssGetSFcnParam(S, 0), paramString, mxGetN(ssGetSFcnParam(S, 0))*sizeof(mxChar) + 1) != 0){
+    logMsg(logFile, "Unable to read parameters for database connection\n");
+    return -1;
+  }
+
+  dbParamsFromString(paramString, host, user, pass, db);
+
+  sprintf(msg, "DB Params:%s\n host:%s user:%s pass:%s db:%s", paramString, host, user, pass, db);
+  logMsg(logFile, msg);
 
   if((startDateTimeFile = fopen("lastDateTime.txt", "r+")) != NULL)
   {
@@ -294,40 +328,44 @@ int initValues(void)
     startDateTime = time(NULL);
   }
 
-  connectionStatus = connect_to_DB();
+  connectionStatus = connect_to_DB(host, user, pass, db);
 
   if(connectionStatus == 0)
   {
-    fprintf(logFile, "Succesfully connected to: %s\n", mysql_get_client_info());
-    fflush(logFile);
+    sprintf(msg, "Succesfully connected to: %s\n", (char *)mysql_get_client_info());
+    logMsg(logFile, msg);
+    connectionUp = 1;
   }
   else
   {
-    fprintf(logFile, "Connection to the database failed\n");
-    fflush(logFile);
+    logMsg(logFile, "Connection to the database failed\n");
     return -1;
   }
 
   return 0;
 }
 
-int connect_to_DB(void)
+int connect_to_DB(char *host, char *user, char *pass, char *db)
 {
 
   con = mysql_init(NULL);
+  char msg[350];
 
   if (con == NULL) 
   {
-      fprintf(logFile, "%s\n", mysql_error(con));
-      fflush(logFile);
+      sprintf(msg, "%s\n", mysql_error(con));
+      logMsg(logFile, msg);
       return -1;
   }
-
-  if (mysql_real_connect(con, "192.168.56.1", "controlslab", "controlslab", "damadics2", 3306, NULL, 0) == NULL) 
+  
+  //sprintf(msg, "Attempting connection to DB with Params: host:%s user:%s pass:%s db:%s", host, user, pass, db);
+  //logMsg(logFile, msg);
+  
+  if (mysql_real_connect(con, host, user, pass, db, 3306, NULL, 0) == NULL) 
   {
-      fprintf(logFile, "%s\n", mysql_error(con));
-      fflush(logFile);
-      mysql_close(con);
+      sprintf(msg, "Unable to connect to DB\n%s\n", mysql_error(con));
+      logMsg(logFile, msg);
+      //mysql_close(con);
       return -1;
   }  
 
@@ -338,7 +376,7 @@ int connect_to_DB(void)
 int writeToDB(time_t elapsedSeconds)
 {
 
-  char queryString[500], dateTimeStr[100];
+  char queryString[500], dateTimeStr[100], msg[128];
   time_t currentSimulationTime = startDateTime + elapsedSeconds;
   struct tm simulationDateTime = *localtime(&currentSimulationTime);
 
@@ -351,20 +389,17 @@ int writeToDB(time_t elapsedSeconds)
     sensorValues.pressureValveInlet, sensorValues.pressureValveOutlet, sensorValues.mediumTemperature, sensorValues.rodDisplacement, 
     sensorValues.selectedFault, sensorValues.faultType, sensorValues.faultIntensity);
 
-  //fprintf(stdout, "%s\n", queryString);
-
   if (mysql_query(con, queryString))
-    {
-      fprintf(logFile, "%s\n", mysql_error(con));
-      fflush(logFile);
-      return -1;
-    }
-    else
-    {
-      //fprintf(logFile, "Writing to DB at: %s\n", dateTimeStr);
-      fseek(startDateTimeFile, 0, SEEK_SET);
-      fprintf(startDateTimeFile, "%li\n", currentSimulationTime+1);
-    }
+  {
+    sprintf(msg, "%s\n", mysql_error(con));
+    logMsg(logFile, msg);
+    return -1;
+  }
+  else
+  { //Need to improve the performance of this. Not to write the simulation time at each iteration
+    fseek(startDateTimeFile, 0, SEEK_SET);
+    fprintf(startDateTimeFile, "%li\n", currentSimulationTime+1);
+  }
 
     return 0;
 }
