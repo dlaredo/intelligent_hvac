@@ -66,3 +66,5 @@ Database/Untracked/
 *.o
 
 Damadics/DABLib/c_code/slprj/
+
+Damadics/SimulinkModel/c_code/old/
