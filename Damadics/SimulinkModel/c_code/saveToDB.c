@@ -27,7 +27,7 @@
 #include "utils.h"
 
 #define INPUT_PARAMS 1
-#define BULK_INSERT_SIZE 10
+#define BULK_INSERT_SIZE 100
 #define STRING_APPROX_SIZE 150
 
 int connect_to_DB(char *, char *, char *, char *);
@@ -430,7 +430,7 @@ int dbBulkInsert()
   struct tm elementDateTime; 
 
   FILE *fp = NULL;
-  fp = fopen("bulkInsertTest.txt", "w");
+  fp = fopen("lastBulkInsertLog.txt", "w");
 
   sprintf(insertString, "INSERT INTO valveReadings(timestamp, externalControllerOutput, disturbedMediumFlow,\
     pressureValveInlet, pressureValveOutlet, mediumTemperature, rodDisplacement, selectedFault, faultType, faultIntensity)\
@@ -509,7 +509,10 @@ int addToBuffer(time_t elapsedSeconds)
   else
   {
     if(dbBulkInsert() == 0) //Attempt the bulk insert to mysql
+    {
       cleanBuffer();
+      bufferCounter = 0;
+    }
     else
       return -1;
   }  
@@ -532,7 +535,7 @@ void cleanBuffer()
     databaseElement[i].sensorValues.mediumTemperature = 0;
     databaseElement[i].sensorValues.faultIntensity = 0;
     databaseElement[i].sensorValues.selectedFault = 0;
-    databaseElement[i].sensorValues.faultType = 0;;
+    databaseElement[i].sensorValues.faultType = 0;
   }
 }
 
