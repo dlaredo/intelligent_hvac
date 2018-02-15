@@ -97,7 +97,7 @@ void profileProcessMemory(int pid, char *results){
     	pclose(fp);
     }
 
-    sprintf(results, "%10.4f %10.4f %10.4f %10.4f %10.4f\n", size*pageToMbFactor, resident*pageToMbFactor, 
+    sprintf(results, "%12.4f %12.4f %12.4f %12.4f %12.4f", size*pageToMbFactor, resident*pageToMbFactor, 
     	shared*pageToMbFactor, text*pageToMbFactor, data_stack*pageToMbFactor);
 
 }
