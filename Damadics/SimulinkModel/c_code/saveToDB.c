@@ -229,6 +229,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
           if(status != 0)
           {
             logMsg(logFile, "Error ocurred while writing to the DB. Halting simulation.\n");
+            sendMail("Error ocurred while writing to the DB. Halting simulation.\n");
             ssSetStopRequested(S, 1); //Stop simulation if writing to the DB is not possible
           }
       }
@@ -465,6 +466,7 @@ int dbBulkInsert()
   }
 
   fprintf(fp, "%s\n", valueBulkStr);
+  fclose(fp);
 
   if (mysql_query(con, valueBulkStr))
   {
@@ -477,8 +479,6 @@ int dbBulkInsert()
     fseek(startDateTimeFile, 0, SEEK_SET);
     fprintf(startDateTimeFile, "%li\n", elementTimestamp+1);
   }
-
-  fclose(fp);
 
   return 0;
 }

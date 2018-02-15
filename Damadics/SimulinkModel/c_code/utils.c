@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
 #include "utils.h"
 
 int sendMail(char *msg){
@@ -25,13 +26,18 @@ int sendMail(char *msg){
     if(fp == NULL)
         return -1;
 
+    //unlink(template_name);
+
     fprintf(fp, "To: %s\nFrom: %s\nSubject: %s\n\n", to, from, subject);
 
     fprintf(fp,"%s\n", msg); // write body to it.
+
     fclose(fp);             // close it.
 
-    sprintf(cmd,"ssmtp %s < %s",to,tempFile); // prepare command.
+    sprintf(cmd,"ssmtp %s < %s",to,template_name); // prepare command.
     system(cmd);     // execute it.
+
+    unlink(template_name); //Unlink it so that it gets closed
 
     return 0;
 

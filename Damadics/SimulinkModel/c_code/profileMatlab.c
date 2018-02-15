@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include "utils.h"
 
-#define PROFILE_TIME 10 //In seconds
+#define PROFILE_TIME 900 //In seconds
 
 int main()
 {
