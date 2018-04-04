@@ -16,10 +16,13 @@ componentsClasses = {"ahu":AHU, "vfd":VFD, "filter":Filter, "damper":Damper, "fa
 numberRegex = re.compile(r'\d+', flags = re.IGNORECASE)
 
 
-def zonecsvToDb(filepath, dbsession, zone):
+def zonecsvToDb(filepath, dbsession, zone, deviceAddressDict, devComponentsDF):
 	"""Function used to read from csv files"""
 
 	count = 0
+	bacNetAddress = ""
+	bacnetDevId = -1
+	bacnetObjectType = ""
 
 	dataPoints = dbsession.query(DataPoint).all()
 	dataPointInserted = set()
@@ -36,12 +39,19 @@ def zonecsvToDb(filepath, dbsession, zone):
 			else:
 
 				path = row[6]
+				controlProgram = row[4]
+				point = row[5]
+
 
 				#Determine bacnet address for the path
+				(bacNetAddress, bacnetDevId, bacnetObjectType) = determineBacnetAddress(controlProgram, path, point, deviceAddressDict, devComponentsDF)
 
 				if path not in dataPointInserted:
 					#add the datapoints to the DB session
-					dataPoint = DataPoint(path = path, server = row[0], location = row[1], branch = row[2], subBranch = row[3], controlProgram = row[4], point = row[5], zone = zone)
+					dataPoint = DataPoint(path = path, server = row[0], location = row[1], branch = row[2], subBranch = row[3], 
+						controlProgram = row[4], point = row[5], zone = zone, bacnetAddress = bacNetAddress, 
+						bacnetDevId = bacnetDevId, bacnetObjectType = bacnetObjectType)
+
 					dbsession.add(dataPoint)
 
 		#commit changes to the database
@@ -50,7 +60,7 @@ def zonecsvToDb(filepath, dbsession, zone):
 def determineBacnetAddress(controlProgram, path, point, deviceAddressDict, devComponentsDF):
 	"""Determine the bacnet address for accessing the data in this point"""
 
-	splittedPath = dataPoint.path.split("/", 1)
+	splittedPath = path.split("/", 1)
 	componentPath = splittedPath[0]
 	trendPath = splittedPath[len(splittedPath) - 1]
 
@@ -65,36 +75,45 @@ def determineBacnetAddress(controlProgram, path, point, deviceAddressDict, devCo
 	if devAddress != None:
 
 		#Find the type of bacnet object (analogInput, analogOutput, analogValue, etc..)
-		devComponentRow = 
-		devComponentsDF.loc[ (devComponentsDF['Device ID'] == 'DEV:'+str(devId)) & (devComponentsDF['Control Program'] == controlProgram) 
-		& (devComponentsDF['Name'] == point), ['Control Program', 'Type', 'Object ID', 'Device ID', 'Object Name', 'Path'] ]
+		devComponentRow = devComponentsDF.loc[ (devComponentsDF['Device ID'] == 'DEV:'+str(devId)) & 
+		(devComponentsDF['Path'].str.contains(componentPath).any()) & 
+		(devComponentsDF['Name'] == point), 
+		['Control Program', 'Type', 'Object ID', 'Device ID', 'Object Name', 'Path'] ]
 
-		objectType = devComponentRow['Type']
-		objectId = devComponentRow['Object ID']
+		objectType = devComponentRow['Type'].values
+		objectId = devComponentRow['Object ID'].values
+
+		if (len(objectType) == 1) or (len(objectId) == 1):
+			objectType = objectType[0]
+			objectId = int(objectId[0].split(":")[1])
+		else:
+			objectType = ""
+			objectId = -1
 		
-	return devAddress, objectId, objectType
+	return (devAddress, objectId, objectType)
 
 
 
 def deviceAddressDictionary(addressPointFile):
 	"""Create a dictionary containing the mapping of each trend component to its address and device"""
 
-	addressDeviceDict = dict()
+	addressPointDict = dict()
+	count = 0
 
 	with open(addressPointFile, 'r') as csvfile:
 		reader = csv.reader(csvfile)
-			for row in reader:
-				#skip the header
-				if count == 0:
-					count += 1
-				else:	
+		for row in reader:
+			#skip the header
+			if count == 0:
+				count += 1
+			else:	
 
-					bacNetAddress = row[0]
-					deviceId = row[1]
-					deviceName = row[2]
-					addressPointDict[deviceName] = (bacNetAddress, deviceId)
+				bacNetAddress = row[0]
+				deviceId = row[1]
+				pointName = row[2]
+				addressPointDict[pointName] = (bacNetAddress, deviceId)
 
-	return addressDeviceDict
+	return addressPointDict
 
 
 def deviceComponentsDF(pointListFile):
@@ -597,7 +616,7 @@ def main():
 	#zoneFilePaths = {"4":"../csv_files/Zone4.csv", "3":"../csv_files/Zone3.csv", "1_2":"../csv_files/Zone_1and2.csv"}
 	zoneFilePaths = {"4":"../../csv_files/AHUOnly/Zone4AHU.csv", "3":"../../csv_files/AHUOnly/Zone3AHU.csv", "1_2":"../../csv_files/AHUOnly/Zone_1and2AHU.csv"}
 	#zoneFilePaths = {"1_2":"../csv_files/Zone_1and2.csv"}
-	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2"
+	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2018_01"
 
 	deviceAddressFile = "../../csv_files/pointListMappings/deviceAddress.csv"
 	bacnetPointsFile = "../../csv_files/pointListMappings/pointListBacnet.csv"
@@ -623,17 +642,17 @@ def main():
 	logging.info("Writting csv files to the DB")
 
 	#Create device_address dictionary
-	ca_dict = deviceAddressDictionary(deviceAddressFile)
+	devAddr_dict = deviceAddressDictionary(deviceAddressFile)
 
 	#Create pandas dataframe from pointListFile
-	devComponentsDF = pandas.read_csv(pointListFile)
+	devComponentsDF = pandas.read_csv(bacnetPointsFile)
 
 	#Attempt to write csv to the database
 	try:
 
 		for key in zoneFilePaths:
 			filePath = zoneFilePaths[key]
-			zonecsvToDb(filePath, session, key)
+			zonecsvToDb(filePath, session, key, devAddr_dict, devComponentsDF)
 			logging.info("Writting of the csv file" + filePath + " to the DB was sucessfull")
 	except:
 		logging.error("Error writting the csv file " + filePath + " to the DB")

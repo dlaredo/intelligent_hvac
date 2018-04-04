@@ -41,7 +41,10 @@ class DataPoint(Base):
 	_subBranch = Column('SubBranch', String(255))
 	_controlProgram = Column('ControlProgram', String(255))
 	_point = Column('Point', String(255))
-	_zone = Column('Zone', Integer)
+	_zone = Column('Zone', String(255))
+	_bacnetAddress = Column('BacnetAddress', String(255))
+	_bacnetDevId = Column('BacnetDevId', Integer)
+	_bacnetObjectType = Column('BacnetObjectType', String(255))
 	_componentId = Column('ComponentId', Integer)
 	_pathMappingId = Column('PathMappingsId', Integer, ForeignKey("PathMappings.Id"))
 
@@ -50,7 +53,8 @@ class DataPoint(Base):
 
 	#Constructor
 
-	def __init__(self, path, server, location, branch, subBranch, controlProgram, point, zone, componentId = None, pathMappingId = None, pathMapping = None):
+	def __init__(self, path, server, location, branch, subBranch, controlProgram, point, zone, 
+		bacnetAddress, bacnetDevId, bacnetObjectType, componentId = None, pathMappingId = None, pathMapping = None):
 
 		self._path = path
 		self._server = server
@@ -60,6 +64,9 @@ class DataPoint(Base):
 		self._controlProgram = controlProgram
 		self._point = point
 		self._zone = zone
+		self._bacnetAddress = bacnetAddress
+		self._bacnetDevId = bacnetDevId
+		self._bacnetObjectType = bacnetObjectType
 		self._componentId = componentId
 		self._pathMappingId = pathMappingId
 		self._pathMapping = pathMapping
@@ -131,6 +138,30 @@ class DataPoint(Base):
 		self._zone = value
 
 	@property
+	def bacnetAddress(self):
+		return self._bacnetAddress
+
+	@bacnetAddress.setter
+	def bacnetAddress(self, value):
+		self._bacnetAddress = value
+
+	@property
+	def bacnetDevId(self):
+		return self._bacnetDevId
+
+	@bacnetDevId.setter
+	def bacnetDevId(self, value):
+		self._bacnetDevId = value
+
+	@property
+	def bacnetObjectType(self):
+		return self._bacnetObjectType
+
+	@bacnetObjectType.setter
+	def bacnetObjectType(self, value):
+		self._bacnetObjectType = value
+
+	@property
 	def componentId(self):
 		return self._componentId
 
@@ -156,9 +187,9 @@ class DataPoint(Base):
 
 	def __str__(self):
 		return "<DataPoint(path = '%s', server = '%s', location = '%s', branch = '%s', subBranch = '%s', controlProgram = '%s', point = '%s',\
-		 zone = '%s', componentId = '%s', pathMappingId = '%s')>" \
+		 zone = '%s', bacnetAddress = '%s', bacnetDevId = '%s', bacnetObjectType = '%s', componentId = '%s', pathMappingId = '%s')>" \
 		% (self._path, self._server, self._location, self._branch, self._subBranch, self._controlProgram, self._point,\
-		 self._zone, self._componentId, self._pathMappingId)
+		 self._zone, self._bacnetAddress, self._bacnetDevId, self._bacnetObjectType, self._componentId, self._pathMappingId)
 
 
 class PathMapping(Base):
