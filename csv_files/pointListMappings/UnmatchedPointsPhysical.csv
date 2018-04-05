@@ -1,0 +1,11 @@
+Point,min(Path)
+"CER Temp",#sav-b23-a_/m423
+"CW Coil Return",#ahu-3_0206/cwcr
+"CW Coil Supply",#ahu-3_0206/cwcs
+"CW Valve",#vav-1-18/cw_valve
+"Flow Control / Flow Input",#vav-2-26/flow_input
+"HW Coil Return",#ahu-3_0206/hwcr
+"HW Coil Supply",#ahu-3_0206/hwcs
+"HW Valve",#sav-b3-b/hw_valve
+"OSA CFM",#ahu-3_0206/osacfm
+"Zone Temp / Zone Temp",#copy_of_sav-b38-a_/lstat/zone_temp

@@ -45,6 +45,7 @@ class DataPoint(Base):
 	_bacnetAddress = Column('BacnetAddress', String(255))
 	_bacnetDevId = Column('BacnetDevId', Integer)
 	_bacnetObjectType = Column('BacnetObjectType', String(255))
+	_pointType = Column('PointType', Integer)
 	_componentId = Column('ComponentId', Integer)
 	_pathMappingId = Column('PathMappingsId', Integer, ForeignKey("PathMappings.Id"))
 
@@ -54,7 +55,7 @@ class DataPoint(Base):
 	#Constructor
 
 	def __init__(self, path, server, location, branch, subBranch, controlProgram, point, zone, 
-		bacnetAddress, bacnetDevId, bacnetObjectType, componentId = None, pathMappingId = None, pathMapping = None):
+		bacnetAddress, bacnetDevId, bacnetObjectType, pointType, componentId = None, pathMappingId = None, pathMapping = None):
 
 		self._path = path
 		self._server = server
@@ -67,6 +68,7 @@ class DataPoint(Base):
 		self._bacnetAddress = bacnetAddress
 		self._bacnetDevId = bacnetDevId
 		self._bacnetObjectType = bacnetObjectType
+		self._pointType = pointType
 		self._componentId = componentId
 		self._pathMappingId = pathMappingId
 		self._pathMapping = pathMapping
@@ -167,7 +169,15 @@ class DataPoint(Base):
 
 	@componentId.setter
 	def componentId(self, value):
-		self._componentId = value 
+		self._componentId = value
+
+	@property
+	def pointType(self):
+		return self._pointType
+
+	@pointType.setter
+	def pointType(self, value):
+		self._pointType = value  
 
 	@property
 	def pathMappingId(self):
@@ -187,9 +197,9 @@ class DataPoint(Base):
 
 	def __str__(self):
 		return "<DataPoint(path = '%s', server = '%s', location = '%s', branch = '%s', subBranch = '%s', controlProgram = '%s', point = '%s',\
-		 zone = '%s', bacnetAddress = '%s', bacnetDevId = '%s', bacnetObjectType = '%s', componentId = '%s', pathMappingId = '%s')>" \
+		 zone = '%s', bacnetAddress = '%s', bacnetDevId = '%s', bacnetObjectType = '%s', pointType = '%s', componentId = '%s', pathMappingId = '%s')>" \
 		% (self._path, self._server, self._location, self._branch, self._subBranch, self._controlProgram, self._point,\
-		 self._zone, self._bacnetAddress, self._bacnetDevId, self._bacnetObjectType, self._componentId, self._pathMappingId)
+		 self._zone, self._bacnetAddress, self._bacnetDevId, self._bacnetObjectType, self._pointType, self._componentId, self._pathMappingId)
 
 
 class PathMapping(Base):

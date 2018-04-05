@@ -1,0 +1,47 @@
+Point,min(Path)
+1610_power_kw,#ahu_1a_supply/power_kw_1610_tn
+1617_speed_rpm,#ahu_1a_supply/speed_rpm_1617_tn
+Air Flow Feedback,#001_thermafuser/m073
+Cl Req,#ahu-1_0206/m045
+clg setpt,#001_thermafuser/m135
+Clg Stpt,#copy_of_sav-b38-a_/cl_stpt_tn
+Clg%,#copy_of_sav-b38-a_/cl_pct_tn
+Cool Requests,#copy_of_sav-b38-a_/m285
+Cool Stpt,#ahu-3_0206/cl_stpt_tn
+Dmpr Pos,#vav-1-18/dmpr_pos_tn
+Econ Stpt,#ahu-3_0206/econ_stpt_tn
+Exhaust Flow,#copy_of_sav-b38-a_/m318
+Exhaust Flow Stpt,#copy_of_sav-b38-a_/m328
+Flow Difference,#copy_of_sav-b38-a_/m322
+GEX Dmpr Pos,#copy_of_sav-b38-a_/m277
+Heat Requests,#copy_of_sav-b38-a_/m288
+Heat Stpt,#ahu-3_0206/ht_stpt_tn
+Ht Req,#ahu-3_0206/m044
+htg setpt,#001_thermafuser/m134
+Htg Stpt,#copy_of_sav-b38-a_/ht_stpt_tn
+Htg%,#copy_of_sav-b38-a_/ht_pct_tn
+Occ Mode,#ahu-1_0206/m041
+RA CO2 Stpt,#ahu-3_0206/co2_stpt_tn
+Return Fan  CFM,#ahu-3_0206/rf_cfm_tnd
+Return Fan 1 CFM,#ahu-3_0206/rf1_cfm_tnd
+Return Fan 2 CFM,#ahu-3_0206/rf2_cfm_tnd
+Return Fan 3 CFM,#ahu-3_0206/rf3_cfm_tnd
+Return Fan 4 CFM,#ahu-3_0206/rf4_cfm_tnd
+Room Occupied,#001_thermafuser/m078
+SA Stpt,#ahu-3_0206/sa_stpt_tn
+SAV Dmpr Pos,#copy_of_sav-b38-a_/m310
+St Req,#ahu-1_0206/m496
+Static SP,#ahu-3_0206/m403
+Static SP1,#ahu-1_0206/m124 - #vav-3-35/m211
+Static SP2,#ahu-1_0206/m415
+Supply Air,#001_thermafuser/m190
+Supply Fan  CFM,#ahu-1_0206/sf_cfm_tnd
+Supply Fan 1 CFM,#ahu-1_0206/sf1_cfm_tnd
+Supply Fan 2 CFM,#ahu-1_0206/sf2_cfm_tnd
+Supply Fan 3 CFM,#ahu-1_0206/sf3_cfm_tnd
+Supply Fan 3 Total  CFM,#ahu-3_0206/sf_cfm_tnd
+Supply Fan 4 CFM,#ahu-1_0206/sf4_cfm_tnd
+Supply Flow,#copy_of_sav-b38-a_/m320
+Terminal Load,#270_thermafuser/m076
+Zone Temp,#001_thermafuser/m186
+Zone Temps,#vav-1-18/m311

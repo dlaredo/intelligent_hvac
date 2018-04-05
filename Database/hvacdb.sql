@@ -1,5 +1,5 @@
-create database HVAC2017;
-use HVAC2017;
+create database HVAC2018_01;
+use HVAC2018_01;
 
 CREATE TABLE Thermafuser_Reading (
   Time_stamp                datetime NOT NULL, 
@@ -187,6 +187,7 @@ CREATE TABLE DataPoints (
   BacnetAddress  	varchar(255) NOT NULL,
   BacnetDevId       int(10) NOT NULL,
   BacnetObjectType  varchar(255) NOT NULL,
+  PointType  		int(255) NOT NULL,
   ComponentId    int(10), 
   PathMappingsId int(10), 
   PRIMARY KEY (Path)) ENGINE=InnoDB;

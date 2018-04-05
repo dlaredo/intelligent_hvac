@@ -16,13 +16,14 @@ componentsClasses = {"ahu":AHU, "vfd":VFD, "filter":Filter, "damper":Damper, "fa
 numberRegex = re.compile(r'\d+', flags = re.IGNORECASE)
 
 
-def zonecsvToDb(filepath, dbsession, zone, deviceAddressDict, devComponentsDF):
+def zonecsvToDb(filepath, dbsession, zone, deviceAddressDict, devComponentsBacnetDF, devComponentsPhysicalDF):
 	"""Function used to read from csv files"""
 
 	count = 0
 	bacNetAddress = ""
 	bacnetDevId = -1
 	bacnetObjectType = ""
+	pointType = 0 #Point type 0 for unmapped points
 
 	dataPoints = dbsession.query(DataPoint).all()
 	dataPointInserted = set()
@@ -38,19 +39,37 @@ def zonecsvToDb(filepath, dbsession, zone, deviceAddressDict, devComponentsDF):
 				count += 1
 			else:
 
+				pointType = 0 #Point type 0 for unmapped points
+
 				path = row[6]
 				controlProgram = row[4]
 				point = row[5]
 
 
+				#logging.debug("point type value {}".format(str(pointType)))
 				#Determine bacnet address for the path
-				(bacNetAddress, bacnetDevId, bacnetObjectType) = determineBacnetAddress(controlProgram, path, point, deviceAddressDict, devComponentsDF)
+				(bacNetAddress, bacnetDevId, bacnetObjectType) = determineBacnetAddress(controlProgram, path, point, deviceAddressDict, devComponentsBacnetDF)
 
+				#Bacnet address not found, try physical points.
+				if bacnetDevId == -1:
+					
+					(bacNetAddress, bacnetDevId, bacnetObjectType) = determineBacnetAddress(controlProgram, path, point, deviceAddressDict, devComponentsPhysicalDF)
+					
+					if bacnetDevId == -1:
+						pass
+					else:
+						pointType = 2 #Point type 2 for physical points
+				else:
+					pointType = 1 #Point type 1 for bacnet points
+
+				#logging.debug("point type value {}".format(str(pointType)))
+
+				
 				if path not in dataPointInserted:
 					#add the datapoints to the DB session
 					dataPoint = DataPoint(path = path, server = row[0], location = row[1], branch = row[2], subBranch = row[3], 
 						controlProgram = row[4], point = row[5], zone = zone, bacnetAddress = bacNetAddress, 
-						bacnetDevId = bacnetDevId, bacnetObjectType = bacnetObjectType)
+						bacnetDevId = bacnetDevId, bacnetObjectType = bacnetObjectType, pointType = pointType)
 
 					dbsession.add(dataPoint)
 
@@ -66,13 +85,17 @@ def determineBacnetAddress(controlProgram, path, point, deviceAddressDict, devCo
 
 	devAddress = None
 	devId = None
-	objectType = None
-	objectId = None
+	objectType = ""
+	objectId = -1
+
+	logging.debug("Looking for object {} {}".format(point, path))
 
 	#Find the bacnet address of the component
 	(devAddress, devId) = deviceAddressDict[componentPath]
 
 	if devAddress != None:
+
+		logging.debug("for object with address {} and devId {}".format(devAddress, devId))
 
 		#Find the type of bacnet object (analogInput, analogOutput, analogValue, etc..)
 		devComponentRow = devComponentsDF.loc[ (devComponentsDF['Device ID'] == 'DEV:'+str(devId)) & 
@@ -83,15 +106,47 @@ def determineBacnetAddress(controlProgram, path, point, deviceAddressDict, devCo
 		objectType = devComponentRow['Type'].values
 		objectId = devComponentRow['Object ID'].values
 
-		if (len(objectType) == 1) or (len(objectId) == 1):
+		if len(objectId) == 1:
 			objectType = objectType[0]
 			objectId = int(objectId[0].split(":")[1])
-		else:
+		elif len(objectId) > 1:
+			logging.debug("Object matches with more than one row")
+			logging.debug(str(objectType))
+			logging.debug(str(objectId))
 			objectType = ""
 			objectId = -1
+		else:
+			debugNoMatch(controlProgram, componentPath, point, devAddress, devId, devComponentsDF)
+			objectType = ""
+			objectId = -1
+	else:
+		logging.debug("Object doesnt match")
+		devAddress = ""
+		objectType = ""
+		objectId = -1
 		
 	return (devAddress, objectId, objectType)
 
+
+def debugNoMatch(controlProgram, path, point, devAddress, devId, devComponentsDF):
+	"""Help to debug when a no match was found"""
+
+	debugRow = devComponentsDF.loc[ devComponentsDF['Device ID'] == 'DEV:'+str(devId) ]
+
+	if debugRow.shape[0] > 0:
+
+		debugRow = devComponentsDF.loc[ (devComponentsDF['Device ID'] == 'DEV:'+str(devId)) & 
+		(devComponentsDF['Path'].str.contains(path).any()) ]
+
+		if debugRow.shape[0] > 0:
+
+			logging.debug("DevId {} could not be matched with path {} and point {}".format(devId, path, point))
+
+		else:
+			logging.debug("DevId {} could not be matched with path {}".format(devId, path))
+	
+	else:
+		logging.debug("DevId {} could not be matched ".format(devId))
 
 
 def deviceAddressDictionary(addressPointFile):
@@ -613,16 +668,18 @@ def main():
 
 	#Order of the function calls matters in this function, do not change it.
 
-	#zoneFilePaths = {"4":"../csv_files/Zone4.csv", "3":"../csv_files/Zone3.csv", "1_2":"../csv_files/Zone_1and2.csv"}
-	zoneFilePaths = {"4":"../../csv_files/AHUOnly/Zone4AHU.csv", "3":"../../csv_files/AHUOnly/Zone3AHU.csv", "1_2":"../../csv_files/AHUOnly/Zone_1and2AHU.csv"}
+	zoneFilePaths = {"4":"../../csv_files/Zone4.csv", "3":"../../csv_files/Zone3.csv", "1_2":"../../csv_files/Zone_1and2.csv"}
+	#zoneFilePaths = {"4":"../../csv_files/AHUOnly/Zone4AHU.csv", "3":"../../csv_files/AHUOnly/Zone3AHU.csv", "1_2":"../../csv_files/AHUOnly/Zone_1and2AHU.csv"}
 	#zoneFilePaths = {"1_2":"../csv_files/Zone_1and2.csv"}
+	#zoneFilePaths = {"4":"../../csv_files/AHUOnly/Zone4AHU.csv"}
 	database = "mysql+mysqldb://dlaredorazo:@Dexsys13@localhost:3306/HVAC2018_01"
 
 	deviceAddressFile = "../../csv_files/pointListMappings/deviceAddress.csv"
 	bacnetPointsFile = "../../csv_files/pointListMappings/pointListBacnet.csv"
+	physicalPointsFile = "../../csv_files/pointListMappings/pointListPhysical.csv"
 
 	#set the logger config
-	logging.basicConfig(filename='mappingDataPoints.log', level=logging.INFO,\
+	logging.basicConfig(filename='mappingDataPoints.log', level=logging.DEBUG,\
 	format='%(levelname)s:%(threadName)s:%(asctime)s:%(filename)s:%(funcName)s:%(message)s', datefmt='%m/%d/%Y %H:%M:%S')
 	
 	#Attempt connection to the database
@@ -644,15 +701,16 @@ def main():
 	#Create device_address dictionary
 	devAddr_dict = deviceAddressDictionary(deviceAddressFile)
 
-	#Create pandas dataframe from pointListFile
-	devComponentsDF = pandas.read_csv(bacnetPointsFile)
+	#Create pandas dataframe from bacnetPointListFile
+	devComponentsBacnetDF = pandas.read_csv(bacnetPointsFile)
+	devComponentsPhysicalDF = pandas.read_csv(physicalPointsFile)
 
 	#Attempt to write csv to the database
 	try:
 
 		for key in zoneFilePaths:
 			filePath = zoneFilePaths[key]
-			zonecsvToDb(filePath, session, key, devAddr_dict, devComponentsDF)
+			zonecsvToDb(filePath, session, key, devAddr_dict, devComponentsBacnetDF, devComponentsPhysicalDF)
 			logging.info("Writting of the csv file" + filePath + " to the DB was sucessfull")
 	except:
 		logging.error("Error writting the csv file " + filePath + " to the DB")
