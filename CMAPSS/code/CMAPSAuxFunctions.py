@@ -1,3 +1,15 @@
+import numpy as np
+import pandas as pd
+import random
+
+global constRUL
+
+def set_const_RUL(RUL):
+    global constRUL
+
+    constRUL = RUL
+
+
 def compute_training_RUL(df_row, *args):
     
     global constRUL
