@@ -94,7 +94,7 @@ def get_X_y_from_df(df, time_window, features, num_units, dataset_type):
     return X, y
 
 
-def retrieve_and_reshape_data(from_file, selected_features, time_window, dataset_type):
+def retrieve_and_reshape_data(from_file, selected_features, time_window, dataset_type, unit_Number=None):
     '''
     5    T2        - Total temperature at fan inlet      R
     6    T24       - Total temperature at lpc outlet     R
@@ -128,6 +128,10 @@ def retrieve_and_reshape_data(from_file, selected_features, time_window, dataset
                 24:'W31', 25:'W32'}
 
     df.rename(columns=col_names, inplace=True)
+
+    #In case a specific unit number is needed
+    if unit_Number != None:
+        df = df[df['Unit Number'] == unit_Number]
 
     gruoped_by_unit = df.groupby('Unit Number')
     rul_vector = gruoped_by_unit.size().values
