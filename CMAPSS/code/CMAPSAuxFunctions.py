@@ -4,6 +4,8 @@ import random
 
 global constRUL
 
+constRUL = 125
+
 def set_const_RUL(RUL):
     global constRUL
 
