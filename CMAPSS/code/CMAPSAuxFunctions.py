@@ -70,7 +70,7 @@ def get_X_y_from_df(df, time_window, features, num_units, dataset_type):
     
     return X, y
 
-def retrieve_and_reshape_data(from_file, columns, time_window, dataset_type):
+def retrieve_and_reshape_data(from_file, selected_features, time_window, dataset_type):
     '''
     5    T2        - Total temperature at fan inlet      R
     6    T24       - Total temperature at lpc outlet     R
@@ -110,7 +110,7 @@ def retrieve_and_reshape_data(from_file, columns, time_window, dataset_type):
     num_units = len(gruoped_by_unit)
 
     df['RUL'] = df.apply(compute_training_RUL, axis = 1, args=(rul_vector,))
-    selected_features_rul = columns[:]
+    selected_features_rul = selected_features[:]
     selected_features_rul.extend(['Unit Number', 'RUL'])
     df_selected_features = df[selected_features_rul]
 
