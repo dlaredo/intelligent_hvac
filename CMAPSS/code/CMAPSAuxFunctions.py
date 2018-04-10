@@ -35,7 +35,7 @@ def step_decay(epoch):
 
 def compute_training_RUL(df_row, *args):
     
-    global constRUL
+    constRUL = args[1]
     rul_vector = args[0]
     
     if rul_vector[int(df_row['Unit Number']) - 1] - df_row['Cycle'] > constRUL:
@@ -94,7 +94,7 @@ def get_X_y_from_df(df, time_window, features, num_units, dataset_type):
     return X, y
 
 
-def retrieve_and_reshape_data(from_file, selected_features, time_window, dataset_type, unit_Number=None):
+def retrieve_and_reshape_data(from_file, selected_features, time_window, dataset_type, constRUL = 125, unit_Number=None):
     '''
     5    T2        - Total temperature at fan inlet      R
     6    T24       - Total temperature at lpc outlet     R
@@ -132,12 +132,13 @@ def retrieve_and_reshape_data(from_file, selected_features, time_window, dataset
     #In case a specific unit number is needed
     if unit_Number != None:
         df = df[df['Unit Number'] == unit_Number]
+        df['Unit Number'] = 1
 
     gruoped_by_unit = df.groupby('Unit Number')
     rul_vector = gruoped_by_unit.size().values
     num_units = len(gruoped_by_unit)
 
-    df['RUL'] = df.apply(compute_training_RUL, axis = 1, args=(rul_vector,))
+    df['RUL'] = df.apply(compute_training_RUL, axis = 1, args=(rul_vector,constRUL,))
     selected_features_rul = selected_features[:]
     selected_features_rul.extend(['Unit Number', 'RUL'])
     df_selected_features = df[selected_features_rul]
