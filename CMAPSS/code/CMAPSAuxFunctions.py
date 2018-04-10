@@ -12,6 +12,26 @@ def set_const_RUL(RUL):
     constRUL = RUL
 
 
+def compute_health_score(y_true, y_pred):
+    s=0
+    for i in range(len(y_true)):
+        d = y_pred[i] - y_true[i]
+        if d < 0:
+            s+=math.e**(-d/13)-1
+        else:
+            s+=math.e**(d/10)-1
+    return s
+
+
+def step_decay(epoch):
+    lrat = 0
+    if epoch<200:
+        lrat = 0.001
+    else:
+        lrat = 0.0001
+    return lrat 
+
+
 def compute_training_RUL(df_row, *args):
     
     global constRUL
@@ -71,6 +91,7 @@ def get_X_y_from_df(df, time_window, features, num_units, dataset_type):
             k = k + 1
     
     return X, y
+
 
 def retrieve_and_reshape_data(from_file, selected_features, time_window, dataset_type):
     '''
