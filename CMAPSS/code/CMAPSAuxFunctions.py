@@ -2,15 +2,7 @@ import numpy as np
 import pandas as pd
 import random
 import math
-
-global constRUL
-
-constRUL = 125
-
-def set_const_RUL(RUL):
-    global constRUL
-
-    constRUL = RUL
+from sklearn import preprocessing
 
 
 def compute_health_score(y_true, y_pred):
@@ -146,4 +138,83 @@ def retrieve_and_reshape_data(from_file, selected_features, time_window, dataset
     X, y = get_X_y_from_df(df_selected_features, time_window, selected_features, num_units, dataset_type)
     
     return X, y
+
+
+def get_X_y_from_Dataset(Dataset, dataSetLocation, constRUL, TW):
+
+
+
+    ############ training samples ##################################
+
+    setTrain = {'1':100, '2':260, '3':100, '4':248}
+    setTest = {'1':100, '2':259, '3':100, '4':248}
+    nTrain = setTrain[Dataset]
+    nTest = setTest[Dataset]
+
+    data = [] 
+    for line in open(dataSetLocation+"/train_FD00"+Dataset+".txt"):
+        data.append(line.split())
+    data=np.array(data)
+    data = np.cast['float64'](data)
+    data_copy = data
+    min_max_scaler = preprocessing.MinMaxScaler(feature_range=(-1, 1))
+    data = min_max_scaler.fit_transform(data)
+    num=[]
+    for i in range(nTrain):
+        tmp = data[np.where(data_copy[:,0]==i+1),:][0][:, np.array([6,7,8,11,12,13,15,16,17,18,19,21,24,25])]
+        num.append(tmp)
+    num=np.array(num)
+
+    label=[]
+    for i in range(nTrain):
+        label.append([])
+        length = len(num[i])
+        for j in range(length):
+            label[i].append(constRUL if length-j-1>=constRUL else length-j-1)
+    label = np.array(label)
+
+    samples,targets,noofsample = [],[],[]
+    for i in range(nTrain):
+        noofsample.append(len(num[i])-TW+1)
+        for j in range(noofsample[-1]):
+            samples.append(num[i][j:j+TW,:])
+            targets.append(label[i][j+TW-1])
+    samples = np.array(samples)
+    targets = np.array(targets)
+
+    ################## testing data ###########################
+    data = [] 
+    for line in open(dataSetLocation+"/test_FD00"+Dataset+".txt"):
+        data.append(line.split())
+    data=np.array(data)
+    data = np.cast['float64'](data)
+    data_copy = data
+    data = min_max_scaler.transform(data)
+    numt=[]
+    for i in range(nTest):
+        tmp = data[np.where(data_copy[:,0]==i+1),:][0][:, np.array([6,7,8,11,12,13,15,16,17,18,19,21,24,25])]
+        numt.append(tmp)
+    numt=np.array(numt)
+
+    samplet, count_miss = [],[]
+    for i in range(nTest):
+        if len(numt[i])>=TW:
+            samplet.append(numt[i][-TW:,:])
+        else:
+            count_miss.append(i)
+    samplet = np.array(samplet)
+
+    labelt = [] 
+    for line in open(dataSetLocation+"/RUL_FD00"+Dataset+".txt"):
+        labelt.append(line.split())
+    labelt = np.cast['int32'](labelt)
+    labelnew = []
+    for i in range(nTest):
+        if i not in count_miss:
+            #labelnew.append(labelt[i][0])
+            labelnew.append(labelt[i][0] if labelt[i][0]<=constRUL else constRUL)
+    labelt = labelnew
+    labelt=np.array(labelt)
+
+    return samples, targets, samplet, labelt
 
