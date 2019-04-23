@@ -56,17 +56,14 @@ def endDateCol():
     endDateList = list()
     d = dateCol()
     tempL = list()
-    print(raw[0])
-    print(raw[-2])
-    print (len(raw))
-    for line in range(len(raw)):
-        startD = d[line]
-        maxD = startD
+
+    if len(raw[line]) == 0:
+        maxD = ''
+    else:
         for l in range(len(raw[line])):
             matches = list(datefinder.find_dates(raw[line][l]))
             if matches[0] > maxD:
                 maxD = matches[0]
-
         tempL.append(maxD)
     return tempL
 
@@ -122,10 +119,9 @@ def compoentCombo():
     CC = componetColComment()
     com = componentColRequest()
     InvolvedCom = [x+y for x, y in zip(CC,com )]
-    # InvolvedCom []
-    # for element in InvolvedCom:
-    #     element = set(element)
-    #     element = list(element)
+    for i in range(len(InvolvedCom)):
+        s = set (InvolvedCom[i])
+        InvolvedCom[i] = list(s)
     return InvolvedCom
 
 #find locaitn of the issues
@@ -183,18 +179,6 @@ newdic = {}
 for l in range(len(w)):
     newdic[w[l]] = match_dc[l]
 
-# print(newdic)
-
 print(newdic['PP-1042597'])
-print(len(newdic))
 
 
-
-#use Workorder as key
-# newdic = {}
-# testlist = list
-# for l in range(len(d)):
-#     newdic[d[l]] = c[l]
-#combie list together
-# match_dc = [[x, y] for x, y in zip(d, r)]
-# print(match_dc[0])
