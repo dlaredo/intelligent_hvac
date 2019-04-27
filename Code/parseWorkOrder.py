@@ -20,8 +20,11 @@ import datetime
 #paramter in console
 #end date put empty
 
-file = r'WO-1030_SE2_HVAC_WO636713604036759879.xls'
-df = pd.read_excel(file,header = 6)
+# file = r'WO-1030_SE2_HVAC_WO636713604036759879.xls'
+# df = pd.read_excel(file,header = 6)
+file = input ('Name of excel sheet: ')
+# file = r'WO-1030_SE2_HVAC_WO636713604036759879.xls'
+df = pd.read_excel('../database/reportIssues/'+str(file),header = 6)
 
 #raw data coloumn
 def rawDataCol():
@@ -57,14 +60,16 @@ def endDateCol():
     d = dateCol()
     tempL = list()
 
-    if len(raw[line]) == 0:
-        maxD = ''
-    else:
-        for l in range(len(raw[line])):
-            matches = list(datefinder.find_dates(raw[line][l]))
-            if matches[0] > maxD:
-                maxD = matches[0]
-        tempL.append(maxD)
+    for line in range(len(raw)):
+        startD = d[line]
+        maxD = startD
+        if len(raw[line]) == 0:
+            maxD = ''
+        else:
+            for l in range(len(raw[line])):
+                matches = list(datefinder.find_dates(raw[line][l]))
+                if matches[0] > maxD:
+                    maxD = matches[0]
     return tempL
 
 #work order as key
@@ -127,9 +132,9 @@ def compoentCombo():
 #find locaitn of the issues
 def locationID():
     loclist = list()
-    for i in range (len(df)):
-        if type(df['Location ID'][i])== str:
-            loclist.append(df['Location ID'][i])
+    for w in range (len(df)):
+        if type(df['Work Order #'][w])== str and df['Work Order #'][w].startswith( 'PP' ):
+            loclist.append(df['Location ID'][w])
     return loclist
 
 #give initial request
@@ -161,13 +166,18 @@ def issueCol():
 
 
 iss = issueCol()
+print(len(iss))
 loc = locationID()
+print(len(loc))
+
 re = requestCol()
 InvolvedCom = compoentCombo()
 d = dateCol()
 r =rawDataCol()
 w = workOrderCol()
+print(len(w))
 end = endDateCol()
+print(len(end))
 
 # #testFinalList
 match_dc = [[a, b, c, d, e, f, g] for a, b, c, d, e, f, g in zip(d, end, InvolvedCom, loc, re,\
@@ -180,5 +190,3 @@ for l in range(len(w)):
     newdic[w[l]] = match_dc[l]
 
 print(newdic['PP-1042597'])
-
-
